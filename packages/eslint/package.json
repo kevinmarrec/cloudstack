@@ -1,0 +1,29 @@
+{
+  "name": "@kevinmarrec/cloudstack-eslint",
+  "type": "module",
+  "version": "0.0.1",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean --dts",
+    "lint": "eslint .",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@antfu/eslint-config": "^2.18.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-format": "^0.1.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "execa": "^9.1.0",
+    "fs-extra": "^11.2.0",
+    "vitest": "^1.6.0"
+  }
+}

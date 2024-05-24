@@ -1,0 +1,21 @@
+{
+  "name": "@kevinmarrec/cloudstack",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "check:unused": "knip",
+    "update:deps": "taze minor -wrI && bun install",
+    "prepare": "bun --cwd packages/eslint build && bun --cwd packages/stylelint build"
+  },
+  "devDependencies": {
+    "@kevinmarrec/cloudstack-eslint": "workspace:*",
+    "@kevinmarrec/cloudstack-stylelint": "workspace:*",
+    "knip": "^5.16.0",
+    "taze": "^0.13.8",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  }
+}
