@@ -5,6 +5,7 @@ export function defineConfig(...userConfigs: Array<Parameters<typeof antfu>[2]>)
     formatters: true,
     typescript: {
       overrides: {
+        'require-unicode-regexp': 'error',
         'ts/consistent-type-imports': [
           'error',
           { fixStyle: 'inline-type-imports' },

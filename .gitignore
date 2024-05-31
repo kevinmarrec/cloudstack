@@ -5,6 +5,7 @@
 .temp
 *.local
 *.log
+_output
 coverage
 dist
 node_modules
