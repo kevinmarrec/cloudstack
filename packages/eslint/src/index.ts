@@ -3,6 +3,10 @@ import { antfu } from '@antfu/eslint-config'
 export function defineConfig(...userConfigs: Array<Parameters<typeof antfu>[2]>) {
   return antfu({
     formatters: true,
+    unocss: {
+      attributify: true,
+      strict: true,
+    },
     typescript: {
       overrides: {
         'require-unicode-regexp': 'error',
