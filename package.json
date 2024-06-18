@@ -8,12 +8,13 @@
   "scripts": {
     "check:unused": "knip",
     "update:deps": "taze minor -Iwri",
-    "prepare": "bun --cwd packages/eslint build && bun --cwd packages/stylelint build"
+    "prepare": "bun scripts/prepare.ts"
   },
   "devDependencies": {
     "@kevinmarrec/cloudstack-eslint": "workspace:*",
     "@kevinmarrec/cloudstack-stylelint": "workspace:*",
-    "knip": "^5.17.4",
+    "@types/bun": "^1.1.4",
+    "knip": "^5.21.2",
     "taze": "^0.13.8",
     "tsup": "^8.1.0",
     "typescript": "^5.4.5"

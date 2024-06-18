@@ -5,7 +5,7 @@
     "lib": ["ESNext", "DOM"],
     "moduleDetection": "force",
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
     "allowJs": true,
