@@ -1,12 +1,12 @@
-import { join, resolve } from 'node:path'
+import fs from 'node:fs/promises'
+import path from 'node:path'
 
 import { execa } from 'execa'
-import fs from 'fs-extra'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
-const inputDir = resolve('test/fixtures/input')
-const outputDir = resolve('test/fixtures/output')
-const testOutputDir = resolve('test/fixtures/_output')
+const inputDir = path.resolve('test/fixtures/input')
+const outputDir = path.resolve('test/fixtures/output')
+const testOutputDir = path.resolve('test/fixtures/_output')
 
 beforeAll(async () => {
   await fs.rm(testOutputDir, { recursive: true, force: true })
@@ -20,13 +20,13 @@ describe('fixtures', () => {
   it('typescript.ts', async () => {
     const file = 'typescript.ts'
 
-    const inputFile = join(inputDir, file)
-    const outputFile = join(outputDir, file)
+    const inputFile = path.join(inputDir, file)
+    const outputFile = path.join(outputDir, file)
 
-    const testOutputFile = join(testOutputDir, file)
-    const testConfigFile = join(testOutputDir, 'eslint.config.js')
+    const testOutputFile = path.join(testOutputDir, file)
+    const testConfigFile = path.join(testOutputDir, 'eslint.config.js')
 
-    await fs.copy(inputFile, testOutputFile)
+    await fs.cp(inputFile, testOutputFile)
     await fs.writeFile(testConfigFile, `
       import { defineConfig } from '@kevinmarrec/cloudstack-eslint'
       export default defineConfig()
