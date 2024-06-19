@@ -5,6 +5,6 @@ const packages = ['eslint', 'stylelint']
 
 await Promise.all(
   packages.map(pkg =>
-    $`bun --silent --cwd packages/${pkg} build --silent`,
+    $`bun --cwd packages/${pkg} build`.quiet(),
   ),
 )
