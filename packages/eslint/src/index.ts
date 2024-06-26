@@ -15,6 +15,9 @@ export function defineConfig(...userConfigs: Array<Parameters<typeof antfu>[2]>)
           { fixStyle: 'inline-type-imports' },
         ],
       },
+      parserOptions: {
+        warnOnUnsupportedTypeScriptVersion: false,
+      },
     },
     vue: {
       overrides: {

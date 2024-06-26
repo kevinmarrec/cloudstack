@@ -24,7 +24,7 @@
     "stylelint-config-recommended-scss": "^14.0.0"
   },
   "devDependencies": {
-    "execa": "^9.2.0",
+    "execa": "^9.3.0",
     "vitest": "^1.6.0"
   }
 }
