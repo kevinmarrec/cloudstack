@@ -29,9 +29,11 @@ jobs:
           filters: |
             packages/eslint:
               - '.github/workflows/ci.yml'
+              - 'bun.lockb'
               - 'packages/eslint/**'
             packages/stylelint:
               - '.github/workflows/ci.yml'
+              - 'bun.lockb'
               - 'packages/stylelint/**'
   test:
     name: Test
