@@ -2,6 +2,9 @@
   "name": "@kevinmarrec/cloudstack-stylelint",
   "type": "module",
   "version": "0.0.1",
+  "author": "Kevin Marrec <kevin@marrec.io>",
+  "license": "MIT",
+  "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/stylelint",
   "exports": {
     ".": {
       "import": "./dist/index.js"
