@@ -27,14 +27,14 @@ jobs:
         id: filter
         with:
           filters: |
-            packages/eslint:
+            packages/eslint-config:
               - '.github/workflows/ci.yml'
               - 'bun.lockb'
-              - 'packages/eslint/**'
-            packages/stylelint:
+              - 'packages/eslint-config/**'
+            packages/stylelint-config:
               - '.github/workflows/ci.yml'
               - 'bun.lockb'
-              - 'packages/stylelint/**'
+              - 'packages/stylelint-config/**'
   test:
     name: Test
     runs-on: ubuntu-latest

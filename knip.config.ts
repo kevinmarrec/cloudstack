@@ -2,7 +2,7 @@ import type { KnipConfig } from 'knip'
 
 export default <KnipConfig> {
   workspaces: {
-    'packages/stylelint': {
+    'packages/stylelint-config': {
       ignoreDependencies: [
         'stylelint-config-html',
         'stylelint-config-recess-order',

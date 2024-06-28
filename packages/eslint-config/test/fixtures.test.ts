@@ -28,7 +28,7 @@ describe('fixtures', () => {
 
     await fs.cp(inputFile, testOutputFile)
     await fs.writeFile(testConfigFile, `
-      import { defineConfig } from '@kevinmarrec/cloudstack-eslint'
+      import { defineConfig } from '@kevinmarrec/cloudstack-eslint-config'
       export default defineConfig()
     `)
 
