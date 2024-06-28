@@ -6,7 +6,6 @@
     "packages/*"
   ],
   "scripts": {
-    "update:deps": "taze minor -Iwri",
     "prepare": "bun scripts/prepare.ts"
   },
   "devDependencies": {
