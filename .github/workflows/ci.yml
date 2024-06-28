@@ -59,7 +59,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Check unused files, dependencies, and exports
-        run: bun check:unused -W ${{ matrix.workspace }}
+        run: bun knip -W ${{ matrix.workspace }}
 
       - name: Run Lint
         run: bun --cwd ${{ matrix.workspace }} lint

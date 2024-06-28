@@ -6,7 +6,6 @@
     "packages/*"
   ],
   "scripts": {
-    "check:unused": "knip",
     "update:deps": "taze minor -Iwri",
     "prepare": "bun scripts/prepare.ts"
   },
