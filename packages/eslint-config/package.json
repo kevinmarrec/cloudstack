@@ -21,15 +21,11 @@
     "test": "vitest"
   },
   "peerDependencies": {
-    "eslint": ">=8.40.0"
+    "eslint": ">=9.0.0"
   },
   "dependencies": {
     "@antfu/eslint-config": "^2.21.2",
     "@unocss/eslint-plugin": "^0.61.0",
     "eslint-plugin-format": "^0.1.2"
-  },
-  "devDependencies": {
-    "execa": "^9.3.0",
-    "vitest": "^1.6.0"
   }
 }
