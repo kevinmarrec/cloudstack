@@ -4,7 +4,7 @@ export function defineConfig(...userConfigs: Array<Parameters<typeof antfu>[2]>)
   return antfu({
     formatters: true,
     unocss: {
-      attributify: true,
+      attributify: false,
       strict: true,
     },
     typescript: {
