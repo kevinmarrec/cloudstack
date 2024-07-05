@@ -13,5 +13,4 @@ assert({
   foo: {} as Foo,
   bar: {} as Bar,
   baz,
-  regex: /foo/,
 })

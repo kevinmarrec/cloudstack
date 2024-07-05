@@ -7,11 +7,6 @@ export function defineConfig(...userConfigs: Array<Parameters<typeof antfu>[2]>)
       attributify: true,
       strict: true,
     },
-    regexp: {
-      overrides: {
-        'regexp/require-unicode-regexp': 'error',
-      },
-    },
     typescript: {
       overrides: {
         'ts/consistent-type-imports': [
