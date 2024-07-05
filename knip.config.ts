@@ -1,6 +1,6 @@
 import type { KnipConfig } from 'knip'
 
-export default <KnipConfig> {
+export default {
   workspaces: {
     'packages/stylelint-config': {
       ignoreDependencies: [
@@ -14,4 +14,4 @@ export default <KnipConfig> {
     '**/dist/**',
     '**/test/**',
   ],
-}
+} satisfies KnipConfig
