@@ -16,7 +16,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm --clean --dts",
+    "build": "tsup",
     "lint": "eslint .",
     "test": "vitest"
   },
