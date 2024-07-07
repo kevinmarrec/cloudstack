@@ -4,6 +4,7 @@ import { $ } from 'bun'
 const packages = [
   'eslint-config',
   'stylelint-config',
+  'unocss-config',
   'frontend',
 ]
 

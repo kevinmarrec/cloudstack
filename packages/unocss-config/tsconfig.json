@@ -1,0 +1,4 @@
+{
+  "extends": "@kevinmarrec/cloudstack-tsconfig",
+  "include": ["src/**/*"]
+}

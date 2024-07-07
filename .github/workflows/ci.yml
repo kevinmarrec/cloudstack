@@ -33,6 +33,9 @@ jobs:
             packages/stylelint-config:
               - '.github/workflows/ci.yml'
               - 'packages/stylelint-config/**'
+            packages/unocss-config:
+              - '.github/workflows/ci.yml'
+              - 'packages/unocss-config/**'
   test:
     name: Test
     runs-on: ubuntu-latest
