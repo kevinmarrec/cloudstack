@@ -15,7 +15,6 @@ import type { PluginOption, UserConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
-import WebfontDownload from 'vite-plugin-webfont-dl'
 
 interface FrameworkOptions {
   root: string
@@ -27,7 +26,6 @@ interface FrameworkOptions {
   vue?: Parameters<typeof Vue>[0]
   vueRouter?: Parameters<typeof VueRouter>[0]
   vueDevTools?: Parameters<typeof VueDevTools>[0]
-  webfontDownload?: Parameters<typeof WebfontDownload>[0]
 }
 
 function applyDefaults(options: FrameworkOptions) {
@@ -36,6 +34,11 @@ function applyDefaults(options: FrameworkOptions) {
     imports: [
       'vue',
       VueRouterAutoImports,
+      {
+        'unplugin-vue-router/runtime': [
+          'definePage',
+        ],
+      },
       {
         '@unhead/vue': [
           'useHead',
@@ -47,8 +50,8 @@ function applyDefaults(options: FrameworkOptions) {
     ],
     dirs: [
       'src/composables',
-      'src/stores',
     ],
+    vueTemplate: true,
   } satisfies FrameworkOptions['autoImports'])
 
   options.components = defu(options.components, {
@@ -68,6 +71,7 @@ function applyDefaults(options: FrameworkOptions) {
     },
     devOptions: {
       enabled: true,
+      suppressWarnings: true,
       type: 'module',
     },
   } satisfies FrameworkOptions['pwa'])
@@ -105,9 +109,6 @@ export default function framework(options: FrameworkOptions): PluginOption[] {
     // https://github.com/webfansplz/vite-plugin-vue-devtools
     VueDevTools(options.vueDevTools),
 
-    // https://github.com/feat-agency/vite-plugin-webfont-dl
-    WebfontDownload(options.webfontDownload),
-
     // Additional configuration
     {
       config(config) {
@@ -127,6 +128,9 @@ export default function framework(options: FrameworkOptions): PluginOption[] {
           ssgOptions: {
             script: 'async',
             formatting: 'minify',
+            crittersOptions: {
+              reduceInlineStyles: false,
+            },
           },
         })
       },
@@ -136,8 +140,8 @@ export default function framework(options: FrameworkOptions): PluginOption[] {
           tags: [
             {
               tag: 'script',
-              children: readFileSync(path.join(import.meta.url.replace('file:', ''), '../darkMode.script.js'), 'utf-8'),
               injectTo: 'head',
+              children: readFileSync(path.join(import.meta.dirname, 'darkMode.script.js'), 'utf-8'),
             },
           ],
         }

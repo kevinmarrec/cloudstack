@@ -6,12 +6,11 @@
     "packages/*"
   ],
   "scripts": {
-    "prepare": "bun scripts/prepare.ts"
+    "prepare": "bun scripts/prepare.ts",
+    "play": "bun --cwd playground dev"
   },
   "devDependencies": {
     "@kevinmarrec/cloudstack-eslint-config": "workspace:*",
-    "@kevinmarrec/cloudstack-stylelint-config": "workspace:*",
-    "@kevinmarrec/cloudstack-tsconfig": "workspace:*",
     "@types/bun": "^1.1.6",
     "eslint": "^9.6.0",
     "execa": "^9.3.0",

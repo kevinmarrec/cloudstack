@@ -3,11 +3,9 @@
 .env*
 .idea
 .temp
-.vite*
 *.local
 *.log
 _output
 coverage
-dev-dist
 dist
 node_modules

@@ -1,11 +1,10 @@
+import Framework from '@kevinmarrec/cloudstack-frontend/vite'
 import { defineConfig } from 'vite'
-
-import Framework from './src/vite'
 
 export default defineConfig({
   plugins: [
     Framework({
-      root: __dirname,
+      root: import.meta.dirname,
     }),
   ],
 })

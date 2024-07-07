@@ -9,6 +9,7 @@ import { routes } from 'vue-router/auto-routes'
 
 import { installModules } from './modules'
 
+import 'the-new-css-reset'
 import 'uno.css'
 
 export type { UserModule } from './types'
