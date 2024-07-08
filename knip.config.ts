@@ -16,6 +16,9 @@ export default {
         'stylelint-config-recommended-scss',
       ],
     },
+    'packages/unocss-config': {
+      ignoreDependencies: [/^@unocss/],
+    },
   },
   ignore: [
     '**/fixtures/**',
