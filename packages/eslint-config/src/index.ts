@@ -1,12 +1,12 @@
 import { antfu } from '@antfu/eslint-config'
+import defu from 'defu'
 
-export function defineConfig(...userConfigs: Array<Parameters<typeof antfu>[2]>) {
-  return antfu({
+type Options = NonNullable<Parameters<typeof antfu>[0]>
+type UserConfig = Parameters<typeof antfu>[1]
+
+export function defineConfig(options?: Options, ...userConfigs: UserConfig[]) {
+  return antfu(defu<Options, Options[]>(options, {
     formatters: true,
-    unocss: {
-      attributify: false,
-      strict: true,
-    },
     typescript: {
       overrides: {
         'ts/consistent-type-imports': [
@@ -37,5 +37,5 @@ export function defineConfig(...userConfigs: Array<Parameters<typeof antfu>[2]>)
         },
       ],
     },
-  }, ...userConfigs)
+  }), options?.ignores ? { ignores: options.ignores } : {}, ...userConfigs)
 }

@@ -2,6 +2,13 @@ import type { KnipConfig } from 'knip'
 
 export default {
   workspaces: {
+    'packages/frontend': {
+      ignoreDependencies: [
+        'uno.css',
+        'virtual:generated-layouts',
+        'virtual:pwa-register',
+      ],
+    },
     'packages/stylelint-config': {
       ignoreDependencies: [
         'stylelint-config-html',
@@ -11,7 +18,8 @@ export default {
     },
   },
   ignore: [
-    '**/dist/**',
-    '**/test/**',
+    '**/fixtures/**',
+    '**/playground/**',
+    '**/tsconfig.json',
   ],
 } satisfies KnipConfig

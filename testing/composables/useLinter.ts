@@ -4,7 +4,7 @@ import path from 'node:path'
 import { execa } from 'execa'
 import { afterAll, beforeAll } from 'vitest'
 
-export type Linter = 'eslint' | 'stylelint'
+type Linter = 'eslint' | 'stylelint'
 
 export function useLinter(linter: Linter) {
   const inputDir = path.resolve('test/fixtures/input')
