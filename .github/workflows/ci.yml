@@ -30,15 +30,17 @@ jobs:
         uses: oven-sh/setup-bun@v2
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: |
+          bun install --frozen-lockfile --ignore-scripts
+          bun --cwd packages/eslint-config postinstall
 
-      - name: Cache dependencies & packages dist
+      - name: Cache dependencies & eslint-config dist
         uses: actions/cache/save@v4
         with:
+          key: ${{ hashFiles('bun.lockb', 'packages/eslint-config/src/**') }}
           path: |
-            **/node_modules/**
-            **/dist/**
-          key: ${{ github.sha }}
+            node_modules
+            packages/eslint-config/dist
 
       - name: Filter paths
         uses: dorny/paths-filter@v3
@@ -77,13 +79,13 @@ jobs:
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
 
-      - name: Restore cached dependencies & packages dist
+      - name: Restore cached dependencies & eslint-config dist
         uses: actions/cache/restore@v4
         with:
+          key: ${{ hashFiles('bun.lockb', 'packages/eslint-config/src/**') }}
           path: |
-            **/node_modules/**
-            **/dist/**
-          key: ${{ github.sha }}
+            node_modules
+            packages/eslint-config/dist
 
       - name: Check unused files, dependencies, and exports
         run: bun knip -W ${{ matrix.workspace }}
