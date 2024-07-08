@@ -6,7 +6,6 @@
     "packages/*"
   ],
   "scripts": {
-    "prepare": "bun scripts/prepare.ts",
     "play": "bun --cwd playground dev"
   },
   "devDependencies": {

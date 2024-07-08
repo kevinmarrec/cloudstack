@@ -16,6 +16,7 @@
     "dist"
   ],
   "scripts": {
+    "postinstall": "bun run build",
     "build": "tsup",
     "lint": "eslint .",
     "test": "vitest"
