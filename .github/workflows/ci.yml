@@ -12,6 +12,10 @@ on:
     paths-ignore:
       - '**/*.md'
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
   changes:
     name: Check for changes
@@ -36,6 +40,9 @@ jobs:
             packages/unocss-config:
               - '.github/workflows/ci.yml'
               - 'packages/unocss-config/**'
+            packages/frontend:
+              - '.github/workflows/ci.yml'
+              - 'packages/frontend/**'
   test:
     name: Test
     runs-on: ubuntu-latest

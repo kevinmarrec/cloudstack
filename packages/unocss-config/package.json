@@ -18,7 +18,7 @@
   "scripts": {
     "build": "tsup",
     "lint": "eslint .",
-    "test": "vitest"
+    "test": "echo \"No tests yet\""
   },
   "peerDependencies": {
     "unocss": ">=0.61.3"

@@ -20,7 +20,8 @@
   ],
   "scripts": {
     "build": "tsup",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "echo \"No tests yet\""
   },
   "dependencies": {
     "@vite-pwa/assets-generator": "^0.2.4",
