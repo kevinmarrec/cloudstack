@@ -4,7 +4,7 @@ import { $ } from 'bun'
 const packages = [
   'eslint-config',
   'stylelint-config',
-  'frontend',
+  // 'frontend',
 ]
 
 await Promise.all(
