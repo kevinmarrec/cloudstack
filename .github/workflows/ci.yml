@@ -26,24 +26,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile --ignore-scripts
-
-      - name: Build lint configs
-        run: bun --filter '@kevinmarrec/cloudstack-*lint-config' build --silent
-
       - name: Cache dependencies & pre-built lint configs
-        uses: actions/cache/save@v4
+        id: cache
+        uses: actions/cache@v4
         with:
           key: ${{ hashFiles('bun.lockb', 'packages/*lint-config/src/**') }}
           path: |
             node_modules
             packages/*lint-config/dist
+
+      - name: Set up Bun
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: bun install --frozen-lockfile --ignore-scripts
+
+      - name: Build lint configs
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: bun --filter '@kevinmarrec/cloudstack-*lint-config' build --silent
 
       - name: Filter paths
         uses: dorny/paths-filter@v3
