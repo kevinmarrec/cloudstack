@@ -19,6 +19,7 @@
     "dist"
   ],
   "scripts": {
+    "postinstall": "bun run build --silent",
     "build": "tsup",
     "lint": "eslint .",
     "test": "echo \"No tests yet\""
