@@ -5,7 +5,7 @@ interface UserConfig {
   rules?: Config['rules']
 }
 
-export function defineConfig(config?: UserConfig): Config {
+export function defineConfig(config: UserConfig = {}): Config {
   return {
     extends: [
       'stylelint-config-recommended-scss',
@@ -15,8 +15,8 @@ export function defineConfig(config?: UserConfig): Config {
     rules: {
       'declaration-block-no-duplicate-properties': true,
       'length-zero-no-unit': true,
-      ...config?.rules,
+      ...config.rules,
     },
-    ignoreFiles: config?.ignores,
+    ignoreFiles: config.ignores,
   }
 }
