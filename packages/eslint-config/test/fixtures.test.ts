@@ -1,13 +1,44 @@
+import fs from 'node:fs/promises'
+import path from 'node:path'
+
+import { ESLint } from 'eslint'
 import { describe, expect, it } from 'vitest'
 
-import { useLinter } from '../../../testing/composables/useLinter'
+import { defineConfig } from '../src'
 
 describe('fixtures', () => {
-  const { lint } = useLinter('eslint')
-
   it('typescript.ts', async () => {
-    const { output, snapshot } = await lint('typescript.ts')
+    const inputFile = path.resolve('fixtures/input/typescript.ts')
+    const outputFile = path.resolve('fixtures/output/typescript.ts')
 
-    expect(output).toMatchFileSnapshot(snapshot)
+    const code = await fs.readFile(inputFile, 'utf-8')
+
+    const eslint = new ESLint({
+      overrideConfig: await defineConfig() as ESLint.ConfigData,
+      fix: true,
+    })
+
+    const [{ output }] = await eslint.lintText(code, { filePath: 'typescript.ts' })
+
+    expect(output).toMatchFileSnapshot(outputFile)
+  })
+
+  it('vue.vue', async () => {
+    const code = `
+      <script setup lang="ts">
+        defineProps<{ foo: string }>()
+      </script>
+    `
+
+    const eslint = new ESLint({
+      overrideConfig: await defineConfig() as ESLint.ConfigData,
+      fix: true,
+    })
+
+    const [{ errorCount, messages }] = await eslint.lintText(code, { filePath: 'vue.vue' })
+
+    expect(errorCount).toBe(1)
+    expect(messages.length).toBe(1)
+    expect(messages[0].message).toContain('\'foo\' of property found, but never used')
   })
 })

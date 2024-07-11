@@ -1,11 +1,11 @@
 import { antfu } from '@antfu/eslint-config'
 import defu from 'defu'
 
-type Options = NonNullable<Parameters<typeof antfu>[0]>
+type Options = Parameters<typeof antfu>[0]
 type UserConfig = Parameters<typeof antfu>[1]
 
-export function defineConfig(options?: Options, ...userConfigs: UserConfig[]) {
-  return antfu(defu<Options, Options[]>(options, {
+export function defineConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
+  return antfu(defu<NonNullable<Options>, Options[]>(options, {
     formatters: true,
     typescript: {
       overrides: {
@@ -37,5 +37,5 @@ export function defineConfig(options?: Options, ...userConfigs: UserConfig[]) {
         },
       ],
     },
-  }), options?.ignores ? { ignores: options.ignores } : {}, ...userConfigs)
+  }), options.ignores ? { ignores: options.ignores } : {}, ...userConfigs)
 }
