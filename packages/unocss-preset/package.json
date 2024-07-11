@@ -1,10 +1,10 @@
 {
-  "name": "@kevinmarrec/cloudstack-unocss-config",
+  "name": "@kevinmarrec/cloudstack-unocss-preset",
   "type": "module",
   "version": "0.0.1",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
-  "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/unocss-config",
+  "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/unocss-preset",
   "exports": {
     ".": {
       "import": "./dist/index.js"
@@ -19,9 +19,12 @@
     "postinstall": "bun run build --silent",
     "build": "tsup",
     "lint": "eslint .",
-    "test": "echo \"No tests yet\""
+    "test": "vitest"
   },
   "peerDependencies": {
     "unocss": ">=0.61.3"
+  },
+  "devDependencies": {
+    "@iconify-json/carbon": "^1.1.36"
   }
 }

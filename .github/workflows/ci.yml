@@ -60,9 +60,9 @@ jobs:
             packages/stylelint-config:
               - '.github/workflows/ci.yml'
               - 'packages/stylelint-config/**'
-            packages/unocss-config:
+            packages/unocss-preset:
               - '.github/workflows/ci.yml'
-              - 'packages/unocss-config/**'
+              - 'packages/unocss-preset/**'
             packages/frontend:
               - '.github/workflows/ci.yml'
               - 'packages/frontend/**'

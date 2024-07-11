@@ -15,7 +15,9 @@
   "devDependencies": {
     "@kevinmarrec/cloudstack-eslint-config": "workspace:*",
     "@kevinmarrec/cloudstack-stylelint-config": "workspace:*",
+    "@kevinmarrec/cloudstack-unocss-preset": "workspace:*",
     "eslint": "^9.6.0",
-    "stylelint": "^16.6.1"
+    "stylelint": "^16.6.1",
+    "unocss": "^0.61.3"
   }
 }

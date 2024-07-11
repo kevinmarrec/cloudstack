@@ -1,3 +1,6 @@
-import { defineConfig } from '@kevinmarrec/cloudstack-unocss-config'
+import preset from '@kevinmarrec/cloudstack-unocss-preset'
+import { defineConfig } from 'unocss'
 
-export default defineConfig()
+export default defineConfig({
+  presets: [preset()],
+})
