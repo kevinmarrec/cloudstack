@@ -119,11 +119,7 @@ export default function framework(options: FrameworkOptions): PluginOption[] {
             },
           },
           optimizeDeps: {
-            include: [
-              '@unhead/vue',
-              '@vueuse/core',
-              'workbox-window',
-            ],
+            include: ['workbox-window'],
           },
           ssgOptions: {
             script: 'async',
