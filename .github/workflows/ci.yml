@@ -99,8 +99,11 @@ jobs:
       - name: Check unused files, dependencies, and exports
         run: bun knip -W ${{ matrix.workspace }}
 
-      - name: Run Lint
+      - name: Lint
         run: bun --cwd ${{ matrix.workspace }} lint
 
-      - name: Run Tests
+      - name: Type check
+        run: bun --cwd ${{ matrix.workspace }} typecheck
+
+      - name: Unit tests
         run: bun --cwd ${{ matrix.workspace }} test --run

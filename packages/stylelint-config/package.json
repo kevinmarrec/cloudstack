@@ -19,7 +19,8 @@
     "postinstall": "bun run build --silent",
     "build": "tsup",
     "lint": "eslint .",
-    "test": "vitest"
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
     "stylelint": ">=16.0.0"

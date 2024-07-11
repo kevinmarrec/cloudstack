@@ -22,7 +22,8 @@
     "postinstall": "bun run build --silent",
     "build": "tsup",
     "lint": "eslint .",
-    "test": "echo \"No tests yet\""
+    "test": "echo \"No tests yet\"",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@vite-pwa/assets-generator": "^0.2.4",
