@@ -106,4 +106,4 @@ jobs:
         run: bun --cwd ${{ matrix.workspace }} typecheck
 
       - name: Unit tests
-        run: bun --cwd ${{ matrix.workspace }} test --run
+        run: bun --cwd ${{ matrix.workspace }} test
