@@ -5,6 +5,17 @@ type Options = Parameters<typeof antfu>[0]
 type UserConfig = Parameters<typeof antfu>[1]
 
 export function defineConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
+  if (options.unocss) {
+    options.unocss = defu(options.unocss, {
+      attributify: false,
+      strict: true,
+    })
+  }
+
+  if (options.ignores) {
+    userConfigs.unshift({ ignores: options.ignores })
+  }
+
   return antfu(defu<NonNullable<Options>, Options[]>(options, {
     formatters: true,
     typescript: {
@@ -37,5 +48,5 @@ export function defineConfig(options: Options = {}, ...userConfigs: UserConfig[]
         },
       ],
     },
-  }), options.ignores ? { ignores: options.ignores } : {}, ...userConfigs)
+  }), ...userConfigs)
 }
