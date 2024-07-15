@@ -63,9 +63,9 @@ jobs:
             packages/unocss-preset:
               - '.github/workflows/ci.yml'
               - 'packages/unocss-preset/**'
-            packages/frontend:
+            packages/vite-plugin:
               - '.github/workflows/ci.yml'
-              - 'packages/frontend/**'
+              - 'packages/vite-plugin/**'
   check:
     name: Check
     runs-on: ubuntu-latest

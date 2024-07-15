@@ -10,14 +10,19 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@kevinmarrec/cloudstack-frontend": "workspace:*"
+    "@unhead/vue": "^1.9.16",
+    "@vueuse/core": "^10.11.0",
+    "vue": "^3.4.31",
+    "vue-router": "^4.4.0"
   },
   "devDependencies": {
     "@kevinmarrec/cloudstack-eslint-config": "workspace:*",
     "@kevinmarrec/cloudstack-stylelint-config": "workspace:*",
     "@kevinmarrec/cloudstack-unocss-preset": "workspace:*",
+    "@kevinmarrec/cloudstack-vite-plugin": "workspace:*",
     "eslint": "^9.7.0",
     "stylelint": "^16.7.0",
-    "unocss": "^0.61.3"
+    "unocss": "^0.61.3",
+    "vite": "^5.3.3"
   }
 }
