@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --open",
     "build": "vite-ssg build",
-    "lint": "eslint . && stylelint --aei '**/*.{css,scss,vue}'",
+    "lint": "eslint . && stylelint '**/*.{css,scss,vue}'",
     "serve": "vite preview"
   },
   "dependencies": {
