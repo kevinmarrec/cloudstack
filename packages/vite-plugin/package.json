@@ -33,13 +33,11 @@
     }
   },
   "dependencies": {
+    "@unocss/vite": "^0.61.3",
     "@vite-pwa/assets-generator": "^0.2.4",
     "@vitejs/plugin-vue": "^5.0.5",
-    "@vueuse/core": "^10.11.0",
     "critters": "^0.0.24",
     "defu": "^6.1.4",
-    "the-new-css-reset": "^1.11.2",
-    "unocss": "^0.61.3",
     "unplugin-auto-import": "^0.18.0",
     "unplugin-vue-components": "^0.27.2",
     "unplugin-vue-router": "^0.10.0",

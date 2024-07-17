@@ -2,23 +2,22 @@
 
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
+import process from 'node:process'
 
 import Vue from '@vitejs/plugin-vue'
 import defu from 'defu'
-import getCallerFile from 'get-caller-file'
 import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import VueRouter from 'unplugin-vue-router/vite'
 import { mergeConfig } from 'vite'
-import type { Plugin, PluginOption, UserConfig } from 'vite'
+import type { PluginOption, UserConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
 
 export interface VitePluginConfig {
-  root: string
   autoImports?: boolean | Parameters<typeof AutoImport>[0]
   components?: boolean | Parameters<typeof Components>[0]
   devtools?: boolean | Parameters<typeof VueDevTools>[0]
@@ -28,36 +27,31 @@ export interface VitePluginConfig {
   unocss?: boolean | Parameters<typeof Unocss>[0]
 }
 
-export default function CloudstackVitePlugin(config: VitePluginConfig): PluginOption[] {
-  function configurePlugin<T extends (...args: any) => PluginOption>(plugin: T, userConfig: boolean | Parameters<T>[0], defaultConfig?: Parameters<T>[0]): PluginOption {
-    return userConfig && plugin(defu(userConfig, defaultConfig))
-  }
+function configurePlugin<T extends (...args: any) => PluginOption>(plugin: T, userConfig: boolean | Parameters<T>[0], defaultConfig?: Parameters<T>[0]): PluginOption {
+  return userConfig && plugin(defu(userConfig, defaultConfig))
+}
 
-  const plugins: PluginOption[] = [
+export default function CloudstackVitePlugin(config: VitePluginConfig = {}): PluginOption[] {
+  return ([
     // https://github.com/antfu/unplugin-auto-import
     configurePlugin(AutoImport, config.autoImports, {
-      dts: 'src/types/auto-imports.d.ts',
+      dts: 'src/types/autoImports.d.ts',
       imports: [
         'vue',
-        VueRouterAutoImports,
-        {
-          'unplugin-vue-router/runtime': [
-            'definePage',
-          ],
-        },
-        {
-          '@unhead/vue': [
-            'useHead',
-            'useHeadSafe',
-            'useSeoMeta',
-          ],
-        },
-        '@vueuse/core',
+        ...config.router
+          ? [
+              VueRouterAutoImports,
+              {
+                'unplugin-vue-router/runtime': [
+                  'definePage',
+                ],
+              },
+            ]
+          : [],
       ],
       dirs: [
         'src/composables',
       ],
-      vueTemplate: true,
     }),
 
     // https://github.com/antfu/unplugin-vue-components
@@ -89,13 +83,13 @@ export default function CloudstackVitePlugin(config: VitePluginConfig): PluginOp
       },
     }),
 
-    // https://github.com/vitejs/vite-plugin-vue
-    Vue(),
-
     // https://github.com/posva/unplugin-vue-router
     configurePlugin(VueRouter, config.router, {
       dts: 'src/types/router.d.ts',
     }),
+
+    // https://github.com/vitejs/vite-plugin-vue
+    Vue(),
 
     // https://github.com/webfansplz/vite-plugin-vue-devtools
     configurePlugin(VueDevTools, config.devtools),
@@ -103,15 +97,16 @@ export default function CloudstackVitePlugin(config: VitePluginConfig): PluginOp
     // Additional configuration
     {
       name: '@kevinmarrec/cloudstack',
-      config(userConfig) {
+      async config(userConfig) {
         return mergeConfig<UserConfig, UserConfig>(userConfig, {
           resolve: {
             alias: {
-              '~': path.resolve(config.root, 'src'),
+              '~': path.resolve(userConfig.root ?? process.cwd(), 'src'),
             },
           },
+          // TODO: Only if config.pwa
           optimizeDeps: {
-            include: ['workbox-window'],
+            include: ['ok'],
           },
           ssgOptions: {
             script: 'async',
@@ -135,7 +130,5 @@ export default function CloudstackVitePlugin(config: VitePluginConfig): PluginOp
         }
       },
     },
-  ]
-
-  return plugins.filter(Boolean)
+  ] as PluginOption[]).filter(Boolean)
 }

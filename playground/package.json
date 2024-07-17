@@ -10,8 +10,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@unhead/vue": "^1.9.16",
-    "@vueuse/core": "^10.11.0",
+    "the-new-css-reset": "^1.11.2",
     "vue": "^3.4.31",
     "vue-router": "^4.4.0"
   },
