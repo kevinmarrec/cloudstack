@@ -69,9 +69,24 @@ export default function CloudstackVitePlugin(config: VitePluginConfig = {}): Plu
     configurePlugin(VitePWA, config.pwa, {
       registerType: 'autoUpdate',
       manifest: {
+        // TODO: Use start_url fallback for id & scope
+        id: '/',
+        scope: '/',
+        start_url: '/',
+        lang: 'en-US',
         name: 'Vite PWA',
         short_name: 'Vite PWA',
+        background_color: '#ffffff',
         theme_color: '#ffffff',
+        dir: 'ltr',
+        orientation: 'natural',
+        handle_links: 'preferred',
+        launch_handler: {
+          client_mode: [
+            'navigate-existing',
+            'auto',
+          ],
+        },
       },
       pwaAssets: {
         overrideManifestIcons: true,
