@@ -8,7 +8,7 @@ export default defineConfig([
     format: 'esm',
   },
   {
-    entry: ['src/darkMode.script.js'],
+    entry: ['src/plugins/main/darkMode.script.js'],
     format: 'esm',
   },
 ])

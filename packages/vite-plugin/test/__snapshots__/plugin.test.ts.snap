@@ -10,21 +10,24 @@ exports[`plugin > should inject dark mode script in index.html 1`] = `
 })()
 </script>
 
+<script type="module" src="/@id/virtual:vue-devtools-path:overlay.js"></script>
+<script type="module" src="/@id/virtual:vue-inspector-path:load.js"></script>
+
 <script type="module" src="/@vite/client"></script>
 </html>"
 `;
 
-exports[`plugin > should resolve correct plugin options for config { autoImports: true } 1`] = `
+exports[`plugin > should resolve correct plugin options for config { autoImports: false, components: false, devtools: false, layouts: false, pwa: false, router: false, unocss: false } 1`] = `
 [
-  "@kevinmarrec/cloudstack",
-  "unplugin-auto-import",
+  "@kevinmarrec/cloudstack-vite-plugin",
   "vite:vue",
 ]
 `;
 
 exports[`plugin > should resolve correct plugin options for config { autoImports: true, components: true, devtools: true, layouts: true, pwa: true, router: true, unocss: true } 1`] = `
 [
-  "@kevinmarrec/cloudstack",
+  "@kevinmarrec/cloudstack-vite-plugin",
+  "@kevinmarrec/cloudstack-vite-plugin:pwa",
   "unocss:api",
   "unocss:config",
   "unocss:devtools",
@@ -42,85 +45,19 @@ exports[`plugin > should resolve correct plugin options for config { autoImports
   "unplugin-vue-components",
   "unplugin-vue-router",
   "vite-plugin-inspect",
-  "vite-plugin-pwa",
-  "vite-plugin-pwa:build",
-  "vite-plugin-pwa:dev-sw",
-  "vite-plugin-pwa:info",
-  "vite-plugin-pwa:pwa-assets",
   "vite-plugin-vue-devtools",
   "vite-plugin-vue-layouts",
-  "vite:vue",
-]
-`;
-
-exports[`plugin > should resolve correct plugin options for config { components: true } 1`] = `
-[
-  "@kevinmarrec/cloudstack",
-  "unplugin-vue-components",
-  "vite:vue",
-]
-`;
-
-exports[`plugin > should resolve correct plugin options for config { devtools: true } 1`] = `
-[
-  "@kevinmarrec/cloudstack",
-  "vite-plugin-inspect",
-  "vite-plugin-vue-devtools",
-  "vite:vue",
-]
-`;
-
-exports[`plugin > should resolve correct plugin options for config { layouts: true } 1`] = `
-[
-  "@kevinmarrec/cloudstack",
-  "vite-plugin-vue-layouts",
-  "vite:vue",
-]
-`;
-
-exports[`plugin > should resolve correct plugin options for config { pwa: true } 1`] = `
-[
-  "@kevinmarrec/cloudstack",
-  "vite-plugin-pwa",
-  "vite-plugin-pwa:build",
-  "vite-plugin-pwa:dev-sw",
-  "vite-plugin-pwa:info",
-  "vite-plugin-pwa:pwa-assets",
-  "vite:vue",
-]
-`;
-
-exports[`plugin > should resolve correct plugin options for config { router: true } 1`] = `
-[
-  "@kevinmarrec/cloudstack",
-  "unplugin-vue-router",
-  "vite:vue",
-]
-`;
-
-exports[`plugin > should resolve correct plugin options for config { unocss: true } 1`] = `
-[
-  "@kevinmarrec/cloudstack",
-  "unocss:api",
-  "unocss:config",
-  "unocss:devtools",
-  "unocss:global",
-  "unocss:global:build:bundle",
-  "unocss:global:build:generate",
-  "unocss:global:build:scan",
-  "unocss:global:content",
-  "unocss:global:post",
-  "unocss:inspector",
-  "unocss:transformers:post",
-  "unocss:transformers:pre",
-  "unocss:transformers:undefined",
   "vite:vue",
 ]
 `;
 
 exports[`plugin > should resolve correct plugin options for config {} 1`] = `
 [
-  "@kevinmarrec/cloudstack",
+  "@kevinmarrec/cloudstack-vite-plugin",
+  "unplugin-auto-import",
+  "unplugin-vue-components",
+  "vite-plugin-inspect",
+  "vite-plugin-vue-devtools",
   "vite:vue",
 ]
 `;

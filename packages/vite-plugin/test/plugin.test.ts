@@ -1,21 +1,24 @@
-import { createServer, resolveConfig } from 'vite'
-import { describe, expect, it } from 'vitest'
+import { mkdir, rm } from 'node:fs/promises'
+import path from 'node:path'
 
-import CloudstackVitePlugin, { type VitePluginConfig } from '../src'
+import { createServer, resolveConfig } from 'vite'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+
+import CloudstackVitePlugin, { type ViteCloudstackOptions } from '../src'
 
 describe('plugin', () => {
-  it.each<VitePluginConfig>([
-    {},
-    { autoImports: true },
-    { components: true },
-    { devtools: true },
-    { layouts: true },
-    { pwa: true },
-    { router: true },
-    { unocss: true },
-    { autoImports: true, components: true, devtools: true, layouts: true, pwa: true, router: true, unocss: true },
-  ])(`should resolve correct plugin options for config %o`, async (config) => {
-    const pluginOptions = CloudstackVitePlugin(config)
+  const tmpRoot = path.resolve(import.meta.dirname, 'tmp')
+  const rmTmpRoot = async () => await rm(tmpRoot, { recursive: true, force: true })
+
+  beforeEach(rmTmpRoot)
+  afterEach(rmTmpRoot)
+
+  it.each<ViteCloudstackOptions>([
+    {}, // Default
+    { autoImports: false, components: false, devtools: false, layouts: false, pwa: false, router: false, unocss: false }, // All disabled
+    { autoImports: true, components: true, devtools: true, layouts: true, pwa: true, router: true, unocss: true }, // All enabled
+  ])(`should resolve correct plugin options for config %o`, async (options) => {
+    const pluginOptions = CloudstackVitePlugin(options)
       .flatMap(option => option)
       .filter(option => typeof option === 'object' && option !== null && 'name' in option)
       .map(option => option.name)
@@ -24,9 +27,22 @@ describe('plugin', () => {
     expect(pluginOptions).toMatchSnapshot()
   })
 
+  it('should optimize dependency "workbox-window" with pwa option', async () => {
+    const resolvedConfig = await resolveConfig({
+      root: tmpRoot,
+      plugins: [
+        CloudstackVitePlugin({ pwa: true }),
+      ],
+    }, 'build')
+
+    expect(resolvedConfig.optimizeDeps.include).toEqual(
+      expect.arrayContaining(['workbox-window']),
+    )
+  })
+
   it('should resolve ~ alias based on root', async () => {
     const resolvedConfig = await resolveConfig({
-      root: '/path/to/project',
+      root: tmpRoot,
       plugins: [
         CloudstackVitePlugin(),
       ],
@@ -36,14 +52,17 @@ describe('plugin', () => {
       expect.arrayContaining([
         expect.objectContaining({
           find: '~',
-          replacement: '/path/to/project/src',
+          replacement: `${tmpRoot}/src`,
         }),
       ]),
     )
   })
 
   it('should inject dark mode script in index.html', async () => {
+    await mkdir(tmpRoot)
+
     const server = await createServer({
+      root: tmpRoot,
       plugins: [
         CloudstackVitePlugin(),
       ],
