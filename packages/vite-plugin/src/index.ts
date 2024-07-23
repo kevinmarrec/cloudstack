@@ -18,7 +18,7 @@ export default function CloudstackVitePlugin(userOptions: ViteCloudstackOptions 
   const ctx = createContext(userOptions)
 
   return [
-    MainPlugin(),
+    MainPlugin(ctx),
     AutoImportsPlugin(ctx),
     ComponentsPlugin(ctx),
     LayoutsPlugin(ctx),

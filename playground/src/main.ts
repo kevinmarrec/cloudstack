@@ -1,22 +1,10 @@
-/// <reference types="unplugin-vue-router/client" />
-/// <reference types="vite-plugin-vue-layouts/client" />
+/// <reference types="@kevinmarrec/cloudstack-vite-plugin/client" />
 
-import { setupLayouts } from 'virtual:generated-layouts'
-import { ViteSSG } from 'vite-ssg'
-import { routes } from 'vue-router/auto-routes'
+import { Power } from 'virtual:cloudstack'
 
 import App from './App.vue'
-import { installModules } from './modules'
+import { install as installPWA } from './modules/pwa'
 
-import 'the-new-css-reset'
-import 'uno.css'
-
-export type { UserModule } from './types'
-
-export const createApp = ViteSSG(
-  App,
-  { base: import.meta.env.BASE_URL, routes: setupLayouts(routes) },
-  (ctx) => {
-    installModules(ctx)
-  },
-)
+export const createApp = Power(App, (ctx: any) => {
+  installPWA(ctx)
+})

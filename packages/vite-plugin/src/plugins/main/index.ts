@@ -4,18 +4,52 @@ import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
 
-import { type Plugin, type UserConfig, mergeConfig } from 'vite'
+import type { Plugin } from 'vite'
 
-export function MainPlugin(): Plugin {
+import type { CloudstackPluginContext } from '../../context'
+
+const virtualModuleId = 'virtual:cloudstack'
+const resolvedVirtualModuleId = `\0${virtualModuleId}`
+
+export function MainPlugin(ctx: CloudstackPluginContext): Plugin {
   return {
-    name: '@kevinmarrec/cloudstack-vite-plugin',
-    async config(userConfig) {
-      return mergeConfig<UserConfig, UserConfig>(userConfig, {
+    name: 'vite:cloudstack',
+    resolveId(id) {
+      if (id === virtualModuleId) {
+        return resolvedVirtualModuleId
+      }
+    },
+    load(id) {
+      if (id === resolvedVirtualModuleId) {
+        const imports = [
+          `import 'the-new-css-reset'`,
+          `import 'uno.css'`,
+          `import { routes } from 'vue-router/auto-routes'`,
+          `import { ViteSSG } from 'vite-ssg'`,
+        ]
+
+        if (ctx.options.layouts) {
+          imports.push(`import { setupLayouts } from 'virtual:generated-layouts'`)
+        }
+
+        const exports = [
+          `export const Power = (App, fn) => ViteSSG(App, { base: import.meta.env.BASE_URL, ${ctx.options.layouts ? 'routes' : 'routes: setupLayouts(routes)'} }, fn)`,
+        ]
+
+        return [...imports, ...exports].join('\n')
+      }
+    },
+
+    config(userConfig) {
+      return {
         resolve: {
           alias: {
             /* c8 ignore next */
             '~': path.resolve(userConfig.root ?? process.cwd(), 'src'),
           },
+        },
+        optimizeDeps: {
+          include: ctx.options.pwa ? ['workbox-window'] : [],
         },
         ssgOptions: {
           script: 'async',
@@ -24,7 +58,7 @@ export function MainPlugin(): Plugin {
             reduceInlineStyles: false,
           },
         },
-      })
+      }
     },
     transformIndexHtml(html) {
       return {

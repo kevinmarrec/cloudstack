@@ -1,5 +1,5 @@
 import defu from 'defu'
-import { type PluginOption, type UserConfig, mergeConfig } from 'vite'
+import type { PluginOption } from 'vite'
 import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa'
 
 import type { CloudstackPluginContext } from '../context'
@@ -40,18 +40,5 @@ export function PWAPlugin({ options }: CloudstackPluginContext): PluginOption {
     },
   }
 
-  return [
-    VitePWA(defu(options.pwa, defaults)),
-    {
-      name: '@kevinmarrec/cloudstack-vite-plugin:pwa',
-      config(config) {
-        return mergeConfig<UserConfig, UserConfig>(config, {
-          optimizeDeps: {
-            include: ['workbox-window'],
-          },
-        })
-      },
-    },
-  ]
-
+  return VitePWA(defu(options.pwa, defaults))
 }

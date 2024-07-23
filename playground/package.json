@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "the-new-css-reset": "^1.11.2",
-    "vue": "^3.4.31",
+    "vue": "^3.4.33",
     "vue-router": "^4.4.0"
   },
   "devDependencies": {
@@ -21,7 +21,7 @@
     "@kevinmarrec/cloudstack-vite-plugin": "workspace:*",
     "eslint": "^9.7.0",
     "stylelint": "^16.7.0",
-    "unocss": "^0.61.3",
-    "vite": "^5.3.3"
+    "unocss": "^0.61.5",
+    "vite": "^5.3.4"
   }
 }

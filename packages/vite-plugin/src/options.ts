@@ -37,7 +37,7 @@ export interface ViteCloudstackOptions {
    * @see https://github.com/vite-pwa/vite-plugin-pwa
    * @default false
    */
-  pwa?: boolean | PWAPluginOptions
+  pwa?: boolean | Partial<PWAPluginOptions>
   /**
    * Automatic file based routing (with Vue Router).
    * @see https://github.com/posva/unplugin-vue-router

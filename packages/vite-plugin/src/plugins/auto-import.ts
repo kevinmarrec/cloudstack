@@ -13,22 +13,8 @@ export function AutoImportsPlugin({ options }: CloudstackPluginContext): PluginO
 
   const defaults: Options = {
     dts: 'src/types/auto-imports.d.ts',
-    imports: [
-      'vue',
-      ...options.router
-        ? [
-            VueRouterAutoImports,
-            {
-              'unplugin-vue-router/runtime': [
-                'definePage',
-              ],
-            },
-          ]
-        : [],
-    ],
-    dirs: [
-      'src/composables',
-    ],
+    dirs: ['src/composables'],
+    imports: options.router ? ['vue', VueRouterAutoImports] : ['vue'],
   }
 
   return AutoImport(defu(options.autoImports, defaults))
