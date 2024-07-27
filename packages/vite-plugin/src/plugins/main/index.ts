@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
 
-import type { Plugin } from 'vite'
+import type { Plugin, ResolvedConfig } from 'vite'
 
 import type { CloudstackPluginContext } from '../../context'
 
@@ -12,6 +12,8 @@ const virtualModuleId = 'virtual:cloudstack'
 const resolvedVirtualModuleId = `\0${virtualModuleId}`
 
 export function MainPlugin(ctx: CloudstackPluginContext): Plugin {
+  let config: ResolvedConfig
+
   return {
     name: 'vite:cloudstack',
     resolveId(id) {
@@ -21,6 +23,8 @@ export function MainPlugin(ctx: CloudstackPluginContext): Plugin {
     },
     load(id) {
       if (id === resolvedVirtualModuleId) {
+        console.log(config.root)
+
         const imports = [
           `import 'the-new-css-reset'`,
           `import 'uno.css'`,
@@ -41,6 +45,8 @@ export function MainPlugin(ctx: CloudstackPluginContext): Plugin {
     },
 
     config(userConfig) {
+      console.log(userConfig.root)
+
       return {
         resolve: {
           alias: {
@@ -59,6 +65,9 @@ export function MainPlugin(ctx: CloudstackPluginContext): Plugin {
           },
         },
       }
+    },
+    configResolved(_config) {
+      config = _config
     },
     transformIndexHtml(html) {
       return {

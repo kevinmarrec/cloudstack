@@ -10,26 +10,27 @@ import type { UserOptions as LayoutsPluginOptions } from 'vite-plugin-vue-layout
 export interface ViteCloudstackOptions {
   /**
    * On-demand APIs auto importing.
+   *
    * @see https://github.com/unplugin/unplugin-auto-import
-   * @default true
    */
-  autoImports?: boolean | AutoImportPluginOptions
+  autoImports?: false | AutoImportPluginOptions
   /**
    * On-demand components auto importing.
+   *
+   * This option is enabled by default if components are found in the `src/components` directory.
    * @see https://github.com/unplugin/unplugin-vue-components
-   * @default true
    */
-  components?: boolean | ComponentsPluginOptions
+  components?: false | ComponentsPluginOptions
   /**
    * Vue DevTools Vite integration.
    * @see https://github.com/vuejs/devtools-next
-   * @default true
    */
-  devtools?: boolean | VueDevToolsPluginOptions
+  devtools?: false | VueDevToolsPluginOptions
   /**
    * Automatic file based layouts (with Vue Router).
    * @see https://github.com/JohnCampionJr/vite-plugin-vue-layouts
-   * @default false
+   * @requires `vue-router` dependency to be installed
+   * @default true if `src/layouts` directory exists
    */
   layouts?: boolean | LayoutsPluginOptions
   /**
@@ -40,14 +41,18 @@ export interface ViteCloudstackOptions {
   pwa?: boolean | Partial<PWAPluginOptions>
   /**
    * Automatic file based routing (with Vue Router).
+   *
+   * This option is enabled by default if `vue-router` is installed and pages are found in the `src/pages` directory.
    * @see https://github.com/posva/unplugin-vue-router
-   * @default false
+   * @requires `vue-router` dependency to be installed
+   * @requires  pages are found in the `src/pages` directory
    */
   router?: boolean | VueRouterPluginOptions
   /**
    * Unocss Vite integration.
    * @see https://github.com/unocss/unocss
-   * @default false
+   * @requires `unocss.config.ts` in project root
+   * @default true if `uno.config.{js,ts,mjs,mts}` or `unocss.config.{js,ts,mjs,mts}` exists in project root
    */
   unocss?: boolean | UnocssPluginOptions
   /**

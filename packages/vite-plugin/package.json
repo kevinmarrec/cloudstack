@@ -37,15 +37,18 @@
     }
   },
   "dependencies": {
-    "@unocss/vite": "^0.61.5",
+    "@unocss/vite": "^0.61.6",
     "@vite-pwa/assets-generator": "^0.2.4",
-    "@vitejs/plugin-vue": "^5.1.0",
+    "@vitejs/plugin-vue": "^5.1.1",
     "critters": "^0.0.24",
     "defu": "^6.1.4",
-    "unplugin-auto-import": "^0.18.1",
+    "fdir": "^6.2.0",
+    "local-pkg": "^0.5.0",
+    "picomatch": "^4.0.2",
+    "unplugin-auto-import": "^0.18.2",
     "unplugin-vue-components": "^0.27.3",
     "unplugin-vue-router": "^0.10.1",
-    "vite-plugin-pwa": "^0.20.0",
+    "vite-plugin-pwa": "^0.20.1",
     "vite-plugin-vue-devtools": "^7.3.7",
     "vite-plugin-vue-layouts": "^0.11.0",
     "vite-ssg": "^0.23.8"
