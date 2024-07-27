@@ -16,8 +16,8 @@
     "@kevinmarrec/cloudstack-eslint-config": "workspace:*",
     "@kevinmarrec/cloudstack-stylelint-config": "workspace:*",
     "@kevinmarrec/cloudstack-unocss-preset": "workspace:*",
-    "eslint": "^9.7.0",
+    "eslint": "^9.8.0",
     "stylelint": "^16.7.0",
-    "unocss": "^0.61.3"
+    "unocss": "^0.61.6"
   }
 }
