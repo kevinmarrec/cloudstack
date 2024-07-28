@@ -12,8 +12,6 @@ const virtualModuleId = 'virtual:cloudstack'
 const resolvedVirtualModuleId = `\0${virtualModuleId}`
 
 export function MainPlugin(ctx: CloudstackPluginContext): Plugin {
-  let config: ResolvedConfig
-
   return {
     name: 'vite:cloudstack',
     resolveId(id) {
@@ -23,30 +21,40 @@ export function MainPlugin(ctx: CloudstackPluginContext): Plugin {
     },
     load(id) {
       if (id === resolvedVirtualModuleId) {
-        console.log(config.root)
+        const imports: string[] = []
+        const exports: string[] = []
 
-        const imports = [
-          `import 'the-new-css-reset'`,
-          `import 'uno.css'`,
-          `import { routes } from 'vue-router/auto-routes'`,
-          `import { ViteSSG } from 'vite-ssg'`,
-        ]
+        if (ctx.options.router) {
+          imports.push(...[
+            `import { ViteSSG } from 'vite-ssg'`,
+            `import { routes } from 'vue-router/auto-routes'`,
+          ])
 
-        if (ctx.options.layouts) {
-          imports.push(`import { setupLayouts } from 'virtual:generated-layouts'`)
+          if (ctx.options.layouts) {
+            imports.push(`import { setupLayouts } from 'virtual:generated-layouts'`)
+            exports.push(`export const Power = (App, fn) => ViteSSG(App, { base: import.meta.env.BASE_URL, routes: setupLayouts(routes) }, fn)`)
+          }
+          else {
+            exports.push(`export const Power = (App, fn) => ViteSSG(App, { base: import.meta.env.BASE_URL, routes }, fn)`)
+          }
+        }
+        else {
+          imports.push(`import { ViteSSG } from 'vite-ssg/single-page'`)
+          exports.push(`export const Power = (App, fn) => ViteSSG(App, fn)`)
         }
 
-        const exports = [
-          `export const Power = (App, fn) => ViteSSG(App, { base: import.meta.env.BASE_URL, ${ctx.options.layouts ? 'routes' : 'routes: setupLayouts(routes)'} }, fn)`,
-        ]
+        if (ctx.options.unocss) {
+          imports.push(...[
+            `import 'the-new-css-reset'`,
+            `import 'uno.css'`,
+          ])
+        }
 
         return [...imports, ...exports].join('\n')
       }
     },
 
     config(userConfig) {
-      console.log(userConfig.root)
-
       return {
         resolve: {
           alias: {
@@ -65,9 +73,6 @@ export function MainPlugin(ctx: CloudstackPluginContext): Plugin {
           },
         },
       }
-    },
-    configResolved(_config) {
-      config = _config
     },
     transformIndexHtml(html) {
       return {

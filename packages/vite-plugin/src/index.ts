@@ -1,7 +1,7 @@
 import type { PluginOption } from 'vite'
 
 import { createContext } from './context'
-import type { ViteCloudstackOptions } from './options'
+import type { CloudstackPluginOptions } from './options'
 import { AutoImportsPlugin } from './plugins/auto-import'
 import { ComponentsPlugin } from './plugins/components'
 import { LayoutsPlugin } from './plugins/layouts'
@@ -12,9 +12,9 @@ import { VuePlugin } from './plugins/vue'
 import { VueDevToolsPlugin } from './plugins/vue-devtools'
 import { VueRouterPlugin } from './plugins/vue-router'
 
-export { type ViteCloudstackOptions }
+export { type CloudstackPluginOptions }
 
-export default function CloudstackVitePlugin(userOptions: ViteCloudstackOptions = {}): PluginOption[] {
+export default function CloudstackPlugin(userOptions: CloudstackPluginOptions = {}): PluginOption[] {
   const ctx = createContext(userOptions)
 
   return [

@@ -1,28 +1,21 @@
-import process from 'node:process'
-
 import { version } from '../package.json'
 
 import {
-  type ResolvedViteCloudstackOptions,
-  type ViteCloudstackOptions,
+  type CloudstackPluginOptions,
+  type ResolvedCloudstackPluginOptions,
   resolveOptions,
 } from './options'
 
 export interface CloudstackPluginContext {
   version: string
-  userOptions: ViteCloudstackOptions
-  options: ResolvedViteCloudstackOptions
-  abortWithMessage: (message: string) => void
+  userOptions: CloudstackPluginOptions
+  options: ResolvedCloudstackPluginOptions
 }
 
-export function createContext(userOptions: ViteCloudstackOptions): CloudstackPluginContext {
+export function createContext(userOptions: CloudstackPluginOptions): CloudstackPluginContext {
   return {
     version,
     userOptions,
     options: resolveOptions(userOptions),
-    abortWithMessage(message) {
-      console.error(`[@kevinmarrec/cloudstack-vite-plugin] ${message}`)
-      process.exit(1)
-    },
   }
 }

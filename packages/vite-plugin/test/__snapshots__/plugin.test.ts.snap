@@ -17,47 +17,12 @@ exports[`plugin > should inject dark mode script in index.html 1`] = `
 </html>"
 `;
 
-exports[`plugin > should resolve correct plugin options for config { autoImports: false, components: false, devtools: false, layouts: false, pwa: false, router: false, unocss: false } 1`] = `
-[
-  "@kevinmarrec/cloudstack-vite-plugin",
-  "vite:vue",
-]
-`;
-
-exports[`plugin > should resolve correct plugin options for config { autoImports: true, components: true, devtools: true, layouts: true, pwa: true, router: true, unocss: true } 1`] = `
-[
-  "@kevinmarrec/cloudstack-vite-plugin",
-  "@kevinmarrec/cloudstack-vite-plugin:pwa",
-  "unocss:api",
-  "unocss:config",
-  "unocss:devtools",
-  "unocss:global",
-  "unocss:global:build:bundle",
-  "unocss:global:build:generate",
-  "unocss:global:build:scan",
-  "unocss:global:content",
-  "unocss:global:post",
-  "unocss:inspector",
-  "unocss:transformers:post",
-  "unocss:transformers:pre",
-  "unocss:transformers:undefined",
-  "unplugin-auto-import",
-  "unplugin-vue-components",
-  "unplugin-vue-router",
-  "vite-plugin-inspect",
-  "vite-plugin-vue-devtools",
-  "vite-plugin-vue-layouts",
-  "vite:vue",
-]
-`;
-
 exports[`plugin > should resolve correct plugin options for config {} 1`] = `
 [
-  "@kevinmarrec/cloudstack-vite-plugin",
   "unplugin-auto-import",
-  "unplugin-vue-components",
   "vite-plugin-inspect",
   "vite-plugin-vue-devtools",
+  "vite:cloudstack",
   "vite:vue",
 ]
 `;

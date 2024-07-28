@@ -1,4 +1,5 @@
 import type { Options as VuePluginOptions } from '@vitejs/plugin-vue'
+import { fdir as DirectoryCrawler } from 'fdir'
 import type { VitePluginConfig as UnocssPluginOptions } from 'unocss/vite'
 import type { Options as AutoImportPluginOptions } from 'unplugin-auto-import/types'
 import type { Options as ComponentsPluginOptions } from 'unplugin-vue-components/types'
@@ -7,82 +8,122 @@ import type { VitePWAOptions as PWAPluginOptions } from 'vite-plugin-pwa'
 import type { VitePluginVueDevToolsOptions as VueDevToolsPluginOptions } from 'vite-plugin-vue-devtools'
 import type { UserOptions as LayoutsPluginOptions } from 'vite-plugin-vue-layouts'
 
-export interface ViteCloudstackOptions {
+export interface CloudstackPluginOptions {
   /**
-   * On-demand APIs auto importing.
+   * `unplugin-auto-import` plugin configuration.
+   *
+   * The plugin is enabled by default and configured to auto import the following APIs:
+   * - `vue`
+   * - `vue-router` (if some conditions are met, see `router` option)
+   *
+   * And the following directories:
+   * - `src/composables`
+   *
+   * The generated types are written to `src/types/auto-imports.d.ts`.
+   *
+   * Set to `false` to disable.
    *
    * @see https://github.com/unplugin/unplugin-auto-import
    */
   autoImports?: false | AutoImportPluginOptions
   /**
-   * On-demand components auto importing.
+   * `unplugin-vue-components` plugin configuration.
    *
-   * This option is enabled by default if components are found in the `src/components` directory.
+   * The plugin is automatically enabled if components are found in the `src/components` directory.
+   *
+   * The generated types are written to `src/types/components.d.ts`.
+   *
+   * Set to `false` to disable.
+   *
    * @see https://github.com/unplugin/unplugin-vue-components
    */
   components?: false | ComponentsPluginOptions
   /**
-   * Vue DevTools Vite integration.
+   * `vite-plugin-vue-devtools` plugin configuration.
+   *
+   * The plugin is enabled by default.
+   *
+   * Set to `false` to disable.
+   *
    * @see https://github.com/vuejs/devtools-next
    */
   devtools?: false | VueDevToolsPluginOptions
   /**
-   * Automatic file based layouts (with Vue Router).
+   * `vite-plugin-vue-layouts` plugin configuration.
+   *
+   * The plugin is automatically enabled if the following conditions are met:
+   * - `vue-router` dependency is installed
+   * - `.vue` files are found in the `src/layouts` directory
+   *
+   * Set to `false` to disable.
+   *
    * @see https://github.com/JohnCampionJr/vite-plugin-vue-layouts
-   * @requires `vue-router` dependency to be installed
-   * @default true if `src/layouts` directory exists
    */
-  layouts?: boolean | LayoutsPluginOptions
+  layouts?: false | LayoutsPluginOptions
   /**
-   * PWA Vite integration.
+   * `vite-plugin-pwa` plugin configuration.
+   *
    * @see https://github.com/vite-pwa/vite-plugin-pwa
-   * @default false
    */
   pwa?: boolean | Partial<PWAPluginOptions>
   /**
-   * Automatic file based routing (with Vue Router).
+   * `unplugin-vue-router` plugin configuration.
    *
-   * This option is enabled by default if `vue-router` is installed and pages are found in the `src/pages` directory.
+   * This plugin is automatically enabled if the following conditions are met:
+   * - `vue-router` dependency is installed
+   * - `.vue` files are found in the `src/pages` directory
+   *
+   * The generated types are written to `src/types/router.d.ts`.
+   *
+   * Set to `false` to disable.
+   *
    * @see https://github.com/posva/unplugin-vue-router
-   * @requires `vue-router` dependency to be installed
-   * @requires  pages are found in the `src/pages` directory
    */
-  router?: boolean | VueRouterPluginOptions
+  router?: false | VueRouterPluginOptions
   /**
-   * Unocss Vite integration.
+   * `@unocss/vite` plugin configuration.
+   *
+   * The plugin is automatically enabled if the following conditions are met:
+   * - `unocss` dev dependency is installed
+   * - `uno.config.ts` file is found in the project root
+   *
+   * Set to `false` to disable.
+   *
    * @see https://github.com/unocss/unocss
-   * @requires `unocss.config.ts` in project root
-   * @default true if `uno.config.{js,ts,mjs,mts}` or `unocss.config.{js,ts,mjs,mts}` exists in project root
    */
-  unocss?: boolean | UnocssPluginOptions
+  unocss?: false | UnocssPluginOptions
   /**
-   * Vite Vue Plugin configuration.
+   * `@vitejs/plugin-vue` plugin configuration.
+   *
+   * The plugin is mandatory, therefore enabled by default and cannot be disabled.
+   *
    * @see https://github.com/vitejs/vite-plugin-vue
    */
   vue?: VuePluginOptions
 }
 
-export type ResolvedViteCloudstackOptions = {
-  [K in keyof ViteCloudstackOptions]-?: Exclude<ViteCloudstackOptions[K], true>
+export type ResolvedCloudstackPluginOptions = {
+  [K in keyof CloudstackPluginOptions]-?: CloudstackPluginOptions[K]
 }
 
-function normalizeOptions<T extends object>(options: T | boolean | undefined, isDefaultEnabled: boolean) {
-  if (options === true || (options === undefined && isDefaultEnabled)) {
-    return {} as T
-  }
-
-  return options ?? false
+function hasFiles(root: string, ...patterns: string[]): boolean {
+  return new DirectoryCrawler()
+    .withBasePath()
+    .glob(...patterns)
+    .crawl(root)
+    .sync()
+    .length > 0
 }
 
-export function resolveOptions(userOptions: ViteCloudstackOptions): ResolvedViteCloudstackOptions {
+export function resolveOptions(userOptions: CloudstackPluginOptions): ResolvedCloudstackPluginOptions {
   return {
-    autoImports: normalizeOptions(userOptions.autoImports, true),
-    components: normalizeOptions(userOptions.components, true),
-    devtools: normalizeOptions(userOptions.devtools, true),
-    layouts: normalizeOptions(userOptions.layouts, false),
-    pwa: normalizeOptions(userOptions.pwa, false),
-    router: normalizeOptions(userOptions.router, false),
-    unocss: normalizeOptions(userOptions.unocss, false),
+    autoImports: userOptions.autoImports ?? {},
+    components: userOptions.components ?? (hasFiles('src/components', '**/*.vue') && {}),
+    devtools: userOptions.devtools ?? {},
+    layouts: userOptions.layouts ?? (hasFiles('src/layouts', '**/*.vue') && {}),
+    pwa: userOptions.pwa ?? false,
+    router: userOptions.router ?? (hasFiles('src/pages', '**/*.vue') && {}),
+    unocss: userOptions.unocss ?? (hasFiles('.', 'uno.config.ts') && {}),
     vue: userOptions.vue ?? {},
   }
 }

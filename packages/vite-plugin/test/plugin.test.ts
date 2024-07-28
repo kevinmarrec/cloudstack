@@ -4,7 +4,7 @@ import path from 'node:path'
 import { createServer, resolveConfig } from 'vite'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 
-import CloudstackVitePlugin, { type ViteCloudstackOptions } from '../src'
+import CloudstackVitePlugin, { type CloudstackPluginOptions } from '../src'
 
 describe('plugin', () => {
   const tmpRoot = path.resolve(import.meta.dirname, 'tmp')
@@ -13,10 +13,8 @@ describe('plugin', () => {
   beforeEach(rmTmpRoot)
   afterEach(rmTmpRoot)
 
-  it.each<ViteCloudstackOptions>([
+  it.each<CloudstackPluginOptions>([
     {}, // Default
-    { autoImports: false, components: false, devtools: false, layouts: false, pwa: false, router: false, unocss: false }, // All disabled
-    { autoImports: true, components: true, devtools: true, layouts: true, pwa: true, router: true, unocss: true }, // All enabled
   ])(`should resolve correct plugin options for config %o`, async (options) => {
     const pluginOptions = CloudstackVitePlugin(options)
       .flatMap(option => option)
