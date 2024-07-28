@@ -7,7 +7,10 @@
     "playground"
   ],
   "scripts": {
-    "play": "bun --cwd playground dev"
+    "play": "bun --cwd playground dev",
+    "lint": "eslint . && stylelint '**/*.{css,scss,vue}'",
+    "test": "vitest",
+    "typecheck": "vue-tsc --noEmit"
   },
   "devDependencies": {
     "@kevinmarrec/cloudstack-eslint-config": "workspace:*",
@@ -21,6 +24,7 @@
     "taze": "^0.16.1",
     "tsup": "^8.2.3",
     "typescript": "~5.5.4",
-    "vitest": "^2.0.4"
+    "vitest": "^2.0.4",
+    "vue-tsc": "^2.0.29"
   }
 }

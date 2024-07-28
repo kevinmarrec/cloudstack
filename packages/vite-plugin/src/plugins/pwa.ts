@@ -5,8 +5,6 @@ import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa'
 import type { CloudstackPluginContext } from '../context'
 
 export function PWAPlugin({ options }: CloudstackPluginContext): PluginOption {
-  console.log('PWAPlugin', options)
-
   if (!options.pwa) {
     return
   }

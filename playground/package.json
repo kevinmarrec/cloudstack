@@ -7,10 +7,10 @@
     "dev": "vite --open",
     "build": "vite-ssg build",
     "lint": "eslint . && stylelint '**/*.{css,scss,vue}'",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "the-new-css-reset": "^1.11.2",
     "vue": "^3.4.34",
     "vue-router": "^4.4.0"
   },
@@ -22,6 +22,7 @@
     "eslint": "^9.8.0",
     "stylelint": "^16.7.0",
     "unocss": "^0.61.6",
-    "vite": "^5.3.5"
+    "vite": "^5.3.5",
+    "vue-tsc": "^2.0.29"
   }
 }

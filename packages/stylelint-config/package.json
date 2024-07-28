@@ -5,6 +5,17 @@
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/stylelint-config",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevinmarrec/cloudstack",
+    "directory": "packages/stylelint-config"
+
+  },
+  "keywords": [
+    "cloudstack",
+    "stylelint",
+    "stylelint-config"
+  ],
   "exports": {
     ".": {
       "import": "./dist/index.js"
@@ -17,10 +28,7 @@
   ],
   "scripts": {
     "postinstall": "bun run build --silent",
-    "build": "tsup",
-    "lint": "eslint .",
-    "test": "vitest",
-    "typecheck": "tsc --noEmit"
+    "build": "tsup"
   },
   "peerDependencies": {
     "stylelint": ">=16.0.0"

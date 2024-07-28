@@ -1,9 +1,18 @@
+import { rm } from 'node:fs/promises'
+import path from 'node:path'
+
 import { createGenerator } from '@unocss/core'
-import { describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 
 import preset from '../src'
 
 describe('preset', () => {
+  const tmpDir = path.resolve(import.meta.dirname, 'tmp')
+  const rmTmpDir = async () => await rm(tmpDir, { recursive: true, force: true })
+
+  beforeEach(rmTmpDir)
+  afterEach(rmTmpDir)
+
   it('should generate correct css', async () => {
     const uno = createGenerator({
       presets: [preset()],
@@ -18,6 +27,7 @@ describe('preset', () => {
     const uno = createGenerator({
       presets: [
         preset({
+          cwd: tmpDir,
           fonts: {
             sans: 'Inter',
           },

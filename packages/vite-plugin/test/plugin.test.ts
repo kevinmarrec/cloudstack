@@ -7,11 +7,11 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import CloudstackVitePlugin, { type CloudstackPluginOptions } from '../src'
 
 describe('plugin', () => {
-  const tmpRoot = path.resolve(import.meta.dirname, 'tmp')
-  const rmTmpRoot = async () => await rm(tmpRoot, { recursive: true, force: true })
+  const tmpDir = path.resolve(import.meta.dirname, 'tmp')
+  const rmTmpDir = async () => await rm(tmpDir, { recursive: true, force: true })
 
-  beforeEach(rmTmpRoot)
-  afterEach(rmTmpRoot)
+  beforeEach(rmTmpDir)
+  afterEach(rmTmpDir)
 
   it.each<CloudstackPluginOptions>([
     {}, // Default
@@ -27,7 +27,7 @@ describe('plugin', () => {
 
   it('should optimize dependency "workbox-window" with pwa option', async () => {
     const resolvedConfig = await resolveConfig({
-      root: tmpRoot,
+      root: tmpDir,
       plugins: [
         CloudstackVitePlugin({ pwa: true }),
       ],
@@ -40,7 +40,7 @@ describe('plugin', () => {
 
   it('should resolve ~ alias based on root', async () => {
     const resolvedConfig = await resolveConfig({
-      root: tmpRoot,
+      root: tmpDir,
       plugins: [
         CloudstackVitePlugin(),
       ],
@@ -50,17 +50,17 @@ describe('plugin', () => {
       expect.arrayContaining([
         expect.objectContaining({
           find: '~',
-          replacement: `${tmpRoot}/src`,
+          replacement: `${tmpDir}/src`,
         }),
       ]),
     )
   })
 
   it('should inject dark mode script in index.html', async () => {
-    await mkdir(tmpRoot)
+    await mkdir(tmpDir)
 
     const server = await createServer({
-      root: tmpRoot,
+      root: tmpDir,
       plugins: [
         CloudstackVitePlugin(),
       ],

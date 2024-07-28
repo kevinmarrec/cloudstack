@@ -11,6 +11,7 @@ import type { WebFontsOptions } from 'unocss/preset-web-fonts'
 export type { Theme } from '@unocss/preset-uno'
 
 export interface PresetOptions {
+  cwd?: string
   icons?: IconsOptions
   fonts?: WebFontsOptions['fonts']
 }
@@ -23,7 +24,9 @@ export default definePreset<PresetOptions>(options => ({
       scale: 1.25,
     }),
     presetWebFonts({
-      processors: createLocalFontProcessor(),
+      processors: createLocalFontProcessor({
+        cwd: options?.cwd,
+      }),
       fonts: options?.fonts,
     }),
   ],

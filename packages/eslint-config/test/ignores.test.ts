@@ -6,7 +6,7 @@ import { defineConfig } from '../src'
 describe('ignores', () => {
   it('should ignore files, given "ignores" option', async () => {
     const eslint = new ESLint({
-      overrideConfig: await defineConfig({ ignores: ['**/*.foo'] }) as ESLint.ConfigData,
+      overrideConfig: await defineConfig({ ignores: ['**/*.foo'] }),
     })
 
     const [{ warningCount, messages }] = await eslint.lintText('', { filePath: 'file.foo' })

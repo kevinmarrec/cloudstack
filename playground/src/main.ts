@@ -4,6 +4,6 @@ import { Power } from 'virtual:cloudstack'
 
 import App from './App.vue'
 
-export const createApp = Power(App, (ctx: any) => {
+export const createApp = Power(App, () => {
   // installPWA(ctx)
 })

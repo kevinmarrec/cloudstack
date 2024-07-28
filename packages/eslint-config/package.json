@@ -5,6 +5,17 @@
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/eslint-config",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevinmarrec/cloudstack",
+    "directory": "packages/eslint-config"
+
+  },
+  "keywords": [
+    "cloudstack",
+    "eslint",
+    "eslint-config"
+  ],
   "exports": {
     ".": {
       "import": "./dist/index.js"
@@ -17,16 +28,13 @@
   ],
   "scripts": {
     "postinstall": "bun run build --silent",
-    "build": "tsup",
-    "lint": "eslint .",
-    "test": "vitest",
-    "typecheck": "tsc --noEmit"
+    "build": "tsup"
   },
   "peerDependencies": {
     "eslint": ">=9.0.0"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^2.23.2",
+    "@antfu/eslint-config": "^2.24.0",
     "@unocss/eslint-plugin": "^0.61.6",
     "defu": "^6.1.4",
     "eslint-plugin-format": "^0.1.2"
