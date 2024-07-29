@@ -20,9 +20,7 @@ export default definePreset<PresetOptions>(options => ({
   name: '@kevinmarrec/cloudstack-unocss-preset',
   presets: [
     presetUno(),
-    presetIcons({
-      scale: 1.25,
-    }),
+    presetIcons(options?.icons),
     presetWebFonts({
       processors: createLocalFontProcessor({
         cwd: options?.cwd,
