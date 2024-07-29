@@ -43,11 +43,12 @@ export function MainPlugin(ctx: CloudstackPluginContext): Plugin {
           exports.push(`export const Power = (App, fn) => ViteSSG(App, fn)`)
         }
 
+        // CSS Reset
+        imports.push(`import 'the-new-css-reset'`)
+
+        // Unocss
         if (ctx.options.unocss) {
-          imports.push(...[
-            `import 'the-new-css-reset'`,
-            `import 'uno.css'`,
-          ])
+          imports.push(`import 'uno.css'`)
         }
 
         return [...imports, ...exports].join('\n')

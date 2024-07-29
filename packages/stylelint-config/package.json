@@ -9,7 +9,6 @@
     "type": "git",
     "url": "https://github.com/kevinmarrec/cloudstack",
     "directory": "packages/stylelint-config"
-
   },
   "keywords": [
     "cloudstack",

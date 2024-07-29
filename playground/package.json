@@ -20,8 +20,8 @@
     "@kevinmarrec/cloudstack-unocss-preset": "workspace:*",
     "@kevinmarrec/cloudstack-vite-plugin": "workspace:*",
     "eslint": "^9.8.0",
-    "stylelint": "^16.7.0",
-    "unocss": "^0.61.6",
+    "stylelint": "^16.8.0",
+    "unocss": "^0.61.7",
     "vite": "^5.3.5",
     "vue-tsc": "^2.0.29"
   }

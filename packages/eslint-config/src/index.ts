@@ -32,6 +32,10 @@ export function defineConfig(options: Options = {}, ...userConfigs: UserConfig[]
       },
     },
     rules: {
+      'import/no-duplicates': [
+        'error',
+        { 'prefer-inline': true },
+      ],
       'import/order': [
         'error',
         {

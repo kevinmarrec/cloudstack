@@ -9,7 +9,6 @@
     "type": "git",
     "url": "https://github.com/kevinmarrec/cloudstack",
     "directory": "packages/vite-plugin"
-
   },
   "keywords": [
     "cloudstack",
@@ -45,7 +44,7 @@
     }
   },
   "dependencies": {
-    "@unocss/vite": "^0.61.6",
+    "@unocss/vite": "^0.61.7",
     "@vite-pwa/assets-generator": "^0.2.4",
     "@vitejs/plugin-vue": "^5.1.1",
     "critters": "^0.0.24",

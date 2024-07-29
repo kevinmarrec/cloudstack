@@ -9,7 +9,6 @@
     "type": "git",
     "url": "https://github.com/kevinmarrec/cloudstack",
     "directory": "packages/eslint-config"
-
   },
   "keywords": [
     "cloudstack",
@@ -35,7 +34,7 @@
   },
   "dependencies": {
     "@antfu/eslint-config": "^2.24.0",
-    "@unocss/eslint-plugin": "^0.61.6",
+    "@unocss/eslint-plugin": "^0.61.7",
     "defu": "^6.1.4",
     "eslint-plugin-format": "^0.1.2"
   }

@@ -1,6 +1,7 @@
+import type { VitePluginConfig as UnocssPluginOptions } from '@unocss/vite'
 import type { Options as VuePluginOptions } from '@vitejs/plugin-vue'
 import { fdir as DirectoryCrawler } from 'fdir'
-import type { VitePluginConfig as UnocssPluginOptions } from 'unocss/vite'
+import { isPackageExists } from 'local-pkg'
 import type { Options as AutoImportPluginOptions } from 'unplugin-auto-import/types'
 import type { Options as ComponentsPluginOptions } from 'unplugin-vue-components/types'
 import type { Options as VueRouterPluginOptions } from 'unplugin-vue-router/types'
@@ -120,10 +121,10 @@ export function resolveOptions(userOptions: CloudstackPluginOptions): ResolvedCl
     autoImports: userOptions.autoImports ?? {},
     components: userOptions.components ?? (hasFiles('src/components', '**/*.vue') && {}),
     devtools: userOptions.devtools ?? {},
-    layouts: userOptions.layouts ?? (hasFiles('src/layouts', '**/*.vue') && {}),
+    layouts: userOptions.layouts ?? (isPackageExists('vue-router') && hasFiles('src/layouts', '**/*.vue') && {}),
     pwa: userOptions.pwa ?? false,
-    router: userOptions.router ?? (hasFiles('src/pages', '**/*.vue') && {}),
-    unocss: userOptions.unocss ?? (hasFiles('.', 'uno.config.ts') && {}),
+    router: userOptions.router ?? (isPackageExists('vue-router') && hasFiles('src/pages', '**/*.vue') && {}),
+    unocss: userOptions.unocss ?? (isPackageExists('unocss') && hasFiles('.', 'uno.config.ts') && {}),
     vue: userOptions.vue ?? {},
   }
 }
