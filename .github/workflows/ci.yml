@@ -41,8 +41,8 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: bun install --frozen-lockfile --ignore-scripts
 
-      - name: Build lint configs
-        run: bun --filter '@kevinmarrec/cloudstack-*lint-config' build --silent
+      - name: Run postinstall scripts
+        run: bun --filter '*' postinstall
 
       - name: Check unused files, dependencies, and exports
         run: bun run knip
