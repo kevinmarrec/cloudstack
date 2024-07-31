@@ -38,10 +38,11 @@ jobs:
           path: node_modules
 
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: bun install --frozen-lockfile --ignore-scripts
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        run: bun install --frozen-lockfile
 
       - name: Run postinstall scripts
+        if: ${{ steps.cache.outputs.cache-hit == 'true' }}
         run: bun --filter '*' postinstall
 
       - name: Check unused files, dependencies, and exports
