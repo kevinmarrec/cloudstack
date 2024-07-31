@@ -11,7 +11,7 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "vue": "^3.4.34",
+    "vue": "^3.4.35",
     "vue-router": "^4.4.0"
   },
   "devDependencies": {
@@ -20,8 +20,8 @@
     "@kevinmarrec/cloudstack-unocss-preset": "workspace:*",
     "@kevinmarrec/cloudstack-vite-plugin": "workspace:*",
     "eslint": "^9.8.0",
-    "stylelint": "^16.8.0",
-    "unocss": "^0.61.7",
+    "stylelint": "^16.8.1",
+    "unocss": "^0.61.8",
     "vite": "^5.3.5",
     "vue-tsc": "^2.0.29"
   }
