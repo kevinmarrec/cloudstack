@@ -7,7 +7,7 @@
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/unocss-preset",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kevinmarrec/cloudstack",
+    "url": "git+https://github.com/kevinmarrec/cloudstack.git",
     "directory": "packages/unocss-preset"
   },
   "keywords": [

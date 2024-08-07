@@ -6,7 +6,7 @@
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/tsconfig",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kevinmarrec/cloudstack",
+    "url": "git+https://github.com/kevinmarrec/cloudstack.git",
     "directory": "packages/tsconfig"
   },
   "keywords": [
