@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`plugin > should inject dark mode script in index.html 1`] = `
+"<html>
+<script>(function () {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('vueuse-color-scheme') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()
+</script>
+
+<script type="module" src="/@id/virtual:vue-devtools-path:overlay.js"></script>
+<script type="module" src="/@id/virtual:vue-inspector-path:load.js"></script>
+
+<script type="module" src="/@vite/client"></script>
+</html>"
+`;
+
+exports[`plugin > should resolve correct plugin options for config {} 1`] = `
+[
+  "unplugin-auto-import",
+  "vite-plugin-inspect",
+  "vite-plugin-vue-devtools",
+  "vite:cloudstack",
+  "vite:vue",
+]
+`;

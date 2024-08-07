@@ -1,6 +1,7 @@
 import { C, c, B, b, A, a  } from '~/alphabet'
 import { Foo } from 'Foo'
-import { baz, Bar } from 'Bar'
+import { baz } from 'Bar'
+import type { Bar } from 'Bar'
 import assert from 'node:assert'
 
 assert({

@@ -8,8 +8,8 @@ import { defineConfig } from '../src'
 
 describe('fixtures', () => {
   it('vue.vue', async () => {
-    const inputFile = path.resolve('fixtures/input/vue.vue')
-    const outputFile = path.resolve('fixtures/output/vue.vue')
+    const inputFile = path.resolve(import.meta.dirname, 'fixtures/input/vue.vue')
+    const outputFile = path.resolve(import.meta.dirname, 'fixtures/output/vue.vue')
 
     const code = await fs.readFile(inputFile, 'utf-8')
 

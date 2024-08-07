@@ -6,5 +6,7 @@
 *.local
 *.log
 coverage
+dev-dist
 dist
 node_modules
+tmp

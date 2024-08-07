@@ -1,28 +1,19 @@
 import type { KnipConfig } from 'knip'
 
 export default {
-  workspaces: {
-    'packages/frontend': {
-      ignoreDependencies: [
-        'uno.css',
-        'virtual:generated-layouts',
-        'virtual:pwa-register',
-      ],
-    },
-    'packages/stylelint-config': {
-      ignoreDependencies: [
-        'stylelint-config-html',
-        'stylelint-config-recess-order',
-        'stylelint-config-recommended-scss',
-      ],
-    },
-    'packages/unocss-preset': {
-      ignoreDependencies: [/@unocss/, /@iconify-json/],
-    },
-  },
+  exclude: ['optionalPeerDependencies'],
   ignore: [
     '**/fixtures/**',
     '**/playground/**',
-    '**/tsconfig.json',
+    'taze.config.ts',
   ],
+  ignoreDependencies: [
+    '@iconify-json/carbon',
+    'stylelint-config-html',
+    'stylelint-config-recess-order',
+    'stylelint-config-recommended-scss',
+    'taze',
+    'the-new-css-reset',
+  ],
+  ignoreWorkspaces: ['playground'],
 } satisfies KnipConfig

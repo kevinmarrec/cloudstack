@@ -8,13 +8,13 @@ import { defineConfig } from '../src'
 
 describe('fixtures', () => {
   it('typescript.ts', async () => {
-    const inputFile = path.resolve('fixtures/input/typescript.ts')
-    const outputFile = path.resolve('fixtures/output/typescript.ts')
+    const inputFile = path.resolve(import.meta.dirname, 'fixtures/input/typescript.ts')
+    const outputFile = path.resolve(import.meta.dirname, 'fixtures/output/typescript.ts')
 
     const code = await fs.readFile(inputFile, 'utf-8')
 
     const eslint = new ESLint({
-      overrideConfig: await defineConfig() as ESLint.ConfigData,
+      overrideConfig: await defineConfig(),
       fix: true,
     })
 
@@ -31,7 +31,7 @@ describe('fixtures', () => {
     `
 
     const eslint = new ESLint({
-      overrideConfig: await defineConfig() as ESLint.ConfigData,
+      overrideConfig: await defineConfig(),
       fix: true,
     })
 

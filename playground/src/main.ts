@@ -1,5 +1,9 @@
-import { makeApp } from '@kevinmarrec/cloudstack-frontend/client'
+/// <reference types="@kevinmarrec/cloudstack-vite-plugin/client" />
+
+import { Power } from 'virtual:cloudstack'
 
 import App from './App.vue'
 
-export const createApp = makeApp(App)
+export const createApp = Power(App, () => {
+  // installPWA(ctx)
+})
