@@ -30,7 +30,6 @@
     "dist"
   ],
   "scripts": {
-    "postinstall": "bun run build --silent",
     "build": "tsup"
   },
   "peerDependencies": {

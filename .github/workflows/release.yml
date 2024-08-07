@@ -34,7 +34,7 @@ jobs:
           path: node_modules
 
       - name: Build
-        run: bun --filter './packages/**' build
+        run: bun run build
 
       - name: Publish
         run: npm publish -w packages --access public

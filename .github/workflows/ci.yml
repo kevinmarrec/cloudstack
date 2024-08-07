@@ -16,6 +16,8 @@ jobs:
   check-and-test:
     name: Check & Test
     runs-on: ubuntu-latest
+    if: |
+      ${{ !startsWith(github.event.head_commit.message, 'chore: release') }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -41,9 +43,9 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         run: bun install --frozen-lockfile
 
-      - name: Run postinstall scripts
+      - name: Run postinstall script
         if: ${{ steps.cache.outputs.cache-hit == 'true' }}
-        run: bun --filter '*' postinstall
+        run: bun run postinstall
 
       - name: Check unused files, dependencies, and exports
         run: bun run knip
