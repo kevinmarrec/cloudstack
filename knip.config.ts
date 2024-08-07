@@ -5,6 +5,7 @@ export default {
   ignore: [
     '**/fixtures/**',
     '**/playground/**',
+    'bump.config.ts',
     'taze.config.ts',
   ],
   ignoreDependencies: [

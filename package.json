@@ -12,7 +12,7 @@
     "lint": "eslint . && stylelint '**/*.{css,scss,vue}'",
     "lint:fix": "eslint --fix . && stylelint --fix '**/*.{css,scss,vue}'",
     "lint:inspect": "bunx @eslint/config-inspector",
-    "release": "bumpp -r",
+    "release": "bumpp",
     "test": "vitest",
     "typecheck": "vue-tsc --noEmit"
   },
