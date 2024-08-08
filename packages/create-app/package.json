@@ -1,0 +1,27 @@
+{
+  "name": "@kevinmarrec/create-cloudstack-app",
+  "type": "module",
+  "version": "0.0.1",
+  "author": "Kevin Marrec <kevin@marrec.io>",
+  "license": "MIT",
+  "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/create-app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinmarrec/cloudstack.git",
+    "directory": "packages/create-app"
+  },
+  "keywords": [
+    "cloudstack",
+    "create-app",
+    "template"
+  ],
+  "bin": {
+    "create-cloudstack-app": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup"
+  }
+}
