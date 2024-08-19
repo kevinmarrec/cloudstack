@@ -1,7 +1,7 @@
 import type { VitePluginConfig as UnocssPluginOptions } from '@unocss/vite'
 import type { Options as VuePluginOptions } from '@vitejs/plugin-vue'
-import { fdir as DirectoryCrawler } from 'fdir'
 import { isPackageExists } from 'local-pkg'
+import { globSync } from 'tinyglobby'
 import type { Options as AutoImportPluginOptions } from 'unplugin-auto-import/types'
 import type { Options as ComponentsPluginOptions } from 'unplugin-vue-components/types'
 import type { Options as VueRouterPluginOptions } from 'unplugin-vue-router/types'
@@ -107,24 +107,15 @@ export type ResolvedCloudstackPluginOptions = {
   [K in keyof CloudstackPluginOptions]-?: CloudstackPluginOptions[K]
 }
 
-function hasFiles(root: string, ...patterns: string[]): boolean {
-  return new DirectoryCrawler()
-    .withBasePath()
-    .glob(...patterns)
-    .crawl(root)
-    .sync()
-    .length > 0
-}
-
 export function resolveOptions(userOptions: CloudstackPluginOptions): ResolvedCloudstackPluginOptions {
   return {
     autoImports: userOptions.autoImports ?? {},
-    components: userOptions.components ?? (hasFiles('src/components', '**/*.vue') && {}),
+    components: userOptions.components ?? (globSync(['**/*.vue'], { cwd: 'src/components' }).length > 0 && {}),
     devtools: userOptions.devtools ?? {},
-    layouts: userOptions.layouts ?? (isPackageExists('vue-router') && hasFiles('src/layouts', '**/*.vue') && {}),
+    layouts: userOptions.layouts ?? (isPackageExists('vue-router') && globSync(['**/*.vue'], { cwd: 'src/layouts' }).length > 0 && {}),
     pwa: userOptions.pwa ?? false,
-    router: userOptions.router ?? (isPackageExists('vue-router') && hasFiles('src/pages', '**/*.vue') && {}),
-    unocss: userOptions.unocss ?? (isPackageExists('unocss') && hasFiles('.', 'uno.config.ts') && {}),
+    router: userOptions.router ?? (isPackageExists('vue-router') && globSync(['**/*.vue'], { cwd: 'src/pages' }).length > 0 && {}),
+    unocss: userOptions.unocss ?? (isPackageExists('unocss') && globSync(['uno.config.ts']).length > 0 && {}),
     vue: userOptions.vue ?? {},
   }
 }
