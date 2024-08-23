@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 
+/* eslint-disable no-console */
+
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 import { parseArgs } from 'node:util'
 
-import { red } from 'picocolors'
+import { bold, green, red } from 'picocolors'
 import prompts from 'prompts'
 
 import { canSkipEmptying, emptyDir } from './utils/dir'
@@ -23,7 +25,6 @@ async function init() {
   const forceOverwrite = argv.force
 
   function onCancel() {
-    // eslint-disable-next-line no-console
     console.log(`${red('✖')} Operation cancelled`)
     process.exit(1)
   }
@@ -64,8 +65,23 @@ async function init() {
     ], { onCancel })
   }
 
-  const root = path.resolve(process.cwd(), targetDir)
+  const cwd = process.cwd()
+  const root = path.resolve(cwd, targetDir)
   const _ = await fs.exists(root) ? await emptyDir(root) : await fs.mkdir(root)
+
+  console.log(`\nScaffolding project in ${root}...`)
+
+  await fs.cp(path.join(__dirname, '../template'), root, { recursive: true })
+
+  console.log('\nDone. Now run:\n')
+
+  if (root !== cwd) {
+    const cdProjectName = path.relative(cwd, root)
+    console.log(bold(green(`  cd ${cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName}`)))
+  }
+
+  console.log(bold(green('  bun install')))
+  console.log(bold(green('  bun dev')))
 }
 
 init().catch((error) => {

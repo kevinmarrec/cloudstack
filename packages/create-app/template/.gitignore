@@ -1,0 +1,13 @@
+.cache
+.DS_Store
+.env*
+.idea
+.temp
+*.local
+*.log
+.vite*
+coverage
+dev-dist
+dist
+node_modules
+tmp
