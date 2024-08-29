@@ -2,9 +2,13 @@ import { mkdir, rm } from 'node:fs/promises'
 import path from 'node:path'
 
 import { createServer, resolveConfig } from 'vite'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import CloudstackVitePlugin, { type CloudstackPluginOptions } from '../src'
+
+vi.mock('local-pkg', () => ({
+  isPackageExists: vi.fn(),
+}))
 
 describe('plugin', () => {
   const tmpDir = path.resolve(import.meta.dirname, 'tmp')
