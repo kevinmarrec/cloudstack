@@ -5,8 +5,10 @@ export default {
   ignore: [
     '**/fixtures/**',
     '**/playground/**',
+    '**/template/**',
     'bump.config.ts',
     'taze.config.ts',
+    'uno.config.ts',
   ],
   ignoreDependencies: [
     '@iconify-json/carbon',

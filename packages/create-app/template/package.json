@@ -1,7 +1,6 @@
 {
-  "name": "playground",
+  "name": "template",
   "type": "module",
-  "version": "0.0.4",
   "private": true,
   "scripts": {
     "dev": "vite --open",
@@ -15,11 +14,11 @@
     "vue-router": "^4.4.3"
   },
   "devDependencies": {
-    "@kevinmarrec/cloudstack-eslint-config": "workspace:*",
-    "@kevinmarrec/cloudstack-stylelint-config": "workspace:*",
-    "@kevinmarrec/cloudstack-tsconfig": "workspace:*",
-    "@kevinmarrec/cloudstack-unocss-preset": "workspace:*",
-    "@kevinmarrec/cloudstack-vite-plugin": "workspace:*",
+    "@kevinmarrec/cloudstack-eslint-config": "^0.0.4",
+    "@kevinmarrec/cloudstack-stylelint-config": "^0.0.4",
+    "@kevinmarrec/cloudstack-tsconfig": "^0.0.4",
+    "@kevinmarrec/cloudstack-unocss-preset": "^0.0.4",
+    "@kevinmarrec/cloudstack-vite-plugin": "^0.0.4",
     "eslint": "^9.9.1",
     "stylelint": "^16.8.2",
     "unocss": "^0.62.2",

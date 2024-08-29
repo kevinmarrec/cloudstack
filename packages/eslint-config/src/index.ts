@@ -1,10 +1,15 @@
 import { antfu } from '@antfu/eslint-config'
 import defu from 'defu'
+import { isPackageExists } from 'local-pkg'
 
 type Options = Parameters<typeof antfu>[0]
 type UserConfig = Parameters<typeof antfu>[1]
 
 export function defineConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
+  if (options.unocss !== false && isPackageExists('unocss')) {
+    options.unocss = true
+  }
+
   if (options.unocss) {
     options.unocss = defu(options.unocss, {
       attributify: false,
