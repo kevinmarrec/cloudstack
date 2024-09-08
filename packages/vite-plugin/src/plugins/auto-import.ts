@@ -1,7 +1,8 @@
 import defu from 'defu'
-import type { Options } from 'unplugin-auto-import/types'
 import AutoImport from 'unplugin-auto-import/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
+
+import type { Options } from 'unplugin-auto-import/types'
 import type { PluginOption } from 'vite'
 
 import type { CloudstackPluginContext } from '../context'

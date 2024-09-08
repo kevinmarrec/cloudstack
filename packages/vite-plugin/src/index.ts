@@ -1,7 +1,6 @@
 import type { PluginOption } from 'vite'
 
 import { createContext } from './context'
-import type { CloudstackPluginOptions } from './options'
 import { AutoImportsPlugin } from './plugins/auto-import'
 import { ComponentsPlugin } from './plugins/components'
 import { LayoutsPlugin } from './plugins/layouts'
@@ -11,6 +10,8 @@ import { UnoCSSPlugin } from './plugins/unocss'
 import { VuePlugin } from './plugins/vue'
 import { VueDevToolsPlugin } from './plugins/vue-devtools'
 import { VueRouterPlugin } from './plugins/vue-router'
+
+import type { CloudstackPluginOptions } from './options'
 
 export { type CloudstackPluginOptions }
 

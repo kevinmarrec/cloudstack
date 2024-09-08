@@ -1,4 +1,5 @@
 import Unocss from '@unocss/vite'
+
 import type { PluginOption } from 'vite'
 
 import type { CloudstackPluginContext } from '../context'

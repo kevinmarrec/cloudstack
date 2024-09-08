@@ -1,5 +1,6 @@
-import type { PluginOption } from 'vite'
 import VueDevTools from 'vite-plugin-vue-devtools'
+
+import type { PluginOption } from 'vite'
 
 import type { CloudstackPluginContext } from '../context'
 

@@ -1,6 +1,7 @@
 import defu from 'defu'
-import type { Options } from 'unplugin-vue-components/types'
 import Components from 'unplugin-vue-components/vite'
+
+import type { Options } from 'unplugin-vue-components/types'
 import type { PluginOption } from 'vite'
 
 import type { CloudstackPluginContext } from '../context'

@@ -1,6 +1,7 @@
 import defu from 'defu'
-import type { PluginOption } from 'vite'
 import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa'
+
+import type { PluginOption } from 'vite'
 
 import type { CloudstackPluginContext } from '../context'
 

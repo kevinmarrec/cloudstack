@@ -41,21 +41,22 @@ export function defineConfig(options: Options = {}, ...userConfigs: UserConfig[]
         'error',
         { 'prefer-inline': true },
       ],
-      'import/order': [
-        'error',
-        {
-          'alphabetize': { order: 'asc' },
-          'distinctGroup': true,
-          'newlines-between': 'always',
-          'pathGroups': [
-            {
-              pattern: '~/**',
-              group: 'external',
-              position: 'after',
-            },
-          ],
-        },
-      ],
+      'perfectionist/sort-imports': ['error', {
+        groups: [
+          'builtin',
+          'external',
+          'type',
+          ['internal', 'internal-type'],
+          ['parent', 'sibling', 'index'],
+          ['parent-type', 'sibling-type', 'index-type'],
+          'side-effect',
+          'object',
+          'unknown',
+        ],
+        newlinesBetween: 'always',
+        order: 'asc',
+        type: 'natural',
+      }],
     },
   }), ...userConfigs)
 }

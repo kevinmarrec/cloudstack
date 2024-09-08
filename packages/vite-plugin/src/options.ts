@@ -1,7 +1,8 @@
-import type { VitePluginConfig as UnocssPluginOptions } from '@unocss/vite'
-import type { Options as VuePluginOptions } from '@vitejs/plugin-vue'
 import { isPackageExists } from 'local-pkg'
 import { globSync } from 'tinyglobby'
+
+import type { VitePluginConfig as UnocssPluginOptions } from '@unocss/vite'
+import type { Options as VuePluginOptions } from '@vitejs/plugin-vue'
 import type { Options as AutoImportPluginOptions } from 'unplugin-auto-import/types'
 import type { Options as ComponentsPluginOptions } from 'unplugin-vue-components/types'
 import type { Options as VueRouterPluginOptions } from 'unplugin-vue-router/types'

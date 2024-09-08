@@ -1,6 +1,7 @@
 import defu from 'defu'
-import type { Options } from 'unplugin-vue-router/types'
 import VueRouter from 'unplugin-vue-router/vite'
+
+import type { Options } from 'unplugin-vue-router/types'
 import type { PluginOption } from 'vite'
 
 import type { CloudstackPluginContext } from '../context'

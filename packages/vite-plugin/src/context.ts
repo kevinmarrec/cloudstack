@@ -1,5 +1,4 @@
 import { version } from '../package.json'
-
 import {
   type CloudstackPluginOptions,
   type ResolvedCloudstackPluginOptions,
