@@ -10,8 +10,8 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "vue": "^3.5.3",
-    "vue-router": "^4.4.3"
+    "vue": "^3.5.6",
+    "vue-router": "^4.4.5"
   },
   "devDependencies": {
     "@kevinmarrec/cloudstack-eslint-config": "^0.0.4",
@@ -21,8 +21,8 @@
     "@kevinmarrec/cloudstack-vite-plugin": "^0.0.4",
     "eslint": "^9.10.0",
     "stylelint": "^16.9.0",
-    "unocss": "^0.62.3",
-    "vite": "^5.4.3",
+    "unocss": "^0.62.4",
+    "vite": "^5.4.6",
     "vue-tsc": "^2.1.6"
   }
 }

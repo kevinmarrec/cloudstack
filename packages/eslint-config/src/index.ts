@@ -30,6 +30,9 @@ export function defineConfig(options: Options = {}, ...userConfigs: UserConfig[]
           { fixStyle: 'inline-type-imports' },
         ],
       },
+      parserOptions: {
+        warnOnUnsupportedTypeScriptVersion: false,
+      },
     },
     vue: {
       overrides: {
