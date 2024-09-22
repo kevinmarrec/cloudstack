@@ -5,7 +5,7 @@ import { isPackageExists } from 'local-pkg'
 type Options = Parameters<typeof antfu>[0]
 type UserConfig = Parameters<typeof antfu>[1]
 
-export function defineConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
+export function useConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
   if (options.unocss !== false && isPackageExists('unocss')) {
     options.unocss = true
   }

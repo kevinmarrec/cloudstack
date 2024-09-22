@@ -1,6 +1,6 @@
-import { defineConfig } from '@kevinmarrec/cloudstack-eslint-config'
+import { useConfig } from '@kevinmarrec/cloudstack-eslint-config'
 
-export default defineConfig({
+export default useConfig({
   ignores: [
     '**/fixtures/**',
   ],

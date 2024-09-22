@@ -4,7 +4,7 @@ import path from 'node:path'
 import { ESLint } from 'eslint'
 import { describe, expect, it } from 'vitest'
 
-import { defineConfig } from '../src'
+import { useConfig } from '../src'
 
 describe('fixtures', () => {
   it('typescript.ts', async () => {
@@ -14,7 +14,7 @@ describe('fixtures', () => {
     const code = await fs.readFile(inputFile, 'utf-8')
 
     const eslint = new ESLint({
-      overrideConfig: await defineConfig(),
+      overrideConfig: await useConfig(),
       fix: true,
     })
 
@@ -31,7 +31,7 @@ describe('fixtures', () => {
     `
 
     const eslint = new ESLint({
-      overrideConfig: await defineConfig(),
+      overrideConfig: await useConfig(),
       fix: true,
     })
 
