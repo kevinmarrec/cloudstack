@@ -1,4 +1,5 @@
-import { mkdir, rm } from 'node:fs/promises'
+import { mkdtemp, rm } from 'node:fs/promises'
+import os from 'node:os'
 import path from 'node:path'
 
 import { createServer, resolveConfig } from 'vite'
@@ -6,16 +7,26 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import CloudstackVitePlugin, { type CloudstackPluginOptions } from '../src'
 
+async function createTempDir() {
+  const osTmpDir = os.tmpdir()
+  const tmpDir = path.resolve(osTmpDir, 'vite-plugin-test')
+  return await mkdtemp(tmpDir)
+}
+
 vi.mock('local-pkg', () => ({
   isPackageExists: vi.fn(),
 }))
 
 describe('plugin', () => {
-  const tmpDir = path.resolve(import.meta.dirname, 'tmp')
-  const rmTmpDir = async () => await rm(tmpDir, { recursive: true, force: true })
+  let tmpDir: string
 
-  beforeEach(rmTmpDir)
-  afterEach(rmTmpDir)
+  beforeEach(async () => {
+    tmpDir = await createTempDir()
+  })
+
+  afterEach(async () => {
+    await rm(tmpDir, { recursive: true, force: true })
+  })
 
   it.each<CloudstackPluginOptions>([
     {}, // Default
@@ -33,7 +44,13 @@ describe('plugin', () => {
     const resolvedConfig = await resolveConfig({
       root: tmpDir,
       plugins: [
-        CloudstackVitePlugin({ pwa: true }),
+        CloudstackVitePlugin({
+          pwa: {
+            pwaAssets: {
+              disabled: true,
+            },
+          },
+        }),
       ],
     }, 'build')
 
@@ -61,8 +78,6 @@ describe('plugin', () => {
   })
 
   it('should inject dark mode script in index.html', async () => {
-    await mkdir(tmpDir)
-
     const server = await createServer({
       root: tmpDir,
       plugins: [
