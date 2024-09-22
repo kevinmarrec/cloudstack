@@ -1,12 +1,12 @@
 import stylelint from 'stylelint'
 import { describe, expect, it } from 'vitest'
 
-import { defineConfig } from '../src'
+import { useConfig } from '../src'
 
 describe('ignores', () => {
   it.each(['dist', 'node_modules'])('should ignore "%s" folder by default', async (folder) => {
     const { results: [{ ignored }] } = await stylelint.lint({
-      config: defineConfig(),
+      config: useConfig(),
       codeFilename: `${folder}/foo.css`,
       code: '',
     })
@@ -16,7 +16,7 @@ describe('ignores', () => {
 
   it('should ignore files, given "ignores" option', async () => {
     const { results: [{ ignored }] } = await stylelint.lint({
-      config: defineConfig({ ignores: ['**/*.foo'] }),
+      config: useConfig({ ignoreFiles: ['**/*.foo'] }),
       codeFilename: 'file.foo',
       code: '',
     })

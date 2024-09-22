@@ -4,7 +4,7 @@ import path from 'node:path'
 import stylelint from 'stylelint'
 import { describe, expect, it } from 'vitest'
 
-import { defineConfig } from '../src'
+import { useConfig } from '../src'
 
 describe('fixtures', () => {
   it('vue.vue', async () => {
@@ -14,7 +14,7 @@ describe('fixtures', () => {
     const code = await fs.readFile(inputFile, 'utf-8')
 
     const { code: output } = await stylelint.lint({
-      config: defineConfig(),
+      config: useConfig(),
       customSyntax: 'postcss-html',
       code,
       fix: true,

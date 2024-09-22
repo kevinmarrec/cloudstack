@@ -1,3 +1,3 @@
-import { defineConfig } from '@kevinmarrec/cloudstack-stylelint-config'
+import { useConfig } from '@kevinmarrec/cloudstack-stylelint-config'
 
-export default defineConfig()
+export default useConfig()

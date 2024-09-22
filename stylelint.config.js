@@ -1,7 +1,7 @@
-import { defineConfig } from '@kevinmarrec/cloudstack-stylelint-config'
+import { useConfig } from '@kevinmarrec/cloudstack-stylelint-config'
 
-export default defineConfig({
-  ignores: [
+export default useConfig({
+  ignoreFiles: [
     '**/coverage/**',
     '**/fixtures/**',
   ],

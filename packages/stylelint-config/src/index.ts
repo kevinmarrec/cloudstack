@@ -1,11 +1,6 @@
 import type { Config } from 'stylelint'
 
-interface UserConfig {
-  ignores?: Config['ignoreFiles']
-  rules?: Config['rules']
-}
-
-export function defineConfig(config: UserConfig = {}): Config {
+export function useConfig(userConfig: Config = {}): Config {
   return {
     extends: [
       'stylelint-config-recommended-scss',
@@ -15,12 +10,12 @@ export function defineConfig(config: UserConfig = {}): Config {
     rules: {
       'declaration-block-no-duplicate-properties': true,
       'length-zero-no-unit': true,
-      ...config.rules,
+      ...userConfig.rules,
     },
     ignoreFiles: [
       '**/dist/**',
       '**/node_modules/**',
-      ...config.ignores ?? [],
+      ...userConfig.ignoreFiles ?? [],
     ],
   }
 }
