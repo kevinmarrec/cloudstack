@@ -17,6 +17,10 @@ export function defineConfig(config: UserConfig = {}): Config {
       'length-zero-no-unit': true,
       ...config.rules,
     },
-    ignoreFiles: config.ignores,
+    ignoreFiles: [
+      '**/dist/**',
+      '**/node_modules/**',
+      ...config.ignores ?? [],
+    ],
   }
 }
