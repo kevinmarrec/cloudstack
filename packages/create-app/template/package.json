@@ -19,7 +19,7 @@
     "@kevinmarrec/cloudstack-tsconfig": "^0.0.4",
     "@kevinmarrec/cloudstack-unocss-preset": "^0.0.4",
     "@kevinmarrec/cloudstack-vite-plugin": "^0.0.4",
-    "eslint": "^9.11.0",
+    "eslint": "^9.11.1",
     "stylelint": "^16.9.0",
     "unocss": "^0.62.4",
     "vite": "^5.4.7",
