@@ -4,7 +4,6 @@ export default {
   exclude: ['optionalPeerDependencies'],
   ignore: [
     '**/fixtures/**',
-    '**/playground/**',
     '**/template/**',
     'bump.config.ts',
     'taze.config.ts',
@@ -18,5 +17,4 @@ export default {
     'taze',
     'the-new-css-reset',
   ],
-  ignoreWorkspaces: ['playground'],
 } satisfies KnipConfig

@@ -1,27 +1,29 @@
 {
-  "name": "playground",
+  "name": "frontend",
   "type": "module",
-  "version": "0.0.5",
   "private": true,
   "scripts": {
-    "dev": "vite --open",
+    "dev": "vite",
     "build": "vite-ssg build",
     "lint": "eslint . && stylelint '**/*.{css,scss,vue}'",
+    "knip": "knip",
     "serve": "vite preview",
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "vue": "^3.5.9",
+    "vue": "^3.5.10",
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
-    "@kevinmarrec/cloudstack-eslint-config": "workspace:*",
-    "@kevinmarrec/cloudstack-stylelint-config": "workspace:*",
-    "@kevinmarrec/cloudstack-tsconfig": "workspace:*",
-    "@kevinmarrec/cloudstack-unocss-preset": "workspace:*",
-    "@kevinmarrec/cloudstack-vite-plugin": "workspace:*",
+    "@kevinmarrec/cloudstack-eslint-config": "^0.0.5",
+    "@kevinmarrec/cloudstack-stylelint-config": "^0.0.5",
+    "@kevinmarrec/cloudstack-tsconfig": "^0.0.5",
+    "@kevinmarrec/cloudstack-unocss-preset": "^0.0.5",
+    "@kevinmarrec/cloudstack-vite-plugin": "^0.0.5",
     "eslint": "^9.11.1",
+    "knip": "^5.30.6",
     "stylelint": "^16.9.0",
+    "typescript": "^5.6.2",
     "unocss": "^0.62.4",
     "vite": "^5.4.8",
     "vue-tsc": "^2.1.6"

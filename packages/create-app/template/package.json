@@ -1,28 +1,13 @@
 {
-  "name": "template",
+  "name": "app",
   "type": "module",
+  "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "dev": "vite --open",
-    "build": "vite-ssg build",
-    "lint": "eslint . && stylelint '**/*.{css,scss,vue}'",
-    "serve": "vite preview",
-    "typecheck": "vue-tsc --noEmit"
-  },
-  "dependencies": {
-    "vue": "^3.5.9",
-    "vue-router": "^4.4.5"
-  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
   "devDependencies": {
-    "@kevinmarrec/cloudstack-eslint-config": "^0.0.4",
-    "@kevinmarrec/cloudstack-stylelint-config": "^0.0.4",
-    "@kevinmarrec/cloudstack-tsconfig": "^0.0.4",
-    "@kevinmarrec/cloudstack-unocss-preset": "^0.0.4",
-    "@kevinmarrec/cloudstack-vite-plugin": "^0.0.4",
-    "eslint": "^9.11.1",
-    "stylelint": "^16.9.0",
-    "unocss": "^0.62.4",
-    "vite": "^5.4.8",
-    "vue-tsc": "^2.1.6"
-  },"version": "0.0.5"
+    "taze": "^0.17.1"
+  }
 }

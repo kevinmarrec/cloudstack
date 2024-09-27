@@ -3,14 +3,10 @@
   "type": "module",
   "version": "0.0.5",
   "private": true,
-  "workspaces": [
-    "packages/*",
-    "playground"
-  ],
+  "workspaces": ["packages/*"],
   "scripts": {
     "build": "bun run clean && bun --filter './packages/*' build",
     "clean": "rimraf packages/*/dist",
-    "play": "bun --cwd playground dev",
     "lint": "eslint . && stylelint '**/*.{css,scss,vue}'",
     "lint:fix": "eslint --fix . && stylelint --fix '**/*.{css,scss,vue}'",
     "lint:inspect": "bunx @eslint/config-inspector",

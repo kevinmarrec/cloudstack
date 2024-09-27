@@ -1,0 +1,21 @@
+x-common: &common
+  working_dir: /app
+  volumes:
+    - ./:/app
+  user: 1000:1000
+
+services:
+  backend:
+    <<: *common
+    image: oven/bun:1-alpine
+    entrypoint: [bun, --cwd, backend, dev]
+    ports:
+      - 3000:3000
+  frontend:
+    <<: *common
+    depends_on:
+      - backend
+    image: imbios/bun-node:20-alpine
+    entrypoint: [bun, --cwd, frontend, dev, --host, 0.0.0.0]
+    ports:
+      - 5173:5173
