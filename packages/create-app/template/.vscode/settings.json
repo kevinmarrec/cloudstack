@@ -42,5 +42,9 @@
   "css.validate": false,
   "scss.validate": false,
 
-  "stylelint.validate": ["css", "scss", "vue"]
+  "stylelint.validate": [
+    "css",
+    "scss",
+    "vue"
+  ]
 }
