@@ -43,10 +43,10 @@
     }
   },
   "dependencies": {
-    "@unocss/vite": "^0.63.2",
+    "@unocss/vite": "^0.63.4",
     "@vite-pwa/assets-generator": "^0.2.6",
     "@vitejs/plugin-vue": "^5.1.4",
-    "critters": "^0.0.24",
+    "critters": "^0.0.25",
     "defu": "^6.1.4",
     "local-pkg": "^0.5.0",
     "the-new-css-reset": "^1.11.3",
