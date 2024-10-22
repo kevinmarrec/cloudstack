@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/prompts": "^2.4.9",
-    "picocolors": "^1.1.0",
+    "picocolors": "^1.1.1",
     "prompts": "^2.4.2"
   }
 }
