@@ -7,7 +7,20 @@
     "backend",
     "frontend"
   ],
+  "scripts": {
+    "lint": "eslint . && stylelint '**/*.{css,scss,vue}'",
+    "lint:fix": "eslint --fix . && stylelint --fix '**/*.{css,scss,vue}'",
+    "lint:inspect": "bunx @eslint/config-inspector",
+    "typecheck": "vue-tsc --noEmit"
+  },
   "devDependencies": {
-    "taze": "^0.17.2"
+    "@kevinmarrec/cloudstack-eslint-config": "^0.0.5",
+    "@kevinmarrec/cloudstack-stylelint-config": "^0.0.5",
+    "@kevinmarrec/cloudstack-tsconfig": "^0.0.5",
+    "eslint": "^9.13.0",
+    "knip": "^5.34.0",
+    "stylelint": "^16.10.0",
+    "taze": "^0.17.2",
+    "vue-tsc": "^2.1.6"
   }
 }
