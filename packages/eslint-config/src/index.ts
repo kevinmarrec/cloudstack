@@ -17,12 +17,9 @@ export function useConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
     })
   }
 
-  if (options.ignores) {
-    userConfigs.unshift({ ignores: options.ignores })
-  }
-
   return antfu(defu<NonNullable<Options>, Options[]>(options, {
     formatters: true,
+    ignores: options.ignores,
     typescript: {
       overrides: {
         'ts/consistent-type-imports': [
@@ -63,3 +60,5 @@ export function useConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
     },
   }), ...userConfigs)
 }
+
+export default useConfig()
