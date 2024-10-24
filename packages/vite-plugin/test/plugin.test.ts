@@ -59,24 +59,6 @@ describe('plugin', () => {
     )
   })
 
-  it('should resolve ~ alias based on root', async () => {
-    const resolvedConfig = await resolveConfig({
-      root: tmpDir,
-      plugins: [
-        CloudstackVitePlugin(),
-      ],
-    }, 'build')
-
-    expect(resolvedConfig.resolve.alias).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          find: '~',
-          replacement: `${tmpDir}/src`,
-        }),
-      ]),
-    )
-  })
-
   it('should inject dark mode script in index.html', async () => {
     const server = await createServer({
       root: tmpDir,

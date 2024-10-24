@@ -2,7 +2,6 @@
 
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
-import process from 'node:process'
 
 import type { Plugin } from 'vite'
 
@@ -55,14 +54,8 @@ export function MainPlugin(ctx: CloudstackPluginContext): Plugin {
       }
     },
 
-    config(userConfig) {
+    config() {
       return {
-        resolve: {
-          alias: {
-            /* c8 ignore next */
-            '~': path.resolve(userConfig.root ?? process.cwd(), 'src'),
-          },
-        },
         optimizeDeps: {
           include: ctx.options.pwa ? ['workbox-window'] : [],
         },
