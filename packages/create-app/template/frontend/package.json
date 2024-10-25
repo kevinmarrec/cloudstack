@@ -12,8 +12,8 @@
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
-    "@kevinmarrec/cloudstack-unocss-preset": "^0.0.5",
-    "@kevinmarrec/cloudstack-vite-plugin": "^0.0.5",
+    "@kevinmarrec/cloudstack-unocss-preset": "^0.0.6",
+    "@kevinmarrec/cloudstack-vite-plugin": "^0.0.6",
     "unocss": "^0.63.6",
     "vite": "^5.4.10",
     "vite-ssg": "^0.23.8"
