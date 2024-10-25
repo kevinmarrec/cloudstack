@@ -4,5 +4,6 @@ export default defineConfig({
   files: [
     'package.json',
     'packages/**/package.json',
+    '!**/template/**',
   ],
 })
