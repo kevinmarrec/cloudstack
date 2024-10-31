@@ -1,5 +1,6 @@
-import fs from 'node:fs/promises'
 import path from 'node:path'
+
+import fs from './fs'
 
 export async function canSkipEmptying(dir: string) {
   if (!await fs.exists(dir)) {

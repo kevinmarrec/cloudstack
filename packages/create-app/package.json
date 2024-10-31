@@ -15,7 +15,7 @@
     "create-app",
     "template"
   ],
-  "bin": "dist/index.js",
+  "bin": "dist/index.cjs",
   "files": [
     "dist",
     "template"
