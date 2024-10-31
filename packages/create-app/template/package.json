@@ -18,9 +18,9 @@
     "@kevinmarrec/cloudstack-stylelint-config": "^0.0.6",
     "@kevinmarrec/cloudstack-tsconfig": "^0.0.6",
     "eslint": "^9.13.0",
-    "knip": "^5.34.0",
+    "knip": "^5.36.0",
     "stylelint": "^16.10.0",
-    "taze": "^0.17.2",
-    "vue-tsc": "^2.1.6"
+    "taze": "^0.18.0",
+    "vue-tsc": "^2.1.10"
   }
 }
