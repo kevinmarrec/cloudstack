@@ -14,9 +14,9 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "devDependencies": {
-    "@kevinmarrec/cloudstack-eslint-config": "^0.0.6",
-    "@kevinmarrec/cloudstack-stylelint-config": "^0.0.6",
-    "@kevinmarrec/cloudstack-tsconfig": "^0.0.6",
+    "@kevinmarrec/cloudstack-eslint-config": "",
+    "@kevinmarrec/cloudstack-stylelint-config": "",
+    "@kevinmarrec/cloudstack-tsconfig": "",
     "eslint": "^9.13.0",
     "knip": "^5.36.0",
     "stylelint": "^16.10.0",

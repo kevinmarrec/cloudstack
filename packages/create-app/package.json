@@ -23,9 +23,12 @@
   "scripts": {
     "build": "tsup"
   },
-  "devDependencies": {
-    "@types/prompts": "^2.4.9",
+  "dependencies": {
     "picocolors": "^1.1.1",
-    "prompts": "^2.4.2"
+    "prompts": "^2.4.2",
+    "tinyglobby": "^0.2.10"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.4.9"
   }
 }
