@@ -7,5 +7,6 @@ export default defineConfig({
       exclude: ['packages/create-app/src/index.ts'],
       reporter: ['text', 'html'],
     },
+    silent: true,
   },
 })
