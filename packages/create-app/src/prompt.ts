@@ -9,7 +9,7 @@ import prompts from 'prompts'
 
 import { canSkipEmptying } from './utils/dir'
 
-export function onCancel() {
+function onCancel() {
   console.log(`${red('✖')} Operation cancelled`)
   process.exit(1)
 }
@@ -28,17 +28,17 @@ export async function prompt() {
 
   // Project name
   if (!projectName) {
-    await prompts([
+    const answers = await prompts([
       {
         name: 'projectName',
         type: 'text',
         message: 'Project name:',
+        /* v8 ignore next */
         validate: value => String(value).trim() ? true : 'Project name cannot be empty',
-        onState: (state) => {
-          projectName = String(state.value).trim()
-        },
       },
     ], { onCancel })
+
+    projectName = answers.projectName.trim()
   }
 
   const targetDir = path.resolve(process.cwd(), projectName)

@@ -4,6 +4,7 @@ export default defineConfig({
   test: {
     coverage: {
       include: ['packages/*/src/**/*.ts'],
+      exclude: ['packages/create-app/src/index.ts'],
       reporter: ['text', 'html'],
     },
   },

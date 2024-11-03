@@ -20,10 +20,6 @@ export async function canSkipEmptying(dir: string) {
 }
 
 export async function emptyDir(dir: string) {
-  if (!await fs.exists(dir)) {
-    return
-  }
-
   for (const entry of await fs.readdir(dir)) {
     if (entry === '.git') {
       continue
