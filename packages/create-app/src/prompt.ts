@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 
+import path from 'node:path'
 import process from 'node:process'
 import { parseArgs } from 'node:util'
 
@@ -7,6 +8,11 @@ import { red } from 'picocolors'
 import prompts from 'prompts'
 
 import { canSkipEmptying } from './utils/dir'
+
+export function onCancel() {
+  console.log(`${red('✖')} Operation cancelled`)
+  process.exit(1)
+}
 
 export async function prompt() {
   const { values: argv, positionals } = parseArgs({
@@ -17,27 +23,25 @@ export async function prompt() {
     strict: false,
   })
 
-  let targetDir = positionals[0]
+  let projectName = positionals[0]
   const forceOverwrite = argv.force
 
-  function onCancel() {
-    console.log(`${red('✖')} Operation cancelled`)
-    process.exit(1)
-  }
-
   // Project name
-  if (!targetDir) {
-    const { projectName } = await prompts([
+  if (!projectName) {
+    await prompts([
       {
         name: 'projectName',
         type: 'text',
         message: 'Project name:',
         validate: value => String(value).trim() ? true : 'Project name cannot be empty',
+        onState: (state) => {
+          projectName = String(state.value).trim()
+        },
       },
     ], { onCancel })
-
-    targetDir = projectName.trim()
   }
+
+  const targetDir = path.resolve(process.cwd(), projectName)
 
   // Overwrite check
   if (!((await canSkipEmptying(targetDir) || forceOverwrite))) {
@@ -45,7 +49,7 @@ export async function prompt() {
       {
         name: 'shouldOverwrite',
         type: () => 'toggle',
-        message: () => `${targetDir === '.' ? 'Current directory' : `Target directory "${targetDir}"`} is not empty. Remove existing files and continue?`,
+        message: () => `${targetDir === process.cwd() ? 'Current directory' : `Target directory "${targetDir}"`} is not empty. Remove existing files and continue?`,
         initial: true,
         active: 'Yes',
         inactive: 'No',
