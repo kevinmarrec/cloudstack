@@ -10,6 +10,7 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     permissions:
+      actions: write
       contents: write
     steps:
       - name: Checkout
@@ -46,3 +47,8 @@ jobs:
         run: bunx changelogithub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cleanup skipped workflow runs on main branch
+        run: gh run list --workflow ci.yml --branch main --status skipped --json databaseId --jq '.[].databaseId' | xargs -n 1 gh run delete
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
