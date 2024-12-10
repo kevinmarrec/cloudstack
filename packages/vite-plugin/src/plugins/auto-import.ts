@@ -15,7 +15,9 @@ export function AutoImportsPlugin({ options }: CloudstackPluginContext): PluginO
   const defaults: Options = {
     dts: 'src/types/auto-imports.d.ts',
     dirs: ['src/composables', 'src/directives'],
-    imports: options.router ? ['vue', VueRouterAutoImports] : ['vue'],
+    imports: options.router
+      ? ['vue', VueRouterAutoImports, { 'unplugin-vue-router/runtime': ['definePage'] }]
+      : ['vue'],
     vueDirectives: {
       isDirective: normalizeImportFrom => normalizeImportFrom.includes('/directives/'),
     },
