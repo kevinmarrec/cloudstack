@@ -14,8 +14,11 @@ export function AutoImportsPlugin({ options }: CloudstackPluginContext): PluginO
 
   const defaults: Options = {
     dts: 'src/types/auto-imports.d.ts',
-    dirs: ['src/composables'],
+    dirs: ['src/composables', 'src/directives'],
     imports: options.router ? ['vue', VueRouterAutoImports] : ['vue'],
+    vueDirectives: {
+      isDirective: normalizeImportFrom => normalizeImportFrom.includes('/directives/'),
+    },
   }
 
   return AutoImport(defu(options.autoImports, defaults))
