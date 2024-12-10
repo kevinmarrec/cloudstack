@@ -14,7 +14,7 @@ describe('preset', () => {
   afterEach(rmTmpDir)
 
   it('should generate correct css', async () => {
-    const uno = createGenerator({
+    const uno = await createGenerator({
       presets: [preset()],
     })
 
@@ -24,7 +24,7 @@ describe('preset', () => {
   })
 
   it('should generate correct css with fonts options', async () => {
-    const uno = createGenerator({
+    const uno = await createGenerator({
       presets: [
         preset({
           cwd: tmpDir,
@@ -41,7 +41,7 @@ describe('preset', () => {
   })
 
   it('should generate correct css with icons options', async () => {
-    const uno = createGenerator({
+    const uno = await createGenerator({
       presets: [
         preset({
           icons: {
