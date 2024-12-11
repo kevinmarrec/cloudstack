@@ -1,4 +1,4 @@
-import { access, mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 
@@ -6,6 +6,7 @@ import prompts from 'prompts'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { run } from '../src/run'
+import { exists } from '../src/utils/fs'
 
 async function createTempDir() {
   const osTmpDir = os.tmpdir()
@@ -32,7 +33,7 @@ describe('run', () => {
 
     await run()
 
-    expect(async () => await access(path.join(tmpDir, projectName, 'package.json'))).not.toThrowError()
+    expect(await exists(path.join(tmpDir, projectName, 'package.json'))).toBe(true)
   })
 
   it('create-app [projectName] (target does not exist)', async () => {
@@ -40,7 +41,7 @@ describe('run', () => {
 
     await run()
 
-    expect(async () => await access(path.join(tmpDir, projectName, 'package.json'))).not.toThrowError()
+    expect(await exists(path.join(tmpDir, projectName, 'package.json'))).toBe(true)
   })
 
   it('create-app [projectName] (target exists and is empty)', async () => {
@@ -50,7 +51,7 @@ describe('run', () => {
 
     await run()
 
-    expect(async () => await access(path.join(tmpDir, projectName, 'package.json'))).not.toThrowError()
+    expect(await exists(path.join(tmpDir, projectName, 'package.json'))).toBe(true)
   })
 
   it('create-app [projectName] (target exists and only contains .git folder)', async () => {
@@ -60,8 +61,8 @@ describe('run', () => {
 
     await run()
 
-    expect(async () => await access(path.join(tmpDir, projectName, '.git'))).not.toThrowError()
-    expect(async () => await access(path.join(tmpDir, projectName, 'package.json'))).not.toThrowError()
+    expect(await exists(path.join(tmpDir, projectName, '.git'))).toBe(true)
+    expect(await exists(path.join(tmpDir, projectName, 'package.json'))).toBe(true)
   })
 
   it('create-app [projectName] (target exists and contains files, simulate shouldOverwrite answer: true)', async () => {
@@ -74,7 +75,7 @@ describe('run', () => {
 
     await run()
 
-    expect(async () => await access(path.join(tmpDir, projectName, 'package.json'))).not.toThrowError()
+    expect(await exists(path.join(tmpDir, projectName, 'package.json'))).toBe(true)
   })
 
   it('create-app [target] (target is current directory and contains files, simulate shouldOverwrite answer: false)', async () => {
@@ -89,9 +90,9 @@ describe('run', () => {
 
     prompts.inject([false])
 
-    expect(async () => await run()).rejects.toThrowError('process.exit(1)')
+    await expect(run()).rejects.toThrowError('process.exit(1)')
 
-    expect(async () => await access(path.join(tmpDir, 'src'))).not.toThrowError()
-    expect(async () => await access(path.join(tmpDir, 'package.json'))).rejects.toThrowError()
+    expect(await exists(path.join(tmpDir, 'src'))).toBe(true)
+    expect(await exists(path.join(tmpDir, 'package.json'))).toBe(false)
   })
 })

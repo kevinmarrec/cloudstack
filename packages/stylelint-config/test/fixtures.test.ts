@@ -20,6 +20,6 @@ describe('fixtures', () => {
       fix: true,
     })
 
-    expect(output).toMatchFileSnapshot(outputFile)
+    await expect(output).toMatchFileSnapshot(outputFile)
   })
 })

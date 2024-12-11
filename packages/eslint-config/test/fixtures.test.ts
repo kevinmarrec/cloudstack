@@ -20,7 +20,7 @@ describe('fixtures', () => {
 
     const [{ output }] = await eslint.lintText(code, { filePath: 'typescript.ts' })
 
-    expect(output).toMatchFileSnapshot(outputFile)
+    await expect(output).toMatchFileSnapshot(outputFile)
   })
 
   it('vue.vue', async () => {
