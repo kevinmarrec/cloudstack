@@ -62,7 +62,7 @@ export function MainPlugin(ctx: CloudstackPluginContext): Plugin {
         ssgOptions: {
           script: 'async',
           formatting: 'minify',
-          crittersOptions: {
+          beastiesOptions: {
             reduceInlineStyles: false,
           },
         },
