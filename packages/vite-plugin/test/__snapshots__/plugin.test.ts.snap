@@ -17,12 +17,39 @@ exports[`plugin > should inject dark mode script in index.html 1`] = `
 </html>"
 `;
 
-exports[`plugin > should resolve correct plugin options for config {} 1`] = `
+exports[`plugin > with all options 1`] = `
 [
+  "vite-plugin-pwa",
+  "unocss:transformers:pre",
+  "unocss:global:content",
+  "unocss:global",
+  "unplugin-vue-router",
+  "vite-plugin-inspect",
+  "vite-plugin-vue-devtools",
+  "vite:cloudstack",
+  "vite-plugin-vue-layouts",
+  "vite-plugin-pwa:dev-sw",
+  "unocss:config",
+  "unocss:transformers:undefined",
+  "unocss:devtools",
+  "unocss:api",
+  "unocss:inspector",
+  "vite:vue",
   "unplugin-auto-import",
+  "unplugin-vue-components",
+  "vite-plugin-pwa:info",
+  "vite-plugin-pwa:pwa-assets",
+  "unocss:transformers:post",
+  "unocss:global:post",
+]
+`;
+
+exports[`plugin > with default options 1`] = `
+[
   "vite-plugin-inspect",
   "vite-plugin-vue-devtools",
   "vite:cloudstack",
   "vite:vue",
+  "unplugin-auto-import",
 ]
 `;

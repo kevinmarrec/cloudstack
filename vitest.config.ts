@@ -1,3 +1,5 @@
+import process from 'node:process'
+
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
@@ -7,6 +9,6 @@ export default defineConfig({
       exclude: ['packages/create-app/src/index.ts'],
       reporter: ['text', 'html'],
     },
-    onConsoleLog: (_, type) => type === 'stderr',
+    silent: process.env.CI === 'true',
   },
 })
