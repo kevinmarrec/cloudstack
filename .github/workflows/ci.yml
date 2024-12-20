@@ -36,7 +36,7 @@ jobs:
         id: cache
         uses: actions/cache@v4
         with:
-          key: ${{ hashFiles('bun.lockb') }}
+          key: ${{ hashFiles('bun.lock') }}
           path: node_modules
 
       - name: Install dependencies

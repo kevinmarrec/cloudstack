@@ -32,7 +32,7 @@ jobs:
       - name: Restore dependencies cache
         uses: actions/cache/restore@v4
         with:
-          key: ${{ hashFiles('bun.lockb') }}
+          key: ${{ hashFiles('bun.lock') }}
           path: node_modules
 
       - name: Build
