@@ -29,14 +29,14 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@unocss/core": "^0.65.1",
-    "@unocss/preset-icons": "^0.65.1",
-    "@unocss/preset-uno": "^0.65.1",
-    "@unocss/preset-web-fonts": "^0.65.1",
-    "@unocss/transformer-directives": "^0.65.1",
-    "@unocss/transformer-variant-group": "^0.65.1"
+    "@unocss/core": "^0.65.2",
+    "@unocss/preset-icons": "^0.65.2",
+    "@unocss/preset-uno": "^0.65.2",
+    "@unocss/preset-web-fonts": "^0.65.2",
+    "@unocss/transformer-directives": "^0.65.2",
+    "@unocss/transformer-variant-group": "^0.65.2"
   },
   "devDependencies": {
-    "@iconify-json/carbon": "^1.2.4"
+    "@iconify-json/carbon": "^1.2.5"
   }
 }
