@@ -8,8 +8,8 @@
     "frontend"
   ],
   "scripts": {
-    "lint": "eslint . && stylelint '**/*.{css,scss,vue}'",
-    "lint:fix": "eslint --fix . && stylelint --fix '**/*.{css,scss,vue}'",
+    "lint": "eslint --flag unstable_ts_config . && stylelint '**/*.{css,scss,vue}'",
+    "lint:fix": "eslint --flag unstable_ts_config --fix . && stylelint --fix '**/*.{css,scss,vue}'",
     "lint:inspect": "bunx @eslint/config-inspector",
     "typecheck": "vue-tsc --noEmit"
   },
