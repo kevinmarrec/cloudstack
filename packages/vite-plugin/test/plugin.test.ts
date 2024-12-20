@@ -6,7 +6,7 @@ import process from 'node:process'
 import { createServer, resolveConfig } from 'vite'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import CloudstackVitePlugin, { type CloudstackPluginOptions } from '../src'
+import CloudstackVitePlugin from '../src'
 
 async function createTempDir() {
   const osTmpDir = os.tmpdir()
