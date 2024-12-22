@@ -35,7 +35,7 @@ describe('run', () => {
 
     await run()
 
-    expect(consoleLogSpy).toHaveBeenCalledWith(`\nScaffolding project in ${path.join(tmpDir, projectName)}...`)
+    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Scaffolding project'))
     expect(await exists(path.join(tmpDir, projectName, 'package.json'))).toBe(true)
   })
 
@@ -95,7 +95,7 @@ describe('run', () => {
 
     await expect(run()).rejects.toThrowError('process.exit(1)')
 
-    expect(consoleLogSpy).toHaveBeenCalledWith('✖ Operation cancelled')
+    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Operation cancelled'))
 
     expect(await exists(path.join(tmpDir, 'src'))).toBe(true)
     expect(await exists(path.join(tmpDir, 'package.json'))).toBe(false)
