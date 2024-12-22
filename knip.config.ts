@@ -1,20 +1,30 @@
 import type { KnipConfig } from 'knip'
 
 export default {
-  exclude: ['optionalPeerDependencies'],
-  ignore: [
-    '**/fixtures/**',
-    '**/template/**',
-    'bump.config.ts',
-    'taze.config.ts',
-    'uno.config.ts',
-  ],
-  ignoreDependencies: [
-    '@iconify-json/carbon',
-    'stylelint-config-html',
-    'stylelint-config-recess-order',
-    'stylelint-config-recommended-scss',
-    'taze',
-    'the-new-css-reset',
-  ],
+  stylelint: false,
+  workspaces: {
+    '.': {
+      entry: ['*.config.ts'],
+      ignore: [
+        '**/fixtures/**',
+        '**/template/**',
+      ],
+    },
+    'packages/stylelint-config': {
+      ignoreDependencies: [
+        'stylelint-config-html',
+        'stylelint-config-recess-order',
+        'stylelint-config-recommended-scss',
+      ],
+    },
+    'packages/unocss-preset': {
+      ignoreDependencies: ['@iconify-json/carbon'],
+    },
+    'packages/vite-plugin': {
+      ignoreDependencies: [
+        'the-new-css-reset',
+        'vue-router',
+      ],
+    },
+  },
 } satisfies KnipConfig

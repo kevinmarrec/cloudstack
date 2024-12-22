@@ -35,6 +35,6 @@ export async function scaffold(root: string) {
       }
     }
 
-    await fs.writeFile(pkgPath, JSON.stringify(pkg, null, 2))
+    await fs.writeFile(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`)
   }
 }
