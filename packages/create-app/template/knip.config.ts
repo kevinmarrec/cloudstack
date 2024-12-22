@@ -1,15 +1,12 @@
 import type { KnipConfig } from 'knip'
 
 export default {
-  ignore: ['*.config.*'],
-  ignoreDependencies: [
-    '@kevinmarrec/cloudstack-eslint-config',
-    '@kevinmarrec/cloudstack-stylelint-config',
-    '@kevinmarrec/cloudstack-tsconfig',
-    'taze',
-  ],
+  stylelint: false,
   workspaces: {
-    frontend: {
+    '.': {
+      entry: ['*.config.ts'],
+    },
+    'frontend': {
       entry: [
         'src/main.ts',
         'src/layouts/**/*.vue',
