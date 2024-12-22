@@ -3,7 +3,7 @@ import os from 'node:os'
 import path from 'node:path'
 
 import prompts from 'prompts'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest'
 
 import { run } from '../src/run'
 import { exists } from '../src/utils/fs'
@@ -16,11 +16,13 @@ async function createTempDir() {
 
 describe('run', () => {
   let tmpDir: string
+  let consoleLogSpy: MockInstance
   const projectName = 'foo'
 
   beforeEach(async () => {
     process.argv = ['node', 'create-app']
     tmpDir = await createTempDir()
+    consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
     vi.spyOn(process, 'cwd').mockReturnValue(tmpDir)
   })
 
@@ -33,6 +35,7 @@ describe('run', () => {
 
     await run()
 
+    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Scaffolding project'))
     expect(await exists(path.join(tmpDir, projectName, 'package.json'))).toBe(true)
   })
 
@@ -91,6 +94,8 @@ describe('run', () => {
     prompts.inject([false])
 
     await expect(run()).rejects.toThrowError('process.exit(1)')
+
+    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Operation cancelled'))
 
     expect(await exists(path.join(tmpDir, 'src'))).toBe(true)
     expect(await exists(path.join(tmpDir, 'package.json'))).toBe(false)
