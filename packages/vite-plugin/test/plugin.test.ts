@@ -97,7 +97,7 @@ describe('plugin', () => {
     }, 'serve')
 
     expect(resolvedConfig.optimizeDeps.include).toEqual(
-      expect.arrayContaining(['workbox-window']),
+      expect.arrayContaining(['vite-ssg', 'workbox-window']),
     )
   })
 

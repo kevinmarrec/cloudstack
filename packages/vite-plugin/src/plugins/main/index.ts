@@ -57,7 +57,9 @@ export function MainPlugin(ctx: CloudstackPluginContext): Plugin {
     config() {
       return {
         optimizeDeps: {
-          include: ctx.options.pwa ? ['workbox-window'] : [],
+          include: ctx.options.pwa
+            ? ['vite-ssg', 'workbox-window']
+            : ['vite-ssg'],
         },
         ssgOptions: {
           script: 'async',
