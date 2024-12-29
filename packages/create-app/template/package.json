@@ -12,12 +12,14 @@
     "lint": "eslint --flag unstable_ts_config . && stylelint '**/*.{css,scss,vue}'",
     "lint:fix": "eslint --flag unstable_ts_config --fix . && stylelint --fix '**/*.{css,scss,vue}'",
     "lint:inspect": "bunx @eslint/config-inspector",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "release": "bumpp"
   },
   "devDependencies": {
     "@kevinmarrec/cloudstack-eslint-config": "",
     "@kevinmarrec/cloudstack-stylelint-config": "",
     "@kevinmarrec/cloudstack-tsconfig": "",
+    "bumpp": "^9.9.2",
     "eslint": "^9.17.0",
     "knip": "^5.41.1",
     "stylelint": "^16.12.0",

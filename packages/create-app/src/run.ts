@@ -15,8 +15,9 @@ function printUsage(targetDir: string) {
     console.log(bold(green(`  cd ${path.relative(process.cwd(), targetDir)}`)))
   }
 
-  console.log(bold(green('  bun install')))
-  console.log(bold(green('  bun dev')))
+  console.log(bold(green('  bun install --save-text-lockfile')))
+  console.log(bold(green('  bun --cwd backend dev')))
+  console.log(bold(green('  bun --cwd frontend dev')))
 }
 
 export async function run() {
