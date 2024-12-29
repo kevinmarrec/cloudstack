@@ -19,6 +19,7 @@ export function AutoImportsPlugin({ options }: CloudstackPluginContext): PluginO
       ? ['vue', VueRouterAutoImports, { 'unplugin-vue-router/runtime': ['definePage'] }]
       : ['vue'],
     vueDirectives: {
+      /* v8 ignore next */
       isDirective: normalizeImportFrom => normalizeImportFrom.includes('/directives/'),
     },
   }

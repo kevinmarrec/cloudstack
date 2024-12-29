@@ -6,12 +6,23 @@ import process from 'node:process'
 import { createServer, resolveConfig } from 'vite'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import CloudstackVitePlugin from '../src'
+import CloudstackVitePlugin, { type CloudstackPluginOptions } from '../src'
+import { createContext } from '../src/context'
+import { MainPlugin } from '../src/plugins/main'
 
 async function createTempDir() {
   const osTmpDir = os.tmpdir()
   const tmpDir = path.resolve(osTmpDir, 'vite-plugin-test')
   return await mkdtemp(tmpDir)
+}
+
+async function getActiveCloudstackVitePlugins(options?: CloudstackPluginOptions): Promise<string[]> {
+  const baseConfig = await resolveConfig({}, 'serve')
+
+  const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin(options)] }, 'serve')
+
+  const addedPlugins = resolvedConfig.plugins.filter(plugin => !baseConfig.plugins.some(basePlugin => basePlugin.name === plugin.name))
+  return addedPlugins.map(plugin => plugin.name)
 }
 
 const mocks = vi.hoisted(() => ({
@@ -27,33 +38,27 @@ describe('plugin', () => {
 
   beforeEach(async () => {
     tmpDir = await createTempDir()
+    vi.spyOn(process, 'cwd').mockReturnValue(tmpDir)
   })
 
   afterEach(async () => {
     await rm(tmpDir, { recursive: true, force: true })
+    vi.restoreAllMocks()
   })
 
-  it('with default options', async () => {
-    const baseConfig = await resolveConfig({ root: tmpDir }, 'serve')
+  const configurations = [
+    {},
+    { autoImports: false },
+    { devtools: false },
+  ] satisfies CloudstackPluginOptions[]
 
-    vi.spyOn(process, 'cwd').mockReturnValue(tmpDir)
+  it.each(configurations)('with options: %o', async (options) => {
+    const plugins = await getActiveCloudstackVitePlugins(options)
 
-    const resolvedConfig = await resolveConfig({
-      root: tmpDir,
-      plugins: [CloudstackVitePlugin()],
-    }, 'serve')
-
-    const addedPlugins = resolvedConfig.plugins.filter(plugin => !baseConfig.plugins.some(basePlugin => basePlugin.name === plugin.name))
-    const addedPluginNames = addedPlugins.map(plugin => plugin.name)
-
-    expect(addedPluginNames).toMatchSnapshot()
+    expect(plugins).toMatchSnapshot()
   })
 
   it('with all options', async () => {
-    const baseConfig = await resolveConfig({ root: tmpDir }, 'serve')
-
-    vi.spyOn(process, 'cwd').mockReturnValue(tmpDir)
-
     mocks.isPackageExists.mockImplementation((pkg: string) => pkg === 'vue-router' || pkg === 'unocss')
 
     await mkdir(path.resolve(tmpDir, 'src/components'), { recursive: true })
@@ -67,26 +72,19 @@ describe('plugin', () => {
 
     await writeFile(path.resolve(tmpDir, 'uno.config.ts'), `export default {}`)
 
-    const resolvedConfig = await resolveConfig({
-      root: tmpDir,
-      plugins: [CloudstackVitePlugin({
-        pwa: {
-          pwaAssets: {
-            disabled: true,
-          },
+    const plugins = await getActiveCloudstackVitePlugins({
+      pwa: {
+        pwaAssets: {
+          disabled: true,
         },
-      })],
-    }, 'serve')
+      },
+    })
 
-    const addedPlugins = resolvedConfig.plugins.filter(plugin => !baseConfig.plugins.some(basePlugin => basePlugin.name === plugin.name))
-    const addedPluginNames = addedPlugins.map(plugin => plugin.name)
-
-    expect(addedPluginNames).toMatchSnapshot()
+    expect(plugins).toMatchSnapshot()
   })
 
   it('should optimize dependency "workbox-window" with pwa option', async () => {
     const resolvedConfig = await resolveConfig({
-      root: tmpDir,
       plugins: [
         CloudstackVitePlugin({
           pwa: {
@@ -96,7 +94,7 @@ describe('plugin', () => {
           },
         }),
       ],
-    }, 'build')
+    }, 'serve')
 
     expect(resolvedConfig.optimizeDeps.include).toEqual(
       expect.arrayContaining(['workbox-window']),
@@ -104,15 +102,31 @@ describe('plugin', () => {
   })
 
   it('should inject dark mode script in index.html', async () => {
-    const server = await createServer({
-      root: tmpDir,
-      plugins: [
-        CloudstackVitePlugin(),
-      ],
-    })
+    const server = await createServer({ plugins: [CloudstackVitePlugin()] })
 
     const html = await server.transformIndexHtml('index.html', '<html></html>')
 
     expect(html).toMatchSnapshot()
+  })
+})
+
+describe('virtual module', async () => {
+  it('should resolve virtual module id', async () => {
+    const module = MainPlugin(createContext({}))
+    expect((module.resolveId as any)('virtual:cloudstack')).toEqual(`\0virtual:cloudstack`)
+  })
+
+  const configurations = [
+    {},
+    { router: {} },
+    { router: {}, layouts: {} },
+    { unocss: {} },
+  ] satisfies CloudstackPluginOptions[]
+
+  it.each(configurations)('should generate virtual module content, with options: %o', async (options) => {
+    const module = MainPlugin(createContext(options))
+    const content = await (module.load as any)(`\0virtual:cloudstack`)
+
+    expect(content).toMatchSnapshot()
   })
 })
