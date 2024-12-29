@@ -29,12 +29,12 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@unocss/core": "^0.65.2",
-    "@unocss/preset-icons": "^0.65.2",
-    "@unocss/preset-uno": "^0.65.2",
-    "@unocss/preset-web-fonts": "^0.65.2",
-    "@unocss/transformer-directives": "^0.65.2",
-    "@unocss/transformer-variant-group": "^0.65.2"
+    "@unocss/core": "^0.65.3",
+    "@unocss/preset-icons": "^0.65.3",
+    "@unocss/preset-uno": "^0.65.3",
+    "@unocss/preset-web-fonts": "^0.65.3",
+    "@unocss/transformer-directives": "^0.65.3",
+    "@unocss/transformer-variant-group": "^0.65.3"
   },
   "devDependencies": {
     "@iconify-json/carbon": "^1.2.5"
