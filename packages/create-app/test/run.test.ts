@@ -37,6 +37,7 @@ describe('run', () => {
 
     expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Scaffolding project'))
     expect(await exists(path.join(tmpDir, projectName, 'package.json'))).toBe(true)
+    expect(await exists(path.join(tmpDir, projectName, '.gitignore'))).toBe(true)
   })
 
   it('create-app [projectName] (target does not exist)', async () => {

@@ -21,6 +21,7 @@ export async function scaffold(root: string) {
 
   // Copy template
   await fs.cp(path.join(__dirname, '../template'), root, { recursive: true })
+  await fs.rename(path.join(root, 'gitignore'), path.join(root, '.gitignore'))
 
   // Set @kevinmarrec-cloudstack-* packages version to current version
   const pkgPaths = await glob('**/package.json', { cwd: root, absolute: true })

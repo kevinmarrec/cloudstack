@@ -1,4 +1,4 @@
-import { access, cp, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { access, cp, mkdir, readdir, readFile, rename, rm, writeFile } from 'node:fs/promises'
 
 import type { PathLike } from 'node:fs'
 
@@ -18,6 +18,7 @@ export default {
   mkdir,
   readdir,
   readFile,
+  rename,
   rm,
   writeFile,
 }
