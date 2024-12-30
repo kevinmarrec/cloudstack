@@ -13,8 +13,8 @@ on:
       - '**/*.md'
 
 jobs:
-  check-and-test:
-    name: Check & Test
+  check:
+    name: Check
     runs-on: ubuntu-latest
     if: |
       !startsWith(github.event.head_commit.message, 'chore: release')
