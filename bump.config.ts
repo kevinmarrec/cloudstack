@@ -6,4 +6,5 @@ export default defineConfig({
     'packages/**/package.json',
     '!**/template/**',
   ],
+  execute: 'bun install --ignore-scripts --silent',
 })
