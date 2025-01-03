@@ -6,5 +6,5 @@ export default defineConfig({
     'packages/**/package.json',
     '!**/template/**',
   ],
-  execute: 'bun install --ignore-scripts --silent',
+  execute: 'bun install --ignore-scripts --silent && git add bun.lock ',
 })
