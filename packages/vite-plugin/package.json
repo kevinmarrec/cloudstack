@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-vite-plugin",
   "type": "module",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/vite-plugin",
