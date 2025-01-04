@@ -17,7 +17,7 @@ export async function scaffold(root: string) {
     await fs.mkdir(root)
   }
 
-  console.log(`\nScaffolding project in ${blue(root)}...`)
+  console.log(`\n🧬 Scaffolding project in ${blue(root)}...`)
 
   // Copy template
   await fs.cp(path.join(__dirname, '../template'), root, { recursive: true })

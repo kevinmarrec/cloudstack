@@ -15,16 +15,24 @@ function onCancel() {
 }
 
 export async function prompt() {
-  const { values: argv, positionals } = parseArgs({
+  const cwd = process.cwd()
+
+  const { values: options, positionals } = parseArgs({
     args: process.argv.slice(2),
     options: {
       force: { type: 'boolean', short: 'f' },
+      install: { type: 'boolean', short: 'i' },
+      silent: { type: 'boolean', short: 's' },
     },
     strict: false,
   })
 
   let projectName = positionals[0]
-  const forceOverwrite = argv.force
+
+  // Silent mode
+  if (options.silent) {
+    console.log = () => {}
+  }
 
   // Project name
   if (!projectName) {
@@ -41,15 +49,15 @@ export async function prompt() {
     projectName = answers.projectName.trim()
   }
 
-  const targetDir = path.resolve(process.cwd(), projectName)
+  const targetDir = path.resolve(cwd, projectName)
 
   // Overwrite check
-  if (!((await canSkipEmptying(targetDir) || forceOverwrite))) {
+  if (!((await canSkipEmptying(targetDir) || options.force))) {
     await prompts([
       {
         name: 'shouldOverwrite',
         type: () => 'toggle',
-        message: () => `${targetDir === process.cwd() ? 'Current directory' : `Target directory "${targetDir}"`} is not empty. Remove existing files and continue?`,
+        message: () => `${targetDir === cwd ? 'Current directory' : `Target directory "${targetDir}"`} is not empty. Remove existing files and continue?`,
         initial: true,
         active: 'Yes',
         inactive: 'No',
@@ -66,5 +74,5 @@ export async function prompt() {
     ], { onCancel })
   }
 
-  return { targetDir }
+  return { cwd, targetDir, ...options }
 }
