@@ -8,6 +8,10 @@ import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } fr
 import { run } from '../src/run'
 import { exists } from '../src/utils/fs'
 
+vi.mock('tinyexec', () => ({
+  x: vi.fn(),
+}))
+
 async function createTempDir() {
   const osTmpDir = os.tmpdir()
   const tmpDir = path.resolve(osTmpDir, 'create-app-test')
@@ -17,12 +21,16 @@ async function createTempDir() {
 describe('run', () => {
   let tmpDir: string
   let consoleLogSpy: MockInstance
+  let processExistSpy: MockInstance
   const projectName = 'foo'
 
   beforeEach(async () => {
     process.argv = ['node', 'create-app']
     tmpDir = await createTempDir()
     consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
+    processExistSpy = vi.spyOn(process, 'exit').mockImplementation((code) => {
+      throw new Error(`process.exit(${code})`)
+    })
     vi.spyOn(process, 'cwd').mockReturnValue(tmpDir)
   })
 
@@ -30,7 +38,7 @@ describe('run', () => {
     await rm(tmpDir, { recursive: true, force: true })
   })
 
-  it('create-app (no projectName, simulate projectName answer)', async () => {
+  it('create-app (no directory given, simulate projectName answer)', async () => {
     prompts.inject([projectName])
 
     await run()
@@ -40,7 +48,7 @@ describe('run', () => {
     expect(await exists(path.join(tmpDir, projectName, '.gitignore'))).toBe(true)
   })
 
-  it('create-app [projectName] (target does not exist)', async () => {
+  it('create-app [DIRECTORY] (directory does not exist)', async () => {
     process.argv[2] = projectName
 
     await run()
@@ -48,7 +56,7 @@ describe('run', () => {
     expect(await exists(path.join(tmpDir, projectName, 'package.json'))).toBe(true)
   })
 
-  it('create-app [projectName] (target exists and is empty)', async () => {
+  it('create-app [DIRECTORY] (directory exists and is empty)', async () => {
     process.argv[2] = projectName
 
     await mkdir(path.join(tmpDir, projectName))
@@ -58,7 +66,7 @@ describe('run', () => {
     expect(await exists(path.join(tmpDir, projectName, 'package.json'))).toBe(true)
   })
 
-  it('create-app [projectName] (target exists and only contains .git folder)', async () => {
+  it('create-app [DIRECTORY] (directory exists and only contains .git folder)', async () => {
     process.argv[2] = projectName
 
     await mkdir(path.join(tmpDir, projectName, '.git'), { recursive: true })
@@ -69,7 +77,7 @@ describe('run', () => {
     expect(await exists(path.join(tmpDir, projectName, 'package.json'))).toBe(true)
   })
 
-  it('create-app [projectName] (target exists and contains files, simulate shouldOverwrite answer: true)', async () => {
+  it('create-app [DIRECTORY] (directory exists and contains files, simulate shouldOverwrite answer: true)', async () => {
     process.argv[2] = projectName
 
     await mkdir(path.join(tmpDir, projectName, 'src'), { recursive: true })
@@ -82,10 +90,10 @@ describe('run', () => {
     expect(await exists(path.join(tmpDir, projectName, 'package.json'))).toBe(true)
   })
 
-  it('create-app [target] (target is current directory and contains files, simulate shouldOverwrite answer: false)', async () => {
+  it('create-app [DIRECTORY] (directory is current directory and contains files, simulate shouldOverwrite answer: false)', async () => {
     process.argv[2] = '.'
 
-    vi.spyOn(process, 'exit').mockImplementation((code) => {
+    processExistSpy.mockImplementation((code) => {
       throw new Error(`process.exit(${code})`)
     })
 
@@ -100,5 +108,51 @@ describe('run', () => {
 
     expect(await exists(path.join(tmpDir, 'src'))).toBe(true)
     expect(await exists(path.join(tmpDir, 'package.json'))).toBe(false)
+  })
+
+  it('create-app --force [DIRECTORY] (directory exists and contains files)', async () => {
+    process.argv[2] = projectName
+    process.argv[3] = '--force'
+
+    await mkdir(path.join(tmpDir, projectName, 'src'), { recursive: true })
+    await writeFile(path.join(tmpDir, projectName, 'src', 'index.ts'), 'x')
+
+    await run()
+
+    expect(await exists(path.join(tmpDir, projectName, 'package.json'))).toBe(true)
+  })
+
+  it('create-app --install [DIRECTORY] (directory does not exist)', async () => {
+    process.argv[2] = projectName
+    process.argv[3] = '--install'
+
+    await run()
+
+    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Installing dependencies'))
+  })
+
+  it('create-app --silent [DIRECTORY] (directory does not exist)', async () => {
+    process.argv[2] = projectName
+    process.argv[3] = '--silent'
+
+    await run()
+
+    expect(consoleLogSpy).not.toHaveBeenCalled()
+  })
+
+  it('create-app --help', async () => {
+    process.argv[2] = '--help'
+
+    await expect(run()).rejects.toThrowError('process.exit(0)')
+
+    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Usage: create-app'))
+  })
+
+  it('create-app --version', async () => {
+    process.argv[2] = '--version'
+
+    await expect(run()).rejects.toThrowError('process.exit(0)')
+
+    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringMatching(/create-app v\d+\.\d+\.\d+/))
   })
 })
