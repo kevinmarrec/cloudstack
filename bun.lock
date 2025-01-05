@@ -25,7 +25,7 @@
     },
     "packages/create-app": {
       "name": "@kevinmarrec/create-cloudstack-app",
-      "version": "0.0.21",
+      "version": "0.1.0",
       "dependencies": {
         "picocolors": "^1.1.1",
         "prompts": "^2.4.2",
@@ -38,7 +38,7 @@
     },
     "packages/eslint-config": {
       "name": "@kevinmarrec/cloudstack-eslint-config",
-      "version": "0.0.21",
+      "version": "0.1.0",
       "dependencies": {
         "@antfu/eslint-config": "^3.12.1",
         "@unocss/eslint-plugin": "^0.65.3",
@@ -52,7 +52,7 @@
     },
     "packages/stylelint-config": {
       "name": "@kevinmarrec/cloudstack-stylelint-config",
-      "version": "0.0.21",
+      "version": "0.1.0",
       "dependencies": {
         "stylelint-config-html": "^1.1.0",
         "stylelint-config-recess-order": "^5.1.1",
@@ -64,11 +64,11 @@
     },
     "packages/tsconfig": {
       "name": "@kevinmarrec/cloudstack-tsconfig",
-      "version": "0.0.21",
+      "version": "0.1.0",
     },
     "packages/unocss-preset": {
       "name": "@kevinmarrec/cloudstack-unocss-preset",
-      "version": "0.0.21",
+      "version": "0.1.0",
       "dependencies": {
         "@unocss/core": "^0.65.3",
         "@unocss/preset-icons": "^0.65.3",
@@ -83,7 +83,7 @@
     },
     "packages/vite-plugin": {
       "name": "@kevinmarrec/cloudstack-vite-plugin",
-      "version": "0.0.21",
+      "version": "0.1.0",
       "dependencies": {
         "@unocss/vite": "^0.65.3",
         "@vite-pwa/assets-generator": "^0.2.6",
