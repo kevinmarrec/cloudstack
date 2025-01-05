@@ -7,6 +7,7 @@ import { parseArgs } from 'node:util'
 import { red } from 'picocolors'
 import prompts from 'prompts'
 
+import { version } from '../package.json'
 import { canSkipEmptying } from './utils/dir'
 
 function onCancel() {
@@ -21,13 +22,40 @@ export async function prompt() {
     args: process.argv.slice(2),
     options: {
       force: { type: 'boolean', short: 'f' },
+      help: { type: 'boolean', short: 'h' },
       install: { type: 'boolean', short: 'i' },
       silent: { type: 'boolean', short: 's' },
+      version: { type: 'boolean' },
     },
-    strict: false,
+    strict: true,
+    allowPositionals: true,
   })
 
-  let projectName = positionals[0]
+  // Help
+  if (options.help) {
+    console.log(`\
+Usage: create-app [OPTIONS...] [DIRECTORY]
+
+Options:
+  -f, --force     Create the project even if the directory is not empty.
+  -h, --help      Display this help message.
+  -i, --install   Automatically install dependencies after creating the project.
+  -s, --silent    Run the CLI in silent mode.
+  --version       Display the version number of this CLI.
+
+Examples:
+  create-app my-app
+  create-app --force my-app
+  create-app -i my-app
+`)
+    process.exit(0)
+  }
+
+  // Version
+  if (options.version) {
+    console.log(`create-app v${version}`)
+    process.exit(0)
+  }
 
   // Silent mode
   if (options.silent) {
@@ -35,19 +63,17 @@ export async function prompt() {
   }
 
   // Project name
-  if (!projectName) {
-    const answers = await prompts([
-      {
-        name: 'projectName',
-        type: 'text',
-        message: 'Project name:',
-        /* v8 ignore next */
-        validate: value => String(value).trim() ? true : 'Project name cannot be empty',
-      },
-    ], { onCancel })
+  const { projectName = positionals[0] } = await prompts([
+    {
+      name: 'projectName',
+      type: positionals[0] ? false : 'text',
+      message: 'Project name:',
+      /* v8 ignore next */
+      validate: value => String(value).trim() ? true : 'Project name cannot be empty',
+      format: value => value.trim(),
 
-    projectName = answers.projectName.trim()
-  }
+    },
+  ], { onCancel })
 
   const targetDir = path.resolve(cwd, projectName)
 
@@ -56,8 +82,8 @@ export async function prompt() {
     await prompts([
       {
         name: 'shouldOverwrite',
-        type: () => 'toggle',
-        message: () => `${targetDir === cwd ? 'Current directory' : `Target directory "${targetDir}"`} is not empty. Remove existing files and continue?`,
+        type: 'toggle',
+        message: `${targetDir === cwd ? 'Current directory' : `Target directory "${targetDir}"`} is not empty. Remove existing files and continue?`,
         initial: true,
         active: 'Yes',
         inactive: 'No',
