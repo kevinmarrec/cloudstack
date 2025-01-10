@@ -36,6 +36,7 @@ describe('run', () => {
 
   afterEach(async () => {
     await rm(tmpDir, { recursive: true, force: true })
+    vi.restoreAllMocks()
   })
 
   it('create-app (no directory given, simulate projectName answer)', async () => {
