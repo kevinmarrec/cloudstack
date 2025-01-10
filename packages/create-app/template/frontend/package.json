@@ -14,8 +14,8 @@
   "devDependencies": {
     "@kevinmarrec/cloudstack-unocss-preset": "",
     "@kevinmarrec/cloudstack-vite-plugin": "",
-    "unocss": "^0.65.3",
+    "unocss": "^65.4.0",
     "vite": "^6.0.7",
-    "vite-ssg": "^0.24.3"
+    "vite-ssg": "^25.0.0"
   }
 }
