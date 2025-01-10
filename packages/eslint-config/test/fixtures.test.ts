@@ -14,7 +14,6 @@ describe('fixtures', () => {
     const code = await fs.readFile(inputFile, 'utf-8')
 
     const eslint = new ESLint({
-      flags: ['unstable_ts_config'],
       overrideConfig: await useConfig(),
       fix: true,
     })
@@ -32,7 +31,6 @@ describe('fixtures', () => {
     `
 
     const eslint = new ESLint({
-      flags: ['unstable_ts_config'],
       overrideConfig: await useConfig(),
       fix: true,
     })

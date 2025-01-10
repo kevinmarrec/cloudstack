@@ -6,7 +6,6 @@ import { useConfig } from '../src'
 describe('ignores', () => {
   it('should ignore files, given "ignores" option', async () => {
     const eslint = new ESLint({
-      flags: ['unstable_ts_config'],
       overrideConfig: await useConfig({ ignores: ['**/*.foo'] }),
     })
 
