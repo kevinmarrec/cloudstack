@@ -16,7 +16,7 @@ export async function run() {
 
   if (install) {
     console.log('\n📦 Installing dependencies...')
-    await x('bun', ['install', '--cwd', targetDir, '--save-text-lockfile'])
+    await x('bun', ['install', '--cwd', targetDir])
     console.log('\n✅ Done')
   }
   else {
