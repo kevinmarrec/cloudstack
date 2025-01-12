@@ -1,6 +1,6 @@
 {
   "name": "@kevinmarrec/cloudstack-tsconfig",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/tsconfig",
