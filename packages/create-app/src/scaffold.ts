@@ -6,16 +6,12 @@ import { blue } from 'picocolors'
 import { glob } from 'tinyglobby'
 
 import { version } from '../package.json'
-import { emptyDir } from './utils/dir'
 import fs from './utils/fs'
 
 export async function scaffold(root: string) {
-  if (await fs.exists(root)) {
-    await emptyDir(root)
-  }
-  else {
-    await fs.mkdir(root)
-  }
+  await fs.exists(root)
+    ? await fs.empty(root)
+    : await fs.mkdir(root)
 
   console.log(`\n🧬 Scaffolding project in ${blue(root)}...`)
 

@@ -8,9 +8,9 @@ import { red } from 'picocolors'
 import prompts from 'prompts'
 
 import { version } from '../package.json'
-import { canSkipEmptying } from './utils/dir'
+import fs from './utils/fs'
 
-function onCancel() {
+function onCancel(): never {
   console.log(`${red('✖')} Operation cancelled`)
   process.exit(1)
 }
@@ -63,23 +63,27 @@ Examples:
   }
 
   // Project name
-  const { projectName = positionals[0] } = await prompts([
-    {
-      name: 'projectName',
-      type: positionals[0] ? false : 'text',
-      message: 'Project name:',
-      /* v8 ignore next */
-      validate: value => String(value).trim() ? true : 'Project name cannot be empty',
-      format: value => value.trim(),
+  let projectName: string = positionals[0]
 
-    },
-  ], { onCancel })
+  if (!projectName) {
+    projectName = await prompts(
+      {
+        name: 'projectName',
+        type: 'text',
+        message: 'Project name:',
+        /* v8 ignore next */
+        validate: value => String(value).trim() ? true : 'Project name cannot be empty',
+        format: value => value.trim(),
+      },
+    ).then(({ projectName }) => projectName)
+  }
 
+  // Target directory
   const targetDir = path.resolve(cwd, projectName)
 
   // Overwrite check
-  if (!((await canSkipEmptying(targetDir) || options.force))) {
-    await prompts([
+  if (!((await fs.emptyCheck(targetDir) || options.force))) {
+    const { shouldOverwrite } = await prompts([
       {
         name: 'shouldOverwrite',
         type: 'toggle',
@@ -88,16 +92,11 @@ Examples:
         active: 'Yes',
         inactive: 'No',
       },
-      {
-        name: 'overwriteChecker',
-        type: (_prev, values) => {
-          if (values.shouldOverwrite === false) {
-            onCancel()
-          }
-          return false
-        },
-      },
-    ], { onCancel })
+    ])
+
+    if (!shouldOverwrite) {
+      onCancel()
+    }
   }
 
   return { cwd, targetDir, ...options }
