@@ -71,7 +71,7 @@ Examples:
         name: 'projectName',
         type: 'text',
         message: 'Project name:',
-        /* v8 ignore next */
+        /* v8 ignore next 2 */
         validate: value => String(value).trim() ? true : 'Project name cannot be empty',
         format: value => value.trim(),
       },
