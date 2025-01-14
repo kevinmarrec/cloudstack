@@ -1,6 +1,6 @@
 import { definePreset } from '@unocss/core'
 import presetIcons, { type IconsOptions } from '@unocss/preset-icons'
-import presetUno from '@unocss/preset-uno'
+import presetUno, { type Theme } from '@unocss/preset-uno'
 import presetWebFonts, { type WebFontsOptions } from '@unocss/preset-web-fonts'
 import { createLocalFontProcessor } from '@unocss/preset-web-fonts/local'
 import transformerDirectives from '@unocss/transformer-directives'
@@ -14,7 +14,7 @@ export interface PresetOptions {
   fonts?: WebFontsOptions['fonts']
 }
 
-export default definePreset<PresetOptions>(options => ({
+export default definePreset<PresetOptions, Theme>(options => ({
   name: '@kevinmarrec/cloudstack-unocss-preset',
   presets: [
     presetUno(),
