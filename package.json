@@ -9,8 +9,8 @@
   "packageManager": "bun@1.1.43",
   "scripts": {
     "build": "bun run clean && bun --filter './packages/*' build",
-    "clean": "del packages/*/dist",
     "check": "bun run knip && bun run lint && bun run typecheck",
+    "clean": "del packages/*/dist",
     "lint": "eslint . && stylelint '**/*.{css,scss,vue}'",
     "lint:fix": "eslint --fix . && stylelint --fix '**/*.{css,scss,vue}'",
     "lint:inspect": "bunx @eslint/config-inspector",
