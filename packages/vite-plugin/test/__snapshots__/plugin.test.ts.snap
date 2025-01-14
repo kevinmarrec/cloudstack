@@ -7,8 +7,7 @@ exports[`plugin > should inject dark mode script in index.html 1`] = `
   const setting = localStorage.getItem('vueuse-color-scheme') || 'auto'
   if (setting === 'dark' || (prefersDark && setting !== 'light'))
     document.documentElement.classList.toggle('dark', true)
-})()
-</script>
+})()</script>
 
 <script type="module" src="/@id/virtual:vue-devtools-path:overlay.js"></script>
 <script type="module" src="/@id/virtual:vue-inspector-path:load.js"></script>
