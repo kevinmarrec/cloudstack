@@ -118,6 +118,6 @@ export function resolveOptions(userOptions: CloudstackPluginOptions): ResolvedCl
     pwa: userOptions.pwa ?? false,
     router: userOptions.router ?? (isPackageExists('vue-router') && globSync(['**/*.vue'], { cwd: 'src/pages' }).length > 0 && {}),
     unocss: userOptions.unocss ?? (isPackageExists('unocss') && globSync(['uno.config.ts']).length > 0 && {}),
-    vue: userOptions.vue ?? {},
+    vue: userOptions.vue || {},
   }
 }

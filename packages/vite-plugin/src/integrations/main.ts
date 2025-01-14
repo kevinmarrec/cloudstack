@@ -2,13 +2,16 @@
 
 import type { Plugin } from 'vite'
 
+import { integrationFactory } from './_factory'
+
 import type { CloudstackPluginContext } from '../context'
 
 const virtualModuleId = 'virtual:cloudstack'
 const resolvedVirtualModuleId = `\0${virtualModuleId}`
 
-export function MainPlugin(ctx: CloudstackPluginContext): Plugin {
-  return {
+export default integrationFactory({
+  key: 'main',
+  plugin: (ctx: CloudstackPluginContext): Plugin => ({
     name: 'vite:cloudstack',
     resolveId(id) {
       if (id === virtualModuleId) {
@@ -85,5 +88,5 @@ export function MainPlugin(ctx: CloudstackPluginContext): Plugin {
         ],
       }
     },
-  }
-}
+  }),
+})

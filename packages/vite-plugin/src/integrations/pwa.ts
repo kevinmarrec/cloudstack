@@ -3,14 +3,14 @@ import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa'
 
 import type { PluginOption } from 'vite'
 
+import { integrationFactory } from './_factory'
+
 import type { CloudstackPluginContext } from '../context'
 
-export function PWAPlugin({ options }: CloudstackPluginContext): PluginOption {
-  if (!options.pwa) {
-    return
-  }
-
-  const defaults: Partial<VitePWAOptions> = {
+export default integrationFactory({
+  key: 'pwa',
+  plugin: VitePWA,
+  defaults: () => ({
     registerType: 'autoUpdate',
     manifest: {
       id: '/',
@@ -24,12 +24,12 @@ export function PWAPlugin({ options }: CloudstackPluginContext): PluginOption {
       dir: 'ltr',
       orientation: 'natural',
       handle_links: 'preferred',
-      launch_handler: {
-        client_mode: [
-          'navigate-existing',
-          'auto',
-        ],
-      },
+      // launch_handler: {
+      //   client_mode: [
+      //     'navigate-existing',
+      //     'auto',
+      //   ],
+      // },
     },
     pwaAssets: {
       overrideManifestIcons: true,
@@ -39,7 +39,5 @@ export function PWAPlugin({ options }: CloudstackPluginContext): PluginOption {
       suppressWarnings: true,
       type: 'module',
     },
-  }
-
-  return VitePWA(defu(options.pwa, defaults))
-}
+  } as const),
+})
