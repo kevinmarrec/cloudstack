@@ -20,6 +20,7 @@ export interface CloudstackPluginOptions {
    *
    * And the following directories:
    * - `src/composables`
+   * - `src/directives`
    *
    * The generated types are written to `src/types/auto-imports.d.ts`.
    *
