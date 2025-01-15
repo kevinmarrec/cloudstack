@@ -1,11 +1,6 @@
-import defu from 'defu'
-import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa'
-
-import type { PluginOption } from 'vite'
+import { type LaunchHandlerClientMode, VitePWA } from 'vite-plugin-pwa'
 
 import { integrationFactory } from './_factory'
-
-import type { CloudstackPluginContext } from '../context'
 
 export default integrationFactory({
   key: 'pwa',
@@ -24,12 +19,12 @@ export default integrationFactory({
       dir: 'ltr',
       orientation: 'natural',
       handle_links: 'preferred',
-      // launch_handler: {
-      //   client_mode: [
-      //     'navigate-existing',
-      //     'auto',
-      //   ],
-      // },
+      launch_handler: {
+        client_mode: [
+          'navigate-existing',
+          'auto',
+        ] as LaunchHandlerClientMode[],
+      },
     },
     pwaAssets: {
       overrideManifestIcons: true,

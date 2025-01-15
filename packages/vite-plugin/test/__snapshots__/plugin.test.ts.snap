@@ -25,7 +25,9 @@ exports[`plugin > with all options 1`] = `
   "unplugin-vue-router",
   "vite-plugin-inspect",
   "vite-plugin-vue-devtools",
-  "vite:cloudstack",
+  "vite:cloudstack:global",
+  "vite:cloudstack:config",
+  "vite:cloudstack:dark-mode",
   "vite-plugin-vue-layouts",
   "vite-plugin-pwa:dev-sw",
   "unocss:config",
@@ -47,14 +49,18 @@ exports[`plugin > with options: { autoImports: false } 1`] = `
 [
   "vite-plugin-inspect",
   "vite-plugin-vue-devtools",
-  "vite:cloudstack",
+  "vite:cloudstack:global",
+  "vite:cloudstack:config",
+  "vite:cloudstack:dark-mode",
   "vite:vue",
 ]
 `;
 
 exports[`plugin > with options: { devtools: false } 1`] = `
 [
-  "vite:cloudstack",
+  "vite:cloudstack:global",
+  "vite:cloudstack:config",
+  "vite:cloudstack:dark-mode",
   "vite:vue",
   "unplugin-auto-import",
 ]
@@ -64,7 +70,9 @@ exports[`plugin > with options: {} 1`] = `
 [
   "vite-plugin-inspect",
   "vite-plugin-vue-devtools",
-  "vite:cloudstack",
+  "vite:cloudstack:global",
+  "vite:cloudstack:config",
+  "vite:cloudstack:dark-mode",
   "vite:vue",
   "unplugin-auto-import",
 ]
