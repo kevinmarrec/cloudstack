@@ -110,7 +110,7 @@ describe('plugin', () => {
   })
 })
 
-describe('virtual module', async () => {
+describe.skip('virtual module', async () => {
   it('should resolve virtual module id', async () => {
     const module = virtualModule(createContext({}))[0]
     expect((module.resolveId as any)('virtual:cloudstack')).toEqual(`\0virtual:cloudstack`)

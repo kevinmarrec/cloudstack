@@ -11,7 +11,7 @@ export default integrationFactory(AutoImport, {
   defaults: ctx => ({
     dts: 'src/types/auto-imports.d.ts',
     dirs: ['src/composables', 'src/directives'],
-    imports: ctx.userOptions.router !== false && isPackageExists('vue-router') && globSync(['**/*.vue'], { cwd: 'src/pages' }).length > 0
+    imports: ctx.userOptions.router !== false && ctx.found('pages')
       ? ['vue' as const, VueRouterAutoImports, { 'unplugin-vue-router/runtime': ['definePage'] }]
       : ['vue' as const],
     vueDirectives: {
