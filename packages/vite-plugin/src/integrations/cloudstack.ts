@@ -95,4 +95,4 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin[] => {
       },
     },
   ]
-})
+}, { options: ctx => ctx })

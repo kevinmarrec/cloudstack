@@ -13,11 +13,11 @@ type IntegrationFactory = <Plugin extends (...args: any) => PluginOption>
   }
 ) => (ctx: CloudstackPluginContext) => PluginOption
 
-export const integrationFactory: IntegrationFactory = (plugin, { enabled, options, defaults } = {}) => (ctx) => {
-  if (enabled === undefined || enabled(ctx)) {
+export const integrationFactory: IntegrationFactory = (plugin, { enabled = () => true, options, defaults } = {}) => (ctx) => {
+  if (enabled(ctx)) {
     return plugin(
       defu(
-        options?.(ctx) || ctx,
+        options?.(ctx),
         defaults?.(ctx),
       ),
     )
