@@ -1,4 +1,3 @@
-import { globSync } from 'tinyglobby'
 import Components from 'unplugin-vue-components/vite'
 
 import { integrationFactory } from './_factory'

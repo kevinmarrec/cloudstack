@@ -25,14 +25,6 @@ async function getActiveCloudstackVitePlugins(options?: CloudstackPluginOptions)
   return addedPlugins.map(plugin => plugin.name)
 }
 
-const mocks = vi.hoisted(() => ({
-  isPackageExists: vi.fn(),
-}))
-
-vi.mock('local-pkg', () => ({
-  isPackageExists: mocks.isPackageExists,
-}))
-
 describe('plugin', () => {
   let tmpDir: string
 
@@ -59,8 +51,6 @@ describe('plugin', () => {
   })
 
   it('with all options', async () => {
-    mocks.isPackageExists.mockImplementation((pkg: string) => pkg === 'vue-router' || pkg === 'unocss')
-
     await mkdir(path.resolve(tmpDir, 'src/components'), { recursive: true })
     await writeFile(path.resolve(tmpDir, 'src/components/HelloWorld.vue'), `<template> <h1>Hello World</h1> </template>`)
 

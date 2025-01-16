@@ -48,7 +48,6 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "beasties": "^0.2.0",
     "defu": "^6.1.4",
-    "local-pkg": "^1.0.0",
     "the-new-css-reset": "^1.11.3",
     "tinyglobby": "^0.2.10",
     "unplugin-auto-import": "^19.0.0",

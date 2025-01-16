@@ -1,4 +1,3 @@
-import { isPackageExists } from 'local-pkg'
 import { globSync } from 'tinyglobby'
 
 import { version } from '../package.json'

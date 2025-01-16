@@ -1,5 +1,3 @@
-import { isPackageExists } from 'local-pkg'
-import { globSync } from 'tinyglobby'
 import AutoImport from 'unplugin-auto-import/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 
