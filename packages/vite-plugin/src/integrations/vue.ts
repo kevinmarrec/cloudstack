@@ -4,13 +4,13 @@ import Vue from '@vitejs/plugin-vue'
 
 import { integrationFactory } from './_factory'
 
-export default integrationFactory(
-  Vue,
-  ctx => ctx.options.vue,
-  _ => ({
+export default integrationFactory(Vue, {
+  enabled: () => true,
+  options: ctx => ctx.userOptions.vue,
+  defaults: () => ({
     features: {
-      // Drop Options API support in production build
+      // Drop Options API support in production build to optimize bundle size
       optionsAPI: process.env.NODE_ENV !== 'production',
     },
   }),
-)
+})

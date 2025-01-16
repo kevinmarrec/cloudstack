@@ -9,8 +9,5 @@ export { type CloudstackPluginOptions }
 
 export default function CloudstackPlugin(userOptions: CloudstackPluginOptions = {}): PluginOption[] {
   const ctx = createContext(userOptions)
-
-  return integrations
-    .map(integration => integration(ctx))
-    .filter(Boolean)
+  return integrations.map(integration => integration(ctx))
 }
