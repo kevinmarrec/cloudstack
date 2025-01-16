@@ -1,20 +1,21 @@
+import defu from 'defu'
 import AutoImport from 'unplugin-auto-import/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 
 import { integrationFactory } from './_factory'
 
-export default integrationFactory({
-  key: 'autoImports',
-  plugin: AutoImport,
-  defaults: ({ options }) => ({
+export default integrationFactory(
+  AutoImport,
+  ctx => ctx.options.autoImports,
+  ctx => ({
     dts: 'src/types/auto-imports.d.ts',
     dirs: ['src/composables', 'src/directives'],
-    imports: options.router
+    imports: ctx.options.router
       ? ['vue' as const, VueRouterAutoImports, { 'unplugin-vue-router/runtime': ['definePage'] }]
       : ['vue' as const],
     vueDirectives: {
-    /* v8 ignore next */
+      /* v8 ignore next */
       isDirective: normalizeImportFrom => normalizeImportFrom.includes('/directives/'),
     },
   }),
-})
+)

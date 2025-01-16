@@ -9,8 +9,8 @@ import type { CloudstackPluginContext } from '../context'
 const virtualModuleId = 'virtual:cloudstack'
 const resolvedVirtualModuleId = `\0${virtualModuleId}`
 
-export default integrationFactory({
-  plugin: (ctx: CloudstackPluginContext): Plugin[] => {
+export default integrationFactory(
+  (ctx: CloudstackPluginContext): Plugin[] => {
     return [
       {
         name: 'vite:cloudstack:global',
@@ -97,4 +97,5 @@ export default integrationFactory({
       },
     ]
   },
-})
+  ctx => ctx,
+)
