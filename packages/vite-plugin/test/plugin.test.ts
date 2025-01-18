@@ -100,9 +100,9 @@ describe('plugin', () => {
   })
 })
 
-describe.skip('virtual module', async () => {
+describe('virtual module', async () => {
   it('should resolve virtual module id', async () => {
-    const module = virtualModule(createContext({}))[0]
+    const module = (virtualModule(createContext({})) as any)[0]
     expect((module.resolveId as any)('virtual:cloudstack')).toEqual(`\0virtual:cloudstack`)
   })
 
@@ -114,7 +114,7 @@ describe.skip('virtual module', async () => {
   ] satisfies CloudstackPluginOptions[]
 
   it.each(configurations)('should generate virtual module content, with options: %o', async (options) => {
-    const module = virtualModule(createContext(options))[0]
+    const module = (virtualModule(createContext(options)) as any)[0]
     const content = await (module.load as any)(`\0virtual:cloudstack`)
 
     expect(content).toMatchSnapshot()
