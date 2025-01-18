@@ -9,7 +9,7 @@ import vueDevTools from './vue-devtools'
 import vueRouter from './vue-router'
 
 export default [
-  cloudstack,
+  ...cloudstack,
   autoImports,
   components,
   layouts,

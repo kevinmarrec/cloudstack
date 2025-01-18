@@ -8,7 +8,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import CloudstackVitePlugin, { type CloudstackPluginOptions } from '../src'
 import { createContext } from '../src/context'
-import virtualModule from '../src/integrations/cloudstack'
+import virtualModule from '../src/integrations/cloudstack/global'
 
 async function createTempDir() {
   const osTmpDir = os.tmpdir()
@@ -102,7 +102,7 @@ describe('plugin', () => {
 
 describe('virtual module', async () => {
   it('should resolve virtual module id', async () => {
-    const module = (virtualModule(createContext({})) as any)[0]
+    const module = virtualModule(createContext({})) as any
     expect((module.resolveId as any)('virtual:cloudstack')).toEqual(`\0virtual:cloudstack`)
   })
 
@@ -114,7 +114,7 @@ describe('virtual module', async () => {
   ] satisfies CloudstackPluginOptions[]
 
   it.each(configurations)('should generate virtual module content, with options: %o', async (options) => {
-    const module = (virtualModule(createContext(options)) as any)[0]
+    const module = virtualModule(createContext(options)) as any
     const content = await (module.load as any)(`\0virtual:cloudstack`)
 
     expect(content).toMatchSnapshot()
