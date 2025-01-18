@@ -90,7 +90,7 @@ describe('run', () => {
     { isCurrentDirectory: true, shouldOverwrite: true },
     { isCurrentDirectory: false, shouldOverwrite: true },
     { isCurrentDirectory: false, shouldOverwrite: false },
-  ])('create-app [DIRECTORY] (directory exists and contains files, isCurrentDirectory: %s, shouldOverwrite: %s)', async ({ isCurrentDirectory, shouldOverwrite }) => {
+  ])('create-app [DIRECTORY] (directory exists and contains files, %o)', async ({ isCurrentDirectory, shouldOverwrite }) => {
     process.argv[2] = isCurrentDirectory ? '.' : projectName
     projectName = isCurrentDirectory ? '.' : projectName
 

@@ -43,7 +43,7 @@
     }
   },
   "dependencies": {
-    "@unocss/vite": "^65.4.0",
+    "@unocss/vite": "^65.4.2",
     "@vite-pwa/assets-generator": "^0.2.6",
     "@vitejs/plugin-vue": "^5.2.1",
     "beasties": "^0.2.0",
