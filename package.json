@@ -8,7 +8,7 @@
   ],
   "packageManager": "bun@1.1.45",
   "scripts": {
-    "build": "bun run clean && bun --filter './packages/*' build",
+    "build": "bun --filter './packages/*' build",
     "check": "bun run knip && bun run lint && bun run typecheck",
     "clean": "del packages/*/dist",
     "lint": "eslint . && stylelint '**/*.{css,scss,vue}'",
