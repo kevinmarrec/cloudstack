@@ -21,7 +21,7 @@
     "template"
   ],
   "scripts": {
-    "build": "tsup"
+    "build": "tsup --clean --format esm src/index.ts"
   },
   "dependencies": {
     "prompts": "^2.4.2",

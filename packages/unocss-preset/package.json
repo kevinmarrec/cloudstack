@@ -26,7 +26,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup"
+    "build": "tsup --clean --dts --format esm src/index.ts"
   },
   "dependencies": {
     "@unocss/core": "^65.4.2",
