@@ -15,7 +15,9 @@
     "create-app",
     "template"
   ],
-  "bin": "dist/index.js",
+  "bin": {
+    "create-cloudstack-app": "dist/index.js"
+  },
   "files": [
     "dist",
     "template"
