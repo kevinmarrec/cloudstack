@@ -4,14 +4,14 @@ import path from 'node:path'
 import process from 'node:process'
 import { parseArgs } from 'node:util'
 
-import { red } from 'picocolors'
 import prompts from 'prompts'
+import colors from 'tinyrainbow'
 
 import { version } from '../package.json'
 import fs from './utils/fs'
 
 function onCancel(): never {
-  console.log(`${red('✖')} Operation cancelled`)
+  console.log(`${colors.red('✖')} Operation cancelled`)
   process.exit(1)
 }
 

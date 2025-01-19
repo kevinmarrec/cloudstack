@@ -28,10 +28,10 @@
       "name": "@kevinmarrec/create-cloudstack-app",
       "version": "0.3.1",
       "dependencies": {
-        "picocolors": "^1.1.1",
         "prompts": "^2.4.2",
         "tinyexec": "^0.3.2",
         "tinyglobby": "^0.2.10",
+        "tinyrainbow": "^2.0.0",
       },
       "devDependencies": {
         "@faker-js/faker": "^9.4.0",
@@ -462,7 +462,7 @@
 
     "@kevinmarrec/cloudstack-vite-plugin": ["@kevinmarrec/cloudstack-vite-plugin@workspace:packages/vite-plugin", { "dependencies": { "@unocss/vite": "^65.4.2", "@vite-pwa/assets-generator": "^0.2.6", "@vitejs/plugin-vue": "^5.2.1", "beasties": "^0.2.0", "defu": "^6.1.4", "local-pkg": "^1.0.0", "the-new-css-reset": "^1.11.3", "tinyglobby": "^0.2.10", "unplugin-auto-import": "^19.0.0", "unplugin-vue-components": "^28.0.0", "unplugin-vue-router": "^0.10.9", "vite-plugin-pwa": "^0.21.1", "vite-plugin-vue-devtools": "^7.7.0", "vite-plugin-vue-layouts": "^0.11.0", "vite-ssg": "^25.0.0" }, "peerDependencies": { "vite": ">=6.0.0", "vue": ">=3.5.0", "vue-router": ">=4.5.0" }, "optionalPeers": ["vue-router"] }],
 
-    "@kevinmarrec/create-cloudstack-app": ["@kevinmarrec/create-cloudstack-app@workspace:packages/create-app", { "dependencies": { "picocolors": "^1.1.1", "prompts": "^2.4.2", "tinyexec": "^0.3.2", "tinyglobby": "^0.2.10" }, "devDependencies": { "@faker-js/faker": "^9.4.0", "@types/prompts": "^2.4.9" }, "bin": "dist/index.cjs" }],
+    "@kevinmarrec/create-cloudstack-app": ["@kevinmarrec/create-cloudstack-app@workspace:packages/create-app", { "dependencies": { "prompts": "^2.4.2", "tinyexec": "^0.3.2", "tinyglobby": "^0.2.10", "tinyrainbow": "^2.0.0" }, "devDependencies": { "@faker-js/faker": "^9.4.0", "@types/prompts": "^2.4.9" }, "bin": "dist/index.cjs" }],
 
     "@keyv/serialize": ["@keyv/serialize@1.0.2", "", { "dependencies": { "buffer": "^6.0.3" } }, "sha512-+E/LyaAeuABniD/RvUezWVXKpeuvwLEA9//nE9952zBaOdBd2mQ3pPoM8cUe2X6IcMByfuSLzmYqnYshG60+HQ=="],
 
@@ -818,7 +818,7 @@
 
     "camel-case": ["camel-case@4.1.2", "", { "dependencies": { "pascal-case": "^3.1.2", "tslib": "^2.0.3" } }, "sha512-gxGWBrTT1JuMx6R+o5PTXMmUnhnVzLQ9SNutD4YqKtI6ap897t3tKECYla6gCWEkplXnlNybEkZg9GEGxKFCgw=="],
 
-    "caniuse-lite": ["caniuse-lite@1.0.30001692", "", {}, "sha512-A95VKan0kdtrsnMubMKxEKUKImOPSuCpYgxSQBo036P5YYgVIcOYJEgt/txJWqObiRQeISNCfef9nvlQ0vbV7A=="],
+    "caniuse-lite": ["caniuse-lite@1.0.30001695", "", {}, "sha512-vHyLade6wTgI2u1ec3WQBxv+2BrTERV28UXQu9LO6lZ9pYeMk34vjXFLOxo1A4UBA8XTL4njRQZdno/yYaSmWw=="],
 
     "ccount": ["ccount@2.0.1", "", {}, "sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg=="],
 
