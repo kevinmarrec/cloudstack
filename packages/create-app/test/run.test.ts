@@ -5,6 +5,7 @@ import path from 'node:path'
 import { faker } from '@faker-js/faker'
 import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest'
 
+import { version } from '../package.json'
 import { run } from '../src/run'
 import { exists } from '../src/utils/fs'
 
@@ -154,6 +155,6 @@ describe('run', () => {
 
     await expect(run()).rejects.toThrowError('process.exit(0)')
 
-    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringMatching(/create-app v\d+\.\d+\.\d+/))
+    expect(consoleLogSpy).toHaveBeenCalledWith(version)
   })
 })

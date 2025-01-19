@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-vite-plugin",
   "type": "module",
-  "version": "0.3.1",
+  "version": "0.5.0",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/vite-plugin",
@@ -30,7 +30,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup"
+    "build": "tsup --clean --dts --format esm src/index.ts"
   },
   "peerDependencies": {
     "vite": ">=6.0.0",

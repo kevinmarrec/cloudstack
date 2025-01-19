@@ -4,14 +4,14 @@ import path from 'node:path'
 import process from 'node:process'
 import { parseArgs } from 'node:util'
 
-import { red } from 'picocolors'
 import prompts from 'prompts'
+import colors from 'tinyrainbow'
 
 import { version } from '../package.json'
 import fs from './utils/fs'
 
 function onCancel(): never {
-  console.log(`${red('✖')} Operation cancelled`)
+  console.log(`${colors.red('✖')} Operation cancelled`)
   process.exit(1)
 }
 
@@ -20,15 +20,14 @@ export async function prompt() {
 
   const { values: options, positionals } = parseArgs({
     args: process.argv.slice(2),
+    allowPositionals: true,
     options: {
       force: { type: 'boolean', short: 'f' },
       help: { type: 'boolean', short: 'h' },
       install: { type: 'boolean', short: 'i' },
       silent: { type: 'boolean', short: 's' },
-      version: { type: 'boolean' },
+      version: { type: 'boolean', short: 'v' },
     },
-    strict: true,
-    allowPositionals: true,
   })
 
   // Help
@@ -53,7 +52,7 @@ Examples:
 
   // Version
   if (options.version) {
-    console.log(`create-app v${version}`)
+    console.log(version)
     process.exit(0)
   }
 
