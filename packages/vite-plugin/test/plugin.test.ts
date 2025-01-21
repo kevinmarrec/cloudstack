@@ -106,17 +106,21 @@ describe('virtual module', async () => {
     expect((module.resolveId as any)('virtual:cloudstack')).toEqual(`\0virtual:cloudstack`)
   })
 
-  const configurations = [
-    {},
-    { router: {} },
-    { router: {}, layouts: {} },
-    { unocss: {} },
-  ] satisfies CloudstackPluginOptions[]
+  it('should generate virtual module content, with router', async () => {
+    const module = virtualModule({ ...createContext(), found: feature => feature === 'pages' }) as any
+    const content = await module.load(`\0virtual:cloudstack`)
+    expect(content).toMatchSnapshot()
+  })
 
-  it.each(configurations)('should generate virtual module content, with options: %o', async (options) => {
-    const module = virtualModule(createContext(options)) as any
-    const content = await (module.load as any)(`\0virtual:cloudstack`)
+  it('should generate virtual module content, without router & layouts', async () => {
+    const module = virtualModule({ ...createContext(), found: feature => feature === 'pages' || feature === 'layouts' }) as any
+    const content = await module.load(`\0virtual:cloudstack`)
+    expect(content).toMatchSnapshot()
+  })
 
+  it('should generate virtual module content, with unocss', async () => {
+    const module = virtualModule({ ...createContext(), found: feature => feature === 'uno.config' }) as any
+    const content = await module.load(`\0virtual:cloudstack`)
     expect(content).toMatchSnapshot()
   })
 })

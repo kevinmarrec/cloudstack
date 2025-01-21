@@ -4,17 +4,11 @@ import { version } from '../package.json'
 
 import type { CloudstackPluginOptions } from './options'
 
-export interface CloudstackPluginContext {
-  version: string
-  userOptions: CloudstackPluginOptions
-  found: (feature: 'components' | 'layouts' | 'pages' | 'uno.config') => boolean
-}
-
-export function createContext(userOptions: CloudstackPluginOptions): CloudstackPluginContext {
+export function createContext(userOptions: CloudstackPluginOptions = {}) {
   return {
     version,
     userOptions,
-    found(feature) {
+    found(feature: 'components' | 'layouts' | 'pages' | 'uno.config') {
       switch (feature) {
         case 'components':
           return globSync(['**/*.vue'], { cwd: 'src/components' }).length > 0
@@ -28,3 +22,5 @@ export function createContext(userOptions: CloudstackPluginOptions): CloudstackP
     },
   }
 }
+
+export type CloudstackPluginContext = ReturnType<typeof createContext>
