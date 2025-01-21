@@ -16,7 +16,6 @@ export function createContext(userOptions: CloudstackPluginOptions): CloudstackP
     userOptions,
     found(feature) {
       switch (feature) {
-        // TODO: Check if cwd works as expected
         case 'components':
           return globSync(['**/*.vue'], { cwd: 'src/components' }).length > 0
         case 'layouts':
