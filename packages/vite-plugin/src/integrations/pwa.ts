@@ -1,16 +1,11 @@
-import defu from 'defu'
-import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa'
+import { type LaunchHandlerClientMode, VitePWA } from 'vite-plugin-pwa'
 
-import type { PluginOption } from 'vite'
+import { integrationFactory } from './_factory'
 
-import type { CloudstackPluginContext } from '../context'
-
-export function PWAPlugin({ options }: CloudstackPluginContext): PluginOption {
-  if (!options.pwa) {
-    return
-  }
-
-  const defaults: Partial<VitePWAOptions> = {
+export default integrationFactory(VitePWA, {
+  enabled: ctx => Boolean(ctx.userOptions.pwa),
+  options: ctx => ctx.userOptions.pwa,
+  defaults: () => ({
     registerType: 'autoUpdate',
     manifest: {
       id: '/',
@@ -28,7 +23,7 @@ export function PWAPlugin({ options }: CloudstackPluginContext): PluginOption {
         client_mode: [
           'navigate-existing',
           'auto',
-        ],
+        ] as LaunchHandlerClientMode[],
       },
     },
     pwaAssets: {
@@ -39,7 +34,5 @@ export function PWAPlugin({ options }: CloudstackPluginContext): PluginOption {
       suppressWarnings: true,
       type: 'module',
     },
-  }
-
-  return VitePWA(defu(options.pwa, defaults))
-}
+  } as const),
+})

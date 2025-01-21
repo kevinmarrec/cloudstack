@@ -1,6 +1,3 @@
-import { isPackageExists } from 'local-pkg'
-import { globSync } from 'tinyglobby'
-
 import type { VitePluginConfig as UnocssPluginOptions } from '@unocss/vite'
 import type { Options as VuePluginOptions } from '@vitejs/plugin-vue'
 import type { Options as AutoImportPluginOptions } from 'unplugin-auto-import/types'
@@ -103,21 +100,4 @@ export interface CloudstackPluginOptions {
    * @see https://github.com/vitejs/vite-plugin-vue
    */
   vue?: VuePluginOptions
-}
-
-export type ResolvedCloudstackPluginOptions = {
-  [K in keyof CloudstackPluginOptions]-?: CloudstackPluginOptions[K]
-}
-
-export function resolveOptions(userOptions: CloudstackPluginOptions): ResolvedCloudstackPluginOptions {
-  return {
-    autoImports: userOptions.autoImports ?? {},
-    components: userOptions.components ?? (globSync(['**/*.vue'], { cwd: 'src/components' }).length > 0 && {}),
-    devtools: userOptions.devtools ?? {},
-    layouts: userOptions.layouts ?? (isPackageExists('vue-router') && globSync(['**/*.vue'], { cwd: 'src/layouts' }).length > 0 && {}),
-    pwa: userOptions.pwa ?? false,
-    router: userOptions.router ?? (isPackageExists('vue-router') && globSync(['**/*.vue'], { cwd: 'src/pages' }).length > 0 && {}),
-    unocss: userOptions.unocss ?? (isPackageExists('unocss') && globSync(['uno.config.ts']).length > 0 && {}),
-    vue: userOptions.vue ?? {},
-  }
 }
