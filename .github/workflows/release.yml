@@ -40,6 +40,9 @@ jobs:
       - name: Build
         run: bun run build
 
+      - name: Copy license
+        run: bun scripts/copyLicense.ts
+
       - name: Publish
         run: npm publish -w packages --access public
         env:

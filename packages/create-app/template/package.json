@@ -21,7 +21,7 @@
     "@kevinmarrec/cloudstack-tsconfig": "",
     "bumpp": "^9.10.1",
     "eslint": "^9.18.0",
-    "knip": "^5.42.2",
+    "knip": "^5.42.3",
     "stylelint": "^16.13.2",
     "taze": "^18.2.0",
     "typescript": "~5.7.3",

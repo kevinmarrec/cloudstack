@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/create-cloudstack-app",
   "type": "module",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/create-app",
@@ -15,7 +15,9 @@
     "create-app",
     "template"
   ],
-  "bin": "dist/index.js",
+  "bin": {
+    "create-cloudstack-app": "dist/index.js"
+  },
   "files": [
     "dist",
     "template"

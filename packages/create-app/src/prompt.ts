@@ -65,16 +65,14 @@ Examples:
   let projectName: string = positionals[0]
 
   if (!projectName) {
-    projectName = await prompts(
-      {
-        name: 'projectName',
-        type: 'text',
-        message: 'Project name:',
-        /* v8 ignore next 2 */
-        validate: value => String(value).trim() ? true : 'Project name cannot be empty',
-        format: value => value.trim(),
-      },
-    ).then(({ projectName }) => projectName)
+    ({ projectName } = await prompts({
+      name: 'projectName',
+      type: 'text',
+      message: 'Project name:',
+      /* v8 ignore next 2 */
+      validate: value => String(value).trim() ? true : 'Project name cannot be empty',
+      format: value => value.trim(),
+    }, { onCancel }))
   }
 
   // Target directory
@@ -82,16 +80,14 @@ Examples:
 
   // Overwrite check
   if (!((await fs.emptyCheck(targetDir) || options.force))) {
-    const { shouldOverwrite } = await prompts([
-      {
-        name: 'shouldOverwrite',
-        type: 'toggle',
-        message: `${targetDir === cwd ? 'Current directory' : `Target directory "${targetDir}"`} is not empty. Remove existing files and continue?`,
-        initial: true,
-        active: 'Yes',
-        inactive: 'No',
-      },
-    ])
+    const { shouldOverwrite } = await prompts({
+      name: 'shouldOverwrite',
+      type: 'toggle',
+      message: `${targetDir === cwd ? 'Current directory' : `Target directory "${targetDir}"`} is not empty. Remove existing files and continue?`,
+      initial: true,
+      active: 'Yes',
+      inactive: 'No',
+    })
 
     if (!shouldOverwrite) {
       onCancel()

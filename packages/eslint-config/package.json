@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-eslint-config",
   "type": "module",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/eslint-config",
@@ -32,7 +32,7 @@
     "eslint": ">=9.0.0"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^3.14.0",
+    "@antfu/eslint-config": "^3.15.0",
     "@unocss/eslint-plugin": "^65.4.2",
     "defu": "^6.1.4",
     "eslint-plugin-format": "^1.0.1",
