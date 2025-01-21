@@ -50,7 +50,7 @@ describe('plugin', () => {
     expect(plugins).toMatchSnapshot()
   })
 
-  it('with all options', async () => {
+  it('with all integrations', async () => {
     await mkdir(path.resolve(tmpDir, 'src/components'), { recursive: true })
     await writeFile(path.resolve(tmpDir, 'src/components/HelloWorld.vue'), `<template> <h1>Hello World</h1> </template>`)
 

@@ -16,7 +16,7 @@ exports[`plugin > should inject dark mode script in index.html 1`] = `
 </html>"
 `;
 
-exports[`plugin > with all options 1`] = `
+exports[`plugin > with all integrations 1`] = `
 [
   "vite-plugin-pwa",
   "unocss:transformers:pre",
