@@ -37,6 +37,14 @@ jobs:
             ${{ runner.os }}-dependencies-
           path: node_modules
 
+      - name: Cache lint results
+        uses: actions/cache@v4
+        with:
+          key: ${{ runner.os }}-lint-${{ hashFiles('bun.lock', 'eslint.config.ts', 'packages/eslint-config/src/index.ts', 'stylelint.config.ts', 'packages/stylelint-config/src/index.ts') }}
+          path: |
+            .eslintcache
+            .stylelintcache
+
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: bun install --frozen-lockfile
@@ -46,13 +54,13 @@ jobs:
         run: bun run postinstall
 
       - name: Check unused files, dependencies, and exports
-        run: bun run knip
+        run: bun run check:unused
 
       - name: Lint
-        run: bun run lint
+        run: bun run check:eslint --cache-strategy content && bun run check:stylelint --cache-strategy content
 
       - name: Type check
-        run: bun run typecheck
+        run: bun run check:types
 
       - name: Unit tests
         run: bun run test --coverage

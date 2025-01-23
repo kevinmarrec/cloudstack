@@ -9,10 +9,13 @@
     "frontend"
   ],
   "scripts": {
-    "lint": "eslint . && stylelint '**/*.{css,scss,vue}'",
-    "lint:fix": "eslint --fix . && stylelint --fix '**/*.{css,scss,vue}'",
+    "check": "bun run check:unused && bun run check:eslint && bun run check:stylelint && bun run check:types",
+    "check:eslint": "eslint --cache .",
+    "check:stylelint": "stylelint --cache '**/*.{css,scss,vue}'",
+    "check:types": "vue-tsc --noEmit",
+    "check:unused": "knip",
+    "lint": "bun run check:eslint && bun run check:stylelint",
     "lint:inspect": "bunx @eslint/config-inspector",
-    "typecheck": "vue-tsc --noEmit",
     "release": "bumpp"
   },
   "devDependencies": {
