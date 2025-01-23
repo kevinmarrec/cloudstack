@@ -41,6 +41,9 @@ jobs:
         uses: actions/cache@v4
         with:
           key: ${{ runner.os }}-lint-${{ hashFiles('bun.lock', 'eslint.config.ts', 'packages/eslint-config/src/index.ts', 'stylelint.config.ts', 'packages/stylelint-config/src/index.ts') }}
+          path: |
+            .eslintcache
+            .stylelintcache
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
