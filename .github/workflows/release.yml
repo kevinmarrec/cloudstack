@@ -29,13 +29,8 @@ jobs:
           node-version: lts/*
           registry-url: https://registry.npmjs.org
 
-      - name: Restore dependencies cache
-        uses: actions/cache/restore@v4
-        with:
-          key: ${{ runner.os }}-dependencies-${{ hashFiles('bun.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-dependencies-
-          path: node_modules
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
 
       - name: Build
         run: bun run build
