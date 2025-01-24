@@ -3,10 +3,13 @@
   "type": "module",
   "version": "0.7.0",
   "private": true,
+  "packageManager": "bun@1.2.0",
+  "engines": {
+    "node": "lts/*"
+  },
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "bun@1.2.0",
   "scripts": {
     "build": "bun --filter './packages/*' build",
     "clean": "del packages/*/dist",
