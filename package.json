@@ -39,7 +39,6 @@
     "knip": "^5.43.1",
     "stylelint": "^16.13.2",
     "taze": "^18.3.0",
-    "tinyglobby": "^0.2.10",
     "tsup": "^8.3.5",
     "typescript": "~5.7.3",
     "unocss": "^65.4.3",
