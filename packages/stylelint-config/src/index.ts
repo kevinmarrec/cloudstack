@@ -12,11 +12,7 @@ export function useConfig(userConfig: Config = {}): Config {
       'length-zero-no-unit': true,
       ...userConfig.rules,
     },
-    ignoreFiles: [
-      '**/dist/**',
-      '**/node_modules/**',
-      ...userConfig.ignoreFiles ?? [],
-    ],
+    ignoreFiles: userConfig.ignoreFiles,
   }
 }
 
