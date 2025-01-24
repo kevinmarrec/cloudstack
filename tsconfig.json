@@ -1,7 +1,6 @@
 {
   "extends": "@kevinmarrec/cloudstack-tsconfig",
-  "exclude": [
-    "**/dist/**",
-    "**/fixtures/**"
+  "include": [
+    "**/*.ts"
   ]
 }
