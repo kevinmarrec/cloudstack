@@ -11,6 +11,16 @@ interface BuildEntry {
   needs: BuildEntry[]
 }
 
+async function buildPackage(entry: BuildEntry) {
+  await Promise.all(entry.needs.map(buildPackage))
+  console.log(`Building ${entry.name}...`)
+  const { stderr, exitCode } = await x('bun', ['--cwd', entry.path, 'build', '--silent'])
+  if (exitCode) {
+    console.error(`Failed to build ${entry.name} :`)
+    console.error(stderr)
+  }
+}
+
 const pkgPaths = await glob('packages/*', { onlyDirectories: true })
 
 const buildMap = new Map<string, BuildEntry>()
@@ -38,16 +48,6 @@ for (const buildEntry of buildMap.values()) {
       buildEntry.needs.push(buildMap.get(depName)!)
       buildMap.delete(depName)
     }
-  }
-}
-
-async function buildPackage(pkg: BuildEntry) {
-  await Promise.all(pkg.needs?.map(buildPackage) ?? [])
-  console.log(`Building ${pkg.name}...`)
-  const { stderr, exitCode } = await x('bun', ['--cwd', pkg.path, 'build', '--silent'])
-  if (exitCode) {
-    console.error(`Failed to build ${pkg.name} :`)
-    console.error(stderr)
   }
 }
 
