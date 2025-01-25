@@ -1,4 +1,4 @@
-import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
+import fs from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 import process from 'node:process'
@@ -13,7 +13,7 @@ import virtualModule from '../src/integrations/cloudstack/global'
 async function createTempDir() {
   const osTmpDir = os.tmpdir()
   const tmpDir = path.resolve(osTmpDir, 'vite-plugin-test')
-  return await mkdtemp(tmpDir)
+  return await fs.mkdtemp(tmpDir)
 }
 
 async function getActiveCloudstackVitePlugins(options?: CloudstackPluginOptions): Promise<string[]> {
@@ -34,7 +34,7 @@ describe('plugin', () => {
   })
 
   afterEach(async () => {
-    await rm(tmpDir, { recursive: true, force: true })
+    await fs.rm(tmpDir, { recursive: true, force: true })
     vi.restoreAllMocks()
   })
 
@@ -51,16 +51,16 @@ describe('plugin', () => {
   })
 
   it('with all integrations', async () => {
-    await mkdir(path.resolve(tmpDir, 'src/components'), { recursive: true })
-    await writeFile(path.resolve(tmpDir, 'src/components/HelloWorld.vue'), `<template> <h1>Hello World</h1> </template>`)
+    await fs.mkdir(path.resolve(tmpDir, 'src/components'), { recursive: true })
+    await fs.writeFile(path.resolve(tmpDir, 'src/components/HelloWorld.vue'), `<template> <h1>Hello World</h1> </template>`)
 
-    await mkdir(path.resolve(tmpDir, 'src/layouts'), { recursive: true })
-    await writeFile(path.resolve(tmpDir, 'src/layouts/default.vue'), `<template> <slot /> </template>`)
+    await fs.mkdir(path.resolve(tmpDir, 'src/layouts'), { recursive: true })
+    await fs.writeFile(path.resolve(tmpDir, 'src/layouts/default.vue'), `<template> <slot /> </template>`)
 
-    await mkdir(path.resolve(tmpDir, 'src/pages'), { recursive: true })
-    await writeFile(path.resolve(tmpDir, 'src/pages/Index.vue'), `<template> <h1>Index</h1> </template>`)
+    await fs.mkdir(path.resolve(tmpDir, 'src/pages'), { recursive: true })
+    await fs.writeFile(path.resolve(tmpDir, 'src/pages/Index.vue'), `<template> <h1>Index</h1> </template>`)
 
-    await writeFile(path.resolve(tmpDir, 'uno.config.ts'), `export default {}`)
+    await fs.writeFile(path.resolve(tmpDir, 'uno.config.ts'), `export default {}`)
 
     const plugins = await getActiveCloudstackVitePlugins({
       pwa: {
