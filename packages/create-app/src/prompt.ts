@@ -16,8 +16,6 @@ function onCancel(): never {
 }
 
 export async function prompt() {
-  const cwd = process.cwd()
-
   const { values: options, positionals } = parseArgs({
     args: process.argv.slice(2),
     allowPositionals: true,
@@ -76,6 +74,7 @@ Examples:
   }
 
   // Target directory
+  const cwd = process.cwd()
   const targetDir = path.resolve(cwd, projectName)
 
   // Overwrite check
@@ -92,6 +91,19 @@ Examples:
     if (!shouldOverwrite) {
       onCancel()
     }
+  }
+
+  if (!options.install) {
+    const { shouldInstall } = await prompts({
+      name: 'shouldInstall',
+      type: 'toggle',
+      message: 'Automatically install dependencies after scaffolding project?',
+      initial: true,
+      active: 'Yes',
+      inactive: 'No',
+    })
+
+    options.install = shouldInstall
   }
 
   return { cwd, targetDir, ...options }
