@@ -37,6 +37,7 @@ export function useConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
       },
     },
     rules: {
+      'import/consistent-type-specifier-style': ['off'],
       'import/no-duplicates': [
         'error',
         { 'prefer-inline': true },
