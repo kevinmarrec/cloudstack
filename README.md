@@ -16,5 +16,6 @@
 - [`@kevinmarrec/cloudstack-eslint-config`](https://www.npmjs.com/package/@kevinmarrec/cloudstack-eslint-config) - ESLint config
 - [`@kevinmarrec/cloudstack-stylelint-config`](https://www.npmjs.com/package/@kevinmarrec/cloudstack-stylelint-config) - Stylelint config
 - [`@kevinmarrec/cloudstack-tsconfig`](https://www.npmjs.com/package/@kevinmarrec/cloudstack-tsconfig) - TypeScript config
+- [`@kevinmarrec/cloudstack-unocss-config`](https://www.npmjs.com/package/@kevinmarrec/cloudstack-unocss-config) - UnoCSS config
 - [`@kevinmarrec/cloudstack-unocss-preset`](https://www.npmjs.com/package/@kevinmarrec/cloudstack-unocss-preset) - UnoCSS preset
 - [`@kevinmarrec/cloudstack-vite-plugin`](https://www.npmjs.com/package/@kevinmarrec/cloudstack-vite-plugin) - Vite plugin
