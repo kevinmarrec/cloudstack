@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-unocss-preset",
   "type": "module",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/unocss-preset",
@@ -29,12 +29,12 @@
     "build": "tsup --clean --dts --format esm src/index.ts"
   },
   "dependencies": {
-    "@unocss/core": "^65.4.2",
-    "@unocss/preset-icons": "^65.4.2",
-    "@unocss/preset-uno": "^65.4.2",
-    "@unocss/preset-web-fonts": "^65.4.2",
-    "@unocss/transformer-directives": "^65.4.2",
-    "@unocss/transformer-variant-group": "^65.4.2"
+    "@unocss/core": "^65.4.3",
+    "@unocss/preset-icons": "^65.4.3",
+    "@unocss/preset-uno": "^65.4.3",
+    "@unocss/preset-web-fonts": "^65.4.3",
+    "@unocss/transformer-directives": "^65.4.3",
+    "@unocss/transformer-variant-group": "^65.4.3"
   },
   "devDependencies": {
     "@iconify-json/carbon": "^1.2.5"

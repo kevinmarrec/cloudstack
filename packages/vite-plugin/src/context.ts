@@ -1,20 +1,26 @@
+import { globSync } from 'tinyglobby'
+
 import { version } from '../package.json'
-import {
-  type CloudstackPluginOptions,
-  type ResolvedCloudstackPluginOptions,
-  resolveOptions,
-} from './options'
 
-export interface CloudstackPluginContext {
-  version: string
-  userOptions: CloudstackPluginOptions
-  options: ResolvedCloudstackPluginOptions
-}
+import type { CloudstackPluginOptions } from './options'
 
-export function createContext(userOptions: CloudstackPluginOptions): CloudstackPluginContext {
+export function createContext(userOptions: CloudstackPluginOptions = {}) {
   return {
     version,
     userOptions,
-    options: resolveOptions(userOptions),
+    found(feature: 'components' | 'layouts' | 'pages' | 'uno.config') {
+      switch (feature) {
+        case 'components':
+          return globSync(['**/*.vue'], { cwd: 'src/components' }).length > 0
+        case 'layouts':
+          return globSync(['**/*.vue'], { cwd: 'src/layouts' }).length > 0
+        case 'pages':
+          return globSync(['**/*.vue'], { cwd: 'src/pages' }).length > 0
+        case 'uno.config':
+          return globSync(['uno.config.ts']).length > 0
+      }
+    },
   }
 }
+
+export type CloudstackPluginContext = ReturnType<typeof createContext>

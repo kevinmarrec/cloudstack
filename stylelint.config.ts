@@ -1,8 +1,1 @@
-import { useConfig } from '@kevinmarrec/cloudstack-stylelint-config'
-
-export default useConfig({
-  ignoreFiles: [
-    '**/coverage/**',
-    '**/fixtures/**',
-  ],
-})
+export { default } from '@kevinmarrec/cloudstack-stylelint-config'

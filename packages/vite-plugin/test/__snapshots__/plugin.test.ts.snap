@@ -16,7 +16,7 @@ exports[`plugin > should inject dark mode script in index.html 1`] = `
 </html>"
 `;
 
-exports[`plugin > with all options 1`] = `
+exports[`plugin > with all integrations 1`] = `
 [
   "vite-plugin-pwa",
   "unocss:transformers:pre",
@@ -25,7 +25,9 @@ exports[`plugin > with all options 1`] = `
   "unplugin-vue-router",
   "vite-plugin-inspect",
   "vite-plugin-vue-devtools",
-  "vite:cloudstack",
+  "vite:cloudstack:global",
+  "vite:cloudstack:config",
+  "vite:cloudstack:dark-mode",
   "vite-plugin-vue-layouts",
   "vite-plugin-pwa:dev-sw",
   "unocss:config",
@@ -47,14 +49,18 @@ exports[`plugin > with options: { autoImports: false } 1`] = `
 [
   "vite-plugin-inspect",
   "vite-plugin-vue-devtools",
-  "vite:cloudstack",
+  "vite:cloudstack:global",
+  "vite:cloudstack:config",
+  "vite:cloudstack:dark-mode",
   "vite:vue",
 ]
 `;
 
 exports[`plugin > with options: { devtools: false } 1`] = `
 [
-  "vite:cloudstack",
+  "vite:cloudstack:global",
+  "vite:cloudstack:config",
+  "vite:cloudstack:dark-mode",
   "vite:vue",
   "unplugin-auto-import",
 ]
@@ -64,36 +70,32 @@ exports[`plugin > with options: {} 1`] = `
 [
   "vite-plugin-inspect",
   "vite-plugin-vue-devtools",
-  "vite:cloudstack",
+  "vite:cloudstack:global",
+  "vite:cloudstack:config",
+  "vite:cloudstack:dark-mode",
   "vite:vue",
   "unplugin-auto-import",
 ]
 `;
 
-exports[`virtual module > should generate virtual module content, with options: { router: {} } 1`] = `
+exports[`virtual module > should generate virtual module content, with router 1`] = `
 "import { ViteSSG } from 'vite-ssg'
 import { routes } from 'vue-router/auto-routes'
 import 'the-new-css-reset'
 export const Power = (App, fn) => ViteSSG(App, { base: import.meta.env.BASE_URL, routes }, fn)"
 `;
 
-exports[`virtual module > should generate virtual module content, with options: { router: {}, layouts: {} } 1`] = `
-"import { ViteSSG } from 'vite-ssg'
-import { routes } from 'vue-router/auto-routes'
-import { setupLayouts } from 'virtual:generated-layouts'
-import 'the-new-css-reset'
-export const Power = (App, fn) => ViteSSG(App, { base: import.meta.env.BASE_URL, routes: setupLayouts(routes) }, fn)"
-`;
-
-exports[`virtual module > should generate virtual module content, with options: { unocss: {} } 1`] = `
+exports[`virtual module > should generate virtual module content, with unocss 1`] = `
 "import { ViteSSG } from 'vite-ssg/single-page'
 import 'the-new-css-reset'
 import 'uno.css'
 export const Power = (App, fn) => ViteSSG(App, fn)"
 `;
 
-exports[`virtual module > should generate virtual module content, with options: {} 1`] = `
-"import { ViteSSG } from 'vite-ssg/single-page'
+exports[`virtual module > should generate virtual module content, without router & layouts 1`] = `
+"import { ViteSSG } from 'vite-ssg'
+import { routes } from 'vue-router/auto-routes'
+import { setupLayouts } from 'virtual:generated-layouts'
 import 'the-new-css-reset'
-export const Power = (App, fn) => ViteSSG(App, fn)"
+export const Power = (App, fn) => ViteSSG(App, { base: import.meta.env.BASE_URL, routes: setupLayouts(routes) }, fn)"
 `;

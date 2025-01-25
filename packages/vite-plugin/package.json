@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-vite-plugin",
   "type": "module",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/vite-plugin",
@@ -43,17 +43,16 @@
     }
   },
   "dependencies": {
-    "@unocss/vite": "^65.4.2",
+    "@unocss/vite": "^65.4.3",
     "@vite-pwa/assets-generator": "^0.2.6",
     "@vitejs/plugin-vue": "^5.2.1",
     "beasties": "^0.2.0",
     "defu": "^6.1.4",
-    "local-pkg": "^1.0.0",
     "the-new-css-reset": "^1.11.3",
     "tinyglobby": "^0.2.10",
     "unplugin-auto-import": "^19.0.0",
     "unplugin-vue-components": "^28.0.0",
-    "unplugin-vue-router": "^0.10.9",
+    "unplugin-vue-router": "^0.11.1",
     "vite-plugin-pwa": "^0.21.1",
     "vite-plugin-vue-devtools": "^7.7.0",
     "vite-plugin-vue-layouts": "^0.11.0",

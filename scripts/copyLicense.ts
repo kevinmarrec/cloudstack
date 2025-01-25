@@ -1,9 +1,7 @@
-import { cp } from 'node:fs/promises'
+import { cp, readdir } from 'node:fs/promises'
 
-import { glob } from 'tinyglobby'
+const packages = await readdir('packages')
 
-const packages = await glob('packages/*', { onlyDirectories: true })
-
-await Promise.all(packages.map(async (packagePath) => {
-  return cp('LICENSE', `${packagePath}/LICENSE`)
+await Promise.all(packages.map(async (pkg) => {
+  return cp('LICENSE', `packages/${pkg}/LICENSE`)
 }))

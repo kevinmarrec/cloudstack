@@ -1,7 +1,9 @@
 .cache
 .DS_Store
 .env*
+.eslintcache
 .idea
+.stylelintcache
 .temp
 *.local
 *.log

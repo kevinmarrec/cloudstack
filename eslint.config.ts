@@ -1,7 +1,1 @@
-import { useConfig } from '@kevinmarrec/cloudstack-eslint-config'
-
-export default useConfig({
-  ignores: [
-    '**/fixtures/**',
-  ],
-})
+export { default } from '@kevinmarrec/cloudstack-eslint-config'

@@ -21,21 +21,16 @@ jobs:
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.1.43
+          bun-version-file: package.json
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version-file: package.json
           registry-url: https://registry.npmjs.org
 
-      - name: Restore dependencies cache
-        uses: actions/cache/restore@v4
-        with:
-          key: ${{ runner.os }}-dependencies-${{ hashFiles('bun.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-dependencies-
-          path: node_modules
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
 
       - name: Build
         run: bun run build

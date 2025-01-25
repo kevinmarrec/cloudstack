@@ -3,27 +3,33 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "bun@1.1.45",
+  "packageManager": "bun@1.2.0",
+  "engines": {
+    "node": "lts/*"
+  },
   "workspaces": [
     "backend",
     "frontend"
   ],
   "scripts": {
-    "lint": "eslint . && stylelint '**/*.{css,scss,vue}'",
-    "lint:fix": "eslint --fix . && stylelint --fix '**/*.{css,scss,vue}'",
+    "check": "bun run check:unused && bun run check:eslint && bun run check:stylelint && bun run check:types",
+    "check:eslint": "eslint --cache .",
+    "check:stylelint": "stylelint --cache '**/*.{css,scss,vue}' --ignorePath .gitignore",
+    "check:types": "vue-tsc --noEmit",
+    "check:unused": "knip",
+    "lint": "bun run check:eslint && bun run check:stylelint",
     "lint:inspect": "bunx @eslint/config-inspector",
-    "typecheck": "vue-tsc --noEmit",
     "release": "bumpp"
   },
   "devDependencies": {
     "@kevinmarrec/cloudstack-eslint-config": "",
     "@kevinmarrec/cloudstack-stylelint-config": "",
     "@kevinmarrec/cloudstack-tsconfig": "",
-    "bumpp": "^9.10.1",
+    "bumpp": "^9.10.2",
     "eslint": "^9.18.0",
-    "knip": "^5.42.2",
+    "knip": "^5.43.1",
     "stylelint": "^16.13.2",
-    "taze": "^18.2.0",
+    "taze": "^18.3.0",
     "typescript": "~5.7.3",
     "vue-tsc": "^2.2.0"
   }
