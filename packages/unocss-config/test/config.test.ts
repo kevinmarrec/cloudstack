@@ -1,5 +1,15 @@
-import { describe, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
+
+import { useConfig } from '../src'
 
 describe('config', () => {
-  it.todo('works')
+  it('should use @kevinmarrec/cloudstack-unocss-preset', () => {
+    expect(useConfig().presets).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: '@kevinmarrec/cloudstack-unocss-preset',
+        }),
+      ]),
+    )
+  })
 })
