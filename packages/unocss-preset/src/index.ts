@@ -9,7 +9,6 @@ import transformerVariantGroup from '@unocss/transformer-variant-group'
 export type { Theme } from '@unocss/preset-uno'
 
 export interface PresetOptions {
-  cwd?: string
   icons?: IconsOptions
   fonts?: WebFontsOptions['fonts']
 }
@@ -20,9 +19,7 @@ export default definePreset<PresetOptions, Theme>(options => ({
     presetUno(),
     presetIcons(options?.icons),
     presetWebFonts({
-      processors: createLocalFontProcessor({
-        cwd: options?.cwd,
-      }),
+      processors: createLocalFontProcessor(),
       fonts: options?.fonts,
     }),
   ],

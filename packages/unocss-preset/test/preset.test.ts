@@ -1,17 +1,22 @@
-import { rm } from 'node:fs/promises'
+import fs from 'node:fs/promises'
+import os from 'node:os'
 import path from 'node:path'
 
 import { createGenerator } from '@unocss/core'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import preset from '../src'
 
-describe('preset', () => {
-  const tmpDir = path.resolve(import.meta.dirname, 'tmp')
-  const rmTmpDir = async () => await rm(tmpDir, { recursive: true, force: true })
+async function createTempDir() {
+  const osTmpDir = os.tmpdir()
+  const tmpDir = path.resolve(osTmpDir, 'unocss-preset-test')
+  return await fs.mkdtemp(tmpDir)
+}
 
-  beforeEach(rmTmpDir)
-  afterEach(rmTmpDir)
+describe('preset', () => {
+  afterEach(async () => {
+    vi.resetAllMocks()
+  })
 
   it('should generate correct css', async () => {
     const uno = await createGenerator({
@@ -24,10 +29,12 @@ describe('preset', () => {
   })
 
   it('should generate correct css with fonts options', async () => {
+    const tmpDir = await createTempDir()
+    vi.spyOn(process, 'cwd').mockReturnValue(tmpDir)
+
     const uno = await createGenerator({
       presets: [
         preset({
-          cwd: tmpDir,
           fonts: {
             sans: 'Inter',
           },

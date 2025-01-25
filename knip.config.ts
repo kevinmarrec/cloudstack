@@ -5,10 +5,7 @@ export default {
   workspaces: {
     '.': {
       entry: ['*.config.ts'],
-      ignore: [
-        '**/fixtures/**',
-        '**/template/**',
-      ],
+      ignore: ['**/template/**'],
     },
     'packages/stylelint-config': {
       ignoreDependencies: [
