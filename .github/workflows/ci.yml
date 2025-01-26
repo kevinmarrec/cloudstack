@@ -45,10 +45,3 @@ jobs:
 
       - name: Unit tests
         run: bun run test --coverage
-
-      - name: Cache build
-        if: github.event_name == 'push'
-        uses: actions/cache/save@v4
-        with:
-          path: packages/*/dist
-          key: ${{ runner.os }}-build-${{ hashFiles('packages/*/dist/**') }}
