@@ -12,8 +12,6 @@ jobs:
   check:
     name: Check
     runs-on: ubuntu-latest
-    if: |
-      !startsWith(github.event.head_commit.message, 'chore: release')
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,14 +26,6 @@ jobs:
         with:
           node-version-file: package.json
 
-      - name: Cache lint results
-        uses: actions/cache@v4
-        with:
-          key: ${{ runner.os }}-lint-${{ hashFiles('bun.lock', 'eslint.config.ts', 'stylelint.config.ts') }}
-          path: |
-            .eslintcache
-            .stylelintcache
-
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
@@ -43,7 +33,7 @@ jobs:
         run: bun run check:unused
 
       - name: Lint
-        run: bun run check:eslint --cache-strategy content && bun run check:stylelint --cache-strategy content
+        run: bun run check:eslint && bun run check:stylelint
 
       - name: Type check
         run: bun run check:types
