@@ -28,14 +28,6 @@ jobs:
         with:
           node-version-file: package.json
 
-      - name: Cache lint results
-        uses: actions/cache@v4
-        with:
-          key: ${{ runner.os }}-lint-${{ hashFiles('bun.lock', 'packages/eslint-config/src/index.ts', 'packages/stylelint-config/src/index.ts') }}
-          path: |
-            .eslintcache
-            .stylelintcache
-
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
@@ -53,3 +45,10 @@ jobs:
 
       - name: Unit tests
         run: bun run test --coverage
+
+      - name: Cache build
+        if: github.event_name == 'push'
+        uses: actions/cache/save@v4
+        with:
+          key: ${{ runner.os }}-build
+          path: packages/*/dist
