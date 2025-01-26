@@ -37,6 +37,14 @@ jobs:
       - name: Check unused files, dependencies, and exports
         run: bun run check:unused
 
+      - name: Cache lint results
+        uses: actions/cache@v4
+        with:
+          key: ${{ runner.os }}-lint-${{ hashFiles('packages/eslint-config/src/index.ts', 'packages/stylelint-config/src/index.ts') }}
+          path: |
+            .eslintcache
+            .stylelintcache
+
       - name: Lint
         run: bun run check:eslint --cache-strategy content && bun run check:stylelint --cache-strategy content
 
