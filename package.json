@@ -20,7 +20,8 @@
     "check:unused": "knip",
     "lint": "bun run check:eslint && bun run check:stylelint",
     "lint:inspect": "bunx @eslint/config-inspector",
-    "postinstall": "bun run build",
+    "postinstall": "bun scripts/postinstall.ts",
+    "prepublish": "bun scripts/prepublish.ts",
     "release": "bumpp",
     "test": "vitest",
     "test:ui": "vitest --ui"

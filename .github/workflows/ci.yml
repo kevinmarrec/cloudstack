@@ -37,7 +37,7 @@ jobs:
             .stylelintcache
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile --ignore-scripts
+        run: bun install --frozen-lockfile
 
       - name: Build
         run: bun run build
