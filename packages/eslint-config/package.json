@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-eslint-config",
   "type": "module",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/eslint-config",
