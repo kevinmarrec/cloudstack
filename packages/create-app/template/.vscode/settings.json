@@ -11,6 +11,8 @@
     "source.organizeImports": "never"
   },
 
+  "editor.gotoLocation.multipleDefinitions": "goto",
+
   "eslint.runtime": "node",
 
   // Silent the stylistic rules in you IDE, but still auto fix them
