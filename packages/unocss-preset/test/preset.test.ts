@@ -52,13 +52,17 @@ describe('preset', () => {
       presets: [
         preset({
           icons: {
-            scale: 2,
+            collections: {
+              custom: {
+                test: '<svg></svg>',
+              },
+            },
           },
         }),
       ],
     })
 
-    const { css } = await uno.generate(['i-carbon-home'])
+    const { css } = await uno.generate(['i-custom:test'])
 
     expect(css).toMatchSnapshot()
   })

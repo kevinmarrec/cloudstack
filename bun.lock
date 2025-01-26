@@ -93,9 +93,6 @@
         "@unocss/transformer-directives": "^65.4.3",
         "@unocss/transformer-variant-group": "^65.4.3",
       },
-      "devDependencies": {
-        "@iconify-json/carbon": "^1.2.5",
-      },
     },
     "packages/vite-plugin": {
       "name": "@kevinmarrec/cloudstack-vite-plugin",
@@ -442,8 +439,6 @@
     "@humanwhocodes/module-importer": ["@humanwhocodes/module-importer@1.0.1", "", {}, "sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA=="],
 
     "@humanwhocodes/retry": ["@humanwhocodes/retry@0.4.1", "", {}, "sha512-c7hNEllBlenFTHBky65mhq8WD2kbN9Q6gk0bTk8lSBvc554jpXSkST1iePudpt7+A/AQvuHs9EMqjHDXMY1lrA=="],
-
-    "@iconify-json/carbon": ["@iconify-json/carbon@1.2.5", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-aI3TEzOrUDGhs74zIT3ym/ZQBUEziyu8JifntX2Hb4siVzsP5sQ/QEfVdmcCUj37kQUYT3TYBSeAw2vTfCJx9w=="],
 
     "@iconify/types": ["@iconify/types@2.0.0", "", {}, "sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg=="],
 

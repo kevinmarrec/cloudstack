@@ -35,8 +35,5 @@
     "@unocss/preset-web-fonts": "^65.4.3",
     "@unocss/transformer-directives": "^65.4.3",
     "@unocss/transformer-variant-group": "^65.4.3"
-  },
-  "devDependencies": {
-    "@iconify-json/carbon": "^1.2.5"
   }
 }

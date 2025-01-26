@@ -14,9 +14,6 @@ export default {
         'stylelint-config-recommended-scss',
       ],
     },
-    'packages/unocss-preset': {
-      ignoreDependencies: ['@iconify-json/carbon'],
-    },
     'packages/vite-plugin': {
       ignoreDependencies: [
         'the-new-css-reset',
