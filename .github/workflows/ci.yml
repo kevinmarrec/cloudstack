@@ -50,5 +50,5 @@ jobs:
         if: github.event_name == 'push'
         uses: actions/cache/save@v4
         with:
-          key: ${{ runner.os }}-build-${{ hashFiles('packages/*/dist/**') }}
           path: packages/*/dist
+          key: ${{ runner.os }}-build-${{ hashFiles('packages/*/dist/**') }}
