@@ -35,8 +35,10 @@ jobs:
       - name: Restore build cache
         uses: actions/cache/restore@v4
         with:
-          key: ${{ runner.os }}-build
           path: packages/*/dist
+          key: ${{ runner.os }}-build
+          restore-keys: |
+            ${{ runner.os }}-build-
 
       - name: Prepublish
         run: bun run prepublish
