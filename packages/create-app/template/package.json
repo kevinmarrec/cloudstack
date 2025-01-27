@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "bun@1.2.0",
+  "packageManager": "bun@1.2.1",
   "engines": {
     "node": "lts/*"
   },
@@ -25,8 +25,8 @@
     "@kevinmarrec/cloudstack-stylelint-config": "",
     "@kevinmarrec/cloudstack-tsconfig": "",
     "eslint": "^9.19.0",
-    "knip": "^5.43.3",
-    "stylelint": "^16.14.0",
+    "knip": "^5.43.5",
+    "stylelint": "^16.14.1",
     "taze": "^18.3.0",
     "typescript": "~5.7.3",
     "vue-tsc": "^2.2.0"
