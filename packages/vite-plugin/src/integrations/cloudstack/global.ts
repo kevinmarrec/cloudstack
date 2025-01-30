@@ -3,48 +3,39 @@ import { integrationFactory } from '../_factory'
 import type { CloudstackPluginContext } from '../../context'
 
 const virtualModuleId = 'virtual:cloudstack'
-const resolvedVirtualModuleId = `\0${virtualModuleId}`
 
-export default integrationFactory((ctx: CloudstackPluginContext) => ({
-  name: 'vite:cloudstack:global',
-  resolveId(id) {
-    if (id === virtualModuleId) {
-      return resolvedVirtualModuleId
-    }
-  },
-  load(id) {
-    if (id === resolvedVirtualModuleId) {
-      const imports: string[] = []
-      const exports: string[] = []
+export default integrationFactory((ctx: CloudstackPluginContext) => {
+  return {
+    name: 'vite:cloudstack:global',
+    resolveId(id) {
+      if (id.startsWith(virtualModuleId)) {
+        return id
+      }
+    },
+    load(id) {
+      if (id.startsWith(virtualModuleId)) {
+        const imports: string[] = []
+        const exports: string[] = []
 
-      if (ctx.userOptions.router !== false && ctx.found('pages')) {
-        imports.push(...[
-          `import { ViteSSG } from 'vite-ssg'`,
-          `import { routes } from 'vue-router/auto-routes'`,
-        ])
-
-        if (ctx.userOptions.layouts !== false && ctx.found('layouts')) {
-          imports.push(`import { setupLayouts } from 'virtual:generated-layouts'`)
-          exports.push(`export const Power = (App, fn) => ViteSSG(App, { base: import.meta.env.BASE_URL, routes: setupLayouts(routes) }, fn)`)
+        if (id === 'virtual:cloudstack') {
+          imports.push(`import { ViteSSG } from 'vite-ssg'`)
+          exports.push(`export const Power = (App, routerOptions, fn) => ViteSSG(App, { base: import.meta.env.BASE_URL, ...routerOptions }, fn)`)
         }
-        else {
-          exports.push(`export const Power = (App, fn) => ViteSSG(App, { base: import.meta.env.BASE_URL, routes }, fn)`)
+        else if (id === 'virtual:cloudstack/spa') {
+          imports.push(`import { ViteSSG } from 'vite-ssg/single-page'`)
+          exports.push(`export const Power = (App, routerOptions, fn) => ViteSSG(App, fn)`)
         }
-      }
-      else {
-        imports.push(`import { ViteSSG } from 'vite-ssg/single-page'`)
-        exports.push(`export const Power = (App, fn) => ViteSSG(App, fn)`)
-      }
 
-      // CSS Reset
-      imports.push(`import 'the-new-css-reset'`)
+        // CSS Reset
+        imports.push(`import 'the-new-css-reset'`)
 
-      // Unocss
-      if (ctx.userOptions.unocss !== false && ctx.found('uno.config')) {
-        imports.push(`import 'uno.css'`)
+        // Unocss
+        if (ctx.userOptions.unocss !== false && ctx.found('uno.config')) {
+          imports.push(`import 'uno.css'`)
+        }
+
+        return [...imports, ...exports].join('\n')
       }
-
-      return [...imports, ...exports].join('\n')
-    }
-  },
-}), { options: ctx => ctx })
+    },
+  }
+}, { options: ctx => ctx })
