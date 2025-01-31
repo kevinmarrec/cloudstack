@@ -3,10 +3,10 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun --watch src/index.ts",
+    "dev": "bun --watch --no-clear-screen src/index.ts",
     "build": "bun build src/index.ts --compile --minify --sourcemap --outfile dist/server"
   },
   "devDependencies": {
-    "@types/bun": "^1.2.0"
+    "@types/bun": "^1.2.1"
   }
 }
