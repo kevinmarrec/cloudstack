@@ -8,7 +8,7 @@ export const createApp = Power(App, {
   routes: [
     {
       path: '/',
-      component: () => import('@frontend/pages/Index.vue'),
+      component: () => import('./pages/Index.vue'),
     },
   ],
 })

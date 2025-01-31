@@ -23,7 +23,7 @@ export default integrationFactory((ctx: CloudstackPluginContext) => {
         }
         else if (id === 'virtual:cloudstack/spa') {
           imports.push(`import { ViteSSG } from 'vite-ssg/single-page'`)
-          exports.push(`export const Power = (App, routerOptions, fn) => ViteSSG(App, fn)`)
+          exports.push(`export const Power = (App, fn) => ViteSSG(App, fn)`)
         }
 
         // CSS Reset

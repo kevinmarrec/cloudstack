@@ -15,10 +15,7 @@ export default {
       ],
     },
     'packages/vite-plugin': {
-      ignoreDependencies: [
-        'the-new-css-reset',
-        'vue-router',
-      ],
+      ignoreDependencies: ['the-new-css-reset'],
     },
   },
 } satisfies KnipConfig

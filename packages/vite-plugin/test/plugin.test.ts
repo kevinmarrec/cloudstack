@@ -40,7 +40,6 @@ describe('plugin', () => {
 
   const configurations = [
     {},
-    { autoImports: false },
     { devtools: false },
   ] satisfies CloudstackPluginOptions[]
 
@@ -51,15 +50,6 @@ describe('plugin', () => {
   })
 
   it('with all integrations', async () => {
-    await fs.mkdir(path.resolve(tmpDir, 'src/components'), { recursive: true })
-    await fs.writeFile(path.resolve(tmpDir, 'src/components/HelloWorld.vue'), `<template> <h1>Hello World</h1> </template>`)
-
-    await fs.mkdir(path.resolve(tmpDir, 'src/layouts'), { recursive: true })
-    await fs.writeFile(path.resolve(tmpDir, 'src/layouts/default.vue'), `<template> <slot /> </template>`)
-
-    await fs.mkdir(path.resolve(tmpDir, 'src/pages'), { recursive: true })
-    await fs.writeFile(path.resolve(tmpDir, 'src/pages/Index.vue'), `<template> <h1>Index</h1> </template>`)
-
     await fs.writeFile(path.resolve(tmpDir, 'uno.config.ts'), `export default {}`)
 
     const plugins = await getActiveCloudstackVitePlugins({
@@ -103,24 +93,24 @@ describe('plugin', () => {
 describe('virtual module', async () => {
   it('should resolve virtual module id', async () => {
     const module = virtualModule(createContext({})) as any
-    expect((module.resolveId as any)('virtual:cloudstack')).toEqual(`\0virtual:cloudstack`)
+    expect((module.resolveId as any)('virtual:cloudstack')).toEqual('virtual:cloudstack')
   })
 
-  it('should generate virtual module content, with router', async () => {
-    const module = virtualModule({ ...createContext(), found: feature => feature === 'pages' }) as any
-    const content = await module.load(`\0virtual:cloudstack`)
+  it('should generate virtual module content (MPA)', async () => {
+    const module = virtualModule({ ...createContext(), found: () => false }) as any
+    const content = await module.load('virtual:cloudstack')
     expect(content).toMatchSnapshot()
   })
 
-  it('should generate virtual module content, without router & layouts', async () => {
-    const module = virtualModule({ ...createContext(), found: feature => feature === 'pages' || feature === 'layouts' }) as any
-    const content = await module.load(`\0virtual:cloudstack`)
-    expect(content).toMatchSnapshot()
-  })
-
-  it('should generate virtual module content, with unocss', async () => {
+  it('should generate virtual module content, (MPA with unocss)', async () => {
     const module = virtualModule({ ...createContext(), found: feature => feature === 'uno.config' }) as any
-    const content = await module.load(`\0virtual:cloudstack`)
+    const content = await module.load('virtual:cloudstack')
+    expect(content).toMatchSnapshot()
+  })
+
+  it('should generate virtual module content, (SPA)', async () => {
+    const module = virtualModule({ ...createContext(), found: () => false }) as any
+    const content = await module.load('virtual:cloudstack/spa')
     expect(content).toMatchSnapshot()
   })
 })

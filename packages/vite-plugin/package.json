@@ -50,12 +50,8 @@
     "defu": "^6.1.4",
     "the-new-css-reset": "^1.11.3",
     "tinyglobby": "^0.2.10",
-    "unplugin-auto-import": "^19.0.0",
-    "unplugin-vue-components": "^28.0.0",
-    "unplugin-vue-router": "^0.11.2",
     "vite-plugin-pwa": "^0.21.1",
     "vite-plugin-vue-devtools": "^7.7.1",
-    "vite-plugin-vue-layouts": "^0.11.0",
     "vite-ssg": "^25.0.0"
   }
 }
