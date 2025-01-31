@@ -1,17 +1,23 @@
 /// <reference types="vite-ssg" />
 
+import type { Plugin } from 'vite'
+
 import { integrationFactory } from '../_factory'
 
 import type { CloudstackPluginContext } from '../../context'
 
-export default integrationFactory((ctx: CloudstackPluginContext) => ({
+export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
   name: 'vite:cloudstack:config',
   config() {
     return {
       optimizeDeps: {
-        include: ctx.userOptions.pwa
-          ? ['vite-ssg', 'workbox-window']
-          : ['vite-ssg'],
+        include: [
+          'vite-ssg',
+          'vite-ssg/single-page',
+          'vue',
+          'vue-router',
+          ...ctx.userOptions.pwa ? ['workbox-window'] : [],
+        ],
       },
       ssgOptions: {
         script: 'async',
