@@ -1,10 +1,12 @@
+import type { Plugin } from 'vite'
+
 import { integrationFactory } from '../_factory'
 
 import type { CloudstackPluginContext } from '../../context'
 
 const virtualModuleId = 'virtual:cloudstack'
 
-export default integrationFactory((ctx: CloudstackPluginContext) => {
+export default integrationFactory((ctx: CloudstackPluginContext): Plugin => {
   return {
     name: 'vite:cloudstack:global',
     resolveId(id) {

@@ -1,6 +1,8 @@
+import type { Plugin } from 'vite'
+
 import { integrationFactory } from '../_factory'
 
-export default integrationFactory(() => ({
+export default integrationFactory((): Plugin => ({
   name: 'vite:cloudstack:dark-mode',
   transformIndexHtml(html) {
     return {
