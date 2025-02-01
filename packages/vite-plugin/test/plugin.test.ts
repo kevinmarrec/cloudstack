@@ -1,20 +1,14 @@
 import fs from 'node:fs/promises'
-import os from 'node:os'
 import path from 'node:path'
 import process from 'node:process'
 
 import { createServer, resolveConfig } from 'vite'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import { createTempDir } from '../../../test/utils'
 import CloudstackVitePlugin, { type CloudstackPluginOptions } from '../src'
 import { createContext } from '../src/context'
 import virtualModule from '../src/integrations/cloudstack/global'
-
-async function createTempDir() {
-  const osTmpDir = os.tmpdir()
-  const tmpDir = path.resolve(osTmpDir, 'vite-plugin-test')
-  return await fs.mkdtemp(tmpDir)
-}
 
 async function getActiveCloudstackVitePlugins(options?: CloudstackPluginOptions): Promise<string[]> {
   const baseConfig = await resolveConfig({}, 'serve')
@@ -29,7 +23,7 @@ describe('plugin', () => {
   let tmpDir: string
 
   beforeEach(async () => {
-    tmpDir = await createTempDir()
+    tmpDir = await createTempDir('vite-plugin')
     vi.spyOn(process, 'cwd').mockReturnValue(tmpDir)
   })
 

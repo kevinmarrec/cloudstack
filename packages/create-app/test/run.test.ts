@@ -1,10 +1,10 @@
 import fs from 'node:fs/promises'
-import os from 'node:os'
 import path from 'node:path'
 
 import { faker } from '@faker-js/faker'
 import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest'
 
+import { createTempDir } from '../../../test/utils'
 import { version } from '../package.json'
 import { run } from '../src/run'
 import { exists } from '../src/utils/fs'
@@ -17,12 +17,6 @@ const mocks = vi.hoisted(() => ({
 vi.mock('tinyexec', () => ({ x: mocks.x }))
 vi.mock('prompts', () => ({ default: mocks.prompts }))
 
-async function createTempDir() {
-  const osTmpDir = os.tmpdir()
-  const tmpDir = path.resolve(osTmpDir, 'create-app-test')
-  return await fs.mkdtemp(tmpDir)
-}
-
 describe('run', () => {
   let projectName: string
   let tmpDir: string
@@ -32,7 +26,7 @@ describe('run', () => {
   beforeEach(async () => {
     process.argv = ['node', 'create-app']
     projectName = `${faker.word.adjective()}-${faker.animal.type()}`
-    tmpDir = await createTempDir()
+    tmpDir = await createTempDir('create-app')
     resolveProjectPath = (...paths: string[]) => path.join(tmpDir, projectName, ...paths)
 
     // Spies

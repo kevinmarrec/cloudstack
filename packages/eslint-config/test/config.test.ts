@@ -1,23 +1,17 @@
 import fs from 'node:fs/promises'
-import os from 'node:os'
 import path from 'node:path'
 
 import { ESLint } from 'eslint'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import { createTempDir } from '../../../test/utils'
 import { useConfig } from '../src'
-
-async function createTempDir() {
-  const osTmpDir = os.tmpdir()
-  const tmpDir = path.resolve(osTmpDir, 'eslint-config-test')
-  return await fs.mkdtemp(tmpDir)
-}
 
 describe('config', async () => {
   let tmpDir: string
 
   beforeEach(async () => {
-    tmpDir = await createTempDir()
+    tmpDir = await createTempDir('eslint-config')
     vi.spyOn(process, 'cwd').mockReturnValue(tmpDir)
   })
 
