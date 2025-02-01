@@ -36,6 +36,6 @@
     "@unocss/eslint-plugin": "^65.4.3",
     "defu": "^6.1.4",
     "eslint-plugin-format": "^1.0.1",
-    "local-pkg": "^1.0.0"
+    "tinyglobby": "^0.2.10"
   }
 }

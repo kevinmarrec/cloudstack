@@ -32,7 +32,7 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => {
         imports.push(`import 'the-new-css-reset'`)
 
         // Unocss
-        if (ctx.userOptions.unocss !== false && ctx.found('uno.config')) {
+        if (ctx.userOptions.unocss !== false && ctx.found('uno.config.ts')) {
           imports.push(`import 'uno.css'`)
         }
 

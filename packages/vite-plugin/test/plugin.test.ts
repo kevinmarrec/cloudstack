@@ -103,7 +103,7 @@ describe('virtual module', async () => {
   })
 
   it('should generate virtual module content, (MPA with unocss)', async () => {
-    const module = virtualModule({ ...createContext(), found: feature => feature === 'uno.config' }) as any
+    const module = virtualModule({ ...createContext(), found: file => file === 'uno.config.ts' }) as any
     const content = await module.load('virtual:cloudstack')
     expect(content).toMatchSnapshot()
   })

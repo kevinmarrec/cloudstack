@@ -1,21 +1,36 @@
+import fs from 'node:fs/promises'
+import os from 'node:os'
+import path from 'node:path'
+
 import { ESLint } from 'eslint'
-import { describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { useConfig } from '../src'
 
-const mocks = vi.hoisted(() => ({
-  isPackageExists: vi.fn(),
-}))
-
-vi.mock('local-pkg', () => ({
-  isPackageExists: mocks.isPackageExists,
-}))
+async function createTempDir() {
+  const osTmpDir = os.tmpdir()
+  const tmpDir = path.resolve(osTmpDir, 'eslint-config-test')
+  return await fs.mkdtemp(tmpDir)
+}
 
 describe('config', async () => {
+  let tmpDir: string
+
+  beforeEach(async () => {
+    tmpDir = await createTempDir()
+    vi.spyOn(process, 'cwd').mockReturnValue(tmpDir)
+  })
+
+  afterEach(async () => {
+    await fs.rm(tmpDir, { recursive: true, force: true })
+    vi.restoreAllMocks()
+  })
+
   it('should lint imports in typescript files', async () => {
     const eslint = new ESLint({
-      overrideConfig: await useConfig(),
       fix: true,
+      overrideConfigFile: true,
+      overrideConfig: await useConfig(),
     })
 
     const code = `
@@ -66,8 +81,9 @@ describe('config', async () => {
 
   it('should report issue when finding unused prop in .vue files', async () => {
     const eslint = new ESLint({
-      overrideConfig: await useConfig(),
       fix: true,
+      overrideConfigFile: true,
+      overrideConfig: await useConfig(),
     })
 
     const code = `
@@ -85,6 +101,7 @@ describe('config', async () => {
 
   it('should ignore files, given "ignores" option', async () => {
     const eslint = new ESLint({
+      overrideConfigFile: true,
       overrideConfig: await useConfig({ ignores: ['**/*.foo'] }),
     })
 
@@ -104,8 +121,8 @@ describe('config', async () => {
     `)
   })
 
-  it('should load antfu/unocss lint rules, when unocss is installed', async () => {
-    mocks.isPackageExists.mockReturnValue(true)
+  it('should load antfu/unocss lint rules, when uno.config.ts file is found', async () => {
+    await fs.writeFile(path.resolve(tmpDir, 'uno.config.ts'), `export default {}`)
 
     expect(await useConfig()).toEqual(
       expect.arrayContaining([
@@ -120,9 +137,7 @@ describe('config', async () => {
     )
   })
 
-  it('should not load antfu/unocss lint rules, when unocss is not installed', async () => {
-    mocks.isPackageExists.mockReturnValue(false)
-
+  it('should not load antfu/unocss lint rules, when uno.config.ts is not found', async () => {
     expect(await useConfig()).not.toEqual(
       expect.arrayContaining([
         expect.objectContaining({

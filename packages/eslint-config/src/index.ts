@@ -1,12 +1,14 @@
 import { antfu } from '@antfu/eslint-config'
 import defu from 'defu'
-import { isPackageExists } from 'local-pkg'
+import { globSync } from 'tinyglobby'
 
 type Options = Parameters<typeof antfu>[0]
 type UserConfig = Parameters<typeof antfu>[1]
 
 export function useConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
-  if (options.unocss !== false && isPackageExists('unocss')) {
+  const [unoConfig] = globSync('**/uno.config.ts', { absolute: true, ignore: ['**/node_modules/**'] })
+
+  if (options.unocss !== false && unoConfig) {
     options.unocss = true
   }
 
@@ -58,6 +60,11 @@ export function useConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
         order: 'asc',
         type: 'natural',
       }],
+    },
+    settings: {
+      unocss: {
+        configPath: unoConfig,
+      },
     },
   }), ...userConfigs)
 }

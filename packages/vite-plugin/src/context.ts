@@ -8,12 +8,7 @@ export function createContext(userOptions: CloudstackPluginOptions = {}) {
   return {
     version,
     userOptions,
-    found(feature: 'uno.config') {
-      switch (feature) {
-        case 'uno.config':
-          return globSync(['uno.config.ts']).length > 0
-      }
-    },
+    found: (file: 'uno.config.ts') => globSync(file).length > 0,
   }
 }
 
