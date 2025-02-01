@@ -19,6 +19,7 @@ exports[`plugin > should inject dark mode script in index.html 1`] = `
 exports[`plugin > with all integrations 1`] = `
 [
   "vite-plugin-pwa",
+  "vite-tsconfig-paths",
   "unocss:transformers:pre",
   "unocss:global:content",
   "unocss:global",
@@ -43,6 +44,7 @@ exports[`plugin > with all integrations 1`] = `
 
 exports[`plugin > with options: { devtools: false } 1`] = `
 [
+  "vite-tsconfig-paths",
   "vite:cloudstack:global",
   "vite:cloudstack:config",
   "vite:cloudstack:dark-mode",
@@ -52,6 +54,7 @@ exports[`plugin > with options: { devtools: false } 1`] = `
 
 exports[`plugin > with options: {} 1`] = `
 [
+  "vite-tsconfig-paths",
   "vite-plugin-inspect",
   "vite-plugin-vue-devtools",
   "vite:cloudstack:global",
