@@ -50,5 +50,11 @@
     "vue"
   ],
 
+  "javascript.format.semicolons": "remove",
+  "typescript.format.semicolons": "remove",
+
+  "vue.inlayHints.inlineHandlerLeading": true,
+  "vue.inlayHints.missingProps": true,
+
   "vitest.rootConfig": "vitest.config.ts"
 }
