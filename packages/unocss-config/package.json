@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-unocss-config",
   "type": "module",
-  "version": "0.13.1",
+  "version": "0.13.2",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/unocss-config",

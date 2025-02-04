@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack",
   "type": "module",
-  "version": "0.13.1",
+  "version": "0.13.2",
   "private": true,
   "packageManager": "bun@1.2.2",
   "engines": {
