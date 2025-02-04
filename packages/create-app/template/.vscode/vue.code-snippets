@@ -4,12 +4,12 @@
     "prefix": "init",
     "body": [
       "<script setup lang=\"ts\">",
-			"$0",
+			"",
       "</script>",
       "",
       "<template>",
 			"  <div>",
-      "    Content",
+      "    ${0:Content}",
 			"  </div>",
       "</template>",
 			""
