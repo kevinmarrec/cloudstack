@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@kevinmarrec/cloudstack-eslint-config": "",
+    "@kevinmarrec/cloudstack-stylelint-config": "",
     "@kevinmarrec/cloudstack-tsconfig": "",
     "eslint": "^9.19.0",
     "knip": "^5.43.6",
