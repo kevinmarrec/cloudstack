@@ -7,12 +7,7 @@ export default {
       entry: ['*.config.ts'],
     },
     'frontend': {
-      entry: [
-        'src/main.ts',
-        'src/layouts/**/*.vue',
-        'src/pages/**/*.vue',
-        'src/components/**/*.vue',
-      ],
+      entry: ['*.config.ts', 'src/main.ts'],
     },
   },
 } satisfies KnipConfig
