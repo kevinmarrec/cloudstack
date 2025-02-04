@@ -32,7 +32,7 @@
     "eslint": ">=9.0.0"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^4.1.0",
+    "@antfu/eslint-config": "^4.1.1",
     "@unocss/eslint-plugin": "^65.4.3",
     "defu": "^6.1.4",
     "eslint-plugin-format": "^1.0.1",
