@@ -15,7 +15,7 @@
     "@kevinmarrec/cloudstack-unocss-config": "",
     "@kevinmarrec/cloudstack-vite-plugin": "",
     "unocss": "^65.4.3",
-    "vite": "^6.0.11",
+    "vite": "^6.1.0",
     "vite-ssg": "^25.0.0"
   }
 }
