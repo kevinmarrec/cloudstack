@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/create-cloudstack-app",
   "type": "module",
-  "version": "0.13.2",
+  "version": "0.14.0",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/create-app",
