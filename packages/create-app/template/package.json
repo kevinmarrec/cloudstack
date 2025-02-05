@@ -17,13 +17,15 @@
     "check:stylelint": "stylelint '**/*.{css,scss,vue}' --ignorePath .gitignore",
     "check:types": "vue-tsc --noEmit",
     "check:unused": "knip",
+    "dev": "bun scripts/dev.ts",
     "lint": "bun run check:eslint && bun run check:stylelint",
     "lint:inspect": "bunx @eslint/config-inspector"
   },
   "devDependencies": {
-    "@kevinmarrec/cloudstack-eslint-config": "",
-    "@kevinmarrec/cloudstack-stylelint-config": "",
-    "@kevinmarrec/cloudstack-tsconfig": "",
+    "@kevinmarrec/cloudstack-eslint-config": "workspace:*",
+    "@kevinmarrec/cloudstack-stylelint-config": "workspace:*",
+    "@kevinmarrec/cloudstack-tsconfig": "workspace:*",
+    "concurrently": "^9.1.2",
     "eslint": "^9.19.0",
     "knip": "^5.43.6",
     "stylelint": "^16.14.1",

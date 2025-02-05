@@ -19,19 +19,11 @@ export async function scaffold(root: string) {
   await fs.cp(path.join(import.meta.dirname, '../template'), root, { recursive: true })
   await fs.rename(path.join(root, 'gitignore'), path.join(root, '.gitignore'))
 
-  // Set @kevinmarrec-cloudstack-* packages version to current version
-  const pkgPaths = await glob('**/package.json', { cwd: root, absolute: true })
+  // Set @kevinmarrec/cloudstack-* packages version to current version
+  const pkgJsonPaths = await glob('**/package.json', { cwd: root, absolute: true })
 
-  for (const pkgPath of pkgPaths) {
-    const contents = await fs.readFile(pkgPath, 'utf-8')
-    const pkg: { devDependencies: Record<string, string> } = JSON.parse(contents)
-
-    for (const key in pkg.devDependencies) {
-      if (!pkg.devDependencies[key]) {
-        pkg.devDependencies[key] = `^${version}`
-      }
-    }
-
-    await fs.writeFile(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`)
+  for (const pkgJsonPath of pkgJsonPaths) {
+    const pkgJson = await fs.readFile(pkgJsonPath, 'utf-8')
+    await fs.writeFile(pkgJsonPath, pkgJson.replaceAll('workspace:*', `^${version}`))
   }
 }
