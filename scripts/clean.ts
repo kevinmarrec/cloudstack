@@ -2,8 +2,8 @@ import fs from 'node:fs/promises'
 
 import { glob } from 'tinyglobby'
 
-const distDirs = await glob('packages/*/dist', { onlyDirectories: true })
+const targetDirs = await glob(['coverage', 'packages/*/dist'], { onlyDirectories: true })
 
-await Promise.all(distDirs.map(async (distDir) => {
-  await fs.rm(distDir, { recursive: true })
+await Promise.all(targetDirs.map(async (dir) => {
+  await fs.rm(dir, { recursive: true })
 }))
