@@ -10,6 +10,11 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
   name: 'vite:cloudstack:config',
   config() {
     return {
+      build: {
+        modulePreload: {
+          polyfill: false,
+        },
+      },
       optimizeDeps: {
         include: [
           'vite-ssg',

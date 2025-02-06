@@ -3,7 +3,7 @@ import fs from 'node:fs/promises'
 import { glob } from 'tinyglobby'
 
 const targetDirs = await glob(
-  ['coverage', 'packages/*/dist'],
+  ['coverage', 'packages/**/dist'],
   { onlyDirectories: true, expandDirectories: false },
 )
 
