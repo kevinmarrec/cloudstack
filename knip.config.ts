@@ -1,11 +1,12 @@
-import type { KnipConfig } from 'knip'
+import { useConfig } from '@kevinmarrec/cloudstack-knip-config'
 
-export default {
-  stylelint: false,
+export default useConfig({
   workspaces: {
     '.': {
       entry: ['*.config.ts'],
-      ignore: ['**/template/**'],
+    },
+    'packages/create-app/template': {
+      entry: ['*.config.ts'],
     },
     'packages/stylelint-config': {
       ignoreDependencies: [
@@ -18,4 +19,4 @@ export default {
       ignoreDependencies: ['the-new-css-reset'],
     },
   },
-} satisfies KnipConfig
+})

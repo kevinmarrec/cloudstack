@@ -1,0 +1,34 @@
+{
+  "name": "@kevinmarrec/cloudstack-knip-config",
+  "type": "module",
+  "version": "0.14.0",
+  "author": "Kevin Marrec <kevin@marrec.io>",
+  "license": "MIT",
+  "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/knip-config",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinmarrec/cloudstack.git",
+    "directory": "packages/knip-config"
+  },
+  "keywords": [
+    "cloudstack",
+    "knip",
+    "knip-config"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup --clean --dts --format esm src/index.ts"
+  },
+  "peerDependencies": {
+    "knip": ">=5.0.0"
+  }
+}

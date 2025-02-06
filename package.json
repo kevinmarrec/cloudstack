@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "@kevinmarrec/cloudstack-eslint-config": "workspace:*",
+    "@kevinmarrec/cloudstack-knip-config": "workspace:*",
     "@kevinmarrec/cloudstack-stylelint-config": "workspace:*",
     "@kevinmarrec/cloudstack-tsconfig": "workspace:*",
     "@types/bun": "^1.2.2",

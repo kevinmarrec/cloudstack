@@ -1,7 +1,6 @@
-import type { KnipConfig } from 'knip'
+import { useConfig } from '@kevinmarrec/cloudstack-knip-config'
 
-export default {
-  stylelint: false,
+export default useConfig({
   workspaces: {
     '.': {
       entry: ['*.config.ts'],
@@ -10,4 +9,4 @@ export default {
       entry: ['*.config.ts', 'src/main.ts'],
     },
   },
-} satisfies KnipConfig
+})
