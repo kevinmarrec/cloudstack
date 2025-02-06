@@ -1,9 +1,20 @@
 import { describe, expect, it } from 'vitest'
 
-import { useConfig } from '../src'
+import config from '../src'
 
 describe('config', async () => {
-  it('has stylelint plugin disabled', async () => {
-    expect(useConfig().stylelint).toBe(false)
+  it('should export default config', async () => {
+    expect(config).toMatchInlineSnapshot(`
+      {
+        "stylelint": false,
+        "workspaces": {
+          ".": {
+            "entry": [
+              "*.config.ts",
+            ],
+          },
+        },
+      }
+    `)
   })
 })

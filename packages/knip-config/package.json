@@ -30,5 +30,8 @@
   },
   "peerDependencies": {
     "knip": ">=5.0.0"
+  },
+  "dependencies": {
+    "defu": "^6.1.4"
   }
 }
