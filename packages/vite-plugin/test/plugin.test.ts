@@ -10,7 +10,7 @@ import CloudstackVitePlugin, { type CloudstackPluginOptions } from '../src'
 import { createContext } from '../src/context'
 import virtualModule from '../src/integrations/cloudstack/global'
 
-async function getActiveCloudstackVitePlugins(options?: CloudstackPluginOptions): Promise<string[]> {
+async function getActiveCloudstackVitePlugins(options: CloudstackPluginOptions = {}): Promise<string[]> {
   const baseConfig = await resolveConfig({}, 'serve')
 
   const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin(options)] }, 'serve')
@@ -32,15 +32,8 @@ describe('plugin', () => {
     vi.restoreAllMocks()
   })
 
-  const configurations = [
-    {},
-    { devtools: false },
-  ] satisfies CloudstackPluginOptions[]
-
-  it.each(configurations)('with options: %o', async (options) => {
-    const plugins = await getActiveCloudstackVitePlugins(options)
-
-    expect(plugins).toMatchSnapshot()
+  it('with defaults', async () => {
+    expect(await getActiveCloudstackVitePlugins()).toMatchSnapshot()
   })
 
   it('with all integrations', async () => {
@@ -57,29 +50,24 @@ describe('plugin', () => {
     expect(plugins).toMatchSnapshot()
   })
 
-  it('should optimize dependency "workbox-window" with pwa option', async () => {
-    const resolvedConfig = await resolveConfig({
-      plugins: [
-        CloudstackVitePlugin({
-          pwa: {
-            pwaAssets: {
-              disabled: true,
-            },
-          },
-        }),
-      ],
-    }, 'serve')
+  it('should drop module preload polyfill', async () => {
+    const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin()] }, 'serve')
+    expect(resolvedConfig.build.modulePreload).toEqual({ polyfill: false })
+  })
 
-    expect(resolvedConfig.optimizeDeps.include).toEqual(
-      expect.arrayContaining(['vite-ssg', 'workbox-window']),
-    )
+  it('should optimize dependencies', async () => {
+    const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin()] }, 'serve')
+    expect(resolvedConfig.optimizeDeps.include).toEqual([
+      'vite-ssg',
+      'vite-ssg/single-page',
+      'vue',
+      'vue-router',
+    ])
   })
 
   it('should inject dark mode script in index.html', async () => {
     const server = await createServer({ plugins: [CloudstackVitePlugin()] })
-
     const html = await server.transformIndexHtml('index.html', '<html></html>')
-
     expect(html).toMatchSnapshot()
   })
 })

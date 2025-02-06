@@ -42,17 +42,7 @@ exports[`plugin > with all integrations 1`] = `
 ]
 `;
 
-exports[`plugin > with options: { devtools: false } 1`] = `
-[
-  "vite-tsconfig-paths",
-  "vite:cloudstack:global",
-  "vite:cloudstack:config",
-  "vite:cloudstack:dark-mode",
-  "vite:vue",
-]
-`;
-
-exports[`plugin > with options: {} 1`] = `
+exports[`plugin > with defaults 1`] = `
 [
   "vite-tsconfig-paths",
   "vite-plugin-inspect",
