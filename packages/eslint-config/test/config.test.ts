@@ -24,51 +24,38 @@ describe('config', async () => {
     const eslint = new ESLint({
       fix: true,
       overrideConfigFile: true,
-      overrideConfig: await useConfig(),
+      overrideConfig: await useConfig({
+        rules: {
+          'unused-imports/no-unused-imports': 'off',
+        },
+      }),
     })
 
     const code = `
-      import { C, c, B, b, A, a  } from '~/alphabet'
-      import { Foo } from 'Foo'
-      import { baz } from 'Bar'
-      import type { Bar } from 'Bar'
-      import assert from 'node:assert'
-
-      assert({
-        A,
-        B,
-        C,
-        a,
-        b,
-        c,
-        foo: {} as Foo,
-        bar: {} as Bar,
-        baz,
-      })
+    import { C, c, B, b, A, a } from '~/internal'
+    import { foo, type Foo } from './sibiling'
+    import type { Bar } from './sibiling'
+    import assert from 'node:assert'
+    import type { Baz } from '../parent'
+    import { type Qux } from '../parent'
+    import external from 'external'
+    import path from 'path'
+    import index from '.'
     `
 
     const [{ output }] = await eslint.lintText(code, { filePath: 'typescript.ts' })
 
     await expect(output).toMatchInlineSnapshot(`
       "import assert from 'node:assert'
+      import path from 'node:path'
 
-      import { type Bar, baz } from 'Bar'
+      import external from 'external'
 
-      import type { Foo } from 'Foo'
+      import { A, a, B, b, C, c } from '~/internal'
 
-      import { A, a, B, b, C, c } from '~/alphabet'
-
-      assert({
-        A,
-        B,
-        C,
-        a,
-        b,
-        c,
-        foo: {} as Foo,
-        bar: {} as Bar,
-        baz,
-      })
+      import index from '.'
+      import type { Baz, Qux } from '../parent'
+      import { type Bar, foo, type Foo } from './sibiling'
       "
     `)
   })

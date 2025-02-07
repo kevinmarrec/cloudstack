@@ -2,7 +2,6 @@ import type { PluginOption } from 'vite'
 
 import { createContext } from './context'
 import integrations from './integrations'
-
 import type { CloudstackPluginOptions } from './options'
 
 export { type CloudstackPluginOptions }

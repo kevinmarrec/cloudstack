@@ -1,8 +1,7 @@
 import type { Plugin } from 'vite'
 
-import { integrationFactory } from '../_factory'
-
 import type { CloudstackPluginContext } from '../../context'
+import { integrationFactory } from '../_factory'
 
 const virtualModuleId = 'virtual:cloudstack'
 
