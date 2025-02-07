@@ -23,9 +23,8 @@ export interface CloudstackPluginOptions {
   /**
    * `@unocss/vite` plugin configuration.
    *
-   * The plugin is automatically enabled if the following conditions are met:
-   * - `unocss` dev dependency is installed
-   * - `uno.config.ts` file is found in the project root
+   * The plugin is automatically enabled if the following conditions is met:
+   * - `uno.config.ts` file is found in the project
    *
    * Set to `false` to disable.
    *
