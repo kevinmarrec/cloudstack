@@ -1,7 +1,6 @@
 import { globSync } from 'tinyglobby'
 
 import { version } from '../package.json'
-
 import type { CloudstackPluginOptions } from './options'
 
 export function createContext(userOptions: CloudstackPluginOptions = {}) {

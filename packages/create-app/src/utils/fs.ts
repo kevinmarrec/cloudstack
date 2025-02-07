@@ -1,7 +1,6 @@
+import type { PathLike } from 'node:fs'
 import fs from 'node:fs/promises'
 import path from 'node:path'
-
-import type { PathLike } from 'node:fs'
 
 const ignorePredicate = (filename: string) => ['.git'].includes(filename)
 

@@ -2,9 +2,8 @@
 
 import type { Plugin } from 'vite'
 
-import { integrationFactory } from '../_factory'
-
 import type { CloudstackPluginContext } from '../../context'
+import { integrationFactory } from '../_factory'
 
 export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
   name: 'vite:cloudstack:config',

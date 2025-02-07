@@ -46,12 +46,10 @@ export function useConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
       ],
       'perfectionist/sort-imports': ['error', {
         groups: [
-          'builtin',
-          'external',
-          'type',
+          ['builtin', 'builtin-type'],
+          ['external', 'external-type'],
           ['internal', 'internal-type'],
-          ['parent', 'sibling', 'index'],
-          ['parent-type', 'sibling-type', 'index-type'],
+          ['parent', 'parent-type', 'sibling', 'sibling-type', 'index', 'index-type'],
           'side-effect',
           'object',
           'unknown',
