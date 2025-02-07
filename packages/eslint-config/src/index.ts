@@ -23,12 +23,6 @@ export function useConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
     formatters: true,
     ignores: options.ignores,
     typescript: {
-      overrides: {
-        'ts/consistent-type-imports': [
-          'error',
-          { fixStyle: 'inline-type-imports' },
-        ],
-      },
       parserOptions: {
         warnOnUnsupportedTypeScriptVersion: false,
       },
@@ -40,10 +34,7 @@ export function useConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
     },
     rules: {
       'import/consistent-type-specifier-style': ['off'],
-      'import/no-duplicates': [
-        'error',
-        { 'prefer-inline': true },
-      ],
+      'import/no-duplicates': ['error', { 'prefer-inline': true }],
       'perfectionist/sort-imports': ['error', {
         groups: [
           ['builtin', 'builtin-type'],
