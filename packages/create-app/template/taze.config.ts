@@ -1,8 +1,1 @@
-import { defineConfig } from 'taze'
-
-export default defineConfig({
-  interactive: true,
-  recursive: true,
-  write: true,
-  install: true,
-})
+export { default } from '@kevinmarrec/cloudstack-taze-config'
