@@ -16,6 +16,7 @@
 - [`@kevinmarrec/cloudstack-eslint-config`](https://www.npmjs.com/package/@kevinmarrec/cloudstack-eslint-config) - ESLint config
 - [`@kevinmarrec/cloudstack-knip-config`](https://www.npmjs.com/package/@kevinmarrec/cloudstack-knip-config) - Knip config
 - [`@kevinmarrec/cloudstack-stylelint-config`](https://www.npmjs.com/package/@kevinmarrec/cloudstack-stylelint-config) - Stylelint config
+- [`@kevinmarrec/cloudstack-taze-config`](https://www.npmjs.com/package/@kevinmarrec/cloudstack-stylelint-config) - Taze config
 - [`@kevinmarrec/cloudstack-tsconfig`](https://www.npmjs.com/package/@kevinmarrec/cloudstack-tsconfig) - TypeScript config
 - [`@kevinmarrec/cloudstack-unocss-config`](https://www.npmjs.com/package/@kevinmarrec/cloudstack-unocss-config) - UnoCSS config
 - [`@kevinmarrec/cloudstack-unocss-preset`](https://www.npmjs.com/package/@kevinmarrec/cloudstack-unocss-preset) - UnoCSS preset

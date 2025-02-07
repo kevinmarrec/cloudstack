@@ -24,6 +24,7 @@
     "@kevinmarrec/cloudstack-eslint-config": "workspace:*",
     "@kevinmarrec/cloudstack-knip-config": "workspace:*",
     "@kevinmarrec/cloudstack-stylelint-config": "workspace:*",
+    "@kevinmarrec/cloudstack-taze-config": "workspace:*",
     "@kevinmarrec/cloudstack-tsconfig": "workspace:*",
     "concurrently": "^9.1.2",
     "eslint": "^9.19.0",
