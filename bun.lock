@@ -73,7 +73,7 @@
       },
       "devDependencies": {
         "@kevinmarrec/cloudstack-unocss-config": "workspace:*",
-        "@kevinmarrec/cloudstack-vite-plugin": "workspace:*",
+        "@kevinmarrec/cloudstack-vite-config": "workspace:*",
         "unocss": "^65.4.3",
         "vite": "^6.1.0",
         "vite-ssg": "^25.0.0",
@@ -143,6 +143,16 @@
         "@unocss/preset-web-fonts": "^65.4.3",
         "@unocss/transformer-directives": "^65.4.3",
         "@unocss/transformer-variant-group": "^65.4.3",
+      },
+    },
+    "packages/vite-config": {
+      "name": "@kevinmarrec/cloudstack-vite-config",
+      "version": "0.15.0",
+      "dependencies": {
+        "@kevinmarrec/cloudstack-vite-plugin": "workspace:*",
+      },
+      "peerDependencies": {
+        "vite": ">=6.0.0",
       },
     },
     "packages/vite-plugin": {
@@ -521,6 +531,8 @@
     "@kevinmarrec/cloudstack-unocss-config": ["@kevinmarrec/cloudstack-unocss-config@workspace:packages/unocss-config"],
 
     "@kevinmarrec/cloudstack-unocss-preset": ["@kevinmarrec/cloudstack-unocss-preset@workspace:packages/unocss-preset"],
+
+    "@kevinmarrec/cloudstack-vite-config": ["@kevinmarrec/cloudstack-vite-config@workspace:packages/vite-config"],
 
     "@kevinmarrec/cloudstack-vite-plugin": ["@kevinmarrec/cloudstack-vite-plugin@workspace:packages/vite-plugin"],
 

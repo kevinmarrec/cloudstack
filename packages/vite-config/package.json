@@ -1,0 +1,41 @@
+{
+  "name": "@kevinmarrec/cloudstack-vite-config",
+  "type": "module",
+  "version": "0.15.0",
+  "author": "Kevin Marrec <kevin@marrec.io>",
+  "license": "MIT",
+  "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/vite-config",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinmarrec/cloudstack.git",
+    "directory": "packages/vite-config"
+  },
+  "keywords": [
+    "cloudstack",
+    "vite",
+    "vite-config"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./client": {
+      "types": "./client.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "client.d.ts",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup --clean --dts --format esm src/index.ts"
+  },
+  "peerDependencies": {
+    "vite": ">=6.0.0"
+  },
+  "dependencies": {
+    "@kevinmarrec/cloudstack-vite-plugin": "workspace:*"
+  }
+}

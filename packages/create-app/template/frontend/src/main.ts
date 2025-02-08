@@ -1,4 +1,4 @@
-/// <reference types="@kevinmarrec/cloudstack-vite-plugin/client" />
+/// <reference types="@kevinmarrec/cloudstack-vite-config/client" />
 
 import { Power } from 'virtual:cloudstack'
 
