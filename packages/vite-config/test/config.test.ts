@@ -1,16 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
-import defaultConfig from '../src'
+import { useConfig } from '../src'
 
 describe('config', async () => {
   it('should export default config', async () => {
-    expect(defaultConfig).toMatchInlineSnapshot(`
-      {
-        "install": true,
-        "interactive": true,
-        "recursive": true,
-        "write": true,
-      }
-    `)
+    const config = await useConfig()({ command: 'serve', mode: 'development' })
+    const config2 = await useConfig(() => ({}))({ command: 'serve', mode: 'development' })
+    expect(config).toBeDefined()
+    expect(config2).toBeDefined()
   })
 })
