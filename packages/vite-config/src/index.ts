@@ -1,9 +1,5 @@
 import plugin, { type CloudstackPluginOptions } from '@kevinmarrec/cloudstack-vite-plugin'
-import {
-  defineConfig,
-  mergeConfig,
-  type UserConfigExport,
-} from 'vite'
+import { defineConfig, mergeConfig, type UserConfigExport } from 'vite'
 
 declare module 'vite' {
   interface UserConfig {

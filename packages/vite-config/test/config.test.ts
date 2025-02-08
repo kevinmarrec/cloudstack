@@ -1,12 +1,14 @@
+import type { UserConfigExport } from 'vite'
 import { describe, expect, it } from 'vitest'
 
 import { useConfig } from '../src'
 
 describe('config', async () => {
-  it('should export default config', async () => {
-    const config = await useConfig()({ command: 'serve', mode: 'development' })
-    const config2 = await useConfig(() => ({}))({ command: 'serve', mode: 'development' })
-    expect(config).toBeDefined()
-    expect(config2).toBeDefined()
+  it.each<UserConfigExport>([
+    { mode: 'foo' },
+    () => ({ mode: 'foo' }),
+  ])('with overrides: %o', async (overrides) => {
+    const config = await useConfig(overrides)({ command: 'serve', mode: 'development' })
+    expect(config.mode).toBe('foo')
   })
 })
