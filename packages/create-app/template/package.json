@@ -27,7 +27,7 @@
     "@kevinmarrec/cloudstack-taze-config": "workspace:*",
     "@kevinmarrec/cloudstack-tsconfig": "workspace:*",
     "concurrently": "^9.1.2",
-    "eslint": "^9.19.0",
+    "eslint": "^9.20.0",
     "knip": "^5.43.6",
     "stylelint": "^16.14.1",
     "taze": "^18.4.0",

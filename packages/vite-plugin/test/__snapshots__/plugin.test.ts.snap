@@ -34,6 +34,7 @@ exports[`plugin > with all integrations 1`] = `
   "unocss:devtools",
   "unocss:api",
   "unocss:inspector",
+  "visualizer",
   "vite:vue",
   "vite-plugin-pwa:info",
   "vite-plugin-pwa:pwa-assets",

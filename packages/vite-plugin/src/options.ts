@@ -1,5 +1,6 @@
 import type { VitePluginConfig as UnocssPluginOptions } from '@unocss/vite'
 import type { Options as VuePluginOptions } from '@vitejs/plugin-vue'
+import type { PluginVisualizerOptions } from 'rollup-plugin-visualizer'
 import type { VitePWAOptions as PWAPluginOptions } from 'vite-plugin-pwa'
 import type { VitePluginVueDevToolsOptions as VueDevToolsPluginOptions } from 'vite-plugin-vue-devtools'
 
@@ -17,20 +18,31 @@ export interface CloudstackPluginOptions {
   /**
    * `vite-plugin-pwa` plugin configuration.
    *
+   * The plugin is disabled by default.
+   *
+   * Set to `true` to enable with default options.
+   *
    * @see https://github.com/vite-pwa/vite-plugin-pwa
    */
   pwa?: boolean | Partial<PWAPluginOptions>
   /**
    * `@unocss/vite` plugin configuration.
    *
-   * The plugin is automatically enabled if the following conditions is met:
-   * - `uno.config.ts` file is found in the project
+   * The plugin is automatically enabled if any `uno.config.ts` file is found in the project.
    *
    * Set to `false` to disable.
    *
    * @see https://github.com/unocss/unocss
    */
   unocss?: false | UnocssPluginOptions
+  /**
+   * `rollup-plugin-visualizer` plugin configuration.
+   *
+   * The plugin is only enabled when passing `analyze` mode to Vite (`vite build --mode analyze`).
+   *
+   * @see https://github.com/btd/rollup-plugin-visualizer
+   */
+  visualizer?: PluginVisualizerOptions
   /**
    * `@vitejs/plugin-vue` plugin configuration.
    *

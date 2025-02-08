@@ -2,7 +2,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 
-import { createServer, resolveConfig } from 'vite'
+import { type ConfigEnv, createServer, resolveConfig } from 'vite'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { createTempDir } from '../../../test/utils'
@@ -10,10 +10,10 @@ import CloudstackVitePlugin, { type CloudstackPluginOptions } from '../src'
 import { createContext } from '../src/context'
 import virtualModule from '../src/integrations/cloudstack/global'
 
-async function getActiveCloudstackVitePlugins(options: CloudstackPluginOptions = {}): Promise<string[]> {
+async function getActiveCloudstackVitePlugins(options: CloudstackPluginOptions = {}, env?: ConfigEnv): Promise<string[]> {
   const baseConfig = await resolveConfig({}, 'serve')
 
-  const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin(options)] }, 'serve')
+  const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin(options, env)] }, 'serve')
 
   const addedPlugins = resolvedConfig.plugins.filter(plugin => !baseConfig.plugins.some(basePlugin => basePlugin.name === plugin.name))
   return addedPlugins.map(plugin => plugin.name)
@@ -45,7 +45,7 @@ describe('plugin', () => {
           disabled: true,
         },
       },
-    })
+    }, { command: 'build', mode: 'analyze' })
 
     expect(plugins).toMatchSnapshot()
   })
