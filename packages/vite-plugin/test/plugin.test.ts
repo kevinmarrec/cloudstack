@@ -82,9 +82,9 @@ describe('plugin', () => {
 
 describe('virtual module', async () => {
   it('should resolve virtual module id', async () => {
-    const module = virtualModule(createContext({})) as any
+    const module: any = virtualModule(createContext({}))
 
-    expect((module.resolveId as any)('virtual:cloudstack')).toEqual('virtual:cloudstack')
+    expect(module.resolveId('virtual:cloudstack')).toEqual('virtual:cloudstack')
   })
 
   it('should generate virtual module content (MPA with unocss)', async () => {
@@ -92,15 +92,15 @@ describe('virtual module', async () => {
     await fs.mkdir(path.resolve(tmpDir, 'src/pages'), { recursive: true })
     await fs.writeFile(path.resolve(tmpDir, 'src/pages/index.vue'), `<template></template>`)
 
-    const module = virtualModule(createContext()) as any
-    const content = await module.load('virtual:cloudstack')
+    const module: any = virtualModule(createContext())
+    const content = module.load('virtual:cloudstack')
 
     expect(content).toMatchSnapshot()
   })
 
   it('should generate virtual module content, (SPA)', async () => {
-    const module = virtualModule(createContext()) as any
-    const content = await module.load('virtual:cloudstack')
+    const module: any = virtualModule(createContext())
+    const content = module.load('virtual:cloudstack')
 
     expect(content).toMatchSnapshot()
   })
