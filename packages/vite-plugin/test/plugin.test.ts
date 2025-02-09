@@ -37,8 +37,8 @@ describe('plugin', () => {
     { command: 'build', mode: 'analyze' },
   ] as const)('with all integrations (mode: $mode)', async ({ command, mode }) => {
     await fs.writeFile(path.resolve(tmpDir, 'uno.config.ts'), `export default {}`)
-    await fs.mkdir(path.resolve(tmpDir, 'src/pages'), { recursive: true })
-    await fs.writeFile(path.resolve(tmpDir, 'src/pages/index.vue'), `<template></template>`)
+    await fs.mkdir(path.resolve(tmpDir, 'src/views'), { recursive: true })
+    await fs.writeFile(path.resolve(tmpDir, 'src/views/index.vue'), `<template></template>`)
 
     const baseConfig = await resolveConfig({}, command, mode)
 
@@ -48,6 +48,11 @@ describe('plugin', () => {
           pwaAssets: {
             disabled: true,
           },
+        },
+        vueRouter: {
+          routesFolder: [
+            { src: 'src/views' },
+          ],
         },
       }, { command, mode })],
     }, command, mode)
