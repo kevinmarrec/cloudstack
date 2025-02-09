@@ -16,7 +16,41 @@ exports[`plugin > should inject dark mode script in index.html 1`] = `
 </html>"
 `;
 
-exports[`plugin > with all integrations 1`] = `
+exports[`plugin > should optimize dependencies 1`] = `
+[
+  "vite-ssg",
+  "vite-ssg/single-page",
+  "vue",
+]
+`;
+
+exports[`plugin > with all integrations (mode: 'analyze') 1`] = `
+[
+  "vite-plugin-pwa",
+  "vite-tsconfig-paths",
+  "unocss:transformers:pre",
+  "unocss:global:build:scan",
+  "unocss:global:content",
+  "unplugin-vue-router",
+  "vite:cloudstack:global",
+  "vite:cloudstack:config",
+  "vite:cloudstack:dark-mode",
+  "unocss:config",
+  "unocss:transformers:undefined",
+  "unocss:devtools",
+  "unocss:api",
+  "unocss:global:build:generate",
+  "visualizer",
+  "vite:vue",
+  "vite-plugin-pwa:info",
+  "vite-plugin-pwa:build",
+  "vite-plugin-pwa:pwa-assets",
+  "unocss:transformers:post",
+  "unocss:global:build:bundle",
+]
+`;
+
+exports[`plugin > with all integrations (mode: 'development') 1`] = `
 [
   "vite-plugin-pwa",
   "vite-tsconfig-paths",
@@ -35,12 +69,36 @@ exports[`plugin > with all integrations 1`] = `
   "unocss:devtools",
   "unocss:api",
   "unocss:inspector",
-  "visualizer",
   "vite:vue",
   "vite-plugin-pwa:info",
   "vite-plugin-pwa:pwa-assets",
   "unocss:transformers:post",
   "unocss:global:post",
+]
+`;
+
+exports[`plugin > with all integrations (mode: 'production') 1`] = `
+[
+  "vite-plugin-pwa",
+  "vite-tsconfig-paths",
+  "unocss:transformers:pre",
+  "unocss:global:build:scan",
+  "unocss:global:content",
+  "unplugin-vue-router",
+  "vite:cloudstack:global",
+  "vite:cloudstack:config",
+  "vite:cloudstack:dark-mode",
+  "unocss:config",
+  "unocss:transformers:undefined",
+  "unocss:devtools",
+  "unocss:api",
+  "unocss:global:build:generate",
+  "vite:vue",
+  "vite-plugin-pwa:info",
+  "vite-plugin-pwa:build",
+  "vite-plugin-pwa:pwa-assets",
+  "unocss:transformers:post",
+  "unocss:global:build:bundle",
 ]
 `;
 

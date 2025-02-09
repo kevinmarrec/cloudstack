@@ -10,15 +10,19 @@ type IntegrationFactory = <Plugin extends (...args: any) => PluginOption>
     options?: (ctx: CloudstackPluginContext) => Parameters<Plugin>[0] | boolean
     defaults?: (ctx: CloudstackPluginContext) => Parameters<Plugin>[0] | boolean
   }
-) => (ctx: CloudstackPluginContext) => PluginOption
+) => ((ctx: CloudstackPluginContext) => PluginOption) & { enabled: (ctx: CloudstackPluginContext) => boolean }
 
-export const integrationFactory: IntegrationFactory = (plugin, { enabled = () => true, options, defaults } = {}) => (ctx) => {
-  if (enabled(ctx)) {
-    return plugin(
-      defu(
-        options?.(ctx),
-        defaults?.(ctx),
-      ),
-    )
-  }
-}
+export const integrationFactory: IntegrationFactory = (plugin, { enabled = () => true, options, defaults } = {}) =>
+  Object.assign(
+    (ctx: CloudstackPluginContext) => {
+      if (enabled(ctx)) {
+        return plugin(
+          defu(
+            options?.(ctx),
+            defaults?.(ctx),
+          ),
+        )
+      }
+    },
+    { enabled },
+  )

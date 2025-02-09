@@ -3,8 +3,8 @@ import { type LaunchHandlerClientMode, VitePWA } from 'vite-plugin-pwa'
 import { integrationFactory } from './_factory'
 
 export default integrationFactory(VitePWA, {
-  enabled: ctx => Boolean(ctx.userOptions.pwa),
-  options: ctx => ctx.userOptions.pwa,
+  enabled: ({ userOptions }) => Boolean(userOptions.pwa),
+  options: ({ userOptions }) => userOptions.pwa,
   defaults: () => ({
     registerType: 'autoUpdate',
     manifest: {

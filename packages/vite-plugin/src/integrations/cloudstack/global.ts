@@ -2,6 +2,8 @@ import type { Plugin } from 'vite'
 
 import type { CloudstackPluginContext } from '../../context'
 import { integrationFactory } from '../_factory'
+import unocss from '../unocss'
+import vueRouter from '../vue-router'
 
 const virtualModuleId = 'virtual:cloudstack'
 
@@ -18,7 +20,8 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => {
         const imports: string[] = []
         const exports: string[] = []
 
-        if (ctx.found('routes')) {
+        // Vue Router
+        if (vueRouter.enabled(ctx)) {
           imports.push(`import { ViteSSG } from 'vite-ssg'`)
           imports.push(`import { routes } from 'vue-router/auto-routes'`)
           exports.push(`export const Power = (App, fn) => ViteSSG(App, { routes }, fn)`)
@@ -32,7 +35,7 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => {
         imports.push(`import 'the-new-css-reset'`)
 
         // Unocss
-        if (ctx.found('uno.config.ts')) {
+        if (unocss.enabled(ctx)) {
           imports.push(`import 'uno.css'`)
         }
 
