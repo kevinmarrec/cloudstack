@@ -11,7 +11,7 @@ import { exists } from '../src/utils/fs'
 
 const mocks = vi.hoisted(() => ({
   x: vi.fn(),
-  prompts: vi.fn(() => ({} as any)),
+  prompts: vi.fn(() => ({})),
 }))
 
 vi.mock('tinyexec', () => ({ x: mocks.x }))

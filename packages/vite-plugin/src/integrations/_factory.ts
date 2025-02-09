@@ -3,22 +3,25 @@ import type { PluginOption } from 'vite'
 
 import type { CloudstackPluginContext } from '../context'
 
-type IntegrationFactory = <Plugin extends (...args: any) => PluginOption>
-(plugin: Plugin,
-  options?: {
-    enabled?: (ctx: CloudstackPluginContext) => boolean
-    options?: (ctx: CloudstackPluginContext) => Parameters<Plugin>[0] | boolean
-    defaults?: (ctx: CloudstackPluginContext) => Parameters<Plugin>[0] | boolean
-  }
-) => (ctx: CloudstackPluginContext) => PluginOption
+type Integration = ((ctx: CloudstackPluginContext) => PluginOption) & { enabled: (ctx: CloudstackPluginContext) => boolean }
 
-export const integrationFactory: IntegrationFactory = (plugin, { enabled = () => true, options, defaults } = {}) => (ctx) => {
-  if (enabled(ctx)) {
-    return plugin(
-      defu(
-        options?.(ctx),
-        defaults?.(ctx),
-      ),
-    )
-  }
-}
+type IntegrationFactory = <Plugin extends (...args: any) => PluginOption>(plugin: Plugin, options?: {
+  enabled?: (ctx: CloudstackPluginContext) => boolean
+  options?: (ctx: CloudstackPluginContext) => Parameters<Plugin>[0] | boolean
+  defaults?: (ctx: CloudstackPluginContext) => Parameters<Plugin>[0] | boolean
+}) => Integration
+
+export const integrationFactory: IntegrationFactory = (plugin, { enabled = () => true, options, defaults } = {}) =>
+  Object.assign(
+    (ctx: CloudstackPluginContext) => {
+      if (enabled(ctx)) {
+        return plugin(
+          defu(
+            options?.(ctx),
+            defaults?.(ctx),
+          ),
+        )
+      }
+    },
+    { enabled },
+  )

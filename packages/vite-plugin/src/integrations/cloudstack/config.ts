@@ -4,9 +4,11 @@ import type { Plugin } from 'vite'
 
 import type { CloudstackPluginContext } from '../../context'
 import { integrationFactory } from '../_factory'
+import pwa from '../pwa'
+import vueRouter from '../vue-router'
 
 export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
-  name: 'vite:cloudstack:config',
+  name: 'cloudstack:config',
   config() {
     return {
       build: {
@@ -19,8 +21,8 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
           'vite-ssg',
           'vite-ssg/single-page',
           'vue',
-          'vue-router',
-          ...ctx.userOptions.pwa ? ['workbox-window'] : [],
+          ...vueRouter.enabled(ctx) ? ['vue-router', 'unplugin-vue-router/runtime'] : [],
+          ...pwa.enabled(ctx) ? ['workbox-window'] : [],
         ],
       },
       ssgOptions: {

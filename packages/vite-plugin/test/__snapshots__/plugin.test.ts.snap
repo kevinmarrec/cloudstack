@@ -16,25 +16,59 @@ exports[`plugin > should inject dark mode script in index.html 1`] = `
 </html>"
 `;
 
-exports[`plugin > with all integrations 1`] = `
+exports[`plugin > should optimize dependencies 1`] = `
+[
+  "vite-ssg",
+  "vite-ssg/single-page",
+  "vue",
+]
+`;
+
+exports[`plugin > with all integrations (mode: 'analyze') 1`] = `
+[
+  "vite-plugin-pwa",
+  "vite-tsconfig-paths",
+  "unocss:transformers:pre",
+  "unocss:global:build:scan",
+  "unocss:global:content",
+  "unplugin-vue-router",
+  "cloudstack:global",
+  "cloudstack:config",
+  "cloudstack:dark-mode",
+  "unocss:config",
+  "unocss:transformers:undefined",
+  "unocss:devtools",
+  "unocss:api",
+  "unocss:global:build:generate",
+  "visualizer",
+  "vite:vue",
+  "vite-plugin-pwa:info",
+  "vite-plugin-pwa:build",
+  "vite-plugin-pwa:pwa-assets",
+  "unocss:transformers:post",
+  "unocss:global:build:bundle",
+]
+`;
+
+exports[`plugin > with all integrations (mode: 'development') 1`] = `
 [
   "vite-plugin-pwa",
   "vite-tsconfig-paths",
   "unocss:transformers:pre",
   "unocss:global:content",
   "unocss:global",
+  "unplugin-vue-router",
   "vite-plugin-inspect",
   "vite-plugin-vue-devtools",
-  "vite:cloudstack:global",
-  "vite:cloudstack:config",
-  "vite:cloudstack:dark-mode",
+  "cloudstack:global",
+  "cloudstack:config",
+  "cloudstack:dark-mode",
   "vite-plugin-pwa:dev-sw",
   "unocss:config",
   "unocss:transformers:undefined",
   "unocss:devtools",
   "unocss:api",
   "unocss:inspector",
-  "visualizer",
   "vite:vue",
   "vite-plugin-pwa:info",
   "vite-plugin-pwa:pwa-assets",
@@ -43,29 +77,49 @@ exports[`plugin > with all integrations 1`] = `
 ]
 `;
 
+exports[`plugin > with all integrations (mode: 'production') 1`] = `
+[
+  "vite-plugin-pwa",
+  "vite-tsconfig-paths",
+  "unocss:transformers:pre",
+  "unocss:global:build:scan",
+  "unocss:global:content",
+  "unplugin-vue-router",
+  "cloudstack:global",
+  "cloudstack:config",
+  "cloudstack:dark-mode",
+  "unocss:config",
+  "unocss:transformers:undefined",
+  "unocss:devtools",
+  "unocss:api",
+  "unocss:global:build:generate",
+  "vite:vue",
+  "vite-plugin-pwa:info",
+  "vite-plugin-pwa:build",
+  "vite-plugin-pwa:pwa-assets",
+  "unocss:transformers:post",
+  "unocss:global:build:bundle",
+]
+`;
+
 exports[`plugin > with defaults 1`] = `
 [
   "vite-tsconfig-paths",
   "vite-plugin-inspect",
   "vite-plugin-vue-devtools",
-  "vite:cloudstack:global",
-  "vite:cloudstack:config",
-  "vite:cloudstack:dark-mode",
+  "cloudstack:global",
+  "cloudstack:config",
+  "cloudstack:dark-mode",
   "vite:vue",
 ]
 `;
 
-exports[`virtual module > should generate virtual module content (MPA) 1`] = `
+exports[`virtual module > should generate virtual module content (MPA with unocss) 1`] = `
 "import { ViteSSG } from 'vite-ssg'
-import 'the-new-css-reset'
-export const Power = (App, routerOptions, fn) => ViteSSG(App, { base: import.meta.env.BASE_URL, ...routerOptions }, fn)"
-`;
-
-exports[`virtual module > should generate virtual module content, (MPA with unocss) 1`] = `
-"import { ViteSSG } from 'vite-ssg'
+import { routes } from 'vue-router/auto-routes'
 import 'the-new-css-reset'
 import 'uno.css'
-export const Power = (App, routerOptions, fn) => ViteSSG(App, { base: import.meta.env.BASE_URL, ...routerOptions }, fn)"
+export const Power = (App, fn) => ViteSSG(App, { routes }, fn)"
 `;
 
 exports[`virtual module > should generate virtual module content, (SPA) 1`] = `

@@ -1,4 +1,3 @@
-import { globSync } from 'tinyglobby'
 import type { ConfigEnv } from 'vite'
 
 import { version } from '../package.json'
@@ -9,7 +8,6 @@ export function createContext(userOptions: CloudstackPluginOptions = {}, env?: C
     env,
     version,
     userOptions,
-    found: (file: 'uno.config.ts') => globSync(file).length > 0,
   }
 }
 

@@ -1,8 +1,9 @@
 import Unocss from '@unocss/vite'
+import { globSync } from 'tinyglobby'
 
 import { integrationFactory } from './_factory'
 
 export default integrationFactory(Unocss, {
-  enabled: ctx => ctx.userOptions.unocss !== false && ctx.found('uno.config.ts'),
-  options: ctx => ctx.userOptions.unocss,
+  enabled: () => globSync('uno.config.ts').length > 0,
+  options: ({ userOptions }) => userOptions.unocss,
 })

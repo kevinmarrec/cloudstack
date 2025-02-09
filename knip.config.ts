@@ -5,6 +5,12 @@ export default useConfig({
     'packages/create-app/template': {
       entry: ['*.config.ts'],
     },
+    'packages/create-app/template/frontend': {
+      entry: [
+        'src/main.ts',
+        'src/pages/**/*.vue',
+      ],
+    },
     'packages/stylelint-config': {
       ignoreDependencies: [
         'stylelint-config-html',
