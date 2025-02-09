@@ -23,6 +23,7 @@ exports[`plugin > with all integrations 1`] = `
   "unocss:transformers:pre",
   "unocss:global:content",
   "unocss:global",
+  "unplugin-vue-router",
   "vite-plugin-inspect",
   "vite-plugin-vue-devtools",
   "vite:cloudstack:global",
@@ -55,17 +56,12 @@ exports[`plugin > with defaults 1`] = `
 ]
 `;
 
-exports[`virtual module > should generate virtual module content (MPA) 1`] = `
+exports[`virtual module > should generate virtual module content (MPA with unocss) 1`] = `
 "import { ViteSSG } from 'vite-ssg'
-import 'the-new-css-reset'
-export const Power = (App, routerOptions, fn) => ViteSSG(App, { base: import.meta.env.BASE_URL, ...routerOptions }, fn)"
-`;
-
-exports[`virtual module > should generate virtual module content, (MPA with unocss) 1`] = `
-"import { ViteSSG } from 'vite-ssg'
+import { routes } from 'vue-router/auto-routes'
 import 'the-new-css-reset'
 import 'uno.css'
-export const Power = (App, routerOptions, fn) => ViteSSG(App, { base: import.meta.env.BASE_URL, ...routerOptions }, fn)"
+export const Power = (App, fn) => ViteSSG(App, { routes }, fn)"
 `;
 
 exports[`virtual module > should generate virtual module content, (SPA) 1`] = `

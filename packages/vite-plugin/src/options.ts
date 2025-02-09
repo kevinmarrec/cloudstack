@@ -1,20 +1,11 @@
 import type { VitePluginConfig as UnocssPluginOptions } from '@unocss/vite'
 import type { Options as VuePluginOptions } from '@vitejs/plugin-vue'
 import type { PluginVisualizerOptions } from 'rollup-plugin-visualizer'
+import type { Options as VueRouterPluginOptions } from 'unplugin-vue-router'
 import type { VitePWAOptions as PWAPluginOptions } from 'vite-plugin-pwa'
 import type { VitePluginVueDevToolsOptions as VueDevToolsPluginOptions } from 'vite-plugin-vue-devtools'
 
 export interface CloudstackPluginOptions {
-  /**
-   * `vite-plugin-vue-devtools` plugin configuration.
-   *
-   * The plugin is enabled by default.
-   *
-   * Set to `false` to disable.
-   *
-   * @see https://github.com/vuejs/devtools-next
-   */
-  devtools?: false | VueDevToolsPluginOptions
   /**
    * `vite-plugin-pwa` plugin configuration.
    *
@@ -30,11 +21,9 @@ export interface CloudstackPluginOptions {
    *
    * The plugin is automatically enabled if any `uno.config.ts` file is found in the project.
    *
-   * Set to `false` to disable.
-   *
    * @see https://github.com/unocss/unocss
    */
-  unocss?: false | UnocssPluginOptions
+  unocss?: UnocssPluginOptions
   /**
    * `rollup-plugin-visualizer` plugin configuration.
    *
@@ -51,4 +40,24 @@ export interface CloudstackPluginOptions {
    * @see https://github.com/vitejs/vite-plugin-vue
    */
   vue?: VuePluginOptions
+  /**
+   * `vite-plugin-vue-devtools` plugin configuration.
+   *
+   * The plugin is enabled by default.
+   *
+   * Set to `false` to disable.
+   *
+   * @see https://github.com/vuejs/devtools-next
+   */
+  vueDevTools?: false | VueDevToolsPluginOptions
+  /**
+   * `unplugin-vue-router` plugin configuration.
+   *
+   * The plugin is automatically enabled if any `.vue` file is found in the project's routes folder.
+   *
+   * The file detection is based on the `routesFolder` option of this plugin (defaults to `src/pages`).
+   *
+   * @see https://github.com/posva/unplugin-vue-router
+   */
+  vueRouter?: VueRouterPluginOptions
 }

@@ -5,6 +5,7 @@ import unocss from './unocss'
 import visualizer from './visualizer'
 import vue from './vue'
 import vueDevTools from './vue-devtools'
+import vueRouter from './vue-router'
 
 export default [
   ...cloudstack,
@@ -12,6 +13,7 @@ export default [
   tsconfigPaths,
   unocss,
   visualizer,
+  vueRouter,
   vue,
   vueDevTools,
 ]

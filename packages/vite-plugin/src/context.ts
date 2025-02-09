@@ -9,7 +9,14 @@ export function createContext(userOptions: CloudstackPluginOptions = {}, env?: C
     env,
     version,
     userOptions,
-    found: (file: 'uno.config.ts') => globSync(file).length > 0,
+    found: (feature: 'routes' | 'uno.config.ts') => {
+      switch (feature) {
+        case 'routes':
+          return globSync('src/pages/**/*.vue').length > 0
+        case 'uno.config.ts':
+          return globSync('uno.config.ts').length > 0
+      }
+    },
   }
 }
 

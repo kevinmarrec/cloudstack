@@ -19,7 +19,7 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
           'vite-ssg',
           'vite-ssg/single-page',
           'vue',
-          'vue-router',
+          ...ctx.found('routes') ? ['vue-router', 'unplugin-vue-router/runtime'] : [],
           ...ctx.userOptions.pwa ? ['workbox-window'] : [],
         ],
       },

@@ -3,6 +3,6 @@ import Unocss from '@unocss/vite'
 import { integrationFactory } from './_factory'
 
 export default integrationFactory(Unocss, {
-  enabled: ctx => ctx.userOptions.unocss !== false && ctx.found('uno.config.ts'),
+  enabled: ctx => ctx.found('uno.config.ts'),
   options: ctx => ctx.userOptions.unocss,
 })

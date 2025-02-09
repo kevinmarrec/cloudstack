@@ -39,6 +39,9 @@ describe('plugin', () => {
   it('with all integrations', async () => {
     await fs.writeFile(path.resolve(tmpDir, 'uno.config.ts'), `export default {}`)
 
+    await fs.mkdir(path.resolve(tmpDir, 'src/pages'), { recursive: true })
+    await fs.writeFile(path.resolve(tmpDir, 'src/pages/index.vue'), `<template></template>`)
+
     const plugins = await getActiveCloudstackVitePlugins({
       pwa: {
         pwaAssets: {
@@ -61,7 +64,6 @@ describe('plugin', () => {
       'vite-ssg',
       'vite-ssg/single-page',
       'vue',
-      'vue-router',
     ])
   })
 
@@ -78,21 +80,15 @@ describe('virtual module', async () => {
     expect((module.resolveId as any)('virtual:cloudstack')).toEqual('virtual:cloudstack')
   })
 
-  it('should generate virtual module content (MPA)', async () => {
-    const module = virtualModule({ ...createContext(), found: () => false }) as any
-    const content = await module.load('virtual:cloudstack')
-    expect(content).toMatchSnapshot()
-  })
-
-  it('should generate virtual module content, (MPA with unocss)', async () => {
-    const module = virtualModule({ ...createContext(), found: file => file === 'uno.config.ts' }) as any
+  it('should generate virtual module content (MPA with unocss)', async () => {
+    const module = virtualModule({ ...createContext(), found: feature => feature === 'routes' || feature === 'uno.config.ts' }) as any
     const content = await module.load('virtual:cloudstack')
     expect(content).toMatchSnapshot()
   })
 
   it('should generate virtual module content, (SPA)', async () => {
     const module = virtualModule({ ...createContext(), found: () => false }) as any
-    const content = await module.load('virtual:cloudstack/spa')
+    const content = await module.load('virtual:cloudstack')
     expect(content).toMatchSnapshot()
   })
 })
