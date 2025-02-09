@@ -5,7 +5,7 @@ import { integrationFactory } from './_factory'
 
 export default integrationFactory(VueRouter, {
   enabled: () => globSync('src/pages/**/*.vue').length > 0,
-  options: ctx => ctx.userOptions.vueRouter,
+  options: ({ userOptions }) => userOptions.vueRouter,
   defaults: () => ({
     dts: 'src/types/router.d.ts',
   }),
