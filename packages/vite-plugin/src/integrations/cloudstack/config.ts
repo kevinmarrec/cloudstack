@@ -8,7 +8,7 @@ import pwa from '../pwa'
 import vueRouter from '../vue-router'
 
 export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
-  name: 'vite:cloudstack:config',
+  name: 'cloudstack:config',
   config() {
     return {
       build: {

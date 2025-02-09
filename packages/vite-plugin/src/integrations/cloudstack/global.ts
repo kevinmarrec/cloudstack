@@ -8,7 +8,7 @@ import vueRouter from '../vue-router'
 const virtualModuleId = 'virtual:cloudstack'
 
 export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
-  name: 'vite:cloudstack:global',
+  name: 'cloudstack:global',
   resolveId(id) {
     if (id === virtualModuleId) {
       return id
