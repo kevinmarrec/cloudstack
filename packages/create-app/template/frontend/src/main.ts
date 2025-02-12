@@ -1,5 +1,5 @@
-import { Power } from 'virtual:cloudstack'
+import { Cloudstack } from 'virtual:cloudstack'
 
 import App from './App.vue'
 
-export const createApp = Power(App)
+export const createApp = Cloudstack(App)

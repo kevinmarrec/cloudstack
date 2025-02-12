@@ -119,11 +119,11 @@ exports[`virtual module > should generate virtual module content (MPA with unocs
 import { routes } from 'vue-router/auto-routes'
 import 'the-new-css-reset'
 import 'uno.css'
-export const Power = (App, fn) => ViteSSG(App, { routes }, fn)"
+export const Cloudstack = (App, ...args) => typeof args[0] === 'object' ? ViteSSG(App, { routes, ...args[0] }, args[1]) : ViteSSG(App, { routes }, args[0])"
 `;
 
 exports[`virtual module > should generate virtual module content, (SPA) 1`] = `
 "import { ViteSSG } from 'vite-ssg/single-page'
 import 'the-new-css-reset'
-export const Power = (App, fn) => ViteSSG(App, fn)"
+export const Cloudstack = (App, ...args) => typeof args[0] === 'object' ? ViteSSG(App, args[1]) : ViteSSG(App, args[0])"
 `;

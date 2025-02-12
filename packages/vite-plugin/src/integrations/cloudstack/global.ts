@@ -23,11 +23,11 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
       if (vueRouter.enabled(ctx)) {
         imports.push(`import { ViteSSG } from 'vite-ssg'`)
         imports.push(`import { routes } from 'vue-router/auto-routes'`)
-        exports.push(`export const Power = (App, fn) => ViteSSG(App, { routes }, fn)`)
+        exports.push(`export const Cloudstack = (App, ...args) => typeof args[0] === 'object' ? ViteSSG(App, { routes, ...args[0] }, args[1]) : ViteSSG(App, { routes }, args[0])`)
       }
       else {
         imports.push(`import { ViteSSG } from 'vite-ssg/single-page'`)
-        exports.push(`export const Power = (App, fn) => ViteSSG(App, fn)`)
+        exports.push(`export const Cloudstack = (App, ...args) => typeof args[0] === 'object' ? ViteSSG(App, args[1]) : ViteSSG(App, args[0])`)
       }
 
       // CSS Reset
