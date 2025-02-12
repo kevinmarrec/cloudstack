@@ -27,8 +27,7 @@
     "postinstall": "bun scripts/postinstall.ts",
     "prepublish": "bun scripts/prepublish.ts",
     "release": "bumpp",
-    "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test": "vitest"
   },
   "devDependencies": {
     "@kevinmarrec/cloudstack-eslint-config": "workspace:*",
