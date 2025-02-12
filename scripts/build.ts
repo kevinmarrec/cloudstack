@@ -3,6 +3,7 @@ import path from 'node:path'
 
 import { x } from 'tinyexec'
 import { glob } from 'tinyglobby'
+import c from 'tinyrainbow'
 
 interface BuildEntry {
   name: string
@@ -12,13 +13,14 @@ interface BuildEntry {
 }
 
 async function buildPackage(entry: BuildEntry) {
+  const time = performance.now()
   await Promise.all(entry.needs.map(buildPackage))
-  console.log(`Building ${entry.name}...`)
   const { stderr, exitCode } = await x('bun', ['--cwd', entry.path, 'build', '--silent'])
   if (exitCode) {
     console.error(`Failed to build ${entry.name} :`)
-    console.error(stderr)
+    return console.error(stderr)
   }
+  console.log(`${entry.name} built in ${c.bold(Math.round(performance.now() - time))} ms`)
 }
 
 const pkgPaths = await glob('packages/*', { onlyDirectories: true })
