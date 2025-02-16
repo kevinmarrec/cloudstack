@@ -32,8 +32,8 @@
     "eslint": ">=9.0.0"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^4.2.0",
-    "@unocss/eslint-plugin": "^65.4.3",
+    "@antfu/eslint-config": "^4.2.1",
+    "@unocss/eslint-plugin": "^65.5.0",
     "defu": "^6.1.4",
     "eslint-plugin-format": "^1.0.1",
     "tinyglobby": "^0.2.10"
