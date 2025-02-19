@@ -10,9 +10,9 @@
     "lokalise.i18n-ally",
     "mikestead.dotenv",
     "ms-azuretools.vscode-docker",
+    "pkief.material-icon-theme",
     "redhat.vscode-yaml",
     "stylelint.vscode-stylelint",
-    "vscode-icons-team.vscode-icons",
     "vue.volar",
     "yoavbls.pretty-ts-errors"
   ]
