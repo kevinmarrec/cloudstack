@@ -6,7 +6,7 @@ type Options = Parameters<typeof antfu>[0]
 type UserConfig = Parameters<typeof antfu>[1]
 
 export function useConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
-  const [unoConfig] = globSync('**/uno.config.ts', { absolute: true, ignore: ['**/node_modules/**'] })
+  const [unoConfig] = globSync('**/uno.config.ts', { absolute: true })
 
   if (options.unocss !== false && unoConfig) {
     options.unocss = true
