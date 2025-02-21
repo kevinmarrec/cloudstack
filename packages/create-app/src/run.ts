@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
+import c from 'ansis'
 import { x } from 'tinyexec'
-import colors from 'tinyrainbow'
 
 import { prompt } from './prompt'
 import { scaffold } from './scaffold'
@@ -18,5 +18,5 @@ export async function run() {
     await x('bun', ['install', '--cwd', targetDir])
   }
 
-  console.log('\n✅ Done in', colors.bold(colors.blue(`${((Date.now() - time) / 1000).toFixed(2)}s`)))
+  console.log('\n✅ Done in', c.bold.blue(`${((Date.now() - time) / 1000).toFixed(2)}s`))
 }

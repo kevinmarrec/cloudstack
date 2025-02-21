@@ -1,9 +1,9 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 
+import c from 'ansis'
 import { x } from 'tinyexec'
 import { glob } from 'tinyglobby'
-import c from 'tinyrainbow'
 
 interface BuildEntry {
   name: string

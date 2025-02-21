@@ -4,14 +4,14 @@ import path from 'node:path'
 import process from 'node:process'
 import { parseArgs } from 'node:util'
 
+import c from 'ansis'
 import prompts from 'prompts'
-import colors from 'tinyrainbow'
 
 import { version } from '../package.json'
 import fs from './utils/fs'
 
 function onCancel(): never {
-  console.log(`${colors.red('✖')} Operation cancelled`)
+  console.log(`${c.red('✖')} Operation cancelled`)
   process.exit(1)
 }
 

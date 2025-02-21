@@ -2,8 +2,8 @@
 
 import path from 'node:path'
 
+import c from 'ansis'
 import { glob } from 'tinyglobby'
-import colors from 'tinyrainbow'
 
 import { version } from '../package.json'
 import fs from './utils/fs'
@@ -13,7 +13,7 @@ export async function scaffold(root: string) {
     ? await fs.empty(root)
     : await fs.mkdir(root)
 
-  console.log(`\n🧬 Scaffolding project in ${colors.blue(root)}...`)
+  console.log(`\n🧬 Scaffolding project in ${c.blue(root)}...`)
 
   // Copy template
   await fs.cp(path.join(import.meta.dirname, '../template'), root, { recursive: true })
