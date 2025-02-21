@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises'
-import path from 'node:path'
 
 import { faker } from '@faker-js/faker'
+import { join } from 'pathe'
 import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest'
 
 import { createTempDir } from '../../../test/utils'
@@ -27,7 +27,7 @@ describe('run', () => {
     process.argv = ['node', 'create-app']
     projectName = `${faker.word.adjective()}-${faker.animal.type()}`
     tmpDir = await createTempDir('create-app')
-    resolveProjectPath = (...paths: string[]) => path.join(tmpDir, projectName, ...paths)
+    resolveProjectPath = (...paths: string[]) => join(tmpDir, projectName, ...paths)
 
     // Spies
     consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {})

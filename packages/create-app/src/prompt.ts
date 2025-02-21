@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 
-import path from 'node:path'
 import process from 'node:process'
 import { parseArgs } from 'node:util'
 
 import c from 'ansis'
+import { resolve } from 'pathe'
 import prompts from 'prompts'
 
 import { version } from '../package.json'
@@ -75,7 +75,7 @@ Examples:
 
   // Target directory
   const cwd = process.cwd()
-  const targetDir = path.resolve(cwd, projectName)
+  const targetDir = resolve(cwd, projectName)
 
   // Overwrite check
   if (!((await fs.emptyCheck(targetDir) || options.force))) {

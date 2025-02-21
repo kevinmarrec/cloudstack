@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises'
-import path from 'node:path'
 
 import c from 'ansis'
+import { join } from 'pathe'
 import { x } from 'tinyexec'
 import { glob } from 'tinyglobby'
 
@@ -32,7 +32,7 @@ await Promise.all(pkgPaths.map(async (pkgPath: string) => {
     name,
     scripts = {},
     dependencies = {},
-  } = JSON.parse(await fs.readFile(path.join(pkgPath, 'package.json'), 'utf-8'))
+  } = JSON.parse(await fs.readFile(join(pkgPath, 'package.json'), 'utf-8'))
 
   if (scripts.build) {
     buildMap.set(name, {

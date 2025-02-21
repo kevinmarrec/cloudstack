@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises'
-import path from 'node:path'
 
 import { ESLint } from 'eslint'
+import { resolve } from 'pathe'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { createTempDir } from '../../../test/utils'
@@ -103,7 +103,7 @@ describe('config', async () => {
   })
 
   it('should load antfu/unocss lint rules, when uno.config.ts file is found', async () => {
-    await fs.writeFile(path.resolve(tmpDir, 'uno.config.ts'), `export default {}`)
+    await fs.writeFile(resolve(tmpDir, 'uno.config.ts'), `export default {}`)
 
     expect(await useConfig()).toEqual(
       expect.arrayContaining([
