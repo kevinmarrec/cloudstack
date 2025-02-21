@@ -1,6 +1,7 @@
 import type { PathLike } from 'node:fs'
 import fs from 'node:fs/promises'
-import path from 'node:path'
+
+import { resolve } from 'pathe'
 
 const ignorePredicate = (filename: string) => ['.git'].includes(filename)
 
@@ -10,7 +11,7 @@ async function empty(dir: string) {
       continue
     }
 
-    await fs.rm(path.resolve(dir, entry), { recursive: true })
+    await fs.rm(resolve(dir, entry), { recursive: true })
   }
 }
 

@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises'
-import path from 'node:path'
 import process from 'node:process'
 
+import { resolve } from 'pathe'
 import { createServer, resolveConfig } from 'vite'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -36,9 +36,9 @@ describe('plugin', () => {
     { command: 'build', mode: 'production' },
     { command: 'build', mode: 'analyze' },
   ] as const)('with all integrations (mode: $mode)', async ({ command, mode }) => {
-    await fs.writeFile(path.resolve(tmpDir, 'uno.config.ts'), `export default {}`)
-    await fs.mkdir(path.resolve(tmpDir, 'src/views'), { recursive: true })
-    await fs.writeFile(path.resolve(tmpDir, 'src/views/index.vue'), `<template></template>`)
+    await fs.writeFile(resolve(tmpDir, 'uno.config.ts'), `export default {}`)
+    await fs.mkdir(resolve(tmpDir, 'src/views'), { recursive: true })
+    await fs.writeFile(resolve(tmpDir, 'src/views/index.vue'), `<template></template>`)
 
     const baseConfig = await resolveConfig({}, command, mode)
 
@@ -88,9 +88,9 @@ describe('virtual module', async () => {
   })
 
   it('should generate virtual module content (MPA with unocss)', async () => {
-    await fs.writeFile(path.resolve(tmpDir, 'uno.config.ts'), `export default {}`)
-    await fs.mkdir(path.resolve(tmpDir, 'src/pages'), { recursive: true })
-    await fs.writeFile(path.resolve(tmpDir, 'src/pages/index.vue'), `<template></template>`)
+    await fs.writeFile(resolve(tmpDir, 'uno.config.ts'), `export default {}`)
+    await fs.mkdir(resolve(tmpDir, 'src/pages'), { recursive: true })
+    await fs.writeFile(resolve(tmpDir, 'src/pages/index.vue'), `<template></template>`)
 
     const module: any = virtualModule(createContext())
     const content = module.load('virtual:cloudstack')

@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
 
-import path from 'node:path'
-
 import c from 'ansis'
+import { join } from 'pathe'
 import { glob } from 'tinyglobby'
 
 import { version } from '../package.json'
@@ -16,8 +15,8 @@ export async function scaffold(root: string) {
   console.log(`\n🧬 Scaffolding project in ${c.blue(root)}...`)
 
   // Copy template
-  await fs.cp(path.join(import.meta.dirname, '../template'), root, { recursive: true })
-  await fs.rename(path.join(root, 'gitignore'), path.join(root, '.gitignore'))
+  await fs.cp(join(import.meta.dirname, '../template'), root, { recursive: true })
+  await fs.rename(join(root, 'gitignore'), join(root, '.gitignore'))
 
   // Set @kevinmarrec/cloudstack-* packages version to current version
   const pkgJsonPaths = await glob('**/package.json', { cwd: root, absolute: true })
