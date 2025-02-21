@@ -20,7 +20,7 @@ async function buildPackage(entry: BuildEntry) {
     console.error(`Failed to build ${entry.name} :`)
     return console.error(stderr)
   }
-  console.log(`${entry.name} built in ${c.bold(Math.round(performance.now() - time))} ms`)
+  console.log(`${entry.name} built in ${c.bold(Math.ceil(performance.now() - time))} ms`)
 }
 
 const pkgPaths = await glob('packages/*', { onlyDirectories: true })
