@@ -49,6 +49,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cleanup skipped workflow runs on main branch
-        run: gh run list --workflow ci.yml --branch main --status skipped --json databaseId --jq '.[].databaseId' | xargs -n 1 gh run delete
+        run: gh run list --workflow ci.yml --branch main --status skipped --json databaseId --jq '.[].databaseId' | xargs -rn 1 gh run delete
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
