@@ -13,7 +13,7 @@ jobs:
     name: Check & Test
     runs-on: ubuntu-latest
     if: |
-      !startsWith(github.event.head_commit.message, 'chore: release')
+      ${{ !startsWith(github.event.head_commit.message, 'chore: release') }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -44,4 +44,10 @@ jobs:
         run: bun run check:types
 
       - name: Unit tests
-        run: bun run test --coverage
+        run: bun run test:coverage
+
+      - name: Upload coverage
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: gh gist edit 7af6e73961e829b9e0835cdaead60ad3 -f cloudstack.coverage.json coverage/coverage-summary.grouped.json
+        env:
+          GH_TOKEN: ${{ secrets.GISTS_ACCESS_TOKEN }}
