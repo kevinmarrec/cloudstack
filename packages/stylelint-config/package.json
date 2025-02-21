@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-stylelint-config",
   "type": "module",
-  "version": "0.18.0",
+  "version": "0.18.1",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/stylelint-config",
