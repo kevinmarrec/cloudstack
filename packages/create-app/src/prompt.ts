@@ -23,7 +23,6 @@ export async function prompt() {
       force: { type: 'boolean', short: 'f' },
       help: { type: 'boolean', short: 'h' },
       install: { type: 'boolean', short: 'i' },
-      silent: { type: 'boolean', short: 's' },
       version: { type: 'boolean', short: 'v' },
     },
   })
@@ -37,7 +36,6 @@ Options:
   -f, --force     Create the project even if the directory is not empty.
   -h, --help      Display this help message.
   -i, --install   Automatically install dependencies after creating the project.
-  -s, --silent    Run the CLI in silent mode.
   --version       Display the version number of this CLI.
 
 Examples:
@@ -52,11 +50,6 @@ Examples:
   if (options.version) {
     console.log(version)
     process.exit(0)
-  }
-
-  // Silent mode
-  if (options.silent) {
-    console.log = () => {}
   }
 
   // Project name

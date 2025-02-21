@@ -127,15 +127,6 @@ describe('run', () => {
     expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Installing dependencies'))
   })
 
-  it('create-app --silent [DIRECTORY] (directory does not exist)', async () => {
-    process.argv[2] = projectName
-    process.argv[3] = '--silent'
-
-    await run()
-
-    expect(consoleLogSpy).not.toHaveBeenCalled()
-  })
-
   it('create-app --help', async () => {
     process.argv[2] = '--help'
 
