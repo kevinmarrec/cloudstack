@@ -10,9 +10,11 @@ import { version } from '../package.json'
 import { scaffold } from './scaffold'
 import fs from './utils/fs'
 
-function onCancel(): never {
-  cancel('Operation cancelled')
-  process.exit(1)
+function maybeCancel<T>(value: T, options?: { strict?: boolean }): asserts value is Exclude<T, symbol> {
+  if (isCancel(value) || (options?.strict && !value)) {
+    cancel('Operation cancelled')
+    process.exit(1)
+  }
 }
 
 export async function run() {
@@ -52,10 +54,15 @@ Options:
   let projectName = positionals[0] || await text({
     message: 'Project name',
     placeholder: 'my-app',
-    validate: value => String(value).trim() ? '' : 'Project name cannot be empty',
+    validate: (value) => {
+      if (!value.trim())
+        return 'Project name cannot be empty'
+    },
   })
 
-  projectName = isCancel(projectName) ? onCancel() : projectName.trim()
+  maybeCancel(projectName)
+
+  projectName = projectName.trim()
 
   // Target directory
 
@@ -74,9 +81,7 @@ Options:
       inactive: 'No',
     })
 
-    if (isCancel(shouldOverwrite) || !shouldOverwrite) {
-      onCancel()
-    }
+    maybeCancel(shouldOverwrite, { strict: true })
   }
 
   // Scaffold project
@@ -100,9 +105,7 @@ Options:
     inactive: 'No',
   })
 
-  if (isCancel(shouldInstall)) {
-    onCancel()
-  }
+  maybeCancel(shouldInstall)
 
   await tasks([{
     title: 'Installing dependencies',

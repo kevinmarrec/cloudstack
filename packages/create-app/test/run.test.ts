@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises'
 
+import type { TextOptions } from '@clack/prompts'
 import { faker } from '@faker-js/faker'
 import { join } from 'pathe'
 import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest'
@@ -13,7 +14,7 @@ const mocks = vi.hoisted(() => ({
   x: vi.fn(),
   prompts: {
     confirm: vi.fn(() => Promise.resolve(false)),
-    text: vi.fn(() => Promise.resolve('')),
+    text: vi.fn<(_options: TextOptions) => Promise<string>>(),
   },
 }))
 
@@ -50,7 +51,12 @@ describe('run', () => {
   })
 
   it('create-app (no directory given, simulate projectName answer, install dependencies)', async () => {
-    mocks.prompts.text.mockResolvedValueOnce(projectName)
+    mocks.prompts.text.mockImplementationOnce(async (options) => {
+      expect(options.validate?.('   ')).toBe('Project name cannot be empty')
+      expect(options.validate?.(projectName)).toBeUndefined()
+      return projectName
+    })
+
     mocks.prompts.confirm.mockResolvedValueOnce(true)
 
     await run()
