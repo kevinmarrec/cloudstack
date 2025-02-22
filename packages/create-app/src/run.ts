@@ -1,7 +1,7 @@
 import process from 'node:process'
 import { parseArgs } from 'node:util'
 
-import { cancel, confirm, intro, isCancel, log, outro, tasks, text } from '@clack/prompts'
+import { cancel, confirm, intro, isCancel, log, note, tasks, text } from '@clack/prompts'
 import c from 'ansis'
 import { resolve } from 'pathe'
 import { x } from 'tinyexec'
@@ -47,6 +47,8 @@ Options:
     process.exit(0)
   }
 
+  process.stdout.write('\n')
+
   intro(`Cloudstack ${c.dim(`v${version}`)}`)
 
   // Project name
@@ -86,8 +88,6 @@ Options:
 
   // Scaffold project
 
-  await scaffold(targetDir)
-
   await tasks([{
     title: `Scaffolding project in ${c.blue(targetDir)}`,
     task: async () => {
@@ -108,13 +108,16 @@ Options:
   maybeCancel(shouldInstall)
 
   await tasks([{
-    title: 'Installing dependencies',
+    title: 'Installing with bun',
     enabled: shouldInstall,
     task: async () => {
       await x('bun', ['install', '--cwd', targetDir])
-      return 'Installed dependencies'
+      return 'Installed with bun'
     },
   }])
 
-  outro('Done!')
+  await note([
+    targetDir !== cwd && `cd ${c.reset.blue(projectName)}`,
+    `bun run dev`,
+  ].filter(Boolean).join('\n'), 'Next steps')
 }
