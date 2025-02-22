@@ -1,22 +1,117 @@
-/* eslint-disable no-console */
+import process from 'node:process'
+import { parseArgs } from 'node:util'
 
+import { cancel, confirm, intro, isCancel, log, outro, tasks, text } from '@clack/prompts'
 import c from 'ansis'
+import { resolve } from 'pathe'
 import { x } from 'tinyexec'
 
-import { prompt } from './prompt'
+import { version } from '../package.json'
 import { scaffold } from './scaffold'
+import fs from './utils/fs'
+
+function onCancel(): never {
+  cancel('Operation cancelled')
+  process.exit(1)
+}
 
 export async function run() {
-  const { targetDir, install } = await prompt()
+  const { values: options, positionals } = parseArgs({
+    args: process.argv.slice(2),
+    allowPositionals: true,
+    options: {
+      force: { type: 'boolean', short: 'f' },
+      help: { type: 'boolean', short: 'h' },
+      version: { type: 'boolean', short: 'v' },
+    },
+  })
 
-  const time = Date.now()
+  // Help
+  if (options.help) {
+    process.stdout.write(`\
+Usage: create-app [OPTIONS...] [DIRECTORY]
+
+Options:
+  -f, --force     Create the project even if the directory is not empty.
+  -h, --help      Display this help message.
+  --version       Display the version number of this CLI.
+`)
+    process.exit(0)
+  }
+
+  // Version
+  if (options.version) {
+    process.stdout.write(`${version}\n`)
+    process.exit(0)
+  }
+
+  intro(`Cloudstack ${c.dim(`v${version}`)}`)
+
+  // Project name
+
+  let projectName = positionals[0] || await text({
+    message: 'Project name',
+    placeholder: 'my-app',
+    validate: value => String(value).trim() ? '' : 'Project name cannot be empty',
+  })
+
+  projectName = isCancel(projectName) ? onCancel() : projectName.trim()
+
+  // Target directory
+
+  const cwd = process.cwd()
+  const targetDir = resolve(cwd, projectName)
+
+  // Overwrite check
+
+  if (!((await fs.emptyCheck(targetDir) || options.force))) {
+    await log.warn(`${targetDir === cwd ? 'Current directory' : `Target directory ${c.blue(targetDir)}`} is not empty`)
+
+    const shouldOverwrite = await confirm({
+      message: 'Remove existing files and continue?',
+      initialValue: true,
+      active: 'Yes',
+      inactive: 'No',
+    })
+
+    if (isCancel(shouldOverwrite) || !shouldOverwrite) {
+      onCancel()
+    }
+  }
+
+  // Scaffold project
 
   await scaffold(targetDir)
 
-  if (install) {
-    console.log('\n📦 Installing dependencies...')
-    await x('bun', ['install', '--cwd', targetDir])
+  await tasks([{
+    title: `Scaffolding project in ${c.blue(targetDir)}`,
+    task: async () => {
+      await scaffold(targetDir)
+      return `Scaffolded project in ${c.blue(targetDir)}`
+    },
+  }])
+
+  // Install dependencies
+
+  const shouldInstall = await confirm({
+    message: 'Install dependencies?',
+    initialValue: true,
+    active: 'Yes',
+    inactive: 'No',
+  })
+
+  if (isCancel(shouldInstall)) {
+    onCancel()
   }
 
-  console.log('\n✅ Done in', c.bold.blue(`${((Date.now() - time) / 1000).toFixed(2)}s`))
+  await tasks([{
+    title: 'Installing dependencies',
+    enabled: shouldInstall,
+    task: async () => {
+      await x('bun', ['install', '--cwd', targetDir])
+      return 'Installed dependencies'
+    },
+  }])
+
+  outro('Done!')
 }

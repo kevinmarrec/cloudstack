@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-
-import c from 'ansis'
 import { join } from 'pathe'
 import { glob } from 'tinyglobby'
 
@@ -11,8 +8,6 @@ export async function scaffold(root: string) {
   await fs.exists(root)
     ? await fs.empty(root)
     : await fs.mkdir(root)
-
-  console.log(`\n🧬 Scaffolding project in ${c.blue(root)}...`)
 
   // Copy template
   await fs.cp(join(import.meta.dirname, '../template'), root, { recursive: true })

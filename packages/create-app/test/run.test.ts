@@ -11,17 +11,24 @@ import { exists } from '../src/utils/fs'
 
 const mocks = vi.hoisted(() => ({
   x: vi.fn(),
-  prompts: vi.fn(() => ({})),
+  prompts: {
+    confirm: vi.fn(() => Promise.resolve(false)),
+    text: vi.fn(() => Promise.resolve('')),
+  },
 }))
 
 vi.mock('tinyexec', () => ({ x: mocks.x }))
-vi.mock('prompts', () => ({ default: mocks.prompts }))
+vi.mock('@clack/prompts', async () => ({
+  ...await vi.importActual('@clack/prompts'),
+  text: mocks.prompts.text,
+  confirm: mocks.prompts.confirm,
+}))
 
 describe('run', () => {
   let projectName: string
   let tmpDir: string
   let resolveProjectPath: (filename: string) => string
-  let consoleLogSpy: MockInstance
+  let stdoutSpy: MockInstance
 
   beforeEach(async () => {
     process.argv = ['node', 'create-app']
@@ -30,7 +37,7 @@ describe('run', () => {
     resolveProjectPath = (...paths: string[]) => join(tmpDir, projectName, ...paths)
 
     // Spies
-    consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
+    stdoutSpy = vi.spyOn(process.stdout, 'write').mockImplementation(() => true)
     vi.spyOn(process, 'cwd').mockReturnValue(tmpDir)
     vi.spyOn(process, 'exit').mockImplementation((code) => {
       throw new Error(`process.exit(${code})`)
@@ -42,12 +49,13 @@ describe('run', () => {
     vi.restoreAllMocks()
   })
 
-  it('create-app (no directory given, simulate projectName answer)', async () => {
-    mocks.prompts.mockResolvedValueOnce({ projectName })
+  it('create-app (no directory given, simulate projectName answer, install dependencies)', async () => {
+    mocks.prompts.text.mockResolvedValueOnce(projectName)
+    mocks.prompts.confirm.mockResolvedValueOnce(true)
 
     await run()
 
-    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Scaffolding project'))
+    expect(stdoutSpy).toHaveBeenCalledWith(expect.stringContaining('Scaffolded project'))
     expect(await exists(resolveProjectPath('package.json'))).toBe(true)
     expect(await exists(resolveProjectPath('.gitignore'))).toBe(true)
   })
@@ -89,7 +97,7 @@ describe('run', () => {
     process.argv[2] = isCurrentDirectory ? '.' : projectName
     projectName = isCurrentDirectory ? '.' : projectName
 
-    mocks.prompts.mockResolvedValueOnce({ shouldOverwrite })
+    mocks.prompts.confirm.mockResolvedValueOnce(shouldOverwrite)
 
     await fs.mkdir(resolveProjectPath('src'), { recursive: true })
     await fs.writeFile(resolveProjectPath('src/index.ts'), '')
@@ -100,7 +108,7 @@ describe('run', () => {
     }
     else {
       await expect(run()).rejects.toThrowError('process.exit(1)')
-      expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Operation cancelled'))
+      expect(stdoutSpy).toHaveBeenCalledWith(expect.stringContaining('Operation cancelled'))
       expect(await exists(resolveProjectPath('src'))).toBe(true)
       expect(await exists(resolveProjectPath('package.json'))).toBe(false)
     }
@@ -118,21 +126,12 @@ describe('run', () => {
     expect(await exists(resolveProjectPath('package.json'))).toBe(true)
   })
 
-  it('create-app --install [DIRECTORY] (directory does not exist)', async () => {
-    process.argv[2] = projectName
-    process.argv[3] = '--install'
-
-    await run()
-
-    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Installing dependencies'))
-  })
-
   it('create-app --help', async () => {
     process.argv[2] = '--help'
 
     await expect(run()).rejects.toThrowError('process.exit(0)')
 
-    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Usage: create-app'))
+    expect(stdoutSpy).toHaveBeenCalledWith(expect.stringContaining('Usage: create-app'))
   })
 
   it('create-app --version', async () => {
@@ -140,6 +139,6 @@ describe('run', () => {
 
     await expect(run()).rejects.toThrowError('process.exit(0)')
 
-    expect(consoleLogSpy).toHaveBeenCalledWith(version)
+    expect(stdoutSpy).toHaveBeenCalledWith(expect.stringContaining(version))
   })
 })
