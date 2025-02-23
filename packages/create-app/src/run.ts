@@ -1,7 +1,7 @@
 import process from 'node:process'
 import { parseArgs } from 'node:util'
 
-import { cancel, confirm, intro, isCancel, log, note, tasks, text } from '@clack/prompts'
+import { cancel, confirm, intro, isCancel, log, note, outro, tasks, text } from '@clack/prompts'
 import c from 'ansis'
 import { resolve } from 'pathe'
 import { x } from 'tinyexec'
@@ -120,4 +120,6 @@ Options:
     targetDir !== cwd && `cd ${c.reset.blue(projectName)}`,
     `bun run dev`,
   ].filter(Boolean).join('\n'), 'Next steps')
+
+  await outro(`Problems? ${c.cyan('https://github.com/kevinmarrec/cloudstack/issues')}`)
 }
