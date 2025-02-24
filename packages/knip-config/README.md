@@ -1,10 +1,10 @@
 ## Description
 
-TODO
+Opinionated [Knip](https://knip.dev) configuration (`knip.config.ts`).
 
 ## Usage
 
-> Requires **[Knip](https://knip.dev)** v5 _or later_
+> Requires [Knip](https://knip.dev) v5 _or later_
 
 ### Default
 

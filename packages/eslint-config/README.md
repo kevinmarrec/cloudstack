@@ -1,10 +1,10 @@
 ## Description
 
-TODO
+Opinionated [ESLint](https://eslint.org) configuration (`eslint.config.ts`).
 
 ## Usage
 
-> Requires **[ESLint](https://eslint.org)** v9 _or later_
+> Requires [ESLint](https://eslint.org) v9 _or later_
 
 ### Default
 

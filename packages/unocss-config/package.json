@@ -29,7 +29,7 @@
     "build": "tsup --clean --dts --format esm src/index.ts"
   },
   "peerDependencies": {
-    "unocss": ">=65.0.0"
+    "unocss": ">=66.0.0"
   },
   "dependencies": {
     "@kevinmarrec/cloudstack-unocss-preset": "workspace:*"

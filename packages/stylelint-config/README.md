@@ -1,10 +1,10 @@
 ## Description
 
-TODO
+Opinionated [Stylelint](https://stylelint.io) configuration (`stylelint.config.ts`).
 
 ## Usage
 
-> Requires **[Stylelint](https://stylelint.io)** v16 _or later_
+> Requires [Stylelint](https://stylelint.io) v16 _or later_
 
 ### Default
 
