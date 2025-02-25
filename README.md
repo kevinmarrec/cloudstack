@@ -1,7 +1,7 @@
 <h1 align="center">Cloudstack </h1>
 
 <p align="center">
-  Utility packages to create a fullstack application with best practices.
+  Opinionated packages to create a fullstack application with best practices.
 </p>
 
 <p align="center">

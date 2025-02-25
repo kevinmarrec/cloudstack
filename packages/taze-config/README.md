@@ -1,10 +1,24 @@
+# @kevinmarrec/cloudstack-taze-config
+
 ## Description
 
-Opinionated [Taze](https://github.com/antfu-collective/taze) configuration (`taze.config.ts`).
+Opinionated [Taze](https://github.com/antfu-collective/taze) configuration.
+
+## Opinions
+
+- Enables interactive mode (`interactive: true`)
+
+- Enables recursive bumping (`recursive: true`)
+
+- Installs dependencies after bumping versions (`install: true`)
+
+- Updates `package.json` files (`write: true`)
+
+- Supports all [Taze configuration](https://github.com/antfu-collective/taze?tab=readme-ov-file#config-file) options
 
 ## Usage
 
-> Requires [Taze](https://github.com/antfu-collective/taze) v18 _or later_
+> Requires [Taze](https://github.com/antfu-collective/taze) v18 _or later_.
 
 ### Default
 
@@ -19,7 +33,5 @@ export { default } from '@kevinmarrec/cloudstack-taze-config'
 // taze.config.ts
 import { useConfig } from '@kevinmarrec/cloudstack-taze-config'
 
-export default useConfig({
-  force: true,
-})
+export default useConfig({ /* options */ })
 ```

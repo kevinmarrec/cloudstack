@@ -4,7 +4,7 @@
   "version": "0.19.0",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
-  "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/stylelint-config",
+  "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/stylelint-config#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kevinmarrec/cloudstack.git",
