@@ -7,7 +7,7 @@ import type { VitePluginVueDevToolsOptions as VueDevToolsPluginOptions } from 'v
 
 export interface CloudstackPluginOptions {
   /**
-   * `vite-plugin-pwa` plugin configuration.
+   * `vite-plugin-pwa` plugin options.
    *
    * The plugin is disabled by default.
    *
@@ -17,7 +17,7 @@ export interface CloudstackPluginOptions {
    */
   pwa?: boolean | Partial<PWAPluginOptions>
   /**
-   * `@unocss/vite` plugin configuration.
+   * `@unocss/vite` plugin options.
    *
    * The plugin is automatically enabled if any `uno.config.ts` file is found in the project.
    *
@@ -25,7 +25,7 @@ export interface CloudstackPluginOptions {
    */
   unocss?: UnocssPluginOptions
   /**
-   * `rollup-plugin-visualizer` plugin configuration.
+   * `rollup-plugin-visualizer` plugin options.
    *
    * The plugin is only enabled when passing `analyze` mode to Vite (`vite build --mode analyze`).
    *
@@ -33,7 +33,7 @@ export interface CloudstackPluginOptions {
    */
   visualizer?: PluginVisualizerOptions
   /**
-   * `@vitejs/plugin-vue` plugin configuration.
+   * `@vitejs/plugin-vue` plugin options.
    *
    * The plugin is mandatory, therefore enabled by default and cannot be disabled.
    *
@@ -41,7 +41,7 @@ export interface CloudstackPluginOptions {
    */
   vue?: VuePluginOptions
   /**
-   * `vite-plugin-vue-devtools` plugin configuration.
+   * `vite-plugin-vue-devtools` plugin options.
    *
    * The plugin is enabled by default.
    *
@@ -51,7 +51,7 @@ export interface CloudstackPluginOptions {
    */
   vueDevTools?: false | VueDevToolsPluginOptions
   /**
-   * `unplugin-vue-router` plugin configuration.
+   * `unplugin-vue-router` plugin options.
    *
    * The plugin is automatically enabled if any `.vue` file is found in the project's routes folder.
    *

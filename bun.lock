@@ -131,7 +131,7 @@
         "@kevinmarrec/cloudstack-unocss-preset": "workspace:*",
       },
       "peerDependencies": {
-        "unocss": ">=65.0.0",
+        "unocss": ">=66.0.0",
       },
     },
     "packages/unocss-preset": {

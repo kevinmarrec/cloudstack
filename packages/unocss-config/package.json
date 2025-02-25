@@ -2,9 +2,10 @@
   "name": "@kevinmarrec/cloudstack-unocss-config",
   "type": "module",
   "version": "0.19.0",
+  "description": "Opinionated UnoCSS config.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
-  "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/unocss-config",
+  "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/unocss-config#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kevinmarrec/cloudstack.git",
@@ -29,7 +30,7 @@
     "build": "tsup --clean --dts --format esm src/index.ts"
   },
   "peerDependencies": {
-    "unocss": ">=65.0.0"
+    "unocss": ">=66.0.0"
   },
   "dependencies": {
     "@kevinmarrec/cloudstack-unocss-preset": "workspace:*"
