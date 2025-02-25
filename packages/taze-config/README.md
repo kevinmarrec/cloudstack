@@ -2,7 +2,7 @@
 
 ## Description
 
-Opinionated [Taze](https://github.com/antfu-collective/taze) configuration.
+Opinionated [Taze](https://github.com/antfu-collective/taze) config.
 
 ## Opinions
 
@@ -14,7 +14,7 @@ Opinionated [Taze](https://github.com/antfu-collective/taze) configuration.
 
 - Updates `package.json` files (`write: true`)
 
-- Supports all [Taze configuration](https://github.com/antfu-collective/taze?tab=readme-ov-file#config-file) options
+- Supports all [Taze config](https://github.com/antfu-collective/taze?tab=readme-ov-file#config-file) options
 
 ## Usage
 

@@ -2,15 +2,15 @@
 
 ## Description
 
-Opinionated [UnoCSS](https://unocss.dev) [configuration](https://unocss.dev/config).
+Opinionated [UnoCSS](https://unocss.dev) [config](https://unocss.dev/config).
 
 ## Opinions
 
 - Uses [Cloudstack UnoCSS preset](https://github.com/kevinmarrec/cloudstack/tree/main/packages/unocss-preset#readme) by default
 
-  - Hoists `fonts` and `icons` preset options to the configuration level
+  - Hoists `fonts` and `icons` preset options to the config level
 
-- Supports all [UnoCSS configuration](https://unocss.dev/config) options
+- Supports all [UnoCSS config](https://unocss.dev/config) options
 
 ## Usage
 

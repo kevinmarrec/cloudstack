@@ -2,7 +2,7 @@
 
 ## Description
 
-Opinionated [Knip](https://knip.dev) configuration.
+Opinionated [Knip](https://knip.dev) config.
 
 ## Opinions
 
@@ -10,7 +10,7 @@ Opinionated [Knip](https://knip.dev) configuration.
 
 - Provides default root entries when using workspaces: `*.config.ts`
 
-- Supports all [Knip configuration](https://knip.dev/reference/configuration) options
+- Supports all [Knip config](https://knip.dev/reference/configuration) options
 
 ## Usage
 

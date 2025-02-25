@@ -2,7 +2,7 @@
 
 ## Description
 
-Opinionated [ESLint](https://eslint.org) configuration.
+Opinionated [ESLint](https://eslint.org) config.
 
 ## Opinions
 

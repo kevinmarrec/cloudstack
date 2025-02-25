@@ -2,11 +2,11 @@
 
 ## Description
 
-Opinionated [Stylelint](https://stylelint.io) configuration.
+Opinionated [Stylelint](https://stylelint.io) config.
 
 ## Opinions
 
-- Extends the following configurations:
+- Extends the following configs:
 
   - [stylelint-config-recommended-scss](https://github.com/stylelint-scss/stylelint-config-recommended-scss)
   - [stylelint-config-html](https://github.com/ota-meshi/stylelint-config-html)
@@ -17,7 +17,7 @@ Opinionated [Stylelint](https://stylelint.io) configuration.
   - [declaration-block-no-duplicate-properties](https://stylelint.io/user-guide/rules/list/declaration-block-no-duplicate-properties)
   - [length-zero-no-unit](https://stylelint.io/user-guide/rules/list/length-zero-no-unit)
 
-- Supports all [Stylelint configuration](https://stylelint.io/user-guide/configure) options
+- Supports all [Stylelint config](https://stylelint.io/user-guide/configure) options
 
 ## Usage
 

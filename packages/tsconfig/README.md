@@ -2,7 +2,7 @@
 
 ## Description
 
-Opinionated [TypeScript](https://www.typescriptlang.org) configuration.
+Opinionated [TypeScript](https://www.typescriptlang.org) config.
 
 ## Opinions
 

@@ -2,7 +2,7 @@
   "name": "@kevinmarrec/cloudstack-vite-config",
   "type": "module",
   "version": "0.19.0",
-  "description": "Opinionated Vite configuration.",
+  "description": "Opinionated Vite config.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
   "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/vite-config#readme",
