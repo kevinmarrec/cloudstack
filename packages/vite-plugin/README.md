@@ -6,7 +6,21 @@ Opinionated [Vite](https://vite.dev) [plugin](https://vite.dev/guide/using-plugi
 
 ## Opinions
 
-TODO
+- Built-in integrations (through [Vite](https://vite.dev) [plugins](https://vite.dev/guide/using-plugins)):
+
+  - [Vue](https://vuejs.org)
+  - [Vue Router](https://router.vuejs.org)
+  - [Vue DevTools](https://devtools.vuejs.org)
+  - [Vite PWA](https://vite-plugin-pwa.netlify.app)
+  - [UnoCSS](https://unocss.dev)
+  - [Bundle Visualizer](https://github.com/btd/rollup-plugin-visualizer)
+  - [TypeScript config paths](https://github.com/aleclarson/vite-tsconfig-paths)
+
+  > All integrations can be customized through options.
+
+- Browser Dark mode detection (can be toggled with [VueUse](https://vueuse.org))
+
+- Static site generation (SSG) with [Vite SSG](https://github.com/antfu-collective/vite-ssg)
 
 ## Usage
 
@@ -14,12 +28,21 @@ TODO
 
 ```ts
 // vite.config.ts
-import plugin from '@kevinmarrec/cloudstack-vite-plugin'
+import Cloudstack from '@kevinmarrec/cloudstack-vite-plugin'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
-    plugin({ /* options */ }),
+    Cloudstack({ /* options */ }),
   ],
 })
+```
+
+```ts
+// src/main.ts
+import { Cloudstack } from 'virtual:cloudstack'
+
+import App from './App.vue'
+
+export const createApp = Cloudstack(App)
 ```
