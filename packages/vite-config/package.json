@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-vite-config",
   "type": "module",
-  "version": "0.20.0",
+  "version": "0.20.1",
   "description": "Opinionated Vite config.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
