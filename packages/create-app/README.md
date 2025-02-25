@@ -2,7 +2,7 @@
 
 ## Description
 
-CLI to scaffold an opinionated [Bun](https://bun.sh) & [Vue](https://vuejs.org) fullstack application.
+CLI that scaffolds an opinionated [Bun](https://bun.sh) & [Vue](https://vuejs.org) fullstack application.
 
 ## Opinions
 
