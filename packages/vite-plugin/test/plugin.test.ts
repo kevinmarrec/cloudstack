@@ -60,17 +60,30 @@ describe('plugin', () => {
     expect(configDiff(baseConfig, resolvedConfig).plugins).toMatchSnapshot()
   })
 
-  it('should provide custom app builder (SSG)', async () => {
+  it('should call custom app builder when using static mode', async () => {
     const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin()] }, 'build')
 
+    const defaultBuildSpy = vi.fn()
     const ssgBuildSpy = vi.fn()
 
     vi.doMock('vite-ssg/node', () => ({
       build: ssgBuildSpy,
     }))
 
-    await resolvedConfig.builder?.buildApp?.({ config: {} } as ViteBuilder)
+    const getBuilder = (mode: string) => ({
+      build: defaultBuildSpy,
+      config: { mode },
+      environments: {},
+    }) as unknown as ViteBuilder
 
+    await resolvedConfig.builder?.buildApp?.(getBuilder('production'))
+    expect(defaultBuildSpy).toHaveBeenCalled()
+    expect(ssgBuildSpy).not.toHaveBeenCalled()
+
+    defaultBuildSpy.mockClear()
+
+    await resolvedConfig.builder?.buildApp?.(getBuilder('static'))
+    expect(defaultBuildSpy).not.toHaveBeenCalled()
     expect(ssgBuildSpy).toHaveBeenCalled()
   })
 
