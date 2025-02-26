@@ -7,6 +7,6 @@
     "build": "bun build src/index.ts --compile --minify --sourcemap --outfile dist/server"
   },
   "devDependencies": {
-    "@types/bun": "^1.2.3"
+    "@types/bun": "^1.2.4"
   }
 }
