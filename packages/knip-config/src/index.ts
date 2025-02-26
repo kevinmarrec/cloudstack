@@ -13,4 +13,4 @@ export function useConfig(config: KnipConfig = {}): KnipConfig {
   }
 }
 
-export default useConfig()
+export default useConfig() as KnipConfig
