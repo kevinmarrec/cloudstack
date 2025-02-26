@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "vite build --mode static",
     "build:analyze": "vite build --mode analyze",
-    "preview": "vite preview"
+    "preview": "vite preview --open"
   },
   "dependencies": {
     "vue": "^3.5.13"
