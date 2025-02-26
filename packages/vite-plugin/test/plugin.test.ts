@@ -2,7 +2,7 @@ import fs from 'node:fs/promises'
 import process from 'node:process'
 
 import { resolve } from 'pathe'
-import { createServer, resolveConfig } from 'vite'
+import { createServer, resolveConfig, type ViteBuilder } from 'vite'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { createTempDir } from '../../../test/utils'
@@ -58,6 +58,33 @@ describe('plugin', () => {
     }, command, mode)
 
     expect(configDiff(baseConfig, resolvedConfig).plugins).toMatchSnapshot()
+  })
+
+  it('should call custom app builder when using static mode', async () => {
+    const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin()] }, 'build')
+
+    const defaultBuildSpy = vi.fn()
+    const ssgBuildSpy = vi.fn()
+
+    vi.doMock('vite-ssg/node', () => ({
+      build: ssgBuildSpy,
+    }))
+
+    const getBuilder = (mode: string) => ({
+      build: defaultBuildSpy,
+      config: { mode },
+      environments: {},
+    }) as unknown as ViteBuilder
+
+    await resolvedConfig.builder?.buildApp?.(getBuilder('production'))
+    expect(defaultBuildSpy).toHaveBeenCalled()
+    expect(ssgBuildSpy).not.toHaveBeenCalled()
+
+    defaultBuildSpy.mockClear()
+
+    await resolvedConfig.builder?.buildApp?.(getBuilder('static'))
+    expect(defaultBuildSpy).not.toHaveBeenCalled()
+    expect(ssgBuildSpy).toHaveBeenCalled()
   })
 
   it('should drop module preload polyfill', async () => {
