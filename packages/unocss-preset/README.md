@@ -28,10 +28,10 @@ Opinionated [UnoCSS](https://unocss.dev) [preset](https://unocss.dev/config/pres
   }
   ```
 
-- Flattens preflight layer root:
+- Flattens preflight layer root to:
 
   ```ts
-  ['*,::before,::after', '::backdrop']/* ➡️  */['*,::before,::after,::backdrop']
+  ['*,::before,::after,::backdrop']
   ```
 
 ## Usage
