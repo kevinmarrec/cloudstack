@@ -18,6 +18,8 @@ Opinionated [Vite](https://vite.dev) [plugin](https://vite.dev/guide/using-plugi
 
   > All integrations can be customized through options.
 
+- [Module preload](https://vite.dev/config/build-options.html#build-modulepreload) polyfill disabled
+
 - Browser Dark mode detection (can be toggled with [VueUse](https://vueuse.org))
 
 - Static site generation (SSG) with [Vite SSG](https://github.com/antfu-collective/vite-ssg)
