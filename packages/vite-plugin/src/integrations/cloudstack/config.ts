@@ -1,6 +1,6 @@
 /// <reference types="vite-ssg" />
 
-import type { Plugin } from 'vite'
+import { mergeConfig, type Plugin } from 'vite'
 
 import type { CloudstackPluginContext } from '../../context'
 import { integrationFactory } from '../_factory'
@@ -9,8 +9,8 @@ import vueRouter from '../vue-router'
 
 export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
   name: 'cloudstack:config',
-  config() {
-    return {
+  config(config) {
+    return mergeConfig({
       build: {
         modulePreload: {
           polyfill: false,
@@ -32,6 +32,6 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
           reduceInlineStyles: false,
         },
       },
-    }
+    }, config)
   },
 }), { options: ctx => ctx })
