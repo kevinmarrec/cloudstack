@@ -2,7 +2,7 @@ import fs from 'node:fs/promises'
 import process from 'node:process'
 
 import { resolve } from 'pathe'
-import { createServer, resolveConfig } from 'vite'
+import { createServer, resolveConfig, type ViteBuilder } from 'vite'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { createTempDir } from '../../../test/utils'
@@ -58,6 +58,20 @@ describe('plugin', () => {
     }, command, mode)
 
     expect(configDiff(baseConfig, resolvedConfig).plugins).toMatchSnapshot()
+  })
+
+  it('should provide custom app builder (SSG)', async () => {
+    const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin()] }, 'build')
+
+    const ssgBuildSpy = vi.fn()
+
+    vi.doMock('vite-ssg/node', () => ({
+      build: ssgBuildSpy,
+    }))
+
+    await resolvedConfig.builder?.buildApp?.({ config: {} } as ViteBuilder)
+
+    expect(ssgBuildSpy).toHaveBeenCalled()
   })
 
   it('should drop module preload polyfill', async () => {
