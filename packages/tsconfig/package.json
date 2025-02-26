@@ -1,6 +1,6 @@
 {
   "name": "@kevinmarrec/cloudstack-tsconfig",
-  "version": "0.20.1",
+  "version": "0.21.0",
   "description": "Opinionated TypeScript config.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
