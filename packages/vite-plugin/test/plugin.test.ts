@@ -114,7 +114,7 @@ describe('virtual module', async () => {
     expect(module.resolveId('virtual:cloudstack')).toEqual('virtual:cloudstack')
   })
 
-  it('should generate virtual module content (MPA with unocss)', async () => {
+  it('should generate virtual module content (with router & unocss)', async () => {
     await fs.writeFile(resolve(tmpDir, 'uno.config.ts'), `export default {}`)
     await fs.mkdir(resolve(tmpDir, 'src/pages'), { recursive: true })
     await fs.writeFile(resolve(tmpDir, 'src/pages/index.vue'), `<template></template>`)

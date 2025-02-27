@@ -16,19 +16,23 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
   },
   load(id) {
     if (id === virtualModuleId) {
+      const hasRouter = vueRouter.enabled(ctx)
       const imports: string[] = []
       const exports: string[] = []
 
-      // Vue Router
-      if (vueRouter.enabled(ctx)) {
+      if (hasRouter) {
         imports.push(`import { ViteSSG } from 'vite-ssg'`)
         imports.push(`import { routes } from 'vue-router/auto-routes'`)
-        exports.push(`export const Cloudstack = (App, ...args) => typeof args[0] === 'object' ? ViteSSG(App, { routes, ...args[0] }, args[1]) : ViteSSG(App, { routes }, args[0])`)
       }
       else {
         imports.push(`import { ViteSSG } from 'vite-ssg/single-page'`)
-        exports.push(`export const Cloudstack = (App, ...args) => typeof args[0] === 'object' ? ViteSSG(App, args[1]) : ViteSSG(App, args[0])`)
       }
+
+      exports.push(`export const Cloudstack = (App, ...args) => \
+        typeof args[0] === 'object' \
+          ? ViteSSG(App, ${hasRouter ? '{ routes, ...args[0] }, args[1]' : 'args[1]'}) \
+          : ViteSSG(App, ${hasRouter ? '{ routes }, args[0]' : 'args[0]'})
+      `.replace(/\s+/g, ' ').trim())
 
       // CSS Reset
       imports.push(`import 'the-new-css-reset'`)

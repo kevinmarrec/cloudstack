@@ -118,7 +118,7 @@ exports[`plugin > with defaults 1`] = `
 ]
 `;
 
-exports[`virtual module > should generate virtual module content (MPA with unocss) 1`] = `
+exports[`virtual module > should generate virtual module content (with router & unocss) 1`] = `
 "import { ViteSSG } from 'vite-ssg'
 import { routes } from 'vue-router/auto-routes'
 import 'the-new-css-reset'
