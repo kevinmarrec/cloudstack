@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-knip-config",
   "type": "module",
-  "version": "0.21.0",
+  "version": "1.0.0-beta.1",
   "description": "Opinionated Knip config.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
