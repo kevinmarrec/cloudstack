@@ -13,11 +13,21 @@ export async function scaffold(root: string) {
   await fs.cp(join(import.meta.dirname, '../template'), root, { recursive: true })
   await fs.rename(join(root, 'gitignore'), join(root, '.gitignore'))
 
-  // Set @kevinmarrec/cloudstack-* packages version to current version
-  const pkgJsonPaths = await glob('**/package.json', { cwd: root, absolute: true })
+  // Set alias and versions for @kevinmarrec/cloudstack-* packages
+  const files = await glob('**/*.{json,ts}', { cwd: root, absolute: true, ignore: ['**/node_modules'] })
 
-  for (const pkgJsonPath of pkgJsonPaths) {
-    const pkgJson = await fs.readFile(pkgJsonPath, 'utf-8')
-    await fs.writeFile(pkgJsonPath, pkgJson.replaceAll('workspace:*', `^${version}`))
-  }
+  await Promise.all(files.map(async (file) => {
+    const content = await fs.readFile(file, 'utf-8')
+
+    if (!content.includes('@kevinmarrec/cloudstack-')) {
+      return
+    }
+
+    await fs.writeFile(
+      file,
+      file.includes('package.json')
+        ? content.replace(/"(@kevinmarrec\/cloudstack-(.*))": "workspace:\*"/g, `"@cloudstack/$2": "npm:$1@^${version}"`)
+        : content.replace(/@kevinmarrec\/cloudstack-(.*)/g, '@cloudstack/$1'),
+    )
+  }))
 }
