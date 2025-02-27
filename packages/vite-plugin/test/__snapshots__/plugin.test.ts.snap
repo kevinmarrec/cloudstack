@@ -42,6 +42,7 @@ exports[`plugin > with all integrations (mode: 'analyze') 1`] = `
   "unocss:global:build:generate",
   "visualizer",
   "vite:vue",
+  "vite:transform-yaml",
   "vite-plugin-pwa:info",
   "vite-plugin-pwa:build",
   "vite-plugin-pwa:pwa-assets",
@@ -70,6 +71,7 @@ exports[`plugin > with all integrations (mode: 'development') 1`] = `
   "unocss:api",
   "unocss:inspector",
   "vite:vue",
+  "vite:transform-yaml",
   "vite-plugin-pwa:info",
   "vite-plugin-pwa:pwa-assets",
   "unocss:transformers:post",
@@ -94,6 +96,7 @@ exports[`plugin > with all integrations (mode: 'production') 1`] = `
   "unocss:api",
   "unocss:global:build:generate",
   "vite:vue",
+  "vite:transform-yaml",
   "vite-plugin-pwa:info",
   "vite-plugin-pwa:build",
   "vite-plugin-pwa:pwa-assets",
@@ -111,6 +114,7 @@ exports[`plugin > with defaults 1`] = `
   "cloudstack:config",
   "cloudstack:dark-mode",
   "vite:vue",
+  "vite:transform-yaml",
 ]
 `;
 

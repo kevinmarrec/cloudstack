@@ -1,3 +1,4 @@
+import type { PluginOptions as YAMLPluginOptions } from '@modyfi/vite-plugin-yaml'
 import type { VitePluginConfig as UnocssPluginOptions } from '@unocss/vite'
 import type { Options as VuePluginOptions } from '@vitejs/plugin-vue'
 import type { PluginVisualizerOptions } from 'rollup-plugin-visualizer'
@@ -69,4 +70,12 @@ export interface CloudstackPluginOptions {
    * @see https://github.com/posva/unplugin-vue-router
    */
   vueRouter?: VueRouterPluginOptions
+  /**
+   * `@modyfi/vite-plugin-yaml` plugin options.
+   *
+   * The plugin is enabled by default.
+   *
+   * @see https://github.com/Modyfi/vite-plugin-yaml
+   */
+  yaml?: YAMLPluginOptions
 }

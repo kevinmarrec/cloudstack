@@ -15,6 +15,7 @@ Opinionated [Vite](https://vite.dev) [plugin](https://vite.dev/guide/using-plugi
   - [UnoCSS](https://unocss.dev)
   - [Bundle Visualizer](https://github.com/btd/rollup-plugin-visualizer)
   - [TypeScript config paths](https://github.com/aleclarson/vite-tsconfig-paths)
+  - [YAML](https://github.com/Modyfi/vite-plugin-yaml)
 
   > All integrations can be customized through options.
 

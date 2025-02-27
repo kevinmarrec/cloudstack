@@ -44,6 +44,7 @@
     }
   },
   "dependencies": {
+    "@modyfi/vite-plugin-yaml": "^1.1.1",
     "@unocss/vite": "^66.0.0",
     "@vite-pwa/assets-generator": "^0.2.6",
     "@vitejs/plugin-vue": "^5.2.1",
