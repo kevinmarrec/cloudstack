@@ -4,6 +4,7 @@ import type { PluginVisualizerOptions } from 'rollup-plugin-visualizer'
 import type { Options as VueRouterPluginOptions } from 'unplugin-vue-router'
 import type { VitePWAOptions as PWAPluginOptions } from 'vite-plugin-pwa'
 import type { VitePluginVueDevToolsOptions as VueDevToolsPluginOptions } from 'vite-plugin-vue-devtools'
+import type { PluginOptions as TsConfigPathsPluginOptions } from 'vite-tsconfig-paths'
 
 export interface CloudstackPluginOptions {
   /**
@@ -16,6 +17,14 @@ export interface CloudstackPluginOptions {
    * @see https://github.com/vite-pwa/vite-plugin-pwa
    */
   pwa?: boolean | Partial<PWAPluginOptions>
+  /**
+   * `vite-tsconfig-paths` plugin options.
+   *
+   * The plugin is enabled by default.
+   *
+   * @see https://github.com/aleclarson/vite-tsconfig-paths
+   */
+  tsconfigPaths?: TsConfigPathsPluginOptions
   /**
    * `@unocss/vite` plugin options.
    *
