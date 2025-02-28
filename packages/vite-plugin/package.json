@@ -31,7 +31,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup --clean --dts --format esm src/index.ts"
+    "build": "tsup"
   },
   "peerDependencies": {
     "vite": ">=6.0.0",
