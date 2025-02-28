@@ -1,9 +1,9 @@
 import config from './config'
 import darkMode from './dark-mode'
-import global from './global'
+import virtual from './virtual'
 
 export default [
-  global,
   config,
   darkMode,
+  virtual,
 ]

@@ -8,7 +8,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createTempDir } from '../../../test/utils'
 import CloudstackVitePlugin from '../src'
 import { createContext } from '../src/context'
-import virtualModule from '../src/integrations/cloudstack/global'
+import virtualModule from '../src/integrations/cloudstack/virtual'
 import { configDiff } from './utils'
 
 let tmpDir: string

@@ -1,14 +1,14 @@
 import type { Plugin } from 'vite'
 
-import type { CloudstackPluginContext } from '../../context'
-import { integrationFactory } from '../_factory'
-import unocss from '../unocss'
-import vueRouter from '../vue-router'
+import type { CloudstackPluginContext } from '../../../context'
+import { integrationFactory } from '../../_factory'
+import unocss from '../../unocss'
+import vueRouter from '../../vue-router'
 
 const virtualModuleId = 'virtual:cloudstack'
 
 export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
-  name: 'cloudstack:global',
+  name: 'cloudstack:virtual',
   resolveId(id) {
     if (id === virtualModuleId) {
       return id
@@ -16,9 +16,9 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
   },
   load(id) {
     if (id === virtualModuleId) {
-      const hasRouter = vueRouter.enabled(ctx)
       const imports: string[] = []
       const exports: string[] = []
+      const hasRouter = vueRouter.enabled(ctx)
 
       if (hasRouter) {
         imports.push(`import { ViteSSG } from 'vite-ssg'`)
