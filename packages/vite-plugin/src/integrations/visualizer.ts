@@ -10,5 +10,6 @@ export default integrationFactory(visualizer, {
     brotliSize: true,
     gzipSize: true,
     open: true,
+    sourcemap: true,
   } as const),
 })

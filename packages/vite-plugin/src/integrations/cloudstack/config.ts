@@ -5,6 +5,7 @@ import { defineConfig, mergeConfig, type Plugin } from 'vite'
 import type { CloudstackPluginContext } from '../../context'
 import { integrationFactory } from '../_factory'
 import pwa from '../pwa'
+import visualizer from '../visualizer'
 import vueRouter from '../vue-router'
 
 export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
@@ -16,6 +17,7 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
           modulePreload: {
             polyfill: false,
           },
+          sourcemap: visualizer.enabled(ctx),
         },
         builder: {
           async buildApp(builder) {

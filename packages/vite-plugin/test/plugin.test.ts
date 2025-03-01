@@ -57,6 +57,7 @@ describe('plugin', () => {
       }, { command, mode })],
     }, command, mode)
 
+    expect(resolvedConfig.build.sourcemap).toBe(mode === 'analyze')
     expect(configDiff(baseConfig, resolvedConfig).plugins).toMatchSnapshot()
   })
 

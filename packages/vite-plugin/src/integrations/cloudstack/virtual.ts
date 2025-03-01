@@ -1,9 +1,9 @@
 import type { Plugin } from 'vite'
 
-import type { CloudstackPluginContext } from '../../../context'
-import { integrationFactory } from '../../_factory'
-import unocss from '../../unocss'
-import vueRouter from '../../vue-router'
+import type { CloudstackPluginContext } from '../../context'
+import { integrationFactory } from '../_factory'
+import unocss from '../unocss'
+import vueRouter from '../vue-router'
 
 const virtualModuleId = 'virtual:cloudstack'
 
