@@ -10,7 +10,6 @@ export default useConfig({
         'src/main.ts',
         'src/pages/**/*.vue',
       ],
-      ignoreDependencies: ['vue'],
     },
     'packages/stylelint-config': {
       ignoreDependencies: [
