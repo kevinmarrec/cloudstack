@@ -39,7 +39,7 @@ jobs:
         run: bun run prepublish
 
       - name: Publish
-        run: npm publish -w packages --access public
+        run: npm publish -w packages --access public --tag ${{ contains(github.ref_name, 'beta') && 'beta' || 'latest' }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
