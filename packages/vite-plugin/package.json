@@ -51,6 +51,7 @@
     "beasties": "^0.2.0",
     "defu": "^6.1.4",
     "esbuild-raw-plugin": "^0.1.1",
+    "local-pkg": "^1.1.0",
     "rollup-plugin-visualizer": "^5.14.0",
     "the-new-css-reset": "^1.11.3",
     "tinyglobby": "^0.2.12",

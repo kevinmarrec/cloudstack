@@ -1,3 +1,4 @@
+import { isPackageExists } from 'local-pkg'
 import { globSync } from 'tinyglobby'
 import VueRouter from 'unplugin-vue-router/vite'
 
@@ -8,7 +9,7 @@ export default integrationFactory(VueRouter, {
     let { routesFolder = 'src/pages' } = userOptions.vueRouter ?? {}
     routesFolder = (Array.isArray(routesFolder) ? routesFolder : [routesFolder])
     const sources = routesFolder.map(x => typeof x === 'string' ? x : x.src)
-    return globSync(sources.map(src => `${src}/**/*.vue`)).length > 0
+    return isPackageExists('vue-router') && globSync(sources.map(src => `${src}/**/*.vue`)).length > 0
   },
   options: ({ userOptions }) => userOptions.vueRouter,
   defaults: () => ({

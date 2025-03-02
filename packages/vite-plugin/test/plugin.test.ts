@@ -11,6 +11,10 @@ import { createContext } from '../src/context'
 import virtualModule from '../src/integrations/cloudstack/virtual'
 import { configDiff } from './utils'
 
+vi.mock('local-pkg', () => ({
+  isPackageExists: () => true,
+}))
+
 let tmpDir: string
 
 beforeEach(async () => {
