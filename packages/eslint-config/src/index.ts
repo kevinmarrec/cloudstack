@@ -22,11 +22,6 @@ export function useConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
   return antfu(defu<NonNullable<Options>, Options[]>(options, {
     formatters: true,
     ignores: options.ignores,
-    typescript: {
-      parserOptions: {
-        warnOnUnsupportedTypeScriptVersion: false,
-      },
-    },
     vue: {
       overrides: {
         'vue/no-unused-properties': 'error',

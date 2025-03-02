@@ -28,6 +28,7 @@ describe('config', async () => {
         rules: {
           'unused-imports/no-unused-imports': 'off',
         },
+        typescript: true,
       }),
     })
 
@@ -64,7 +65,9 @@ describe('config', async () => {
     const eslint = new ESLint({
       fix: true,
       overrideConfigFile: true,
-      overrideConfig: await useConfig(),
+      overrideConfig: await useConfig({
+        typescript: true,
+      }),
     })
 
     const code = `
