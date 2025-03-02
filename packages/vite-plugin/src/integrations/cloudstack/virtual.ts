@@ -28,10 +28,28 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
         imports.push(`import { ViteSSG } from 'vite-ssg/single-page'`)
       }
 
-      exports.push(`export const Cloudstack = (App, ...args) => \
-        typeof args[0] === 'object' \
-          ? ViteSSG(App, ${hasRouter ? '{ routes, ...args[0] }, args[1]' : 'args[1]'}) \
-          : ViteSSG(App, ${hasRouter ? '{ routes }, args[0]' : 'args[0]'})
+      imports.push(`import { createI18n } from '@kevinmarrec/cloudstack-vue-i18n'`)
+
+      exports.push(`const fnFactory = (fn) => (ctx) => {
+        const i18n = createI18n()
+        ctx.app.use(i18n)
+
+        const localesMap = Object.fromEntries(
+          Object.entries(import.meta.glob('/src/locales/*.yml'))
+            .map(([path, loadLocale]) => [path.match(/(\\w*)\\.yml$/)?.[1], loadLocale])
+        )
+
+        localesMap['en']().then(messages => {
+          i18n.global.setLocaleMessage('en', messages.default)
+        })
+
+        fn?.(ctx)
+      }`)
+
+      exports.push(`export const Cloudstack = (App, argA, argB) => \
+        typeof argA === 'object' \
+          ? ViteSSG(App, ${hasRouter ? '{ routes, ...argA }, fnFactory(argB)' : 'fnFactory(argB)'}) \
+          : ViteSSG(App, ${hasRouter ? '{ routes }, fnFactory(argA)' : 'fnFactory(argA)'})
       `.replace(/\s+/g, ' ').trim())
 
       // CSS Reset

@@ -55,5 +55,12 @@
   "typescript.format.semicolons": "remove",
 
   "vue.inlayHints.inlineHandlerLeading": true,
-  "vue.inlayHints.missingProps": true
+  "vue.inlayHints.missingProps": true,
+
+  // i18n Ally
+  "i18n-ally.enabledFrameworks": ["vue"],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.localesPaths": [
+    "frontend/src/locales"
+  ]
 }

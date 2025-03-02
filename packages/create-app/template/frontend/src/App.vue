@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from '@kevinmarrec/cloudstack-vue-i18n'
 import { ref } from 'vue'
+
+const { t, setLocaleMessage } = useI18n()
 
 const time = ref(new Date().toLocaleTimeString())
 
@@ -14,7 +17,10 @@ setInterval(() => {
       <h1 class="text-4xl font-bold">
         Template
       </h1>
-      {{ time }}
+      {{ t('welcome') }}
+      <button @click="setLocaleMessage('en', { welcome: 'what a save' })">
+        English
+      </button>
     </div>
   </div>
 </template>
