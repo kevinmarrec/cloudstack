@@ -1,4 +1,6 @@
-import type { KnipConfig } from 'knip'
+import type { KnipConfig as RawKnipConfig } from 'knip'
+
+interface KnipConfig extends RawKnipConfig {}
 
 export function useConfig(config: KnipConfig = {}): KnipConfig {
   return {
@@ -13,4 +15,4 @@ export function useConfig(config: KnipConfig = {}): KnipConfig {
   }
 }
 
-export default useConfig() as KnipConfig
+export default useConfig()
