@@ -28,11 +28,13 @@ const pkgPaths = await glob('packages/*', { onlyDirectories: true })
 const buildMap = new Map<string, BuildEntry>()
 
 await Promise.all(pkgPaths.map(async (pkgPath: string) => {
+  const pkgJson = await fs.readFile(join(pkgPath, 'package.json'), 'utf-8').catch(() => '{}')
+
   const {
     name,
     scripts = {},
     dependencies = {},
-  } = JSON.parse(await fs.readFile(join(pkgPath, 'package.json'), 'utf-8'))
+  } = JSON.parse(pkgJson)
 
   if (scripts.build) {
     buildMap.set(name, {
