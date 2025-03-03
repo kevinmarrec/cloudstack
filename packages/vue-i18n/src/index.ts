@@ -1,46 +1,56 @@
-import { computed, inject, type InjectionKey, type Plugin, ref } from 'vue'
+import { computed, inject, type InjectionKey, type ObjectPlugin, type Plugin, ref, watch } from 'vue'
 
-interface VueI18nOptions {
-  locale?: string
-  fallbackLocale?: string
-  messages?: Record<string, Record<string, string>>
+export type Locale = string & {}
+
+export interface LocaleMessage {
+  [key: string]: string | LocaleMessage
+}
+
+interface LocaleMessages {
+  [locale: string]: LocaleMessage
+}
+
+interface LazyLocaleMessages {
+  [path: string]: () => Promise<unknown>
+}
+
+export interface VueI18nOptions {
+  locale?: Locale
+  fallbackLocale?: Locale
+  messages?: LocaleMessages | LazyLocaleMessages
 }
 
 function createInstance(options: VueI18nOptions) {
-  const locale = ref(options.locale ?? 'en')
+  const locale = ref(options.locale ?? 'en' as Locale)
   const fallbackLocale = ref(options.fallbackLocale ?? locale.value)
-  const messages = ref<NonNullable<VueI18nOptions['messages']>>(options.messages ?? {})
+  const messages = ref<LocaleMessages>({})
 
-  function setLocaleMessage(locale: string, message: Record<string, string>) {
-    messages.value[locale] = message
+  async function loadLocale(locale: Locale) {
+    if (!options.messages || messages.value[locale])
+      return
+
+    messages.value[locale] = typeof options.messages[locale] === 'function'
+      ? ((await options.messages[locale]?.()) as any).default as LocaleMessage
+      : options.messages[locale]
+
+    if (typeof document !== 'undefined')
+      document.querySelector('html')?.setAttribute('lang', locale)
   }
 
+  watch(locale, loadLocale)
+
+  const isReady = new Promise<void>((resolve) => {
+    loadLocale(locale.value).then(() => resolve())
+  })
+
   function translate(key: string) {
-    let message = messages.value[locale.value]?.[key]
-
-    if (message) {
-      return message
-    }
-
-    if (import.meta.env.NODE_ENV !== 'production') {
-      console.warn(`[i18n] Not found '${key}' key in '${locale.value}' locale messages.`)
-      console.warn(`[i18n] Fall back to translate '${key}' key with '${fallbackLocale.value}' locale.`)
-    }
-
-    message = messages.value[fallbackLocale.value]?.[key]
-
-    if (message) {
-      return message
-    }
-
-    if (import.meta.env.NODE_ENV !== 'production') {
-      console.warn(`[i18n] Not found '${key}' key in '${fallbackLocale.value}' locale messages.`)
-    }
-
-    return key
+    return messages.value[locale.value]?.[key]
+      ?? messages.value[fallbackLocale.value]?.[key]
+      ?? key
   }
 
   return {
+    availableLocales: Object.keys(options.messages ?? {}),
     locale: computed({
       get: () => locale.value,
       set: newValue => locale.value = newValue,
@@ -50,28 +60,35 @@ function createInstance(options: VueI18nOptions) {
       set: newValue => fallbackLocale.value = newValue,
     }),
     messages: computed(() => messages.value),
-    setLocaleMessage,
+    isReady: () => isReady,
     translate,
     t: translate,
   }
 }
 
-type I18nInstance = ReturnType<typeof createInstance>
+interface VueI18nInstance extends ReturnType<typeof createInstance> {}
+interface VueI18nPlugin extends ObjectPlugin, Pick<VueI18nInstance, 'isReady'> {}
 
-export const injectionKey: InjectionKey<I18nInstance> = Symbol('vue-i18n')
+export const injectionKey: InjectionKey<VueI18nInstance> = Symbol('vue-i18n')
 
-export function createI18n(options: VueI18nOptions = {}): Plugin & { global: I18nInstance } {
+export function createI18n(options: VueI18nOptions = {}): VueI18nPlugin {
+  for (const key in options.messages) {
+    const localePath = key.match(/(\w*)\.yml$/)?.[1]
+    if (localePath) {
+      options.messages[localePath] = options.messages[key]
+      delete options.messages[key]
+    }
+  }
+
   const instance = createInstance(options)
 
   return {
-    global: instance,
-    install(app) {
-      app.provide(injectionKey, instance)
-    },
+    install: app => app.provide(injectionKey, instance),
+    isReady: instance.isReady,
   }
 }
 
-export function useI18n(): I18nInstance {
+export function useI18n(): VueI18nInstance {
   const i18n = inject(injectionKey)
   if (!i18n) {
     throw new Error('No i18n instance found')
