@@ -32,13 +32,19 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Restore build cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: node_modules/.cache/cloudstack
           key: ${{ runner.os }}-cloudstack-build
 
       - name: Build
         run: bun run build
+
+      - name: Save build cache
+        uses: actions/cache/save@v4
+        with:
+          path: node_modules/.cache/cloudstack
+          key: ${{ runner.os }}-cloudstack-build
 
       - name: Check unused files, dependencies, and exports
         run: bun run check:unused
