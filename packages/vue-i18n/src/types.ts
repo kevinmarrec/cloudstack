@@ -10,7 +10,7 @@ export interface LocaleMessages {
   [locale: string]: LocaleMessage
 }
 
-export interface LazyLocaleMessages {
+interface LazyLocaleMessages {
   [path: string]: () => Promise<unknown>
 }
 

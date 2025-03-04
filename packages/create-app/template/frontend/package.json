@@ -12,6 +12,7 @@
     "@kevinmarrec/cloudstack-unocss-config": "workspace:*",
     "@kevinmarrec/cloudstack-vite-config": "workspace:*",
     "@kevinmarrec/cloudstack-vue-i18n": "workspace:*",
+    "@unhead/vue": "^1.11.20",
     "unocss": "^66.0.0",
     "vite": "^6.2.0",
     "vue": "^3.5.13"
