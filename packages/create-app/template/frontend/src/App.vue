@@ -3,9 +3,11 @@ import { ref } from 'vue'
 
 const time = ref(new Date().toLocaleTimeString())
 
-setInterval(() => {
-  time.value = new Date().toLocaleTimeString()
-}, 1000)
+if (!import.meta.env.SSR) {
+  setInterval(() => {
+    time.value = new Date().toLocaleTimeString()
+  }, 1000)
+}
 </script>
 
 <template>
