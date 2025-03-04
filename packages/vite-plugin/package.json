@@ -31,7 +31,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup"
+    "build": "tsup --clean --dts --format esm src/index.ts"
   },
   "peerDependencies": {
     "vite": ">=6.0.0",
@@ -50,12 +50,11 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "beasties": "^0.2.0",
     "defu": "^6.1.4",
-    "esbuild-raw-plugin": "^0.1.1",
-    "local-pkg": "^1.1.0",
+    "local-pkg": "^1.1.1",
     "rollup-plugin-visualizer": "^5.14.0",
     "the-new-css-reset": "^1.11.3",
     "tinyglobby": "^0.2.12",
-    "unplugin-vue-router": "^0.11.2",
+    "unplugin-vue-router": "^0.12.0",
     "vite-plugin-pwa": "^0.21.1",
     "vite-plugin-vue-devtools": "^7.7.2",
     "vite-ssg": "^25.2.0",

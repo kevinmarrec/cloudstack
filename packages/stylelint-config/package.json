@@ -27,7 +27,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup"
+    "build": "tsup --clean --dts --format esm src/index.ts"
   },
   "peerDependencies": {
     "stylelint": ">=16.0.0"
