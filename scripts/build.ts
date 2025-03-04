@@ -77,7 +77,7 @@ async function buildPackage(entry: BuildEntry, cache: Record<string, string>) {
 
   cache[entry.name] = await getPackageHash(entry.path)
 
-  console.log(`${entry.name} built in ${c.bold(Math.ceil(performance.now() - time))} ms`)
+  console.log(`${entry.name} built in ${Math.ceil(performance.now() - time)} ms`)
 }
 
 async function build() {
