@@ -29,7 +29,9 @@ export interface CloudstackPluginOptions {
   /**
    * `@unocss/vite` plugin options.
    *
-   * The plugin is automatically enabled if any `uno.config.ts` file is found in the project.
+   * The plugin is automatically enabled if the following conditions are met:
+   * - `unocss` package is installed in the project.
+   * - `uno.config.ts` file is found in the project.
    *
    * @see https://github.com/unocss/unocss
    */
@@ -63,7 +65,9 @@ export interface CloudstackPluginOptions {
   /**
    * `unplugin-vue-router` plugin options.
    *
-   * The plugin is automatically enabled if any `.vue` file is found in the project's routes folder.
+   * The plugin is automatically enabled if the following conditions are met:
+   * - `vue-router` package is installed in the project.
+   * - Any `.vue` file is found in the project's routes folder.
    *
    * The file detection is based on the `routesFolder` option of this plugin (defaults to `src/pages`).
    *
