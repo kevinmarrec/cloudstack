@@ -38,7 +38,9 @@ jobs:
           path: |
             node_modules/.cache/cloudstack
             packages/**/dist
-          key: ${{ runner.os }}-cloudstack-build
+          key: ${{ runner.os }}-cloudstack-build-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-cloudstack-build-
 
       - name: Build
         run: bun run build
