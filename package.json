@@ -15,7 +15,6 @@
   ],
   "scripts": {
     "build": "bun scripts/build.ts",
-    "clean": "bun scripts/clean.ts",
     "check": "bun run check:unused && bun run check:eslint && bun run check:stylelint && bun run check:types",
     "check:eslint": "eslint .",
     "check:stylelint": "stylelint '**/*.{css,scss,vue}' --ignorePath .gitignore",
