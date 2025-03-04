@@ -17,7 +17,7 @@ interface BuildEntry {
 }
 
 async function getPackageHash(pkgPath: string) {
-  const files = await glob(['package.json', 'src/**/*', 'dist/**/*'], { cwd: pkgPath, absolute: true })
+  const files = await glob(['package.json', 'src/**/*'], { cwd: pkgPath, absolute: true })
   const filesHashes = await Promise.all(files.toSorted().map(file => new Promise<string>((resolve, reject) => {
     const hash = createHash('sha256')
     createReadStream(file)
@@ -61,11 +61,13 @@ async function createBuildMap(pkgPaths: string[]) {
 async function buildPackage(entry: BuildEntry, cache: BuildCache) {
   await Promise.all(entry.needs.map(need => buildPackage(need, cache)))
 
-  const time = performance.now()
+  const hasDist = (await glob('dist', { cwd: entry.path, onlyDirectories: true })).length > 0
 
-  if (cache[entry.name] === await getPackageHash(entry.path)) {
+  if (hasDist && cache[entry.name] === await getPackageHash(entry.path)) {
     return console.log(`${entry.name} is up to date`)
   }
+
+  const time = performance.now()
 
   const { stderr, exitCode } = await x('bun', ['--cwd', entry.path, 'build', '--silent'])
 
@@ -73,9 +75,9 @@ async function buildPackage(entry: BuildEntry, cache: BuildCache) {
     return console.error(`Failed to build ${entry.name}:\n${stderr}`)
   }
 
-  cache[entry.name] = await getPackageHash(entry.path)
-
   console.log(`${entry.name} built in ${c.bold(Math.ceil(performance.now() - time))} ms`)
+
+  cache[entry.name] = await getPackageHash(entry.path)
 }
 
 async function build() {
