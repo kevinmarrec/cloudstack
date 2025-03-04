@@ -7,6 +7,8 @@ import { join } from 'pathe'
 import { x } from 'tinyexec'
 import { glob } from 'tinyglobby'
 
+type BuildCache = Record<string, string>
+
 interface BuildEntry {
   name: string
   path: string
@@ -18,10 +20,10 @@ async function getPackageHash(pkgPath: string) {
   const files = await glob(['package.json', 'src/**/*', 'dist/**/*'], { cwd: pkgPath, absolute: true })
   const filesHashes = await Promise.all(files.toSorted().map(file => new Promise<string>((resolve, reject) => {
     const hash = createHash('sha256')
-    const rs = createReadStream(file)
-    rs.on('error', reject)
-    rs.on('data', chunk => hash.update(chunk))
-    rs.on('end', () => resolve(hash.digest('hex')))
+    createReadStream(file)
+      .on('error', reject)
+      .on('data', chunk => hash.update(chunk))
+      .on('end', () => resolve(hash.digest('hex')))
   })))
   return createHash('sha256').update(filesHashes.join()).digest('hex')
 }
@@ -32,11 +34,7 @@ async function createBuildMap(pkgPaths: string[]) {
   await Promise.all(pkgPaths.map(async (pkgPath: string) => {
     const pkgJson = await fs.readFile(join(pkgPath, 'package.json'), 'utf-8').catch(() => '{}')
 
-    const {
-      name,
-      scripts = {},
-      dependencies = {},
-    } = JSON.parse(pkgJson)
+    const { name, scripts = {}, dependencies = {} } = JSON.parse(pkgJson)
 
     if (scripts.build) {
       buildMap.set(name, {
@@ -60,7 +58,7 @@ async function createBuildMap(pkgPaths: string[]) {
   return buildMap
 }
 
-async function buildPackage(entry: BuildEntry, cache: Record<string, string>) {
+async function buildPackage(entry: BuildEntry, cache: BuildCache) {
   await Promise.all(entry.needs.map(need => buildPackage(need, cache)))
 
   const time = performance.now()
