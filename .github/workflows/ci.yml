@@ -34,7 +34,9 @@ jobs:
       - name: Restore build cache
         uses: actions/cache/restore@v4
         with:
-          path: node_modules/.cache/cloudstack
+          path: |
+            node_modules/.cache/cloudstack
+            packages/**/dist
           key: ${{ runner.os }}-cloudstack-build
 
       - name: Build
@@ -43,7 +45,9 @@ jobs:
       - name: Save build cache
         uses: actions/cache/save@v4
         with:
-          path: node_modules/.cache/cloudstack
+          path: |
+            node_modules/.cache/cloudstack
+            packages/**/dist
           key: ${{ runner.os }}-cloudstack-build
 
       - name: Check unused files, dependencies, and exports

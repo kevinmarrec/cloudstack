@@ -10,15 +10,13 @@ import { glob } from 'tinyglobby'
 interface BuildEntry {
   name: string
   path: string
-  hash: string
   dependencies: Record<string, string>
   needs: BuildEntry[]
-  time: number
 }
 
 async function getPackageHash(pkgPath: string) {
-  const files = await glob(['package.json', 'src/**/*'], { cwd: pkgPath, absolute: true })
-  const filesHashes = await Promise.all(files.map(file => new Promise<string>((resolve, reject) => {
+  const files = await glob(['package.json', 'src/**/*', 'dist/**/*'], { cwd: pkgPath, absolute: true })
+  const filesHashes = await Promise.all(files.toSorted().map(file => new Promise<string>((resolve, reject) => {
     const hash = createHash('sha256')
     const rs = createReadStream(file)
     rs.on('error', reject)
@@ -44,10 +42,8 @@ async function createBuildMap(pkgPaths: string[]) {
       buildMap.set(name, {
         name,
         path: pkgPath,
-        hash: await getPackageHash(pkgPath),
         dependencies,
         needs: [],
-        time: 0,
       })
     }
   }))
@@ -69,11 +65,9 @@ async function buildPackage(entry: BuildEntry, cache: Record<string, string>) {
 
   const time = performance.now()
 
-  if (cache[entry.name] === entry.hash) {
+  if (cache[entry.name] === await getPackageHash(entry.path)) {
     return console.log(`${entry.name} is up to date`)
   }
-
-  cache[entry.name] = entry.hash
 
   const { stderr, exitCode } = await x('bun', ['--cwd', entry.path, 'build', '--silent'])
 
@@ -81,9 +75,9 @@ async function buildPackage(entry: BuildEntry, cache: Record<string, string>) {
     return console.error(`Failed to build ${entry.name}:\n${stderr}`)
   }
 
-  entry.time = Math.ceil(performance.now() - time)
+  cache[entry.name] = await getPackageHash(entry.path)
 
-  console.log(`${entry.name} built in ${c.bold(entry.time)}${c.dim(entry.needs.length ? ` (+${entry.needs.map(x => x.time)})` : '')} ms`)
+  console.log(`${entry.name} built in ${Math.ceil(performance.now() - time)} ms`)
 }
 
 async function build() {
