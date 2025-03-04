@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-taze-config",
   "type": "module",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.7",
   "description": "Opinionated Taze config.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
