@@ -14,7 +14,7 @@ export async function scaffold(root: string) {
   await fs.rename(join(root, 'gitignore'), join(root, '.gitignore'))
 
   // Set alias and versions for @kevinmarrec/cloudstack-* packages
-  const files = await glob('**/*.{json,ts}', { cwd: root, absolute: true })
+  const files = await glob('**/*.{json,ts,vue}', { cwd: root, absolute: true })
 
   await Promise.all(files.map(async (file) => {
     const content = await fs.readFile(file, 'utf-8')
