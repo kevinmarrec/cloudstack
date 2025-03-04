@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { useI18n } from '@kevinmarrec/cloudstack-vue-i18n'
+import { useHead } from '@unhead/vue'
 
 const { t, availableLocales, locale } = useI18n()
+
+useHead({
+  htmlAttrs: {
+    lang: locale,
+  },
+})
 </script>
 
 <template>
