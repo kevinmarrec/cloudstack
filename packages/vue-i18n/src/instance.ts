@@ -1,8 +1,8 @@
-import { computed, ref, watch } from 'vue'
+import { computed, readonly, ref, watch } from 'vue'
 
-import type { Locale, LocaleMessage, LocaleMessages, VueI18nInstance, VueI18nOptions } from './types'
+import type { Locale, LocaleMessage, LocaleMessages, VueI18nOptions } from './types'
 
-export function createInstance(options: VueI18nOptions): VueI18nInstance {
+export function createInstance(options: VueI18nOptions) {
   const locale = ref(options.locale ?? 'en' as Locale)
   const fallbackLocale = ref(options.fallbackLocale ?? locale.value)
   const messages = ref<LocaleMessages>({})
@@ -30,10 +30,7 @@ export function createInstance(options: VueI18nOptions): VueI18nInstance {
 
   return {
     availableLocales: Object.keys(options.messages ?? {}),
-    locale: computed({
-      get: () => locale.value,
-      set: newValue => locale.value = newValue,
-    }),
+    locale: readonly(locale),
     fallbackLocale: computed({
       get: () => fallbackLocale.value,
       set: newValue => fallbackLocale.value = newValue,
@@ -44,3 +41,5 @@ export function createInstance(options: VueI18nOptions): VueI18nInstance {
     t: translate,
   }
 }
+
+export interface VueI18nInstance extends ReturnType<typeof createInstance> {}
