@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-vue-i18n",
   "type": "module",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.8",
   "description": "Opinionated Internationalization (i18n) Vue plugin.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
@@ -32,7 +32,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup"
+    "build": "tsup --clean --dts --format esm src/index.ts"
   },
   "peerDependencies": {
     "vue": ">=3.5.0"
