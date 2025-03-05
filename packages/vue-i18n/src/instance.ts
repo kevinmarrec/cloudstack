@@ -1,13 +1,14 @@
-import { computed, readonly, ref, watch } from 'vue'
+import { readonly, ref, watch } from 'vue'
 
-import type { Locale, LocaleMessage, LocaleMessages, VueI18nOptions } from './types'
+import type { LocaleMessage, LocaleMessages, VueI18nOptions } from './types'
 
-export function createInstance(options: VueI18nOptions) {
-  const locale = ref(options.locale ?? 'en' as Locale)
-  const fallbackLocale = ref(options.fallbackLocale ?? locale.value)
+export function createInstance(options: Required<VueI18nOptions>) {
+  const availableLocales = Object.keys(options.messages)
+  const locale = ref(options.locale)
+  const fallbackLocale = ref(options.fallbackLocale)
   const messages = ref<LocaleMessages>({})
 
-  async function loadLocale(locale: Locale) {
+  async function loadLocale(locale: string) {
     if (!options.messages || messages.value[locale])
       return
 
@@ -22,23 +23,20 @@ export function createInstance(options: VueI18nOptions) {
     loadLocale(locale.value).then(() => resolve())
   })
 
-  function translate(key: string) {
-    return messages.value[locale.value]?.[key] as string
-      ?? messages.value[fallbackLocale.value]?.[key] as string
-      ?? key
-  }
-
   return {
-    availableLocales: Object.keys(options.messages ?? {}),
-    locale: readonly(locale),
-    fallbackLocale: computed({
-      get: () => fallbackLocale.value,
-      set: newValue => fallbackLocale.value = newValue,
-    }),
+    availableLocales,
+    locale,
+    fallbackLocale,
+    messages: readonly(messages),
     isReady: () => isReady,
-    // messages: computed(() => messages.value),
-    translate,
-    t: translate,
+    t: (key: string) => {
+      const segments = key.split('.')
+      let current: LocaleMessage = messages.value[locale.value]
+      for (const segment of segments) {
+        current = current?.[segment] as LocaleMessage
+      }
+      return current ?? key
+    },
   }
 }
 

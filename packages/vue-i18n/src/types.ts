@@ -1,5 +1,3 @@
-export type Locale = string & {}
-
 export interface LocaleMessage {
   [key: string]: string | LocaleMessage
 }
@@ -13,7 +11,7 @@ interface LazyLocaleMessages {
 }
 
 export interface VueI18nOptions {
-  locale?: Locale
-  fallbackLocale?: Locale
+  locale?: string
+  fallbackLocale?: string
   messages?: LocaleMessages | LazyLocaleMessages
 }

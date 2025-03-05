@@ -6,7 +6,7 @@ import { computed } from 'vue'
 const { t } = useI18n()
 
 useHead({
-  title: computed(() => t('welcome')),
+  title: computed(() => t('title')),
 })
 </script>
 
@@ -14,7 +14,7 @@ useHead({
   <div class="grid h-full place-items-center">
     <div class="flex flex-col items-center gap-4">
       <h1 class="text-4xl font-bold">
-        Template
+        {{ t('body.message') }}
       </h1>
     </div>
   </div>
