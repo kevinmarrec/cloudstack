@@ -1,27 +1,30 @@
 import { readonly, ref, watch } from 'vue'
 
-import type { LocaleMessage, LocaleMessages, VueI18nOptions } from './types'
+import type { LocaleMessages, Messages, ResolvedVueI18nOptions } from './types'
 
-export function createInstance(options: Required<VueI18nOptions>) {
+export function createInstance(options: ResolvedVueI18nOptions) {
   const availableLocales = Object.keys(options.messages)
   const locale = ref(options.locale)
   const fallbackLocale = ref(options.fallbackLocale)
-  const messages = ref<LocaleMessages>({})
+  const messages = ref<Messages>({})
 
-  async function loadLocale(locale: string) {
-    if (!options.messages || messages.value[locale])
-      return
-
+  async function loadMessages(locale: string) {
     messages.value[locale] = typeof options.messages[locale] === 'function'
-      ? ((await options.messages[locale]?.()) as any).default as LocaleMessage
+      ? (await options.messages[locale]()).default
       : options.messages[locale]
   }
 
-  watch(locale, loadLocale)
+  function findLocaleMessage(locale: string, key: string) {
+    return key.split('.').reduce((path, segment) => path?.[segment] as LocaleMessages, messages.value[locale])
+  }
 
   const isReady = new Promise<void>((resolve) => {
-    loadLocale(locale.value).then(() => resolve())
+    loadMessages(locale.value)
+      .then(() => loadMessages(fallbackLocale.value))
+      .then(() => resolve())
   })
+
+  watch(locale, loadMessages)
 
   return {
     availableLocales,
@@ -29,14 +32,10 @@ export function createInstance(options: Required<VueI18nOptions>) {
     fallbackLocale,
     messages: readonly(messages),
     isReady: () => isReady,
-    t: (key: string) => {
-      const segments = key.split('.')
-      let current: LocaleMessage = messages.value[locale.value]
-      for (const segment of segments) {
-        current = current?.[segment] as LocaleMessage
-      }
-      return current ?? key
-    },
+    t: (key: string) =>
+      findLocaleMessage(locale.value, key)
+      ?? findLocaleMessage(fallbackLocale.value, key)
+      ?? key,
   }
 }
 
