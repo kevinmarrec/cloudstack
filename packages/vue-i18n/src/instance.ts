@@ -10,7 +10,7 @@ export function createInstance(options: ResolvedVueI18nOptions) {
 
   async function loadMessages(locale: string) {
     messages.value[locale] = typeof options.messages[locale] === 'function'
-      ? (await options.messages[locale]()).default
+      ? (await options.messages[locale]() as any).default
       : options.messages[locale]
   }
 

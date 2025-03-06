@@ -6,16 +6,14 @@ export interface Messages {
   [locale: string]: LocaleMessages
 }
 
-interface LazyMessages<T> {
-  [path: string]: () => Promise<T>
+interface LazyMessages {
+  [path: string]: () => Promise<unknown>
 }
 
 export interface VueI18nOptions {
   locale?: string
   fallbackLocale?: string
-  messages?: Messages | LazyMessages<unknown>
+  messages?: Messages | LazyMessages
 }
 
-export interface ResolvedVueI18nOptions extends Required<VueI18nOptions> {
-  messages: Messages | LazyMessages<{ default: Messages }>
-}
+export interface ResolvedVueI18nOptions extends Required<VueI18nOptions> {}

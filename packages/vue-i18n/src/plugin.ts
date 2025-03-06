@@ -6,19 +6,19 @@ import type { ResolvedVueI18nOptions, VueI18nOptions } from './types'
 
 type VueI18nPlugin = FunctionPlugin
 
+function resolveMessages(input: VueI18nOptions['messages']) {
+  const output = {} as ResolvedVueI18nOptions['messages']
+  for (const key in input) {
+    output[key.match(/(\w*)\.yml$/)?.[1] ?? key] = input[key]
+  }
+  return output
+}
+
 export async function createI18n(options: VueI18nOptions): Promise<VueI18nPlugin> {
   const resolvedOptions: ResolvedVueI18nOptions = {
     locale: options.locale ?? 'en',
     fallbackLocale: options.fallbackLocale ?? options.locale ?? 'en',
-    messages: (options.messages ?? {}) as ResolvedVueI18nOptions['messages'],
-  }
-
-  for (const key in resolvedOptions.messages) {
-    const localePath = key.match(/(\w*)\.yml$/)?.[1]
-    if (localePath) {
-      resolvedOptions.messages[localePath] = resolvedOptions.messages[key]
-      delete resolvedOptions.messages[key]
-    }
+    messages: resolveMessages(options.messages),
   }
 
   if (!import.meta.env.SSR) {
