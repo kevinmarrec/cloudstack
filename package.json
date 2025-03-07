@@ -27,7 +27,8 @@
     "prepublish": "bun scripts/prepublish.ts",
     "release": "bumpp",
     "test": "vitest",
-    "test:coverage": "vitest --run --coverage && bun scripts/coverage.ts"
+    "test:coverage": "vitest --run --coverage && bun scripts/coverage.ts",
+    "test:ui": "vitest --ui --coverage --coverage.reporter html"
   },
   "devDependencies": {
     "@kevinmarrec/cloudstack-eslint-config": "workspace:*",
