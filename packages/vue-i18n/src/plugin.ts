@@ -9,7 +9,7 @@ type VueI18nPlugin = FunctionPlugin
 function resolveMessages(input: VueI18nOptions['messages']) {
   const output = {} as ResolvedVueI18nOptions['messages']
   for (const key in input) {
-    output[key.match(/(\w*)\.yml$/)?.[1] ?? key] = input[key]
+    output[key.match(/(\w*)\.(ya?ml|json)$/)?.[1] ?? key] = input[key]
   }
   return output
 }
