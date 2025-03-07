@@ -28,10 +28,10 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
         imports.push(`import { ViteSSG } from 'vite-ssg/single-page'`)
       }
 
-      exports.push(`export const Cloudstack = (App, ...args) => \
-        typeof args[0] === 'object' \
-          ? ViteSSG(App, ${hasRouter ? '{ routes, ...args[0] }, args[1]' : 'args[1]'}) \
-          : ViteSSG(App, ${hasRouter ? '{ routes }, args[0]' : 'args[0]'})
+      exports.push(`export const Cloudstack = (App, argA, argB) => \
+        typeof argA === 'object' \
+          ? ViteSSG(App, ${hasRouter ? '{ routes, ...argA }, argB' : 'argB'}) \
+          : ViteSSG(App, ${hasRouter ? '{ routes }, argA' : 'argA'})
       `.replace(/\s+/g, ' ').trim())
 
       // CSS Reset

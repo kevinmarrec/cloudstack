@@ -1,5 +1,8 @@
 {
   "extends": "@kevinmarrec/cloudstack-tsconfig",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"]
+  },
   "exclude": [
     "**/coverage/**",
     "**/dist/**"

@@ -27,7 +27,8 @@
     "prepublish": "bun scripts/prepublish.ts",
     "release": "bumpp",
     "test": "vitest",
-    "test:coverage": "vitest --run --coverage && bun scripts/coverage.ts"
+    "test:coverage": "vitest --run --coverage && bun scripts/coverage.ts",
+    "test:ui": "vitest --ui --coverage --coverage.reporter html"
   },
   "devDependencies": {
     "@kevinmarrec/cloudstack-eslint-config": "workspace:*",
@@ -37,9 +38,11 @@
     "@kevinmarrec/cloudstack-tsconfig": "workspace:*",
     "@vitest/coverage-v8": "^3.0.7",
     "@vitest/ui": "^3.0.7",
+    "@vue/test-utils": "^2.4.6",
     "ansis": "^3.17.0",
     "bumpp": "^10.0.3",
     "eslint": "^9.21.0",
+    "happy-dom": "^17.3.0",
     "knip": "^5.45.0",
     "pathe": "^2.0.3",
     "stylelint": "^16.15.0",

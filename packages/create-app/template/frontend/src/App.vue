@@ -1,22 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useI18n } from '@kevinmarrec/cloudstack-vue-i18n'
+import { useHead } from '@unhead/vue'
+import { computed } from 'vue'
 
-const time = ref(new Date().toLocaleTimeString())
+const { t } = useI18n()
 
-if (!import.meta.env.SSR) {
-  setInterval(() => {
-    time.value = new Date().toLocaleTimeString()
-  }, 1000)
-}
+useHead({
+  title: computed(() => t('title')),
+})
 </script>
 
 <template>
   <div class="grid h-full place-items-center">
     <div class="flex flex-col items-center gap-4">
       <h1 class="text-4xl font-bold">
-        Template
+        {{ t('body.message') }}
       </h1>
-      {{ time }}
     </div>
   </div>
 </template>
