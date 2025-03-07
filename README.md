@@ -50,3 +50,7 @@
 [![Name](https://img.shields.io/badge/%40kevinmarrec%2Fcloudstack--vite--plugin-0?label=npm&color=blue)](https://www.npmjs.com/package/@kevinmarrec/cloudstack-vite-plugin)
 ![Description](https://img.shields.io/badge/Vite%20plugin-0?label=description&color=lightgray)
 ![Coverage](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgist.githubusercontent.com%2Fkevinmarrec%2F7af6e73961e829b9e0835cdaead60ad3%2Fraw%2Fcloudstack.coverage.json&query=%24%5Bpackages%2Fvite-plugin%5D&suffix=%25&label=coverage&color=238636)
+
+[![Name](https://img.shields.io/badge/%40kevinmarrec%2Fcloudstack--vue--i18n-0?label=npm&color=blue)](https://www.npmjs.com/package/@kevinmarrec/cloudstack-vue-i18n)
+![Description](https://img.shields.io/badge/Internationalization%20Vue%20plugin-0?label=description&color=lightgray)
+![Coverage](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgist.githubusercontent.com%2Fkevinmarrec%2F7af6e73961e829b9e0835cdaead60ad3%2Fraw%2Fcloudstack.coverage.json&query=%24%5Bpackages%2Fvue-i18n%5D&suffix=%25&label=coverage&color=238636)
