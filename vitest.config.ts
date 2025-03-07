@@ -7,7 +7,7 @@ export default defineConfig({
     coverage: {
       include: ['packages/*/src/**/*.ts'],
       exclude: ['packages/create-app/src/index.ts'],
-      reporter: ['text', 'text-summary', 'json-summary'],
+      reporter: ['text', 'text-summary', 'json-summary', 'html'],
     },
   },
 })
