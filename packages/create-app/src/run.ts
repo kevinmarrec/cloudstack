@@ -111,7 +111,7 @@ Options:
     title: 'Installing with bun',
     enabled: shouldInstall,
     task: async () => {
-      await x('bun', ['install', '--cwd', targetDir])
+      await x('bun', ['install', '--cwd', targetDir, '--force'])
       return 'Installed with bun'
     },
   }])
