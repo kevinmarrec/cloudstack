@@ -23,11 +23,7 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
           async buildApp(builder) {
             if (builder.config.mode === 'static') {
               const { build } = await import('vite-ssg/node')
-
-              return build({
-                ...builder.config.ssgOptions,
-                mode: builder.config.mode,
-              })
+              return build(builder.config.ssgOptions)
             }
 
             await builder.build(builder.environments.client)
