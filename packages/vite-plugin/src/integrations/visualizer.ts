@@ -3,7 +3,7 @@ import { visualizer } from 'rollup-plugin-visualizer'
 import { integrationFactory } from './_factory'
 
 export default integrationFactory(visualizer, {
-  enabled: ({ env }) => !env?.isSsrBuild && env?.command === 'build' && env?.mode === 'analyze',
+  enabled: ({ env }) => env?.mode === 'analyze',
   options: ({ userOptions }) => userOptions.visualizer,
   defaults: () => ({
     filename: 'node_modules/.cache/cloudstack/stats.html',
