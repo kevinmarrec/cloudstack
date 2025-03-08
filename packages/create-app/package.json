@@ -35,6 +35,6 @@
     "tinyglobby": "^0.2.12"
   },
   "devDependencies": {
-    "@faker-js/faker": "^9.5.1"
+    "@faker-js/faker": "^9.6.0"
   }
 }
