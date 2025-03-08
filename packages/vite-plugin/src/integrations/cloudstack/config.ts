@@ -49,6 +49,12 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
             reduceInlineStyles: false,
           },
         },
+        ssr: {
+          noExternal: [
+            '@cloudstack/vue-i18n',
+            '@kevinmarrec/cloudstack-vue-i18n',
+          ],
+        },
       }),
       config,
     )
