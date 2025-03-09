@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "@kevinmarrec/cloudstack-tsconfig",
   "compilerOptions": {
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "paths": {
