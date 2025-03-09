@@ -1,0 +1,51 @@
+name: 🐞 Bug report
+description: Report an issue with Cloudstack
+title: 'bug: '
+labels: ['🐛 bug: unconfirmed']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report! Please fill out this form as completely as possible.
+        Note that the more precise you are, the quicker we will be able to investigate the bug.
+  - type: input
+    attributes:
+      label: Cloudstack version
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Describe the bug
+      description: Please describe the bug as clear and concise as possible, as well as the behavior you were expecting whilst encountering the bug.
+      placeholder: Bug description
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reproduction
+      description: Please provide a link to a Github repository that can reproduce the problem you ran into. A [minimal reproduction](https://stackoverflow.com/help/minimal-reproducible-example) is required unless you are absolutely sure that the issue is obvious and the provided information is enough to understand the problem. [Why reproduction is required](https://antfu.me/posts/why-reproductions-are-required).
+      placeholder: Reproduction
+    validations:
+      required: true
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: Additional information
+      description: Add any other information related to the bug here. If your feature request is related to any issues or discussions, link them here.
+  - type: checkboxes
+    attributes:
+      label: Validations
+      description: Before submitting the issue, please make sure you do the following
+      options:
+        - label: Read the [Contributing Guidelines](https://github.com/kevinmarrec/cloudstack/blob/main/.github/CONTRIBUTING.md).
+          required: true
+        - label: Check that there isn't [already an issue](https://github.com/kevinmarrec/cloudstack/issues) that reports the same bug to avoid creating a duplicate.
+          required: true
+        - label: Check that this is a concrete bug.
+          required: true
+  - type: checkboxes
+    attributes:
+      label: 👨‍👧‍👦 Contributing
+      description: We love contributors in any shape or form. Would you be willing to implement a fix?
+      options:
+        - label: 🙋‍♂️ Yes, I'd be down to file a PR fixing this bug!
