@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-unocss-preset",
   "type": "module",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.2",
   "description": "Opinionated UnoCSS preset.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
