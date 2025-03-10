@@ -9,6 +9,7 @@ import { defineComponent } from 'vue'
 import { createI18n, useI18n } from '../src'
 
 afterEach(() => {
+  vi.restoreAllMocks()
   vi.unstubAllGlobals()
 })
 
@@ -130,6 +131,8 @@ describe('composable', () => {
         useI18n()
       },
     })
+
+    vi.spyOn(console, 'warn').mockImplementation(() => {})
 
     expect(() => mount(Component)).toThrowError('Plugin has not been installed')
   })
