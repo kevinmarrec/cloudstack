@@ -12,6 +12,7 @@ jobs:
     permissions:
       actions: write
       contents: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,7 +40,7 @@ jobs:
         run: bun run prepublish
 
       - name: Publish
-        run: npm publish -w packages --access public --tag ${{ contains(github.ref_name, 'beta') && 'beta' || 'latest' }}
+        run: npm publish -w packages --provenance --access public --tag ${{ contains(github.ref_name, 'beta') && 'beta' || 'latest' }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
