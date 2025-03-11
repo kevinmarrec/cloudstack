@@ -2,7 +2,7 @@
   "name": "app",
   "type": "module",
   "private": true,
-  "packageManager": "bun@1.2.4",
+  "packageManager": "bun@1.2.5",
   "engines": {
     "node": "lts/*"
   },
@@ -30,7 +30,7 @@
     "eslint": "^9.22.0",
     "knip": "^5.45.0",
     "stylelint": "^16.15.0",
-    "taze": "^19.0.1",
+    "taze": "^19.0.2",
     "typescript": "~5.8.2",
     "vue-tsc": "^2.2.8"
   }
