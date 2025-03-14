@@ -16,9 +16,9 @@
         "bumpp": "^10.1.0",
         "eslint": "^9.22.0",
         "happy-dom": "^17.4.4",
-        "knip": "^5.45.0",
+        "knip": "^5.46.0",
         "pathe": "^2.0.3",
-        "stylelint": "^16.15.0",
+        "stylelint": "^16.16.0",
         "taze": "^19.0.2",
         "tinyexec": "^0.3.2",
         "tinyglobby": "^0.2.12",
@@ -55,8 +55,8 @@
         "@kevinmarrec/cloudstack-tsconfig": "workspace:*",
         "concurrently": "^9.1.2",
         "eslint": "^9.22.0",
-        "knip": "^5.45.0",
-        "stylelint": "^16.15.0",
+        "knip": "^5.46.0",
+        "stylelint": "^16.16.0",
         "taze": "^19.0.2",
         "typescript": "~5.8.2",
         "vue-tsc": "^2.2.8",
@@ -76,7 +76,7 @@
         "@kevinmarrec/cloudstack-vue-i18n": "workspace:*",
         "@unhead/vue": "^1.11.20",
         "unocss": "^66.0.0",
-        "vite": "^6.2.1",
+        "vite": "^6.2.2",
         "vue": "^3.5.13",
       },
     },
@@ -1522,7 +1522,7 @@
 
     "kind-of": ["kind-of@6.0.3", "", {}, "sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw=="],
 
-    "knip": ["knip@5.45.0", "", { "dependencies": { "@nodelib/fs.walk": "3.0.1", "@snyk/github-codeowners": "1.1.0", "easy-table": "1.2.0", "enhanced-resolve": "^5.18.0", "fast-glob": "^3.3.3", "jiti": "^2.4.2", "js-yaml": "^4.1.0", "minimist": "^1.2.8", "picocolors": "^1.1.0", "picomatch": "^4.0.1", "pretty-ms": "^9.0.0", "smol-toml": "^1.3.1", "strip-json-comments": "5.0.1", "summary": "2.1.0", "zod": "^3.22.4", "zod-validation-error": "^3.0.3" }, "peerDependencies": { "@types/node": ">=18", "typescript": ">=5.0.4" }, "bin": { "knip": "bin/knip.js", "knip-bun": "bin/knip-bun.js" } }, "sha512-OUyO9FUEVCM6/j0gl+PP/LDeJEs4hIdE8n4vK4xrtjN1g3Qu4Ws1oexbWTCJ+8xt8Tgse4Yvhx96OqF/UVl3Ug=="],
+    "knip": ["knip@5.46.0", "", { "dependencies": { "@nodelib/fs.walk": "3.0.1", "@snyk/github-codeowners": "1.1.0", "easy-table": "1.2.0", "enhanced-resolve": "^5.18.0", "fast-glob": "^3.3.3", "jiti": "^2.4.2", "js-yaml": "^4.1.0", "minimist": "^1.2.8", "picocolors": "^1.1.0", "picomatch": "^4.0.1", "pretty-ms": "^9.0.0", "smol-toml": "^1.3.1", "strip-json-comments": "5.0.1", "summary": "2.1.0", "zod": "^3.22.4", "zod-validation-error": "^3.0.3" }, "peerDependencies": { "@types/node": ">=18", "typescript": ">=5.0.4" }, "bin": { "knip": "bin/knip.js", "knip-bun": "bin/knip-bun.js" } }, "sha512-WedHSK5xNBWYgm64Rt5B9b0CVXL2kRBcyCeet3NHgdv9en3QE4AWSDPEiX48NoPUBW3h//9S0VwLF5MG/MPi3g=="],
 
     "known-css-properties": ["known-css-properties@0.35.0", "", {}, "sha512-a/RAk2BfKk+WFGhhOCAYqSiFLc34k8Mt/6NWRI4joER0EYUzXIcFivjjnoD3+XU1DggLn/tZc3DOAgke7l8a4A=="],
 
@@ -2038,7 +2038,7 @@
 
     "strip-json-comments": ["strip-json-comments@5.0.1", "", {}, "sha512-0fk9zBqO67Nq5M/m45qHCJxylV/DhBlIOVExqgOMiCCrzrhU6tCibRXNqE3jwJLftzE9SNuZtYbpzcO+i9FiKw=="],
 
-    "stylelint": ["stylelint@16.15.0", "", { "dependencies": { "@csstools/css-parser-algorithms": "^3.0.4", "@csstools/css-tokenizer": "^3.0.3", "@csstools/media-query-list-parser": "^4.0.2", "@csstools/selector-specificity": "^5.0.0", "@dual-bundle/import-meta-resolve": "^4.1.0", "balanced-match": "^2.0.0", "colord": "^2.9.3", "cosmiconfig": "^9.0.0", "css-functions-list": "^3.2.3", "css-tree": "^3.1.0", "debug": "^4.3.7", "fast-glob": "^3.3.3", "fastest-levenshtein": "^1.0.16", "file-entry-cache": "^10.0.6", "global-modules": "^2.0.0", "globby": "^11.1.0", "globjoin": "^0.1.4", "html-tags": "^3.3.1", "ignore": "^7.0.3", "imurmurhash": "^0.1.4", "is-plain-object": "^5.0.0", "known-css-properties": "^0.35.0", "mathml-tag-names": "^2.1.3", "meow": "^13.2.0", "micromatch": "^4.0.8", "normalize-path": "^3.0.0", "picocolors": "^1.1.1", "postcss": "^8.5.3", "postcss-resolve-nested-selector": "^0.1.6", "postcss-safe-parser": "^7.0.1", "postcss-selector-parser": "^7.1.0", "postcss-value-parser": "^4.2.0", "resolve-from": "^5.0.0", "string-width": "^4.2.3", "supports-hyperlinks": "^3.2.0", "svg-tags": "^1.0.0", "table": "^6.9.0", "write-file-atomic": "^5.0.1" }, "bin": { "stylelint": "bin/stylelint.mjs" } }, "sha512-OK6Rs7EPdcdmjqiDycadZY4fw3f5/TC1X6/tGjnF3OosbwCeNs7nG+79MCAtjEg7ckwqTJTsku08e0Rmaz5nUw=="],
+    "stylelint": ["stylelint@16.16.0", "", { "dependencies": { "@csstools/css-parser-algorithms": "^3.0.4", "@csstools/css-tokenizer": "^3.0.3", "@csstools/media-query-list-parser": "^4.0.2", "@csstools/selector-specificity": "^5.0.0", "@dual-bundle/import-meta-resolve": "^4.1.0", "balanced-match": "^2.0.0", "colord": "^2.9.3", "cosmiconfig": "^9.0.0", "css-functions-list": "^3.2.3", "css-tree": "^3.1.0", "debug": "^4.3.7", "fast-glob": "^3.3.3", "fastest-levenshtein": "^1.0.16", "file-entry-cache": "^10.0.7", "global-modules": "^2.0.0", "globby": "^11.1.0", "globjoin": "^0.1.4", "html-tags": "^3.3.1", "ignore": "^7.0.3", "imurmurhash": "^0.1.4", "is-plain-object": "^5.0.0", "known-css-properties": "^0.35.0", "mathml-tag-names": "^2.1.3", "meow": "^13.2.0", "micromatch": "^4.0.8", "normalize-path": "^3.0.0", "picocolors": "^1.1.1", "postcss": "^8.5.3", "postcss-resolve-nested-selector": "^0.1.6", "postcss-safe-parser": "^7.0.1", "postcss-selector-parser": "^7.1.0", "postcss-value-parser": "^4.2.0", "resolve-from": "^5.0.0", "string-width": "^4.2.3", "supports-hyperlinks": "^3.2.0", "svg-tags": "^1.0.0", "table": "^6.9.0", "write-file-atomic": "^5.0.1" }, "bin": { "stylelint": "bin/stylelint.mjs" } }, "sha512-40X5UOb/0CEFnZVEHyN260HlSSUxPES+arrUphOumGWgXERHfwCD0kNBVILgQSij8iliYVwlc0V7M5bcLP9vPg=="],
 
     "stylelint-config-html": ["stylelint-config-html@1.1.0", "", { "peerDependencies": { "postcss-html": "^1.0.0", "stylelint": ">=14.0.0" } }, "sha512-IZv4IVESjKLumUGi+HWeb7skgO6/g4VMuAYrJdlqQFndgbj6WJAXPhaysvBiXefX79upBdQVumgYcdd17gCpjQ=="],
 
@@ -2204,7 +2204,7 @@
 
     "validate-npm-package-license": ["validate-npm-package-license@3.0.4", "", { "dependencies": { "spdx-correct": "^3.0.0", "spdx-expression-parse": "^3.0.0" } }, "sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew=="],
 
-    "vite": ["vite@6.2.1", "", { "dependencies": { "esbuild": "^0.25.0", "postcss": "^8.5.3", "rollup": "^4.30.1" }, "optionalDependencies": { "fsevents": "~2.3.3" }, "peerDependencies": { "@types/node": "^18.0.0 || ^20.0.0 || >=22.0.0", "jiti": ">=1.21.0", "less": "*", "lightningcss": "^1.21.0", "sass": "*", "sass-embedded": "*", "stylus": "*", "sugarss": "*", "terser": "^5.16.0", "tsx": "^4.8.1", "yaml": "^2.4.2" }, "optionalPeers": ["@types/node", "jiti", "less", "lightningcss", "sass", "sass-embedded", "stylus", "sugarss", "terser", "tsx", "yaml"], "bin": { "vite": "bin/vite.js" } }, "sha512-n2GnqDb6XPhlt9B8olZPrgMD/es/Nd1RdChF6CBD/fHW6pUyUTt2sQW2fPRX5GiD9XEa6+8A6A4f2vT6pSsE7Q=="],
+    "vite": ["vite@6.2.2", "", { "dependencies": { "esbuild": "^0.25.0", "postcss": "^8.5.3", "rollup": "^4.30.1" }, "optionalDependencies": { "fsevents": "~2.3.3" }, "peerDependencies": { "@types/node": "^18.0.0 || ^20.0.0 || >=22.0.0", "jiti": ">=1.21.0", "less": "*", "lightningcss": "^1.21.0", "sass": "*", "sass-embedded": "*", "stylus": "*", "sugarss": "*", "terser": "^5.16.0", "tsx": "^4.8.1", "yaml": "^2.4.2" }, "optionalPeers": ["@types/node", "jiti", "less", "lightningcss", "sass", "sass-embedded", "stylus", "sugarss", "terser", "tsx", "yaml"], "bin": { "vite": "bin/vite.js" } }, "sha512-yW7PeMM+LkDzc7CgJuRLMW2Jz0FxMOsVJ8Lv3gpgW9WLcb9cTW+121UEr1hvmfR7w3SegR5ItvYyzVz1vxNJgQ=="],
 
     "vite-hot-client": ["vite-hot-client@0.2.4", "", { "peerDependencies": { "vite": "^2.6.0 || ^3.0.0 || ^4.0.0 || ^5.0.0-0 || ^6.0.0-0" } }, "sha512-a1nzURqO7DDmnXqabFOliz908FRmIppkBKsJthS8rbe8hBEXwEwe4C3Pp33Z1JoFCYfVL4kTOMLKk0ZZxREIeA=="],
 
@@ -2542,6 +2542,8 @@
 
     "validate-npm-package-license/spdx-expression-parse": ["spdx-expression-parse@3.0.1", "", { "dependencies": { "spdx-exceptions": "^2.1.0", "spdx-license-ids": "^3.0.0" } }, "sha512-cbqHunsQWnJNE6KhVSMsMeH5H/L9EpymbzqTQ3uLwNCLZ1Q481oWaofqH7nO6V07xlXwY6PhQdQ2IedWx/ZK4Q=="],
 
+    "vite-node/vite": ["vite@6.2.1", "", { "dependencies": { "esbuild": "^0.25.0", "postcss": "^8.5.3", "rollup": "^4.30.1" }, "optionalDependencies": { "fsevents": "~2.3.3" }, "peerDependencies": { "@types/node": "^18.0.0 || ^20.0.0 || >=22.0.0", "jiti": ">=1.21.0", "less": "*", "lightningcss": "^1.21.0", "sass": "*", "sass-embedded": "*", "stylus": "*", "sugarss": "*", "terser": "^5.16.0", "tsx": "^4.8.1", "yaml": "^2.4.2" }, "optionalPeers": ["@types/node", "jiti", "less", "lightningcss", "sass", "sass-embedded", "stylus", "sugarss", "terser", "tsx", "yaml"], "bin": { "vite": "bin/vite.js" } }, "sha512-n2GnqDb6XPhlt9B8olZPrgMD/es/Nd1RdChF6CBD/fHW6pUyUTt2sQW2fPRX5GiD9XEa6+8A6A4f2vT6pSsE7Q=="],
+
     "vite-plugin-inspect/@antfu/utils": ["@antfu/utils@0.7.10", "", {}, "sha512-+562v9k4aI80m1+VuMHehNJWLOFjBnXn3tdOitzD0il5b7smkSBal4+a3oKiQTbrwMmN/TBUMDvbdoWDehgOww=="],
 
     "vite-plugin-inspect/@rollup/pluginutils": ["@rollup/pluginutils@5.1.4", "", { "dependencies": { "@types/estree": "^1.0.0", "estree-walker": "^2.0.2", "picomatch": "^4.0.2" }, "peerDependencies": { "rollup": "^1.20.0||^2.0.0||^3.0.0||^4.0.0" }, "optionalPeers": ["rollup"] }, "sha512-USm05zrsFxYLPdWWq+K3STlWiT/3ELn3RcV5hJMghpeAIhxfsUIg6mt12CBJBInWMV4VneoV7SfGv8xIwo2qNQ=="],
@@ -2549,6 +2551,8 @@
     "vite-plugin-inspect/fs-extra": ["fs-extra@11.3.0", "", { "dependencies": { "graceful-fs": "^4.2.0", "jsonfile": "^6.0.1", "universalify": "^2.0.0" } }, "sha512-Z4XaCL6dUDHfP/jT25jJKMmtxvuwbkrD1vNSMFlo9lNLY2c5FHYSQgHPRZUjAB26TpDEoW9HCOgplrdbaPV/ew=="],
 
     "vite-plugin-inspect/open": ["open@10.1.0", "", { "dependencies": { "default-browser": "^5.2.1", "define-lazy-prop": "^3.0.0", "is-inside-container": "^1.0.0", "is-wsl": "^3.1.0" } }, "sha512-mnkeQ1qP5Ue2wd+aivTD3NHd/lZ96Lu0jgf0pwktLPtx6cTZiH7tyeGRRHs0zX0rbrahXPnXlUnbeXyaBBuIaw=="],
+
+    "vitest/vite": ["vite@6.2.1", "", { "dependencies": { "esbuild": "^0.25.0", "postcss": "^8.5.3", "rollup": "^4.30.1" }, "optionalDependencies": { "fsevents": "~2.3.3" }, "peerDependencies": { "@types/node": "^18.0.0 || ^20.0.0 || >=22.0.0", "jiti": ">=1.21.0", "less": "*", "lightningcss": "^1.21.0", "sass": "*", "sass-embedded": "*", "stylus": "*", "sugarss": "*", "terser": "^5.16.0", "tsx": "^4.8.1", "yaml": "^2.4.2" }, "optionalPeers": ["@types/node", "jiti", "less", "lightningcss", "sass", "sass-embedded", "stylus", "sugarss", "terser", "tsx", "yaml"], "bin": { "vite": "bin/vite.js" } }, "sha512-n2GnqDb6XPhlt9B8olZPrgMD/es/Nd1RdChF6CBD/fHW6pUyUTt2sQW2fPRX5GiD9XEa6+8A6A4f2vT6pSsE7Q=="],
 
     "whatwg-url/webidl-conversions": ["webidl-conversions@4.0.2", "", {}, "sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg=="],
 
