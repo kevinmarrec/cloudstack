@@ -1,4 +1,4 @@
-import { type LaunchHandlerClientMode, VitePWA } from 'vite-plugin-pwa'
+import { type DisplayOverride, type LaunchHandlerClientMode, VitePWA } from 'vite-plugin-pwa'
 
 import { integrationFactory } from './_factory'
 
@@ -20,7 +20,7 @@ export default integrationFactory(VitePWA, {
       display: 'standalone',
       display_override: [
         'window-controls-overlay',
-      ],
+      ] as DisplayOverride[],
       handle_links: 'preferred',
       launch_handler: {
         client_mode: [
@@ -45,5 +45,5 @@ export default integrationFactory(VitePWA, {
         enabled: true,
       },
     },
-  } satisfies Partial<Parameters<typeof VitePWA>[0]>),
+  } as const),
 })
