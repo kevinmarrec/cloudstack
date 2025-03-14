@@ -11,13 +11,13 @@ export interface CloudstackPluginOptions {
   /**
    * `vite-plugin-pwa` plugin options.
    *
-   * The plugin is disabled by default.
+   * The plugin is enabled by default.
    *
-   * Set to `true` to enable with default options.
+   * Set to `false` to disable.
    *
    * @see https://github.com/vite-pwa/vite-plugin-pwa
    */
-  pwa?: boolean | Partial<PWAPluginOptions>
+  pwa?: false | Partial<PWAPluginOptions>
   /**
    * `vite-tsconfig-paths` plugin options.
    *
