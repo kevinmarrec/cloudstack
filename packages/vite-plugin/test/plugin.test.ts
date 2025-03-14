@@ -29,8 +29,8 @@ afterEach(async () => {
 
 describe('plugin', () => {
   it('with defaults', async () => {
-    const baseConfig = await resolveConfig({}, 'serve')
-    const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin()] }, 'serve')
+    const baseConfig = await resolveConfig({}, 'build')
+    const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin()] }, 'build')
 
     expect(configDiff(baseConfig, resolvedConfig).plugins).toMatchSnapshot()
   })

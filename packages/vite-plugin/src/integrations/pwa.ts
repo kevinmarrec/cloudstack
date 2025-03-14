@@ -3,21 +3,24 @@ import { type LaunchHandlerClientMode, VitePWA } from 'vite-plugin-pwa'
 import { integrationFactory } from './_factory'
 
 export default integrationFactory(VitePWA, {
-  enabled: ({ userOptions }) => Boolean(userOptions.pwa),
+  enabled: ({ userOptions }) => userOptions.pwa !== false,
   options: ({ userOptions }) => userOptions.pwa,
-  defaults: () => ({
-    registerType: 'autoUpdate',
+  defaults: ({ env }) => ({
     manifest: {
       id: '/',
       scope: '/',
       start_url: '/',
-      lang: 'en-US',
-      name: 'Vite PWA',
-      short_name: 'Vite PWA',
+      lang: 'en',
+      name: 'Cloudstack',
+      short_name: 'Cloudstack',
       background_color: '#ffffff',
       theme_color: '#ffffff',
       dir: 'ltr',
       orientation: 'natural',
+      display: 'standalone',
+      display_override: [
+        'window-controls-overlay',
+      ],
       handle_links: 'preferred',
       launch_handler: {
         client_mode: [
@@ -26,13 +29,21 @@ export default integrationFactory(VitePWA, {
         ] as LaunchHandlerClientMode[],
       },
     },
+    injectRegister: 'script-defer',
+    registerType: 'autoUpdate',
     pwaAssets: {
       overrideManifestIcons: true,
     },
-    devOptions: {
-      enabled: true,
-      suppressWarnings: true,
-      type: 'module',
+    workbox: {
+      cleanupOutdatedCaches: true,
+      clientsClaim: true,
+      skipWaiting: true,
     },
-  } as const),
+    ...env?.mode === 'development' && {
+      selfDestroying: true,
+      devOptions: {
+        enabled: true,
+      },
+    },
+  } satisfies Partial<Parameters<typeof VitePWA>[0]>),
 })

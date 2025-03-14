@@ -107,14 +107,16 @@ exports[`plugin > with all integrations (mode: 'production') 1`] = `
 
 exports[`plugin > with defaults 1`] = `
 [
+  "vite-plugin-pwa",
   "vite-tsconfig-paths",
-  "vite-plugin-inspect",
-  "vite-plugin-vue-devtools",
   "cloudstack:config",
   "cloudstack:dark-mode",
   "cloudstack:virtual",
   "vite:vue",
   "vite:transform-yaml",
+  "vite-plugin-pwa:info",
+  "vite-plugin-pwa:build",
+  "vite-plugin-pwa:pwa-assets",
 ]
 `;
 
