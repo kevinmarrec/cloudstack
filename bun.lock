@@ -73,8 +73,7 @@
       "devDependencies": {
         "@kevinmarrec/cloudstack-unocss-config": "workspace:*",
         "@kevinmarrec/cloudstack-vite-config": "workspace:*",
-        "@kevinmarrec/cloudstack-vue-i18n": "workspace:*",
-        "@unhead/vue": "^1.11.20",
+        "@kevinmarrec/cloudstack-vue": "workspace:*",
         "unocss": "^66.0.0",
         "vite": "^6.2.2",
         "vue": "^3.5.13",
@@ -184,6 +183,17 @@
       "optionalPeers": [
         "vue-router",
       ],
+    },
+    "packages/vue": {
+      "name": "@kevinmarrec/cloudstack-vue",
+      "version": "1.0.0-rc.3",
+      "dependencies": {
+        "@kevinmarrec/cloudstack-vue-i18n": "workspace:*",
+        "@unhead/vue": "^1.11.20",
+      },
+      "peerDependencies": {
+        "vue": ">=3.5.0",
+      },
     },
     "packages/vue-i18n": {
       "name": "@kevinmarrec/cloudstack-vue-i18n",
@@ -549,6 +559,8 @@
     "@kevinmarrec/cloudstack-vite-config": ["@kevinmarrec/cloudstack-vite-config@workspace:packages/vite-config"],
 
     "@kevinmarrec/cloudstack-vite-plugin": ["@kevinmarrec/cloudstack-vite-plugin@workspace:packages/vite-plugin"],
+
+    "@kevinmarrec/cloudstack-vue": ["@kevinmarrec/cloudstack-vue@workspace:packages/vue"],
 
     "@kevinmarrec/cloudstack-vue-i18n": ["@kevinmarrec/cloudstack-vue-i18n@workspace:packages/vue-i18n"],
 

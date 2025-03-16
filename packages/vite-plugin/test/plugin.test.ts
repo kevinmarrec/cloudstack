@@ -7,7 +7,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { createTempDir } from '../../../test/utils'
 import CloudstackVitePlugin from '../src'
-import { createContext } from '../src/context'
+import { type CloudstackPluginContext, createContext } from '../src/context'
 import virtualModule from '../src/integrations/cloudstack/virtual'
 import { configDiff } from './utils'
 
@@ -113,27 +113,42 @@ describe('plugin', () => {
 })
 
 describe('virtual module', async () => {
+  function virtualModuleContentFromContext(ctx: CloudstackPluginContext) {
+    const module: any = virtualModule(ctx)
+    const content = module.load('virtual:cloudstack')
+      .replace(/ {8}/g, '')
+      .replace(/^\s*(\n|$)/gm, '')
+
+    return content
+  }
+
   it('should resolve virtual module id', async () => {
     const module: any = virtualModule(createContext({}))
 
     expect(module.resolveId('virtual:cloudstack')).toEqual('virtual:cloudstack')
   })
 
-  it('should generate virtual module content (with router & unocss)', async () => {
+  it('should generate virtual module content (with router, i18n & unocss)', async () => {
     await fs.writeFile(resolve(tmpDir, 'uno.config.ts'), `export default {}`)
     await fs.mkdir(resolve(tmpDir, 'src/pages'), { recursive: true })
     await fs.writeFile(resolve(tmpDir, 'src/pages/index.vue'), `<template></template>`)
+    await fs.mkdir(resolve(tmpDir, 'src/locales'), { recursive: true })
+    await fs.writeFile(resolve(tmpDir, 'src/locales/en.yml'), `hello: Hello`)
 
-    const module: any = virtualModule(createContext())
-    const content = module.load('virtual:cloudstack')
+    const content = virtualModuleContentFromContext(createContext())
+    const contentWithI18nOptions = virtualModuleContentFromContext(createContext({
+      i18n: {
+        locale: 'fr',
+        fallbackLocale: 'en',
+      },
+    }))
 
     expect(content).toMatchSnapshot()
+    expect(contentWithI18nOptions).toMatchSnapshot()
   })
 
   it('should generate virtual module content, (SPA)', async () => {
-    const module: any = virtualModule(createContext())
-    const content = module.load('virtual:cloudstack')
-
+    const content = virtualModuleContentFromContext(createContext())
     expect(content).toMatchSnapshot()
   })
 })

@@ -9,6 +9,36 @@ import type { PluginOptions as TsConfigPathsPluginOptions } from 'vite-tsconfig-
 
 export interface CloudstackPluginOptions {
   /**
+   * I18n integration options.
+   *
+   * The integration is automatically enabled if the following conditions are met:
+   * - Any `.json`, `.yaml` or `.yml` file is found in the project's locales folder.
+   *
+   *  The file detection is based on the `localesFolder` option of this integration (defaults to `src/locales`).
+   */
+  i18n?: {
+    /**
+     * The locales folder path.
+     *
+     * @default 'src/locales'
+     */
+    localesFolder?: string
+    /**
+     * The default locale to use.
+     *
+     * @default 'en'
+     *
+     */
+    locale?: string
+    /**
+     * The fallback locale to use when translation is missing for the current locale.
+     *
+     * Defaults to the default locale (`en` if not set).
+     *
+     */
+    fallbackLocale?: string
+  }
+  /**
    * `vite-plugin-pwa` plugin options.
    *
    * The plugin is disabled by default.

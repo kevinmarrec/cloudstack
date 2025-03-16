@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { useI18n } from '@kevinmarrec/cloudstack-vue-i18n'
-import { useHead } from '@unhead/vue'
+import { useHead, useI18n } from '@kevinmarrec/cloudstack-vue'
 import { computed } from 'vue'
 
 const { t } = useI18n()
