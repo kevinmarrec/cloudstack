@@ -31,6 +31,7 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
         },
         optimizeDeps: {
           include: [
+            '@kevinmarrec/cloudstack-vue-i18n',
             'vite-ssg',
             'vite-ssg/single-page',
             'vue',
@@ -47,7 +48,8 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
         },
         ssr: {
           noExternal: [
-            '@cloudstack/vue-i18n',
+            '@cloudstack/vue',
+            '@kevinmarrec/cloudstack-vue',
             '@kevinmarrec/cloudstack-vue-i18n',
           ],
         },
