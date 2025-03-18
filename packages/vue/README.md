@@ -9,6 +9,7 @@ Opinionated [Vue](https://vuejs.org) [Components](https://vuejs.org/guide/essent
 - Export every composable from [Cloudstack Vue I18n](https://github.com/kevinmarrec/cloudstack/tree/main/packages/vue-i18n)
 - Export every composable and utility from [@unhead/vue](https://unhead.unjs.io)
 - Export every composable and utility from [@vueuse/core](https://vueuse.org)
+- Export every component from [@vueuse/components](https://vueuse.org/guide/components)
 
 ## Usage
 
