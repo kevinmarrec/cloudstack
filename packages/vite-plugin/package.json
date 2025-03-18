@@ -47,7 +47,7 @@
     "@modyfi/vite-plugin-yaml": "^1.1.1",
     "@unocss/vite": "^66.0.0",
     "@vite-pwa/assets-generator": "^0.2.6",
-    "@vitejs/plugin-vue": "^5.2.1",
+    "@vitejs/plugin-vue": "^5.2.3",
     "beasties": "^0.2.0",
     "defu": "^6.1.4",
     "local-pkg": "^1.1.1",
