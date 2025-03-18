@@ -1,0 +1,56 @@
+{
+  "name": "@kevinmarrec/cloudstack-vue",
+  "type": "module",
+  "version": "1.0.0-rc.3",
+  "description": "Opinionated Collection of Vue Components and Composition Utilities.",
+  "author": "Kevin Marrec <kevin@marrec.io>",
+  "license": "MIT",
+  "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/vue#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinmarrec/cloudstack.git",
+    "directory": "packages/vue"
+  },
+  "keywords": [
+    "cloudstack",
+    "composables",
+    "composition",
+    "utils",
+    "vue"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./components": {
+      "types": "./dist/components.d.ts",
+      "import": "./dist/components.js"
+    },
+    "./head": {
+      "types": "./dist/head.d.ts",
+      "import": "./dist/head.js"
+    },
+    "./i18n": {
+      "types": "./dist/i18n.d.ts",
+      "import": "./dist/i18n.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup --clean --dts --format esm src/index.ts src/components.ts src/head.ts src/i18n.ts"
+  },
+  "peerDependencies": {
+    "vue": ">=3.5.0"
+  },
+  "dependencies": {
+    "@kevinmarrec/cloudstack-vue-i18n": "workspace:*",
+    "@unhead/vue": "^1.11.20",
+    "@vueuse/components": "^13.0.0",
+    "@vueuse/core": "^13.0.0"
+  }
+}
