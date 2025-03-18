@@ -27,14 +27,12 @@ export interface CloudstackPluginOptions {
      * The default locale to use.
      *
      * @default 'en'
-     *
      */
     locale?: string
     /**
      * The fallback locale to use when translation is missing for the current locale.
      *
      * Defaults to the default locale (`en` if not set).
-     *
      */
     fallbackLocale?: string
   }
