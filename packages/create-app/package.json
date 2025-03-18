@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/create-cloudstack-app",
   "type": "module",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.4",
   "description": "CLI that scaffolds an opinionated Bun & Vue fullstack application.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
