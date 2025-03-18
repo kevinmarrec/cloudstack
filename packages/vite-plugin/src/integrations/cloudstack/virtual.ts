@@ -22,7 +22,7 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
       const exports: string[] = []
       const hasRouter = vueRouter.enabled(ctx)
       const hasLocales = globSync(`${localesFolder}/*.{json,yaml,yml}`).length > 0
-      let createI18n = ''
+      let inject = ''
 
       if (hasRouter) {
         imports.push(`import { ViteSSG } from 'vite-ssg'`)
@@ -34,7 +34,7 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
 
       if (hasLocales) {
         imports.push(`import { createI18n } from '@kevinmarrec/cloudstack-vue-i18n'`)
-        createI18n = `
+        inject += `
           ctx.app.use(await createI18n({
             ${locale ? `locale: '${locale}',` : ''}
             ${fallbackLocale ? `fallbackLocale: '${fallbackLocale}',` : ''}
@@ -45,7 +45,7 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
 
       exports.push(`
         const fn = (innerFn) => async (ctx) => {
-          ${createI18n}
+          ${inject}
           innerFn?.(ctx)
         }
       `)
