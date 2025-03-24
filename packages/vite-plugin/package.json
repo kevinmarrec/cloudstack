@@ -55,7 +55,7 @@
     "the-new-css-reset": "^1.11.3",
     "tinyglobby": "^0.2.12",
     "unplugin-vue-router": "^0.12.0",
-    "vite-plugin-pwa": "^0.21.1",
+    "vite-plugin-pwa": "^0.21.2",
     "vite-plugin-vue-devtools": "^7.7.2",
     "vite-ssg": "^25.2.0",
     "vite-tsconfig-paths": "^5.1.4"
