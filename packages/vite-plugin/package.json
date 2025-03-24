@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-vite-plugin",
   "type": "module",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.6",
   "description": "Opinionated Vite plugin.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
@@ -47,7 +47,7 @@
     "@modyfi/vite-plugin-yaml": "^1.1.1",
     "@unocss/vite": "^66.0.0",
     "@vite-pwa/assets-generator": "^0.2.6",
-    "@vitejs/plugin-vue": "^5.2.1",
+    "@vitejs/plugin-vue": "^5.2.3",
     "beasties": "^0.2.0",
     "defu": "^6.1.4",
     "local-pkg": "^1.1.1",
@@ -55,7 +55,7 @@
     "the-new-css-reset": "^1.11.3",
     "tinyglobby": "^0.2.12",
     "unplugin-vue-router": "^0.12.0",
-    "vite-plugin-pwa": "^0.21.1",
+    "vite-plugin-pwa": "^0.21.2",
     "vite-plugin-vue-devtools": "^7.7.2",
     "vite-ssg": "^25.2.0",
     "vite-tsconfig-paths": "^5.1.4"

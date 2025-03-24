@@ -23,6 +23,7 @@ export function useConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
     formatters: true,
     ignores: options.ignores,
     vue: {
+      a11y: true,
       overrides: {
         'vue/no-unused-properties': 'error',
       },

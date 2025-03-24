@@ -18,6 +18,7 @@ exports[`plugin > should inject dark mode script in index.html 1`] = `
 
 exports[`plugin > should optimize dependencies 1`] = `
 [
+  "@kevinmarrec/cloudstack-vue-i18n",
   "vite-ssg",
   "vite-ssg/single-page",
   "vue",
@@ -120,16 +121,55 @@ exports[`plugin > with defaults 1`] = `
 ]
 `;
 
-exports[`virtual module > should generate virtual module content (with router & unocss) 1`] = `
+exports[`virtual module > should generate virtual module content (with router, i18n & unocss) 1`] = `
 "import { ViteSSG } from 'vite-ssg'
 import { routes } from 'vue-router/auto-routes'
+import { createI18n } from '@kevinmarrec/cloudstack-vue-i18n'
 import 'the-new-css-reset'
 import 'uno.css'
-export const Cloudstack = (App, argA, argB) => typeof argA === 'object' ? ViteSSG(App, { routes, ...argA }, argB) : ViteSSG(App, { routes }, argA)"
+const fn = (innerFn) => async (ctx) => {
+  ctx.app.use(await createI18n({
+    messages: import.meta.glob('/src/locales/*.{json,yaml,yml}')
+  }))
+  innerFn?.(ctx)
+}
+export const Cloudstack = (App, argA, argB) =>
+  typeof argA === 'object'
+    ? ViteSSG(App, { routes, ...argA }, fn(argB))
+    : ViteSSG(App, { routes }, fn(argA))
+"
+`;
+
+exports[`virtual module > should generate virtual module content (with router, i18n & unocss) 2`] = `
+"import { ViteSSG } from 'vite-ssg'
+import { routes } from 'vue-router/auto-routes'
+import { createI18n } from '@kevinmarrec/cloudstack-vue-i18n'
+import 'the-new-css-reset'
+import 'uno.css'
+const fn = (innerFn) => async (ctx) => {
+  ctx.app.use(await createI18n({
+    locale: 'fr',
+    fallbackLocale: 'en',
+    messages: import.meta.glob('/src/locales/*.{json,yaml,yml}')
+  }))
+  innerFn?.(ctx)
+}
+export const Cloudstack = (App, argA, argB) =>
+  typeof argA === 'object'
+    ? ViteSSG(App, { routes, ...argA }, fn(argB))
+    : ViteSSG(App, { routes }, fn(argA))
+"
 `;
 
 exports[`virtual module > should generate virtual module content, (SPA) 1`] = `
 "import { ViteSSG } from 'vite-ssg/single-page'
 import 'the-new-css-reset'
-export const Cloudstack = (App, argA, argB) => typeof argA === 'object' ? ViteSSG(App, argB) : ViteSSG(App, argA)"
+const fn = (innerFn) => async (ctx) => {
+  innerFn?.(ctx)
+}
+export const Cloudstack = (App, argA, argB) =>
+  typeof argA === 'object'
+    ? ViteSSG(App, fn(argB))
+    : ViteSSG(App, fn(argA))
+"
 `;

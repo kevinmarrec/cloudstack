@@ -41,7 +41,7 @@ Opinionated [Internationalization (i18n)](https://developer.mozilla.org/en-US/do
 
 ## Usage
 
-> This package is mainly meant to be used with [Cloudstack Vite](https://github.com/kevinmarrec/cloudstack/tree/main/packages/vite-plugin) setup.
+> This package is mainly meant to be internally used by [Cloudstack Vite](https://github.com/kevinmarrec/cloudstack/tree/main/packages/vite-plugin).
 >
 > The `createI18n` function returns a `Promise` that resolves to the i18n plugin, so you must asynchronously use it in your app.
 >

@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/create-cloudstack-app",
   "type": "module",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.6",
   "description": "CLI that scaffolds an opinionated Bun & Vue fullstack application.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
@@ -31,7 +31,7 @@
     "@clack/prompts": "^0.10.0",
     "ansis": "^3.17.0",
     "pathe": "^2.0.3",
-    "tinyexec": "^0.3.2",
+    "tinyexec": "^1.0.0",
     "tinyglobby": "^0.2.12"
   },
   "devDependencies": {
