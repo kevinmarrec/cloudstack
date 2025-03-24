@@ -1,5 +1,31 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`plugin > 'with custom pwa image path' 1`] = `
+[
+  "vite-plugin-pwa",
+  "vite-tsconfig-paths",
+  "cloudstack:config",
+  "cloudstack:dark-mode",
+  "cloudstack:virtual",
+  "vite:vue",
+  "vite:transform-yaml",
+  "vite-plugin-pwa:info",
+  "vite-plugin-pwa:build",
+  "vite-plugin-pwa:pwa-assets",
+]
+`;
+
+exports[`plugin > 'without pwa' 1`] = `
+[
+  "vite-tsconfig-paths",
+  "cloudstack:config",
+  "cloudstack:dark-mode",
+  "cloudstack:virtual",
+  "vite:vue",
+  "vite:transform-yaml",
+]
+`;
+
 exports[`plugin > should inject dark mode script in index.html 1`] = `
 "<html>
 <script>(function () {
@@ -22,6 +48,7 @@ exports[`plugin > should optimize dependencies 1`] = `
   "vite-ssg",
   "vite-ssg/single-page",
   "vue",
+  "workbox-window",
 ]
 `;
 

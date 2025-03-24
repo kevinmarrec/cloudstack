@@ -1,22 +1,31 @@
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
+import process from 'node:process'
 
 import { join } from 'pathe'
 import { type DisplayOverride, type LaunchHandlerClientMode, VitePWA } from 'vite-plugin-pwa'
 
+import type { CloudstackPluginOptions } from '../options'
 import { integrationFactory } from './_factory'
+
+function getRevision(options: CloudstackPluginOptions['pwa']): string | null {
+  const image = (typeof options === 'object' && options.pwaAssets?.image) || 'public/favicon.svg'
+
+  try {
+    return createHash('md5')
+      .update(readFileSync(join(process.cwd(), image), 'utf-8'))
+      .digest('hex')
+  }
+  catch {
+    return null
+  }
+}
 
 export default integrationFactory(VitePWA, {
   enabled: ({ userOptions }) => userOptions.pwa !== false,
   options: ({ userOptions }) => userOptions.pwa,
   defaults: ({ env, userOptions }) => {
-    const pwaImage = join(
-      (typeof userOptions.pwa === 'object' && userOptions.pwa.pwaAssets?.image) || 'public/favicon.svg',
-    )
-
-    const faviconHash = createHash('md5')
-      .update(readFileSync(pwaImage, 'utf-8'))
-      .digest('hex')
+    const revision = getRevision(userOptions.pwa)
 
     return {
       manifest: {
@@ -43,6 +52,7 @@ export default integrationFactory(VitePWA, {
         },
       },
       pwaAssets: {
+        disabled: !revision,
         overrideManifestIcons: true,
       },
       workbox: {
@@ -54,7 +64,7 @@ export default integrationFactory(VitePWA, {
           'pwa-192x192.png',
           'pwa-512x512.png',
           'maskable-icon-512x512.png',
-        ].map(url => ({ url, revision: faviconHash })),
+        ].map(url => ({ url, revision })),
       },
       ...env?.mode === 'development' && {
         selfDestroying: true,
