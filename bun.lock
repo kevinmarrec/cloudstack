@@ -190,6 +190,7 @@
       "version": "1.0.0-rc.6",
       "dependencies": {
         "@kevinmarrec/cloudstack-vue-i18n": "workspace:*",
+        "@kevinmarrec/cloudstack-vue-pwa": "workspace:*",
         "@unhead/vue": "^1.11.20",
         "@vueuse/components": "^13.0.0",
         "@vueuse/core": "^13.0.0",
@@ -200,6 +201,13 @@
     },
     "packages/vue-i18n": {
       "name": "@kevinmarrec/cloudstack-vue-i18n",
+      "version": "1.0.0-rc.6",
+      "peerDependencies": {
+        "vue": ">=3.5.0",
+      },
+    },
+    "packages/vue-pwa": {
+      "name": "@kevinmarrec/cloudstack-vue-pwa",
       "version": "1.0.0-rc.6",
       "peerDependencies": {
         "vue": ">=3.5.0",
@@ -572,6 +580,8 @@
     "@kevinmarrec/cloudstack-vue": ["@kevinmarrec/cloudstack-vue@workspace:packages/vue"],
 
     "@kevinmarrec/cloudstack-vue-i18n": ["@kevinmarrec/cloudstack-vue-i18n@workspace:packages/vue-i18n"],
+
+    "@kevinmarrec/cloudstack-vue-pwa": ["@kevinmarrec/cloudstack-vue-pwa@workspace:packages/vue-pwa"],
 
     "@kevinmarrec/create-cloudstack-app": ["@kevinmarrec/create-cloudstack-app@workspace:packages/create-app"],
 

@@ -3,6 +3,7 @@ import type { Plugin } from 'vite'
 
 import type { CloudstackPluginContext } from '../../context'
 import { integrationFactory } from '../_factory'
+import pwa from '../pwa'
 import unocss from '../unocss'
 import vueRouter from '../vue-router'
 
@@ -22,8 +23,10 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
       const exports: string[] = []
       const hasRouter = vueRouter.enabled(ctx)
       const hasLocales = globSync(`${localesFolder}/*.{json,yaml,yml}`).length > 0
+      const isPWA = pwa.enabled(ctx)
       let inject = ''
 
+      // Router
       if (hasRouter) {
         imports.push(`import { ViteSSG } from 'vite-ssg'`)
         imports.push(`import { routes } from 'vue-router/auto-routes'`)
@@ -32,6 +35,7 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
         imports.push(`import { ViteSSG } from 'vite-ssg/single-page'`)
       }
 
+      // I18n
       if (hasLocales) {
         imports.push(`import { createI18n } from '@kevinmarrec/cloudstack-vue-i18n'`)
         inject += `
@@ -41,6 +45,12 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
             messages: import.meta.glob('/${localesFolder}/*.{json,yaml,yml}')
           }))
         `
+      }
+
+      // PWA
+      if (isPWA) {
+        imports.push(`import { usePWA } from '@kevinmarrec/cloudstack-vue-pwa'`)
+        inject += 'usePWA().register()\n'
       }
 
       exports.push(`

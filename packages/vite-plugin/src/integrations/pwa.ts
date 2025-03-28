@@ -55,6 +55,7 @@ export default integrationFactory(VitePWA, {
         disabled: !revision,
         overrideManifestIcons: true,
       },
+      injectRegister: false,
       workbox: {
         additionalManifestEntries: [
           'favicon.ico',

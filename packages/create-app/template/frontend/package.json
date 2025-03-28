@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "vite build --mode static",
     "build:analyze": "vite build --mode analyze",
-    "preview": "vite preview --open"
+    "preview": "vite preview"
   },
   "devDependencies": {
     "@kevinmarrec/cloudstack-unocss-config": "workspace:*",
