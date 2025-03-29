@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { useHead } from '@kevinmarrec/cloudstack-vue/head'
 import { useI18n } from '@kevinmarrec/cloudstack-vue/i18n'
-import { computed } from 'vue'
 
 const { t } = useI18n()
 
 useHead({
-  title: computed(() => t('title')),
+  title: () => t('title'),
 })
 </script>
 
