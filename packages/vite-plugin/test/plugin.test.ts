@@ -6,7 +6,7 @@ import { createServer, resolveConfig, type ViteBuilder } from 'vite'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { createTempDir } from '../../../test/utils'
-import CloudstackVitePlugin from '../src'
+import CloudstackVitePlugin, { type CloudstackPluginOptions } from '../src'
 import { type CloudstackPluginContext, createContext } from '../src/context'
 import virtualModule from '../src/integrations/cloudstack/virtual'
 import { configDiff } from './utils'
@@ -29,8 +29,8 @@ afterEach(async () => {
 
 describe('plugin', () => {
   it('with defaults', async () => {
-    const baseConfig = await resolveConfig({}, 'serve')
-    const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin()] }, 'serve')
+    const baseConfig = await resolveConfig({}, 'build')
+    const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin()] }, 'build')
 
     expect(configDiff(baseConfig, resolvedConfig).plugins).toMatchSnapshot()
   })
@@ -41,6 +41,8 @@ describe('plugin', () => {
     { command: 'build', mode: 'analyze' },
   ] as const)('with all integrations (mode: $mode)', async ({ command, mode }) => {
     await fs.writeFile(resolve(tmpDir, 'uno.config.ts'), `export default {}`)
+    await fs.mkdir(resolve(tmpDir, 'public'))
+    await fs.writeFile(resolve(tmpDir, 'public/favicon.svg'), '<svg></svg>')
     await fs.mkdir(resolve(tmpDir, 'src/views'), { recursive: true })
     await fs.writeFile(resolve(tmpDir, 'src/views/index.vue'), `<template></template>`)
 
@@ -48,11 +50,6 @@ describe('plugin', () => {
 
     const resolvedConfig = await resolveConfig({
       plugins: [CloudstackVitePlugin({
-        pwa: {
-          pwaAssets: {
-            disabled: true,
-          },
-        },
         vueRouter: {
           routesFolder: [
             { src: 'src/views' },
@@ -62,6 +59,22 @@ describe('plugin', () => {
     }, command, mode)
 
     expect(resolvedConfig.build.sourcemap).toBe(mode === 'analyze')
+    expect(configDiff(baseConfig, resolvedConfig).plugins).toMatchSnapshot()
+  })
+
+  it.each([
+    { name: 'with custom pwa image path', pwaOptions: { pwaAssets: { image: 'public/custom.svg' } } },
+    { name: 'without pwa', pwaOptions: false },
+  ] satisfies Array<{ name: string, pwaOptions: CloudstackPluginOptions['pwa'] }>)('$name', async ({ pwaOptions }) => {
+    const command = 'build'
+    const mode = 'production'
+
+    const baseConfig = await resolveConfig({}, command, mode)
+
+    const resolvedConfig = await resolveConfig({
+      plugins: [CloudstackVitePlugin({ pwa: pwaOptions }, { command, mode })],
+    }, command, mode)
+
     expect(configDiff(baseConfig, resolvedConfig).plugins).toMatchSnapshot()
   })
 

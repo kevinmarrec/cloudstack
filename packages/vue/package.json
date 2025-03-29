@@ -34,6 +34,10 @@
     "./i18n": {
       "types": "./dist/i18n.d.ts",
       "import": "./dist/i18n.js"
+    },
+    "./pwa": {
+      "types": "./dist/pwa.d.ts",
+      "import": "./dist/pwa.js"
     }
   },
   "main": "./dist/index.js",
@@ -50,13 +54,14 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup --clean --dts --format esm src/index.ts src/components.ts src/head.ts src/i18n.ts"
+    "build": "tsup --clean --dts --format esm src/index.ts src/components.ts src/head.ts src/i18n.ts src/pwa.ts"
   },
   "peerDependencies": {
     "vue": ">=3.5.0"
   },
   "dependencies": {
     "@kevinmarrec/cloudstack-vue-i18n": "workspace:*",
+    "@kevinmarrec/cloudstack-vue-pwa": "workspace:*",
     "@unhead/vue": "^1.11.20",
     "@vueuse/components": "^13.0.0",
     "@vueuse/core": "^13.0.0"
