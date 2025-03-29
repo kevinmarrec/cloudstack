@@ -50,7 +50,9 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
       // PWA
       if (isPWA) {
         imports.push(`import { usePWA } from '@kevinmarrec/cloudstack-vue-pwa'`)
-        inject += 'usePWA().register()\n'
+        inject += `
+          usePWA().register()
+        `
       }
 
       exports.push(`

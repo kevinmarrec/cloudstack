@@ -41,6 +41,8 @@ describe('plugin', () => {
     { command: 'build', mode: 'analyze' },
   ] as const)('with all integrations (mode: $mode)', async ({ command, mode }) => {
     await fs.writeFile(resolve(tmpDir, 'uno.config.ts'), `export default {}`)
+    await fs.mkdir(resolve(tmpDir, 'public'))
+    await fs.writeFile(resolve(tmpDir, 'public/favicon.svg'), '<svg></svg>')
     await fs.mkdir(resolve(tmpDir, 'src/views'), { recursive: true })
     await fs.writeFile(resolve(tmpDir, 'src/views/index.vue'), `<template></template>`)
 
