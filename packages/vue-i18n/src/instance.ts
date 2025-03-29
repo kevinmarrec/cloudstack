@@ -33,9 +33,8 @@ export function createInstance(options: ResolvedVueI18nOptions) {
     messages: readonly(messages),
     isReady: () => isReady,
     t: (key: string) => {
-      return findLocaleMessage(locale.value, key)
-        ?? findLocaleMessage(fallbackLocale.value, key)
-        ?? key
+      const message = findLocaleMessage(locale.value, key) || findLocaleMessage(fallbackLocale.value, key)
+      return typeof message === 'string' ? message : key
     },
   }
 }
