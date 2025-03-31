@@ -1,4 +1,4 @@
-import { type Options, VitePWA } from 'vite-plugin-pwa'
+import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa'
 
 import { integrationFactory } from './_factory'
 
@@ -29,20 +29,20 @@ export default integrationFactory(VitePWA, {
             'auto',
           ],
         },
-      } satisfies Options['manifest'],
+      },
       pwaAssets: {
         overrideManifestIcons: true,
       },
       injectRegister: false,
       workbox: {
-        globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
-      } satisfies Options['workbox'],
+        globPatterns: ['**/*.{css,js,html,png,svg,ico,txt,woff2}'],
+      },
       ...env?.mode === 'development' && {
         selfDestroying: true,
         devOptions: {
           enabled: true,
         },
       },
-    } as const
+    } satisfies Partial<VitePWAOptions>
   },
 })

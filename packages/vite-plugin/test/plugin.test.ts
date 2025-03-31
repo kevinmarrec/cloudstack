@@ -21,7 +21,7 @@ beforeEach(async () => {
   tmpDir = await createTempDir('vite-plugin')
   vi.spyOn(process, 'cwd').mockReturnValue(tmpDir)
   await fs.mkdir(resolve(tmpDir, 'public'))
-  await fs.writeFile(resolve(tmpDir, 'public/favicon.svg'), '<svg></svg>')
+  await fs.writeFile(resolve(tmpDir, 'public/favicon.svg'), `<svg></svg>`)
 })
 
 afterEach(async () => {
@@ -30,17 +30,23 @@ afterEach(async () => {
 })
 
 describe('plugin', () => {
-  it('with defaults', async () => {
-    const baseConfig = await resolveConfig({}, 'build')
-    const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin()] }, 'build')
+  it.each([
+    { command: 'serve', mode: 'development' },
+    { command: 'build', mode: 'production' },
+    { command: 'build', mode: 'analyze' },
+  ] as const)('with defaults (mode: $mode)', async ({ command, mode }) => {
+    const baseConfig = await resolveConfig({}, command, mode)
+    const resolvedConfig = await resolveConfig({
+      plugins: [CloudstackVitePlugin({}, { command, mode })],
+    }, command, mode)
 
+    expect(resolvedConfig.build.sourcemap).toBe(mode === 'analyze')
     expect(configDiff(baseConfig, resolvedConfig).plugins).toMatchSnapshot()
   })
 
   it.each([
     { command: 'serve', mode: 'development' },
     { command: 'build', mode: 'production' },
-    { command: 'build', mode: 'analyze' },
   ] as const)('with all integrations (mode: $mode)', async ({ command, mode }) => {
     await fs.writeFile(resolve(tmpDir, 'uno.config.ts'), `export default {}`)
     await fs.mkdir(resolve(tmpDir, 'src/views'), { recursive: true })
@@ -58,21 +64,17 @@ describe('plugin', () => {
       }, { command, mode })],
     }, command, mode)
 
-    expect(resolvedConfig.build.sourcemap).toBe(mode === 'analyze')
     expect(configDiff(baseConfig, resolvedConfig).plugins).toMatchSnapshot()
   })
 
-  it.each([
-    // { name: 'with custom pwa image path', pwaOptions: { pwaAssets: { image: 'public/custom.svg' } } },
-    { name: 'without pwa', pwaOptions: false },
-  ] satisfies Array<{ name: string, pwaOptions: CloudstackPluginOptions['pwa'] }>)('$name', async ({ pwaOptions }) => {
+  it('without pwa', async () => {
     const command = 'build'
     const mode = 'production'
 
     const baseConfig = await resolveConfig({}, command, mode)
 
     const resolvedConfig = await resolveConfig({
-      plugins: [CloudstackVitePlugin({ pwa: pwaOptions }, { command, mode })],
+      plugins: [CloudstackVitePlugin({ pwa: false }, { command, mode })],
     }, command, mode)
 
     expect(configDiff(baseConfig, resolvedConfig).plugins).toMatchSnapshot()

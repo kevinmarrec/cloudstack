@@ -1,20 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`plugin > 'with custom pwa image path' 1`] = `
-[
-  "vite-plugin-pwa",
-  "vite-tsconfig-paths",
-  "cloudstack:config",
-  "cloudstack:dark-mode",
-  "cloudstack:virtual",
-  "vite:vue",
-  "vite:transform-yaml",
-  "vite-plugin-pwa:info",
-  "vite-plugin-pwa:build",
-  "vite-plugin-pwa:pwa-assets",
-]
-`;
-
 exports[`plugin > 'without pwa' 1`] = `
 [
   "vite-tsconfig-paths",
@@ -49,33 +34,6 @@ exports[`plugin > should optimize dependencies 1`] = `
   "vite-ssg/single-page",
   "vue",
   "workbox-window",
-]
-`;
-
-exports[`plugin > with all integrations (mode: 'analyze') 1`] = `
-[
-  "vite-plugin-pwa",
-  "vite-tsconfig-paths",
-  "unocss:transformers:pre",
-  "unocss:global:build:scan",
-  "unocss:global:content",
-  "unplugin-vue-router",
-  "cloudstack:config",
-  "cloudstack:dark-mode",
-  "cloudstack:virtual",
-  "unocss:config",
-  "unocss:transformers:undefined",
-  "unocss:devtools",
-  "unocss:api",
-  "unocss:global:build:generate",
-  "visualizer",
-  "vite:vue",
-  "vite:transform-yaml",
-  "vite-plugin-pwa:info",
-  "vite-plugin-pwa:build",
-  "vite-plugin-pwa:pwa-assets",
-  "unocss:transformers:post",
-  "unocss:global:build:bundle",
 ]
 `;
 
@@ -133,7 +91,40 @@ exports[`plugin > with all integrations (mode: 'production') 1`] = `
 ]
 `;
 
-exports[`plugin > with defaults 1`] = `
+exports[`plugin > with defaults (mode: 'analyze') 1`] = `
+[
+  "vite-plugin-pwa",
+  "vite-tsconfig-paths",
+  "cloudstack:config",
+  "cloudstack:dark-mode",
+  "cloudstack:virtual",
+  "visualizer",
+  "vite:vue",
+  "vite:transform-yaml",
+  "vite-plugin-pwa:info",
+  "vite-plugin-pwa:build",
+  "vite-plugin-pwa:pwa-assets",
+]
+`;
+
+exports[`plugin > with defaults (mode: 'development') 1`] = `
+[
+  "vite-plugin-pwa",
+  "vite-tsconfig-paths",
+  "vite-plugin-inspect",
+  "vite-plugin-vue-devtools",
+  "cloudstack:config",
+  "cloudstack:dark-mode",
+  "cloudstack:virtual",
+  "vite-plugin-pwa:dev-sw",
+  "vite:vue",
+  "vite:transform-yaml",
+  "vite-plugin-pwa:info",
+  "vite-plugin-pwa:pwa-assets",
+]
+`;
+
+exports[`plugin > with defaults (mode: 'production') 1`] = `
 [
   "vite-plugin-pwa",
   "vite-tsconfig-paths",
@@ -145,6 +136,17 @@ exports[`plugin > with defaults 1`] = `
   "vite-plugin-pwa:info",
   "vite-plugin-pwa:build",
   "vite-plugin-pwa:pwa-assets",
+]
+`;
+
+exports[`plugin > without pwa 1`] = `
+[
+  "vite-tsconfig-paths",
+  "cloudstack:config",
+  "cloudstack:dark-mode",
+  "cloudstack:virtual",
+  "vite:vue",
+  "vite:transform-yaml",
 ]
 `;
 
