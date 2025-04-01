@@ -1,23 +1,22 @@
 {
-  "name": "@kevinmarrec/cloudstack-vue-i18n",
+  "name": "@kevinmarrec/cloudstack-vue-pwa",
   "type": "module",
   "version": "1.0.0-rc.6",
-  "description": "Opinionated Internationalization (i18n) Vue plugin.",
+  "description": "Opinionated PWA Vue plugin.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
-  "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/vue-i18n#readme",
+  "homepage": "https://github.com/kevinmarrec/cloudstack/tree/main/packages/vue-pwa#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kevinmarrec/cloudstack.git",
-    "directory": "packages/vue-i18n"
+    "directory": "packages/vue-pwa"
   },
   "keywords": [
     "cloudstack",
-    "i18n",
-    "internationalization",
+    "pwa",
     "vue",
-    "vue-i18n",
-    "vue-plugin"
+    "vue-plugin",
+    "vue-pwa"
   ],
   "exports": {
     ".": {
@@ -30,7 +29,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup --clean --dts --format esm src/index.ts"
+    "build": "tsup --clean --dts --format esm src/index.ts --external virtual:pwa-register"
   },
   "peerDependencies": {
     "vue": ">=3.5.0"

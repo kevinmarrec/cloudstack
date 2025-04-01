@@ -28,17 +28,23 @@ afterEach(async () => {
 })
 
 describe('plugin', () => {
-  it('with defaults', async () => {
-    const baseConfig = await resolveConfig({}, 'serve')
-    const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin()] }, 'serve')
+  it.each([
+    { command: 'serve', mode: 'development' },
+    { command: 'build', mode: 'production' },
+    { command: 'build', mode: 'analyze' },
+  ] as const)('with defaults (mode: $mode)', async ({ command, mode }) => {
+    const baseConfig = await resolveConfig({}, command, mode)
+    const resolvedConfig = await resolveConfig({
+      plugins: [CloudstackVitePlugin({}, { command, mode })],
+    }, command, mode)
 
+    expect(resolvedConfig.build.sourcemap).toBe(mode === 'analyze')
     expect(configDiff(baseConfig, resolvedConfig).plugins).toMatchSnapshot()
   })
 
   it.each([
     { command: 'serve', mode: 'development' },
     { command: 'build', mode: 'production' },
-    { command: 'build', mode: 'analyze' },
   ] as const)('with all integrations (mode: $mode)', async ({ command, mode }) => {
     await fs.writeFile(resolve(tmpDir, 'uno.config.ts'), `export default {}`)
     await fs.mkdir(resolve(tmpDir, 'src/views'), { recursive: true })
@@ -48,11 +54,6 @@ describe('plugin', () => {
 
     const resolvedConfig = await resolveConfig({
       plugins: [CloudstackVitePlugin({
-        pwa: {
-          pwaAssets: {
-            disabled: true,
-          },
-        },
         vueRouter: {
           routesFolder: [
             { src: 'src/views' },
@@ -61,7 +62,19 @@ describe('plugin', () => {
       }, { command, mode })],
     }, command, mode)
 
-    expect(resolvedConfig.build.sourcemap).toBe(mode === 'analyze')
+    expect(configDiff(baseConfig, resolvedConfig).plugins).toMatchSnapshot()
+  })
+
+  it('without pwa', async () => {
+    const command = 'build'
+    const mode = 'production'
+
+    const baseConfig = await resolveConfig({}, command, mode)
+
+    const resolvedConfig = await resolveConfig({
+      plugins: [CloudstackVitePlugin({ pwa: false }, { command, mode })],
+    }, command, mode)
+
     expect(configDiff(baseConfig, resolvedConfig).plugins).toMatchSnapshot()
   })
 
@@ -106,7 +119,7 @@ describe('plugin', () => {
 
   it('should inject dark mode script in index.html', async () => {
     const server = await createServer({ plugins: [CloudstackVitePlugin()] })
-    const html = await server.transformIndexHtml('index.html', '<html></html>')
+    const html = await server.transformIndexHtml('index.html', '<html><head></head><body></body></html>')
 
     expect(html).toMatchSnapshot()
   })

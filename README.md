@@ -51,6 +51,14 @@
 ![Description](https://img.shields.io/badge/Vite%20plugin-0?label=description&color=8b5cf6)
 ![Coverage](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgist.githubusercontent.com%2Fkevinmarrec%2F7af6e73961e829b9e0835cdaead60ad3%2Fraw%2Fcloudstack.coverage.json&query=%24%5Bpackages%2Fvite-plugin%5D&suffix=%25&label=coverage&color=10b981)
 
+[![Name](https://img.shields.io/badge/%40kevinmarrec%2Fcloudstack--vue-0?label=npm&color=3b82f6)](https://www.npmjs.com/package/@kevinmarrec/cloudstack-vue)
+![Description](https://img.shields.io/badge/Collection%20of%20Vue%20Components%20and%20Composition%20Utilities-0?label=description&color=8b5cf6)
+![Coverage](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgist.githubusercontent.com%2Fkevinmarrec%2F7af6e73961e829b9e0835cdaead60ad3%2Fraw%2Fcloudstack.coverage.json&query=%24%5Bpackages%2Fvue%5D&suffix=%25&label=coverage&color=10b981)
+
 [![Name](https://img.shields.io/badge/%40kevinmarrec%2Fcloudstack--vue--i18n-0?label=npm&color=3b82f6)](https://www.npmjs.com/package/@kevinmarrec/cloudstack-vue-i18n)
 ![Description](https://img.shields.io/badge/Internationalization%20Vue%20plugin-0?label=description&color=8b5cf6)
 ![Coverage](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgist.githubusercontent.com%2Fkevinmarrec%2F7af6e73961e829b9e0835cdaead60ad3%2Fraw%2Fcloudstack.coverage.json&query=%24%5Bpackages%2Fvue-i18n%5D&suffix=%25&label=coverage&color=10b981)
+
+[![Name](https://img.shields.io/badge/%40kevinmarrec%2Fcloudstack--vue--pwa-0?label=npm&color=3b82f6)](https://www.npmjs.com/package/@kevinmarrec/cloudstack-vue-pwa)
+![Description](https://img.shields.io/badge/PWA%20Vue%20plugin-0?label=description&color=8b5cf6)
+![Coverage](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgist.githubusercontent.com%2Fkevinmarrec%2F7af6e73961e829b9e0835cdaead60ad3%2Fraw%2Fcloudstack.coverage.json&query=%24%5Bpackages%2Fvue-pwa%5D&suffix=%25&label=coverage&color=10b981)

@@ -1,38 +1,51 @@
-import { type LaunchHandlerClientMode, VitePWA } from 'vite-plugin-pwa'
+import process from 'node:process'
+
+import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa'
 
 import { integrationFactory } from './_factory'
 
 export default integrationFactory(VitePWA, {
-  enabled: ({ userOptions }) => Boolean(userOptions.pwa),
+  enabled: ({ userOptions }) => userOptions.pwa !== false,
   options: ({ userOptions }) => userOptions.pwa,
-  defaults: () => ({
-    registerType: 'autoUpdate',
-    manifest: {
-      id: '/',
-      scope: '/',
-      start_url: '/',
-      lang: 'en-US',
-      name: 'Vite PWA',
-      short_name: 'Vite PWA',
-      background_color: '#ffffff',
-      theme_color: '#ffffff',
-      dir: 'ltr',
-      orientation: 'natural',
-      handle_links: 'preferred',
-      launch_handler: {
-        client_mode: [
-          'navigate-existing',
-          'auto',
-        ] as LaunchHandlerClientMode[],
+  defaults: ({ env }) => {
+    return {
+      manifest: {
+        id: '/',
+        scope: '/',
+        start_url: '/',
+        lang: 'en',
+        name: 'Cloudstack',
+        short_name: 'Cloudstack',
+        background_color: '#ffffff',
+        theme_color: '#ffffff',
+        dir: 'ltr',
+        orientation: 'natural',
+        display: 'standalone',
+        display_override: [
+          'window-controls-overlay',
+        ],
+        handle_links: 'preferred',
+        launch_handler: {
+          client_mode: [
+            'navigate-existing',
+            'auto',
+          ],
+        },
       },
-    },
-    pwaAssets: {
-      overrideManifestIcons: true,
-    },
-    devOptions: {
-      enabled: true,
-      suppressWarnings: true,
-      type: 'module',
-    },
-  } as const),
+      pwaAssets: {
+        disabled: process.env.NODE_ENV === 'test',
+        overrideManifestIcons: true,
+      },
+      injectRegister: false,
+      workbox: {
+        globPatterns: ['**/*.{css,js,html,png,svg,ico,txt,woff2}'],
+      },
+      ...env?.mode === 'development' && {
+        selfDestroying: true,
+        devOptions: {
+          enabled: true,
+        },
+      },
+    } satisfies Partial<VitePWAOptions>
+  },
 })
