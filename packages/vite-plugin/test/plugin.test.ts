@@ -20,8 +20,6 @@ let tmpDir: string
 beforeEach(async () => {
   tmpDir = await createTempDir('vite-plugin')
   vi.spyOn(process, 'cwd').mockReturnValue(tmpDir)
-  await fs.mkdir(resolve(tmpDir, 'public'))
-  await fs.writeFile(resolve(tmpDir, 'public/favicon.svg'), `<svg></svg>`)
 })
 
 afterEach(async () => {

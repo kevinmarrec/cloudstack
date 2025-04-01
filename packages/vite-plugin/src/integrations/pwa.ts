@@ -1,3 +1,5 @@
+import process from 'node:process'
+
 import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa'
 
 import { integrationFactory } from './_factory'
@@ -31,6 +33,7 @@ export default integrationFactory(VitePWA, {
         },
       },
       pwaAssets: {
+        disabled: process.env.NODE_ENV === 'test',
         overrideManifestIcons: true,
       },
       injectRegister: false,
