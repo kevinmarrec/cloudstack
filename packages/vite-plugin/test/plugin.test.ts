@@ -6,7 +6,7 @@ import { createServer, resolveConfig, type ViteBuilder } from 'vite'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { createTempDir } from '../../../test/utils'
-import CloudstackVitePlugin, { type CloudstackPluginOptions } from '../src'
+import CloudstackVitePlugin from '../src'
 import { type CloudstackPluginContext, createContext } from '../src/context'
 import virtualModule from '../src/integrations/cloudstack/virtual'
 import { configDiff } from './utils'
@@ -121,7 +121,7 @@ describe('plugin', () => {
 
   it('should inject dark mode script in index.html', async () => {
     const server = await createServer({ plugins: [CloudstackVitePlugin()] })
-    const html = await server.transformIndexHtml('index.html', '<html></html>')
+    const html = await server.transformIndexHtml('index.html', '<html><head></head><body></body></html>')
 
     expect(html).toMatchSnapshot()
   })

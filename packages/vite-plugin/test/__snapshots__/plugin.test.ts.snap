@@ -1,30 +1,22 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`plugin > 'without pwa' 1`] = `
-[
-  "vite-tsconfig-paths",
-  "cloudstack:config",
-  "cloudstack:dark-mode",
-  "cloudstack:virtual",
-  "vite:vue",
-  "vite:transform-yaml",
-]
-`;
-
 exports[`plugin > should inject dark mode script in index.html 1`] = `
-"<html>
-<script>(function () {
+"<html><head>
+  <script type="module" src="/@id/virtual:vue-devtools-path:overlay.js"></script>
+  <script type="module" src="/@id/virtual:vue-inspector-path:load.js"></script>
+
+  <script type="module" src="/@vite/client"></script>
+  <script>(function () {
   const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
   const setting = localStorage.getItem('vueuse-color-scheme') || 'auto'
   if (setting === 'dark' || (prefersDark && setting !== 'light'))
     document.documentElement.classList.toggle('dark', true)
 })()</script>
 
-<script type="module" src="/@id/virtual:vue-devtools-path:overlay.js"></script>
-<script type="module" src="/@id/virtual:vue-inspector-path:load.js"></script>
-
-<script type="module" src="/@vite/client"></script>
-</html>"
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png"></head><body></body></html>"
 `;
 
 exports[`plugin > should optimize dependencies 1`] = `
