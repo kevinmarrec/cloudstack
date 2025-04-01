@@ -1,9 +1,15 @@
+import type { registerSW } from 'virtual:pwa-register'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { usePWA } from '../src'
 
 const mocks = vi.hoisted(() => ({
-  registerSW: vi.fn(),
+  registerSW: vi.fn<typeof registerSW>((options) => {
+    options?.onNeedRefresh?.()
+    options?.onOfflineReady?.()
+    options?.onRegisterError?.(new Error('error'))
+    return vi.fn()
+  }),
 }))
 
 vi.mock('virtual:pwa-register', () => ({
