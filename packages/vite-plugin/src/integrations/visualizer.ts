@@ -11,5 +11,5 @@ export default integrationFactory(visualizer, {
     gzipSize: true,
     open: true,
     sourcemap: true,
-  } as const),
+  }),
 })

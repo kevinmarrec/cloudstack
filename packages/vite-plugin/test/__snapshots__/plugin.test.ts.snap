@@ -1,19 +1,18 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`plugin > should inject dark mode script in index.html 1`] = `
-"<html>
-<script>(function () {
+"<html><head>
+  <script type="module" src="/@id/virtual:vue-devtools-path:overlay.js"></script>
+  <script type="module" src="/@id/virtual:vue-inspector-path:load.js"></script>
+
+  <script type="module" src="/@vite/client"></script>
+  <script>(function () {
   const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
   const setting = localStorage.getItem('vueuse-color-scheme') || 'auto'
   if (setting === 'dark' || (prefersDark && setting !== 'light'))
     document.documentElement.classList.toggle('dark', true)
 })()</script>
-
-<script type="module" src="/@id/virtual:vue-devtools-path:overlay.js"></script>
-<script type="module" src="/@id/virtual:vue-inspector-path:load.js"></script>
-
-<script type="module" src="/@vite/client"></script>
-</html>"
+</head><body></body></html>"
 `;
 
 exports[`plugin > should optimize dependencies 1`] = `
@@ -22,33 +21,6 @@ exports[`plugin > should optimize dependencies 1`] = `
   "vite-ssg",
   "vite-ssg/single-page",
   "vue",
-]
-`;
-
-exports[`plugin > with all integrations (mode: 'analyze') 1`] = `
-[
-  "vite-plugin-pwa",
-  "vite-tsconfig-paths",
-  "unocss:transformers:pre",
-  "unocss:global:build:scan",
-  "unocss:global:content",
-  "unplugin-vue-router",
-  "cloudstack:config",
-  "cloudstack:dark-mode",
-  "cloudstack:virtual",
-  "unocss:config",
-  "unocss:transformers:undefined",
-  "unocss:devtools",
-  "unocss:api",
-  "unocss:global:build:generate",
-  "visualizer",
-  "vite:vue",
-  "vite:transform-yaml",
-  "vite-plugin-pwa:info",
-  "vite-plugin-pwa:build",
-  "vite-plugin-pwa:pwa-assets",
-  "unocss:transformers:post",
-  "unocss:global:build:bundle",
 ]
 `;
 
@@ -106,7 +78,19 @@ exports[`plugin > with all integrations (mode: 'production') 1`] = `
 ]
 `;
 
-exports[`plugin > with defaults 1`] = `
+exports[`plugin > with defaults (mode: 'analyze') 1`] = `
+[
+  "vite-tsconfig-paths",
+  "cloudstack:config",
+  "cloudstack:dark-mode",
+  "cloudstack:virtual",
+  "visualizer",
+  "vite:vue",
+  "vite:transform-yaml",
+]
+`;
+
+exports[`plugin > with defaults (mode: 'development') 1`] = `
 [
   "vite-tsconfig-paths",
   "vite-plugin-inspect",
@@ -116,6 +100,47 @@ exports[`plugin > with defaults 1`] = `
   "cloudstack:virtual",
   "vite:vue",
   "vite:transform-yaml",
+]
+`;
+
+exports[`plugin > with defaults (mode: 'production') 1`] = `
+[
+  "vite-tsconfig-paths",
+  "cloudstack:config",
+  "cloudstack:dark-mode",
+  "cloudstack:virtual",
+  "vite:vue",
+  "vite:transform-yaml",
+]
+`;
+
+exports[`plugin > with different pwa strategy ('generateSW') 1`] = `
+[
+  "vite-plugin-pwa",
+  "vite-tsconfig-paths",
+  "cloudstack:config",
+  "cloudstack:dark-mode",
+  "cloudstack:virtual",
+  "vite:vue",
+  "vite:transform-yaml",
+  "vite-plugin-pwa:info",
+  "vite-plugin-pwa:build",
+  "vite-plugin-pwa:pwa-assets",
+]
+`;
+
+exports[`plugin > with different pwa strategy ('injectManifest') 1`] = `
+[
+  "vite-plugin-pwa",
+  "vite-tsconfig-paths",
+  "cloudstack:config",
+  "cloudstack:dark-mode",
+  "cloudstack:virtual",
+  "vite:vue",
+  "vite:transform-yaml",
+  "vite-plugin-pwa:info",
+  "vite-plugin-pwa:build",
+  "vite-plugin-pwa:pwa-assets",
 ]
 `;
 
@@ -156,6 +181,21 @@ export const Cloudstack = (App, argA, argB) =>
   typeof argA === 'object'
     ? ViteSSG(App, { routes, ...argA }, fn(argB))
     : ViteSSG(App, { routes }, fn(argA))
+"
+`;
+
+exports[`virtual module > should generate virtual module content, (PWA) 1`] = `
+"import { ViteSSG } from 'vite-ssg/single-page'
+import { usePWA } from '@kevinmarrec/cloudstack-vue-pwa'
+import 'the-new-css-reset'
+const fn = (innerFn) => async (ctx) => {
+  usePWA().register()
+  innerFn?.(ctx)
+}
+export const Cloudstack = (App, argA, argB) =>
+  typeof argA === 'object'
+    ? ViteSSG(App, fn(argB))
+    : ViteSSG(App, fn(argA))
 "
 `;
 

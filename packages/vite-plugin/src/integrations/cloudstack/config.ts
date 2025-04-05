@@ -57,4 +57,9 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
       config,
     )
   },
+  transformIndexHtml(html) {
+    if (pwa.enabled(ctx)) {
+      return html.replace(/<link[^>]*rel="icon"[^>]*>/, '')
+    }
+  },
 }), { options: ctx => ctx })

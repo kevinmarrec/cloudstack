@@ -50,25 +50,6 @@ Opinionated [Internationalization (i18n)](https://developer.mozilla.org/en-US/do
 > - Client-side rendering (CSR) _lazy_ loads the base & fallback locales **when** rendering the app.
 > - Server-side rendering (SSR) loads the base & fallback locales **before** rendering the app.
 
-```ts
-// main.ts
-import { createI18n } from '@kevinmarrec/cloudstack-vue-i18n'
-import { Cloudstack } from 'virtual:cloudstack'
-
-import App from './App.vue'
-
-export const createApp = Cloudstack(App, async ({ app }) => {
-  app.use(await createI18n({
-    locale: 'fr',
-    fallbackLocale: 'en',
-    messages: import.meta.glob('./locales/*.json'),
-    // OR messages: import.meta.glob('./locales/*.yml')
-    // OR messages: import.meta.glob(['./locales/*.json', './locales/*.yml']),
-    // OR messages: { en: { welcome: 'Welcome' }, fr: { welcome: 'Bienvenue' } }
-  }))
-})
-```
-
 ```vue
 <!-- App.vue -->
 <script setup lang="ts">
