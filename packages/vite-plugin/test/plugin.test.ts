@@ -131,6 +131,14 @@ describe('plugin', () => {
 
     expect(html).toMatchSnapshot()
   })
+
+  it('should deduplicate icon link from index.html when PWA is enabled', async () => {
+    const link = '<link rel="icon" type="image/svg+xml" href="/favicon.svg" />'
+    const server = await createServer({ plugins: [CloudstackVitePlugin({ pwa: true })] })
+    const html = await server.transformIndexHtml('index.html', `<html><head>${link}</head><body></body></html>`)
+
+    expect(html).not.toContain(link)
+  })
 })
 
 describe('virtual module', async () => {
