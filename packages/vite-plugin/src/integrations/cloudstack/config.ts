@@ -32,11 +32,15 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
         optimizeDeps: {
           include: [
             '@kevinmarrec/cloudstack-vue-i18n',
+            '@kevinmarrec/cloudstack-vue-pwa',
             'vite-ssg',
             'vite-ssg/single-page',
             'vue',
             ...vueRouter.enabled(ctx) ? ['vue-router', 'unplugin-vue-router/runtime'] : [],
             ...pwa.enabled(ctx) ? ['workbox-window'] : [],
+          ],
+          exclude: [
+            'virtual:pwa-register',
           ],
         },
         ssgOptions: {
@@ -51,6 +55,7 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
             '@cloudstack/vue',
             '@kevinmarrec/cloudstack-vue',
             '@kevinmarrec/cloudstack-vue-i18n',
+            '@kevinmarrec/cloudstack-vue-pwa',
           ],
         },
       }),

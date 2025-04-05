@@ -18,6 +18,7 @@ exports[`plugin > should inject dark mode script in index.html 1`] = `
 exports[`plugin > should optimize dependencies 1`] = `
 [
   "@kevinmarrec/cloudstack-vue-i18n",
+  "@kevinmarrec/cloudstack-vue-pwa",
   "vite-ssg",
   "vite-ssg/single-page",
   "vue",
