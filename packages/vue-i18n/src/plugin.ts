@@ -28,9 +28,7 @@ export async function createI18n(options: VueI18nOptions): Promise<VueI18nPlugin
 
   const instance = createInstance(resolvedOptions)
 
-  if (import.meta.env.SSR) {
-    await instance.isReady()
-  }
+  await instance.isReady()
 
   return app => app.provide(injectionKey, instance)
 }
