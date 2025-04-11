@@ -5,6 +5,7 @@ import { OnClickOutside } from '../src/components'
 import { useHead } from '../src/head'
 import { useI18n } from '../src/i18n'
 import { usePWA } from '../src/pwa'
+import { useRouter } from '../src/router'
 
 vi.mock('virtual:pwa-register', () => ({
   registerSW: vi.fn(),
@@ -29,5 +30,9 @@ describe('exports', () => {
 
   it('@vueuse/core', () => {
     expect(useFocus).toBeDefined()
+  })
+
+  it('@vue-router', () => {
+    expect(useRouter).toBeDefined()
   })
 })
