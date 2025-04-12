@@ -6,5 +6,6 @@
     "group:allNonMajor",
     "schedule:daily"
   ],
-  "labels": ["dependencies"]
+  "labels": ["dependencies"],
+  "rangeStrategy": "bump"
 }
