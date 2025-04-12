@@ -3,6 +3,7 @@
   "dependencyDashboardApproval": true,
   "extends": [
     "config:recommended",
-    "group:allNonMajor"
+    "group:allNonMajor",
+    "schedule:daily"
   ]
 }
