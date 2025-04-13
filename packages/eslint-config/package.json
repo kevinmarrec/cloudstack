@@ -30,7 +30,7 @@
     "build": "tsup --clean --dts --format esm src/index.ts"
   },
   "peerDependencies": {
-    "eslint": ">=9.0.0"
+    "eslint": ">=9.24.0"
   },
   "dependencies": {
     "@antfu/eslint-config": "^4.12.0",

@@ -30,6 +30,6 @@
     "build": "tsup --clean --dts --format esm src/index.ts"
   },
   "peerDependencies": {
-    "taze": ">=18.0.0"
+    "taze": ">=18.7.1"
   }
 }

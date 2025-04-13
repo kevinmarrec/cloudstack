@@ -30,6 +30,6 @@
     "build": "tsup --clean --dts --format esm src/index.ts"
   },
   "peerDependencies": {
-    "knip": ">=5.0.0"
+    "knip": ">=5.50.2"
   }
 }
