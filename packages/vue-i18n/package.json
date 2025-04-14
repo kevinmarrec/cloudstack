@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-vue-i18n",
   "type": "module",
-  "version": "1.0.0-rc.8",
+  "version": "1.0.0-rc.9",
   "description": "Opinionated Internationalization (i18n) Vue plugin.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
