@@ -28,7 +28,7 @@
     "@kevinmarrec/cloudstack-tsconfig": "workspace:*",
     "concurrently": "^9.1.2",
     "eslint": "^9.24.0",
-    "knip": "^5.50.2",
+    "knip": "^5.50.3",
     "stylelint": "^16.18.0",
     "taze": "^19.0.4",
     "typescript": "~5.8.3",
