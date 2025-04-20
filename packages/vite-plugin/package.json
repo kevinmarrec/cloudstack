@@ -53,10 +53,10 @@
     "local-pkg": "^1.1.1",
     "rollup-plugin-visualizer": "^5.14.0",
     "the-new-css-reset": "^1.11.3",
-    "tinyglobby": "^0.2.12",
+    "tinyglobby": "^0.2.13",
     "unplugin-vue-router": "^0.12.0",
     "vite-plugin-pwa": "^1.0.0",
-    "vite-plugin-vue-devtools": "^7.7.2",
+    "vite-plugin-vue-devtools": "^7.7.5",
     "vite-ssg": "^26.1.1",
     "vite-tsconfig-paths": "^5.1.4"
   }
