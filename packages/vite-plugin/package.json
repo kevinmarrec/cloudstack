@@ -48,7 +48,7 @@
     "@unocss/vite": "^66.0.0",
     "@vite-pwa/assets-generator": "^1.0.0",
     "@vitejs/plugin-vue": "^5.2.3",
-    "beasties": "^0.3.2",
+    "beasties": "^0.3.3",
     "defu": "^6.1.4",
     "local-pkg": "^1.1.1",
     "rollup-plugin-visualizer": "^5.14.0",
