@@ -4,6 +4,10 @@ import { describe, expect, it } from 'vitest'
 import { useConfig } from '../src'
 
 describe('config', async () => {
+  it('default', async () => {
+    expect(typeof useConfig()).toBe('function')
+  })
+
   it.each<UserConfigExport>([
     { mode: 'foo' },
     () => ({ mode: 'foo' }),

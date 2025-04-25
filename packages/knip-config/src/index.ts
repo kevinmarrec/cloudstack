@@ -10,7 +10,7 @@ export function useConfig(config: KnipConfig = {}): KnipConfig {
       '.': {
         entry: ['*.config.ts'],
       },
-      ...config?.workspaces,
+      ...config.workspaces,
     },
   }
 }

@@ -18,12 +18,6 @@ export function createInstance(options: ResolvedVueI18nOptions) {
     key.split('.').reduce<LocaleMessageValue | undefined>((path, segment) =>
       (path as LocaleMessageDictionary | undefined)?.[segment], messages.value[locale])
 
-  const isReady = new Promise<void>((resolve) => {
-    loadMessages(locale.value)
-      .then(() => loadMessages(fallbackLocale.value))
-      .then(() => resolve())
-  })
-
   watch(locale, loadMessages)
 
   return {
@@ -31,7 +25,10 @@ export function createInstance(options: ResolvedVueI18nOptions) {
     locale,
     fallbackLocale,
     messages: readonly(messages),
-    isReady: () => isReady,
+    init: async () => {
+      await loadMessages(locale.value)
+      loadMessages(fallbackLocale.value)
+    },
     t: (key: string) => {
       const message = findLocaleMessage(locale.value, key) || findLocaleMessage(fallbackLocale.value, key)
       return typeof message === 'string' ? message : key

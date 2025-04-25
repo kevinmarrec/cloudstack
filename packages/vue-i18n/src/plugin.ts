@@ -28,7 +28,7 @@ export async function createI18n(options: VueI18nOptions): Promise<VueI18nPlugin
 
   const instance = createInstance(resolvedOptions)
 
-  await instance.isReady()
+  await instance.init()
 
   return app => app.provide(injectionKey, instance)
 }

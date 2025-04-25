@@ -6,13 +6,11 @@ import { resolve } from 'pathe'
 const ignorePredicate = (filename: string) => ['.git'].includes(filename)
 
 async function empty(dir: string) {
-  for (const entry of await fs.readdir(dir)) {
-    if (ignorePredicate(entry)) {
-      continue
-    }
-
-    await fs.rm(resolve(dir, entry), { recursive: true })
-  }
+  const entries = await fs.readdir(dir)
+  await Promise.all(entries
+    .filter(entry => !ignorePredicate(entry))
+    .map(entry => fs.rm(resolve(dir, entry), { recursive: true })),
+  )
 }
 
 async function emptyCheck(path: PathLike) {
