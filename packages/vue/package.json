@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-vue",
   "type": "module",
-  "version": "1.0.0-rc.9",
+  "version": "1.0.0-rc.10",
   "description": "Opinionated Collection of Vue Components and Composition Utilities.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
