@@ -2,11 +2,11 @@ import { definePreset } from '@unocss/core'
 import presetIcons, { type IconsOptions } from '@unocss/preset-icons'
 import presetWebFonts, { type WebFontsOptions } from '@unocss/preset-web-fonts'
 import { createLocalFontProcessor } from '@unocss/preset-web-fonts/local'
-import presetWind, { type Theme } from '@unocss/preset-wind3'
+import presetWind, { type Theme } from '@unocss/preset-wind4'
 import transformerDirectives from '@unocss/transformer-directives'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
 
-export type { Theme } from '@unocss/preset-wind3'
+export type { Theme } from '@unocss/preset-wind4'
 
 export interface PresetOptions {
   icons?: IconsOptions
@@ -21,6 +21,7 @@ export default definePreset<PresetOptions, Theme>(options => ({
     presetWebFonts({
       processors: createLocalFontProcessor(),
       fonts: options?.fonts,
+      themeKey: 'font',
     }),
   ],
   transformers: [
@@ -33,7 +34,4 @@ export default definePreset<PresetOptions, Theme>(options => ({
       getCSS: () => 'html, body, #app {height: 100%;}',
     },
   ],
-  theme: {
-    preflightRoot: ['*,::before,::after,::backdrop'],
-  },
 }))

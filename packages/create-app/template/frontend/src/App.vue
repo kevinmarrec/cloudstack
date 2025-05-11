@@ -11,7 +11,7 @@ useHead({
 
 <template>
   <div class="grid h-full place-items-center">
-    <div class="flex flex-col items-center gap-4">
+    <div class="flex flex-col gap-4 items-center">
       <h1 class="text-4xl font-bold">
         {{ t('body.message') }}
       </h1>

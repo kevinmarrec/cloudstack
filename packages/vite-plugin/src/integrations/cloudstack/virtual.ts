@@ -69,9 +69,6 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
             : ViteSSG(App, ${hasRouter ? '{ routes }, fn(argA)' : 'fn(argA)'})
       `)
 
-      // CSS Reset
-      imports.push(`import 'the-new-css-reset'`)
-
       // Unocss
       if (unocss.enabled(ctx)) {
         imports.push(`import 'uno.css'`)
