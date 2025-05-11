@@ -69,6 +69,6 @@
     "@unhead/vue": "^2.0.8",
     "@vueuse/components": "^13.1.0",
     "@vueuse/core": "^13.1.0",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.1"
   }
 }

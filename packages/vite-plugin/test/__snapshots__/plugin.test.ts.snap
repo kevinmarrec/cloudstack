@@ -75,7 +75,6 @@ exports[`plugin > with all integrations (mode: 'production') 1`] = `
   "vite-plugin-pwa:build",
   "vite-plugin-pwa:pwa-assets",
   "unocss:transformers:post",
-  "unocss:global:build:bundle",
 ]
 `;
 
