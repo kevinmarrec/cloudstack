@@ -141,7 +141,7 @@
         "@unocss/core": "^66.1.1",
         "@unocss/preset-icons": "^66.1.1",
         "@unocss/preset-web-fonts": "^66.1.1",
-        "@unocss/preset-wind3": "^66.1.1",
+        "@unocss/preset-wind4": "^66.1.1",
         "@unocss/transformer-directives": "^66.1.1",
         "@unocss/transformer-variant-group": "^66.1.1",
       },
@@ -168,7 +168,6 @@
         "defu": "^6.1.4",
         "local-pkg": "^1.1.1",
         "rollup-plugin-visualizer": "^5.14.0",
-        "the-new-css-reset": "^1.11.3",
         "tinyglobby": "^0.2.13",
         "unplugin-vue-router": "^0.12.0",
         "vite-plugin-pwa": "^1.0.0",
@@ -2195,8 +2194,6 @@
     "terser": ["terser@5.39.0", "", { "dependencies": { "@jridgewell/source-map": "^0.3.3", "acorn": "^8.8.2", "commander": "^2.20.0", "source-map-support": "~0.5.20" }, "bin": { "terser": "bin/terser" } }, "sha512-LBAhFyLho16harJoWMg/nZsQYgTrg5jXOn2nCYjRUcZZEdE3qa2zb8QEDRUGVZBW4rlazf2fxkg8tztybTaqWw=="],
 
     "test-exclude": ["test-exclude@7.0.1", "", { "dependencies": { "@istanbuljs/schema": "^0.1.2", "glob": "^10.4.1", "minimatch": "^9.0.4" } }, "sha512-pFYqmTw68LXVjeWJMST4+borgQP2AyMNbg1BpZh9LbyhUeNkeaPF9gzfPGUAnSMV3qPYdWUwDIjjCLiSDOl7vg=="],
-
-    "the-new-css-reset": ["the-new-css-reset@1.11.3", "", {}, "sha512-61SB81vu9foUyEIqoU1CeqxrdlsVjJojj/CBXoG8BdvlKFsllB0Rza63DblnRqH+3uttPj3FGWo7+c9nu7MT+A=="],
 
     "thenify": ["thenify@3.3.1", "", { "dependencies": { "any-promise": "^1.0.0" } }, "sha512-RVZSIV5IG10Hk3enotrhvz0T9em6cyHBLkH/YAZuKqd8hRkKhSfCGIcP2KUY0EPxndzANBmNllzWPwak+bheSw=="],
 

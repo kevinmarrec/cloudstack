@@ -18,8 +18,5 @@ export default useConfig({
         'stylelint-config-recommended-scss',
       ],
     },
-    'packages/vite-plugin': {
-      ignoreDependencies: ['the-new-css-reset'],
-    },
   },
 })

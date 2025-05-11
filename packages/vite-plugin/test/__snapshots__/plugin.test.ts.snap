@@ -148,7 +148,6 @@ exports[`virtual module > should generate virtual module content (with router, i
 "import { ViteSSG } from 'vite-ssg'
 import { routes } from 'vue-router/auto-routes'
 import { createI18n } from '@kevinmarrec/cloudstack-vue-i18n'
-import 'the-new-css-reset'
 import 'uno.css'
 const fn = (innerFn) => async (ctx) => {
   ctx.app.use(await createI18n({
@@ -167,7 +166,6 @@ exports[`virtual module > should generate virtual module content (with router, i
 "import { ViteSSG } from 'vite-ssg'
 import { routes } from 'vue-router/auto-routes'
 import { createI18n } from '@kevinmarrec/cloudstack-vue-i18n'
-import 'the-new-css-reset'
 import 'uno.css'
 const fn = (innerFn) => async (ctx) => {
   ctx.app.use(await createI18n({
@@ -187,7 +185,6 @@ export const Cloudstack = (App, argA, argB) =>
 exports[`virtual module > should generate virtual module content, (PWA) 1`] = `
 "import { ViteSSG } from 'vite-ssg/single-page'
 import { usePWA } from '@kevinmarrec/cloudstack-vue-pwa'
-import 'the-new-css-reset'
 const fn = (innerFn) => async (ctx) => {
   usePWA().register()
   innerFn?.(ctx)
@@ -201,7 +198,6 @@ export const Cloudstack = (App, argA, argB) =>
 
 exports[`virtual module > should generate virtual module content, (SPA) 1`] = `
 "import { ViteSSG } from 'vite-ssg/single-page'
-import 'the-new-css-reset'
 const fn = (innerFn) => async (ctx) => {
   innerFn?.(ctx)
 }
