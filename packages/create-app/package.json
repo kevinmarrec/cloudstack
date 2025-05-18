@@ -25,7 +25,7 @@
     "template"
   ],
   "scripts": {
-    "build": "tsup --clean --format esm src/index.ts"
+    "build": "tsdown src/index.ts"
   },
   "dependencies": {
     "@clack/prompts": "^0.10.1",

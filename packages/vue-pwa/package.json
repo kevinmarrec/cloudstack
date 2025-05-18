@@ -28,7 +28,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup --clean --dts --format esm src/index.ts --external virtual:pwa-register"
+    "build": "tsdown src/index.ts"
   },
   "peerDependencies": {
     "vue": ">=3.5.0"
