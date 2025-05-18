@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@modyfi/vite-plugin-yaml": "^1.1.1",
-    "@unocss/vite": "^66.1.1",
+    "@unocss/vite": "^66.1.2",
     "@vite-pwa/assets-generator": "^1.0.0",
     "@vitejs/plugin-vue": "^5.2.4",
     "beasties": "^0.3.3",
@@ -56,7 +56,7 @@
     "unplugin-vue-router": "^0.12.0",
     "vite-plugin-pwa": "^1.0.0",
     "vite-plugin-vue-devtools": "^7.7.6",
-    "vite-ssg": "^26.1.1",
+    "vite-ssg": "^27.0.0",
     "vite-tsconfig-paths": "^5.1.4"
   }
 }
