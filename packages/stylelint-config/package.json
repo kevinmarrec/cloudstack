@@ -35,6 +35,6 @@
   "dependencies": {
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-recess-order": "^6.0.0",
-    "stylelint-config-recommended-scss": "^15.0.0"
+    "stylelint-config-recommended-scss": "^15.0.1"
   }
 }
