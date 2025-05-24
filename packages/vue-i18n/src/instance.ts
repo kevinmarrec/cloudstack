@@ -29,9 +29,25 @@ export function createInstance(options: ResolvedVueI18nOptions) {
       await loadMessages(locale.value)
       loadMessages(fallbackLocale.value)
     },
-    t: (key: string) => {
-      const message = findLocaleMessage(locale.value, key) || findLocaleMessage(fallbackLocale.value, key)
-      return typeof message === 'string' ? message : key
+    t: (key: string, params?: { [key: string | number]: unknown } | number) => {
+      let message = findLocaleMessage(locale.value, key) || findLocaleMessage(fallbackLocale.value, key)
+
+      if (typeof message !== 'string') {
+        return key
+      }
+
+      if (params === undefined) {
+        return message
+      }
+
+      // Handle pluralization
+      if (typeof params === 'number') {
+        message = message.split('|')[Math.max(0, Math.min(2, params))]
+        params = { n: params, count: params }
+      }
+
+      // Handle named and list interpolation
+      return message.replace(/\{(\w+)\}/g, (match, p1) => String(params?.[p1] ?? match))
     },
   }
 }
