@@ -52,7 +52,6 @@ Opinionated [Internationalization (i18n)](https://developer.mozilla.org/en-US/do
 > - Server-side rendering (SSR) loads the base & fallback locales **before** rendering the app.
 
 ```vue
-<!-- App.vue -->
 <script setup lang="ts">
 import { useI18n } from '@kevinmarrec/cloudstack-vue-i18n'
 
