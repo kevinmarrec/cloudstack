@@ -24,15 +24,16 @@ Opinionated [Internationalization (i18n)](https://developer.mozilla.org/en-US/do
     - `t('foo.bar')` resolves `foo` ➡️ `bar`
     - `t('foo.bar.baz')` resolves `foo` ➡️ `bar` ➡️ `baz`
 
-  - _[TODO]: Named interpolation_
+  - Named interpolation
 
     - `Hello {name}` + `t('key', { name: 'John' })` = `Hello John`
 
-  - _[TODO]: List interpolation_
+  - List interpolation
 
     - `Hello {0} {1}` + `t('key', ['John', 'Doe'])` = `Hello John Doe`
 
-  - _[TODO]: Pluralization_
+  - Pluralization
+
     - `no apples | one apple | {count} apples` + `t('key', 0)` = `no apples`
     - `no apples | one apple | {count} apples` + `t('key', 1)` = `one apple`
     - `no apples | one apple | {count} apples` + `t('key', 3)` = `3 apples`
