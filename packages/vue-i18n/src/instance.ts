@@ -64,7 +64,7 @@ export function createInstance(options: ResolvedVueI18nOptions): VueI18nInstance
         const count = [values.count, values.n].find(x => typeof x === 'number') ?? 1
         const clamped = Math.min(Math.abs(count), 2) // Clamp to 0, 1 or 2
         const parts = message.split(/\s*\|\s*/)
-        const rules = parts.length > 2 ? [0, 1, 2] : [1, 0, 1] // (no apple | one apple | many apples) VS (0 cars | 1 car | 2 cars)
+        const rules = parts.length > 2 ? [0, 1, 2] : [1, 0, 1] // (no apple | one apple | many apples) VS (car | cars)
         message = parts[rules[clamped]]
       }
 
