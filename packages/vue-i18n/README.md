@@ -34,9 +34,12 @@ Opinionated [Internationalization (i18n)](https://developer.mozilla.org/en-US/do
 
   - Pluralization
 
+    - `car | cars` + `t('key', 0)` = `cars`
+    - `car | cars` + `t('key', 1)` = `car`
+    - `car | cars` + `t('key', 2)` = `cars`
     - `no apples | one apple | {count} apples` + `t('key', 0)` = `no apples`
     - `no apples | one apple | {count} apples` + `t('key', 1)` = `one apple`
-    - `no apples | one apple | {count} apples` + `t('key', 3)` = `3 apples`
+    - `no apples | one apple | {count} apples` + `t('key', 2)` = `2 apples`
 
 - Supports Server-Side Rendering (SSR) & Static Site Generation (SSG)
 
