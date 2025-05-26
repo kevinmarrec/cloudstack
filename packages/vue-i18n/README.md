@@ -24,18 +24,22 @@ Opinionated [Internationalization (i18n)](https://developer.mozilla.org/en-US/do
     - `t('foo.bar')` resolves `foo` ➡️ `bar`
     - `t('foo.bar.baz')` resolves `foo` ➡️ `bar` ➡️ `baz`
 
-  - _[TODO]: Named interpolation_
+  - Named interpolation
 
     - `Hello {name}` + `t('key', { name: 'John' })` = `Hello John`
 
-  - _[TODO]: List interpolation_
+  - List interpolation
 
     - `Hello {0} {1}` + `t('key', ['John', 'Doe'])` = `Hello John Doe`
 
-  - _[TODO]: Pluralization_
+  - Pluralization
+
+    - `car | cars` + `t('key', 0)` = `cars`
+    - `car | cars` + `t('key', 1)` = `car`
+    - `car | cars` + `t('key', 2)` = `cars`
     - `no apples | one apple | {count} apples` + `t('key', 0)` = `no apples`
     - `no apples | one apple | {count} apples` + `t('key', 1)` = `one apple`
-    - `no apples | one apple | {count} apples` + `t('key', 3)` = `3 apples`
+    - `no apples | one apple | {count} apples` + `t('key', 2)` = `2 apples`
 
 - Supports Server-Side Rendering (SSR) & Static Site Generation (SSG)
 
@@ -51,7 +55,6 @@ Opinionated [Internationalization (i18n)](https://developer.mozilla.org/en-US/do
 > - Server-side rendering (SSR) loads the base & fallback locales **before** rendering the app.
 
 ```vue
-<!-- App.vue -->
 <script setup lang="ts">
 import { useI18n } from '@kevinmarrec/cloudstack-vue-i18n'
 

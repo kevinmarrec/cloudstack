@@ -14,115 +14,209 @@ afterEach(() => {
 })
 
 describe('composable', () => {
-  it('should translate (default locale)', async () => {
-    const Component = defineComponent({
-      setup() {
-        const { t } = useI18n()
-        return () => t('welcome')
-      },
+  describe('locale behaviors', () => {
+    it('default locale', async () => {
+      const Component = defineComponent({
+        setup() {
+          const { t } = useI18n()
+          return () => t('welcome')
+        },
+      })
+
+      const wrapper = mount(Component, {
+        global: {
+          plugins: [
+            await createI18n({
+              messages: {
+                './locales/en.json': () => Promise.resolve({
+                  default: {
+                    welcome: 'Welcome !',
+                  },
+                }),
+              },
+            }),
+          ],
+        },
+      })
+
+      await vi.waitFor(() => {
+        expect(wrapper.text()).toBe('Welcome !')
+      })
     })
 
-    const wrapper = mount(Component, {
-      global: {
-        plugins: [
-          await createI18n({
-            messages: {
-              './locales/en.json': () => Promise.resolve({
-                default: {
-                  welcome: 'Welcome !',
+    it('navigator language', async () => {
+      vi.stubGlobal('navigator', {
+        language: 'fr-FR',
+      })
+
+      const Component = defineComponent({
+        setup() {
+          const { t } = useI18n()
+          return () => t('welcome')
+        },
+      })
+
+      const wrapper = mount(Component, {
+        global: {
+          plugins: [
+            await createI18n({
+              messages: {
+                en: {
+                  welcome: 'Welcome!',
                 },
-              }),
-            },
-          }),
-        ],
-      },
+                fr: {
+                  welcome: 'Bienvenue !',
+                },
+              },
+            }),
+          ],
+        },
+      })
+
+      await vi.waitFor(() => {
+        expect(wrapper.text()).toBe('Bienvenue !')
+      })
     })
 
-    await vi.waitFor(() => {
-      expect(wrapper.text()).toBe('Welcome !')
+    it('fallback locale (when translation not found)', async () => {
+      vi.stubGlobal('navigator', {
+        language: 'fr-FR',
+      })
+
+      const Component = defineComponent({
+        setup() {
+          const { t } = useI18n()
+          return () => t('welcome')
+        },
+      })
+
+      const wrapper = mount(Component, {
+        global: {
+          plugins: [
+            await createI18n({
+              messages: {
+                en: {
+                  welcome: 'Welcome!',
+                },
+              },
+            }),
+          ],
+        },
+      })
+
+      expect(wrapper.text()).toBe('Welcome!')
+    })
+
+    it('raw key (when fallback translation also not found)', async () => {
+      const Component = defineComponent({
+        setup() {
+          const { t } = useI18n()
+          return () => t('welcome')
+        },
+      })
+
+      const wrapper = mount(Component, {
+        global: {
+          plugins: [
+            await createI18n({}),
+          ],
+        },
+      })
+
+      expect(wrapper.text()).toBe('welcome')
     })
   })
 
-  it('should translate (navigator language)', async () => {
-    vi.stubGlobal('navigator', {
-      language: 'fr-FR',
-    })
+  describe('translation behaviors', () => {
+    it('named interpolation', async () => {
+      const Component = defineComponent({
+        setup() {
+          const { t } = useI18n()
+          return () => t('welcome', { name: 'John' })
+        },
+      })
 
-    const Component = defineComponent({
-      setup() {
-        const { t } = useI18n()
-        return () => t('welcome')
-      },
-    })
-
-    const wrapper = mount(Component, {
-      global: {
-        plugins: [
-          await createI18n({
-            messages: {
-              en: {
-                welcome: 'Welcome!',
+      const wrapper = mount(Component, {
+        global: {
+          plugins: [
+            await createI18n({
+              messages: {
+                en: {
+                  welcome: 'Welcome, {name}!',
+                },
               },
-              fr: {
-                welcome: 'Bienvenue !',
+            }),
+          ],
+        },
+      })
+
+      expect(wrapper.text()).toBe('Welcome, John!')
+    })
+
+    it('list interpolation', async () => {
+      const Component = defineComponent({
+        setup() {
+          const { t } = useI18n()
+          return () => t('welcome', ['John', 'Doe'])
+        },
+      })
+
+      const wrapper = mount(Component, {
+        global: {
+          plugins: [
+            await createI18n({
+              messages: {
+                en: {
+                  welcome: 'Welcome, {0} {1}!',
+                },
               },
-            },
-          }),
-        ],
-      },
+            }),
+          ],
+        },
+      })
+
+      expect(wrapper.text()).toBe('Welcome, John Doe!')
     })
 
-    await vi.waitFor(() => {
-      expect(wrapper.text()).toBe('Bienvenue !')
-    })
-  })
+    it('pluralization', async () => {
+      const Component = defineComponent({
+        setup() {
+          const { t } = useI18n()
+          return () => [
+            t('cars', 0),
+            t('cars', 1),
+            t('cars', 2),
+            t('apples', 0),
+            t('apples', 1),
+            t('apples', 2),
+          ].join('\n')
+        },
+      })
 
-  it('should translate (fallback locale when translation not found)', async () => {
-    vi.stubGlobal('navigator', {
-      language: 'fr-FR',
-    })
-
-    const Component = defineComponent({
-      setup() {
-        const { t } = useI18n()
-        return () => t('welcome')
-      },
-    })
-
-    const wrapper = mount(Component, {
-      global: {
-        plugins: [
-          await createI18n({
-            messages: {
-              en: {
-                welcome: 'Welcome!',
+      const wrapper = mount(Component, {
+        global: {
+          plugins: [
+            await createI18n({
+              messages: {
+                en: {
+                  cars: 'car | cars',
+                  apples: 'no apples | one apple | {count} apples',
+                },
               },
-            },
-          }),
-        ],
-      },
+            }),
+          ],
+        },
+      })
+
+      expect(wrapper.text()).toBe([
+        'cars',
+        'car',
+        'cars',
+        'no apples',
+        'one apple',
+        '2 apples',
+      ].join('\n'))
     })
-
-    expect(wrapper.text()).toBe('Welcome!')
-  })
-
-  it('should translate (raw key when fallback translation also not found)', async () => {
-    const Component = defineComponent({
-      setup() {
-        const { t } = useI18n()
-        return () => t('welcome')
-      },
-    })
-
-    const wrapper = mount(Component, {
-      global: {
-        plugins: [
-          await createI18n({}),
-        ],
-      },
-    })
-
-    expect(wrapper.text()).toBe('welcome')
   })
 
   it('should throw error when plugin has not been installed', () => {
