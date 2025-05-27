@@ -27,7 +27,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsdown src/index.ts"
+    "build": "tsdown"
   },
   "peerDependencies": {
     "stylelint": ">=16.0.0"

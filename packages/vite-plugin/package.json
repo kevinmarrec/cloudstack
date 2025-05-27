@@ -31,7 +31,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsdown src/index.ts"
+    "build": "tsdown"
   },
   "peerDependencies": {
     "vite": ">=6.0.0",

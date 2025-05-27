@@ -27,7 +27,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsdown src/index.ts"
+    "build": "tsdown"
   },
   "peerDependencies": {
     "unocss": ">=66.0.0"

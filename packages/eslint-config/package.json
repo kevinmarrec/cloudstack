@@ -27,7 +27,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsdown src/index.ts"
+    "build": "tsdown"
   },
   "peerDependencies": {
     "eslint": ">=9.0.0"

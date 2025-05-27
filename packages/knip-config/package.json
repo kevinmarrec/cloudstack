@@ -27,7 +27,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsdown src/index.ts"
+    "build": "tsdown"
   },
   "peerDependencies": {
     "knip": ">=5.0.0"

@@ -27,7 +27,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsdown src/index.ts"
+    "build": "tsdown"
   },
   "dependencies": {
     "@unocss/core": "^66.1.2",
