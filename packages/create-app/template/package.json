@@ -2,7 +2,7 @@
   "name": "app",
   "type": "module",
   "private": true,
-  "packageManager": "bun@1.2.14",
+  "packageManager": "bun@1.2.15",
   "engines": {
     "node": "lts/*"
   },
@@ -28,8 +28,8 @@
     "@kevinmarrec/cloudstack-tsconfig": "workspace:*",
     "concurrently": "^9.1.2",
     "eslint": "^9.27.0",
-    "knip": "^5.58.1",
-    "stylelint": "^16.19.1",
+    "knip": "^5.59.1",
+    "stylelint": "^16.20.0",
     "taze": "^19.1.0",
     "typescript": "~5.8.3",
     "vue-tsc": "^2.2.10"
