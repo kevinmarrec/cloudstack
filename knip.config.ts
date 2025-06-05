@@ -6,10 +6,7 @@ export default useConfig({
       entry: ['*.config.ts'],
     },
     'packages/create-app/template/frontend': {
-      entry: [
-        'src/main.ts',
-        'src/pages/**/*.vue',
-      ],
+      entry: ['src/main.ts'],
     },
     'packages/stylelint-config': {
       ignoreDependencies: [
