@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-vue-pwa",
   "type": "module",
-  "version": "1.0.0-rc.12",
+  "version": "1.0.0-rc.13",
   "description": "Opinionated PWA Vue integration.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
