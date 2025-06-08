@@ -2,11 +2,17 @@
 import { useHead } from '@kevinmarrec/cloudstack-vue/head'
 import { useI18n } from '@kevinmarrec/cloudstack-vue/i18n'
 
+import { useRPC } from '~/composables'
+
 const { t } = useI18n()
 
 useHead({
   title: () => t('title'),
 })
+
+const { rpc } = useRPC()
+
+rpc.welcome('World').then(alert)
 </script>
 
 <template>
