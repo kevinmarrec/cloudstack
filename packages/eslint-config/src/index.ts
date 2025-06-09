@@ -1,5 +1,6 @@
 import { antfu } from '@antfu/eslint-config'
 import defu from 'defu'
+import pluginImport from 'eslint-plugin-import-x'
 import { globSync } from 'tinyglobby'
 
 type Options = Parameters<typeof antfu>[0]
@@ -22,6 +23,9 @@ export function useConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
   return antfu(defu<NonNullable<Options>, Options[]>(options, {
     formatters: true,
     ignores: options.ignores,
+    plugins: {
+      import: pluginImport,
+    },
     vue: {
       a11y: true,
       overrides: {
@@ -29,8 +33,7 @@ export function useConfig(options: Options = {}, ...userConfigs: UserConfig[]) {
       },
     },
     rules: {
-      // 'import/consistent-type-specifier-style': ['off'],
-      // 'import/no-duplicates': ['error', { 'prefer-inline': true }],
+      'import/no-duplicates': ['error', { 'prefer-inline': true }],
       'perfectionist/sort-imports': ['error', {
         groups: [
           ['builtin', 'builtin-type'],
