@@ -48,6 +48,7 @@ exports[`plugin > with all integrations (mode: 'development') 1`] = `
   "vite:transform-yaml",
   "vite-plugin-pwa:info",
   "vite-plugin-pwa:pwa-assets",
+  "unhead:use-seo-meta-transform",
   "unocss:transformers:post",
   "unocss:global:post",
 ]
@@ -74,6 +75,7 @@ exports[`plugin > with all integrations (mode: 'production') 1`] = `
   "vite-plugin-pwa:info",
   "vite-plugin-pwa:build",
   "vite-plugin-pwa:pwa-assets",
+  "unhead:use-seo-meta-transform",
   "unocss:transformers:post",
 ]
 `;
@@ -87,6 +89,7 @@ exports[`plugin > with defaults (mode: 'analyze') 1`] = `
   "visualizer",
   "vite:vue",
   "vite:transform-yaml",
+  "unhead:use-seo-meta-transform",
 ]
 `;
 
@@ -100,6 +103,7 @@ exports[`plugin > with defaults (mode: 'development') 1`] = `
   "cloudstack:virtual",
   "vite:vue",
   "vite:transform-yaml",
+  "unhead:use-seo-meta-transform",
 ]
 `;
 
@@ -111,6 +115,7 @@ exports[`plugin > with defaults (mode: 'production') 1`] = `
   "cloudstack:virtual",
   "vite:vue",
   "vite:transform-yaml",
+  "unhead:use-seo-meta-transform",
 ]
 `;
 
@@ -126,6 +131,7 @@ exports[`plugin > with different pwa strategy ('generateSW') 1`] = `
   "vite-plugin-pwa:info",
   "vite-plugin-pwa:build",
   "vite-plugin-pwa:pwa-assets",
+  "unhead:use-seo-meta-transform",
 ]
 `;
 
@@ -141,6 +147,7 @@ exports[`plugin > with different pwa strategy ('injectManifest') 1`] = `
   "vite-plugin-pwa:info",
   "vite-plugin-pwa:build",
   "vite-plugin-pwa:pwa-assets",
+  "unhead:use-seo-meta-transform",
 ]
 `;
 
