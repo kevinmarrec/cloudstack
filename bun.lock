@@ -30,7 +30,7 @@
     },
     "packages/create-app": {
       "name": "@kevinmarrec/create-cloudstack-app",
-      "version": "1.0.0-rc.13",
+      "version": "1.0.0-rc.14",
       "bin": {
         "create-cloudstack-app": "dist/index.js",
       },
@@ -85,7 +85,7 @@
     },
     "packages/eslint-config": {
       "name": "@kevinmarrec/cloudstack-eslint-config",
-      "version": "1.0.0-rc.13",
+      "version": "1.0.0-rc.14",
       "dependencies": {
         "@antfu/eslint-config": "4.13.3",
         "@unocss/eslint-plugin": "^66.1.4",
@@ -100,14 +100,14 @@
     },
     "packages/knip-config": {
       "name": "@kevinmarrec/cloudstack-knip-config",
-      "version": "1.0.0-rc.13",
+      "version": "1.0.0-rc.14",
       "peerDependencies": {
         "knip": ">=5.0.0",
       },
     },
     "packages/stylelint-config": {
       "name": "@kevinmarrec/cloudstack-stylelint-config",
-      "version": "1.0.0-rc.13",
+      "version": "1.0.0-rc.14",
       "dependencies": {
         "stylelint-config-html": "^1.1.0",
         "stylelint-config-recess-order": "^6.0.0",
@@ -120,18 +120,18 @@
     },
     "packages/taze-config": {
       "name": "@kevinmarrec/cloudstack-taze-config",
-      "version": "1.0.0-rc.13",
+      "version": "1.0.0-rc.14",
       "peerDependencies": {
         "taze": ">=18.0.0",
       },
     },
     "packages/tsconfig": {
       "name": "@kevinmarrec/cloudstack-tsconfig",
-      "version": "1.0.0-rc.13",
+      "version": "1.0.0-rc.14",
     },
     "packages/unocss-config": {
       "name": "@kevinmarrec/cloudstack-unocss-config",
-      "version": "1.0.0-rc.13",
+      "version": "1.0.0-rc.14",
       "dependencies": {
         "@kevinmarrec/cloudstack-unocss-preset": "workspace:*",
       },
@@ -141,7 +141,7 @@
     },
     "packages/unocss-preset": {
       "name": "@kevinmarrec/cloudstack-unocss-preset",
-      "version": "1.0.0-rc.13",
+      "version": "1.0.0-rc.14",
       "dependencies": {
         "@unocss/core": "^66.1.4",
         "@unocss/preset-icons": "^66.1.4",
@@ -153,7 +153,7 @@
     },
     "packages/vite-config": {
       "name": "@kevinmarrec/cloudstack-vite-config",
-      "version": "1.0.0-rc.13",
+      "version": "1.0.0-rc.14",
       "dependencies": {
         "@kevinmarrec/cloudstack-vite-plugin": "workspace:*",
       },
@@ -163,7 +163,7 @@
     },
     "packages/vite-plugin": {
       "name": "@kevinmarrec/cloudstack-vite-plugin",
-      "version": "1.0.0-rc.13",
+      "version": "1.0.0-rc.14",
       "dependencies": {
         "@modyfi/vite-plugin-yaml": "^1.1.1",
         "@unhead/addons": "^2.0.10",
@@ -192,7 +192,7 @@
     },
     "packages/vue": {
       "name": "@kevinmarrec/cloudstack-vue",
-      "version": "1.0.0-rc.13",
+      "version": "1.0.0-rc.14",
       "dependencies": {
         "@kevinmarrec/cloudstack-vue-i18n": "workspace:*",
         "@kevinmarrec/cloudstack-vue-pwa": "workspace:*",
@@ -207,14 +207,14 @@
     },
     "packages/vue-i18n": {
       "name": "@kevinmarrec/cloudstack-vue-i18n",
-      "version": "1.0.0-rc.13",
+      "version": "1.0.0-rc.14",
       "peerDependencies": {
         "vue": ">=3.5.0",
       },
     },
     "packages/vue-pwa": {
       "name": "@kevinmarrec/cloudstack-vue-pwa",
-      "version": "1.0.0-rc.13",
+      "version": "1.0.0-rc.14",
       "peerDependencies": {
         "vue": ">=3.5.0",
       },
