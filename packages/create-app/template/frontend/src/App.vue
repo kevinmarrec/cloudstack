@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useHead } from '@kevinmarrec/cloudstack-vue/head'
 import { useI18n } from '@kevinmarrec/cloudstack-vue/i18n'
+import { ref } from 'vue'
 
 import { useRPC } from '~/composables'
 
@@ -10,9 +11,10 @@ useHead({
   title: () => t('title'),
 })
 
-const { rpc } = useRPC()
+const { useWelcome } = useRPC()
+const text = ref('Hello')
 
-rpc.welcome('World').then(alert)
+const { data } = useWelcome(text)
 </script>
 
 <template>
@@ -20,7 +22,11 @@ rpc.welcome('World').then(alert)
     <div class="flex flex-col gap-4 items-center">
       <h1 class="text-4xl font-bold">
         {{ t('body.message') }}
+        {{ data }}
       </h1>
+      <div>
+        <input v-model="text">
+      </div>
     </div>
   </div>
 </template>
