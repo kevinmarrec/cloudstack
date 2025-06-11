@@ -46,7 +46,7 @@
   "dependencies": {
     "@modyfi/vite-plugin-yaml": "^1.1.1",
     "@unhead/addons": "^2.0.10",
-    "@unocss/vite": "^66.1.4",
+    "@unocss/vite": "^66.2.0",
     "@vite-pwa/assets-generator": "^1.0.0",
     "@vitejs/plugin-vue": "^5.2.4",
     "beasties": "^0.3.4",
