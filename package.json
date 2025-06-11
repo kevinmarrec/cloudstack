@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack",
   "type": "module",
-  "version": "1.0.0-rc.13",
+  "version": "1.0.0-rc.14",
   "private": true,
   "packageManager": "bun@1.2.15",
   "engines": {
@@ -36,13 +36,13 @@
     "@kevinmarrec/cloudstack-stylelint-config": "workspace:*",
     "@kevinmarrec/cloudstack-taze-config": "workspace:*",
     "@kevinmarrec/cloudstack-tsconfig": "workspace:*",
-    "@vitest/coverage-v8": "^3.2.2",
-    "@vitest/ui": "^3.2.2",
+    "@vitest/coverage-v8": "^3.2.3",
+    "@vitest/ui": "^3.2.3",
     "@vue/test-utils": "^2.4.6",
     "ansis": "^4.1.0",
     "bumpp": "^10.1.1",
     "eslint": "^9.28.0",
-    "happy-dom": "^17.6.3",
+    "happy-dom": "^18.0.1",
     "knip": "^5.60.2",
     "pathe": "^2.0.3",
     "stylelint": "^16.20.0",
@@ -51,7 +51,7 @@
     "tinyglobby": "^0.2.14",
     "tsdown": "^0.12.7",
     "typescript": "~5.8.3",
-    "vitest": "^3.2.2",
+    "vitest": "^3.2.3",
     "vue-tsc": "^2.2.10"
   }
 }

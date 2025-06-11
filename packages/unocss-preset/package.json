@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-unocss-preset",
   "type": "module",
-  "version": "1.0.0-rc.13",
+  "version": "1.0.0-rc.14",
   "description": "Opinionated UnoCSS preset.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
@@ -30,11 +30,11 @@
     "build": "tsdown"
   },
   "dependencies": {
-    "@unocss/core": "^66.1.3",
-    "@unocss/preset-icons": "^66.1.3",
-    "@unocss/preset-web-fonts": "^66.1.3",
-    "@unocss/preset-wind4": "^66.1.3",
-    "@unocss/transformer-directives": "^66.1.3",
-    "@unocss/transformer-variant-group": "^66.1.3"
+    "@unocss/core": "^66.2.0",
+    "@unocss/preset-icons": "^66.2.0",
+    "@unocss/preset-web-fonts": "^66.2.0",
+    "@unocss/preset-wind4": "^66.2.0",
+    "@unocss/transformer-directives": "^66.2.0",
+    "@unocss/transformer-variant-group": "^66.2.0"
   }
 }

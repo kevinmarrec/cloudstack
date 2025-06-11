@@ -1,3 +1,4 @@
 {
-  "extends": "@kevinmarrec/cloudstack-tsconfig"
+  "extends": "@kevinmarrec/cloudstack-tsconfig",
+  "exclude": ["**/dist/**"]
 }

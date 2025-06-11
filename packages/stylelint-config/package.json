@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-stylelint-config",
   "type": "module",
-  "version": "1.0.0-rc.13",
+  "version": "1.0.0-rc.14",
   "description": "Opinionated Stylelint config.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
@@ -35,6 +35,7 @@
   "dependencies": {
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-recess-order": "^6.0.0",
-    "stylelint-config-recommended-scss": "^15.0.1"
+    "stylelint-config-recommended-scss": "^15.0.1",
+    "stylelint-plugin-use-baseline": "^0.6.0"
   }
 }

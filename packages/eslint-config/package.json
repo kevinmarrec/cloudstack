@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-eslint-config",
   "type": "module",
-  "version": "1.0.0-rc.13",
+  "version": "1.0.0-rc.14",
   "description": "Opinionated ESLint config.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
@@ -33,8 +33,8 @@
     "eslint": ">=9.0.0"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^4.13.3",
-    "@unocss/eslint-plugin": "^66.1.3",
+    "@antfu/eslint-config": "4.13.3",
+    "@unocss/eslint-plugin": "^66.2.0",
     "defu": "^6.1.4",
     "eslint-plugin-format": "^1.0.1",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",

@@ -7,7 +7,9 @@ export function useConfig(userConfig: Config = {}): Config {
       'stylelint-config-html',
       'stylelint-config-recess-order',
     ],
+    plugins: ['stylelint-plugin-use-baseline'],
     rules: {
+      'plugin/use-baseline': true,
       'declaration-block-no-duplicate-properties': true,
       'length-zero-no-unit': true,
       ...userConfig.rules,
