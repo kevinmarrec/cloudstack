@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.14",
   "private": true,
-  "packageManager": "bun@1.2.15",
+  "packageManager": "bun@1.2.16",
   "engines": {
     "node": "lts/*"
   },
@@ -43,7 +43,7 @@
     "bumpp": "^10.1.1",
     "eslint": "^9.28.0",
     "happy-dom": "^18.0.1",
-    "knip": "^5.60.2",
+    "knip": "^5.61.0",
     "pathe": "^2.0.3",
     "stylelint": "^16.20.0",
     "taze": "^19.1.0",
