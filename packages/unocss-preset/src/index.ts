@@ -21,7 +21,6 @@ export default definePreset<PresetOptions, Theme>(options => ({
     presetWebFonts({
       processors: createLocalFontProcessor(),
       fonts: options?.fonts,
-      themeKey: 'font',
     }),
   ],
   transformers: [
