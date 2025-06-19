@@ -1,11 +1,6 @@
 {
-  "extends": "@kevinmarrec/cloudstack-tsconfig",
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    "paths": {
-      "@backend/*": ["../backend/src/*"],
-      "~/*": ["./src/*"]
-    }
-  },
-  "exclude": ["dist"]
+    "lib": ["ESNext", "DOM", "DOM.Iterable"]
+  }
 }

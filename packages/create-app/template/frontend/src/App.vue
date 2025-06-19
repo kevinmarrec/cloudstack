@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { useHead } from '@kevinmarrec/cloudstack-vue/head'
-import { useI18n } from '@kevinmarrec/cloudstack-vue/i18n'
+import { useHead, useI18n, useRPC } from '@frontend/composables'
 import { ref } from 'vue'
-
-import { useRPC } from '~/composables'
 
 const { t } = useI18n()
 

@@ -1,7 +1,11 @@
 {
   "extends": "@kevinmarrec/cloudstack-tsconfig",
   "compilerOptions": {
-    "lib": ["ESNext", "DOM"]
+    "lib": ["ESNext", "DOM"],
+    "paths": {
+      "@backend/*": ["./packages/create-app/template/backend/src/*"],
+      "@frontend/*": ["./packages/create-app/template/frontend/src/*"]
+    }
   },
   "exclude": [
     "**/coverage/**",
