@@ -67,8 +67,8 @@
     "@kevinmarrec/cloudstack-vue-i18n": "workspace:*",
     "@kevinmarrec/cloudstack-vue-pwa": "workspace:*",
     "@unhead/vue": "^2.0.10",
-    "@vueuse/components": "^13.3.0",
-    "@vueuse/core": "^13.3.0",
+    "@vueuse/components": "^13.4.0",
+    "@vueuse/core": "^13.4.0",
     "vue-router": "^4.5.1"
   }
 }
