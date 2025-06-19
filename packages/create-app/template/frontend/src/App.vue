@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useHead, useI18n, useRPC } from '@frontend/composables'
+import { useHead, useI18n } from '@frontend/composables'
+import { useWelcome } from '@frontend/queries'
 import { ref } from 'vue'
 
 const { t } = useI18n()
@@ -7,8 +8,6 @@ const { t } = useI18n()
 useHead({
   title: () => t('title'),
 })
-
-const { useWelcome } = useRPC()
 const text = ref('Hello')
 
 const { data } = useWelcome(text)
