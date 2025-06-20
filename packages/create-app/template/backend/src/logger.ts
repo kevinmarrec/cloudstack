@@ -1,9 +1,11 @@
 import pino from 'pino'
-import pretty from 'pino-pretty'
 
-import { isDevelopment } from './env'
+import { level, pretty } from './config/logger'
 
 export const logger = pino({
-  level: 'info',
+  level,
   base: {},
-}, isDevelopment ? pretty() : undefined)
+  transport: pretty
+    ? { target: 'pino-pretty' }
+    : undefined,
+})

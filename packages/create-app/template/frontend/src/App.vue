@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { useHead, useI18n } from '@frontend/composables'
+import { useWelcome } from '@frontend/queries'
 
 const { t } = useI18n()
 
 useHead({
   title: () => t('title'),
 })
+
+const { data: message } = useWelcome('world')
 </script>
 
 <template>
@@ -14,6 +17,9 @@ useHead({
       <h1 class="text-4xl font-bold">
         {{ t('body.message') }}
       </h1>
+      <h2 class="text-2xl text-gray-500">
+        {{ message }}
+      </h2>
     </div>
   </div>
 </template>
