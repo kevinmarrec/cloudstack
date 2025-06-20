@@ -6,5 +6,5 @@ export const welcome = pub
   .input(v.string())
   .output(v.string())
   .handler(({ input }) => {
-    return `Welcome ${input}`
+    return `Hello ${input}!`
   })
