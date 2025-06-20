@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/cloudstack-vite-plugin",
   "type": "module",
-  "version": "1.0.0-rc.14",
+  "version": "1.0.0-rc.15",
   "description": "Opinionated Vite plugin.",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
