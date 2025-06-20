@@ -5,6 +5,9 @@ export default useConfig({
     'packages/create-app/template': {
       entry: ['*.config.ts'],
     },
+    'packages/create-app/template/backend': {
+      ignoreDependencies: ['pino-pretty'],
+    },
     'packages/create-app/template/frontend': {
       entry: ['src/main.ts'],
     },

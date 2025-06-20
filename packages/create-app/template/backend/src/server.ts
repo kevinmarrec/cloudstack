@@ -1,21 +1,17 @@
 import { RPCHandler } from '@orpc/server/fetch'
 import { CORSPlugin } from '@orpc/server/plugins'
 
-import { serverConfig } from './config'
+import { cors, hostname, port } from './config/server'
 import { logger } from './logger'
 import { router } from './router'
 
 const rpcHandler = new RPCHandler(router, {
-  plugins: [
-    new CORSPlugin({
-      origin: serverConfig.cors.origin,
-    }),
-  ],
+  plugins: [new CORSPlugin(cors)],
 })
 
 const server = Bun.serve({
-  hostname: serverConfig.host,
-  port: serverConfig.port,
+  hostname,
+  port,
   async fetch(request) {
     const { matched, response } = await rpcHandler.handle(request, {
       prefix: '/rpc',

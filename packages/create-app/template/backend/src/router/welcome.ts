@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-import { pub } from '../orpc'
+import { pub } from '../lib/orpc'
 
 export const welcome = pub
   .input(v.string())

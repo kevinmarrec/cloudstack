@@ -11,7 +11,7 @@ const schema = v.object({
       '*',
     ),
   }),
-  host: v.optional(
+  hostname: v.optional(
     v.pipe(
       v.string(),
       v.minLength(1),
@@ -27,10 +27,14 @@ const schema = v.object({
   ), '3000'),
 })
 
-export const server = v.parse(schema, {
+const config = v.parse(schema, {
   cors: {
     origin: import.meta.env.ALLOWED_ORIGINS,
   },
-  host: import.meta.env.HOST,
+  hostname: import.meta.env.HOST,
   port: import.meta.env.PORT,
 })
+
+export const cors = config.cors
+export const hostname = config.hostname
+export const port = config.port
