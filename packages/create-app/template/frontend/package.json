@@ -12,9 +12,9 @@
     "@kevinmarrec/cloudstack-unocss-config": "workspace:*",
     "@kevinmarrec/cloudstack-vite-config": "workspace:*",
     "@kevinmarrec/cloudstack-vue": "workspace:*",
-    "@orpc/client": "^1.4.2",
-    "@orpc/tanstack-query": "^1.5.0",
-    "@tanstack/vue-query": "^5.80.6",
+    "@orpc/client": "^1.5.2",
+    "@orpc/tanstack-query": "^1.5.2",
+    "@tanstack/vue-query": "^5.80.10",
     "unocss": "^66.2.3",
     "vite": "^6.3.5",
     "vue": "^3.5.17"
