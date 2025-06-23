@@ -1,0 +1,18 @@
+x-compose-file: &compose-file packages/create-app/template/compose.yaml
+
+x-overrides: &overrides
+  working_dir: /app/packages/create-app/template
+  volumes:
+    - ${PWD}:/app
+
+services:
+  backend:
+    extends:
+      file: *compose-file
+      service: backend
+    <<: *overrides
+  frontend:
+    extends:
+      file: *compose-file
+      service: frontend
+    <<: *overrides

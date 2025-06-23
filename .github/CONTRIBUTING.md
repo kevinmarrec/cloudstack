@@ -38,7 +38,7 @@ git checkout -b my-new-branch-or-feature
 
 5. Run `bun run build` to build the packages: the playground will use the built packages
 
-6. run `bun run playground` and check your changes in the browser
+6. Run `bun run playground` (requires [Docker Compose](https://docs.docker.com/compose/)) and check your changes in the browser
 
 7. Run the checks: `bun run check` and the tests: `bun run test`.
 
