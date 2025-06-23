@@ -7,13 +7,11 @@ Opinionated [UnoCSS](https://unocss.dev) [preset](https://unocss.dev/config/pres
 ## Opinions
 
 - Extends the following official presets:
-
   - [UnoCSS Wind preset](https://unocss.dev/presets/wind)
   - [UnoCSS Icons preset](https://unocss.dev/presets/icons)
   - [UnoCSS Web Fonts preset](https://unocss.dev/presets/web-fonts)
 
 - Extends the following official transformers:
-
   - [UnoCSS Directives transformer](https://unocss.dev/transformers/directives)
   - [UnoCSS Variant group transformer](https://unocss.dev/transformers/variant-group)
 

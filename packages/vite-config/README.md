@@ -7,7 +7,6 @@ Opinionated [Vite](https://vite.dev) [config](https://vite.dev/config).
 ## Opinions
 
 - Uses [Cloudstack Vite plugin](https://github.com/kevinmarrec/cloudstack/tree/main/packages/vite-plugin#readme) by default
-
   - Hoists plugin options to the `cloudstack` config key
 
 - Supports all [Vite config](https://vite.dev/config) options
