@@ -5,8 +5,20 @@ x-common: &common
   user: 1000:1000
 
 services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
   backend:
     <<: *common
+    depends_on:
+      - postgres
     image: oven/bun:1-alpine
     entrypoint: [bun, --cwd, backend, dev]
     ports:
@@ -19,3 +31,6 @@ services:
     entrypoint: [bun, --cwd, frontend, dev, --host, 0.0.0.0]
     ports:
       - 5173:5173
+
+volumes:
+  postgres:

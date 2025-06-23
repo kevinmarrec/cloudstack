@@ -1,5 +1,6 @@
 import process from 'node:process'
 
+import { onError } from '@orpc/server'
 import { RPCHandler } from '@orpc/server/fetch'
 import { CORSPlugin } from '@orpc/server/plugins'
 
@@ -9,6 +10,11 @@ import { router } from './router'
 
 const rpcHandler = new RPCHandler(router, {
   plugins: [new CORSPlugin(cors)],
+  interceptors: [
+    onError((error) => {
+      logger.error(error)
+    }),
+  ],
 })
 
 const server = Bun.serve({
