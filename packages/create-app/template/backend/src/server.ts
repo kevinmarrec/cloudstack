@@ -1,3 +1,5 @@
+import process from 'node:process'
+
 import { RPCHandler } from '@orpc/server/fetch'
 import { CORSPlugin } from '@orpc/server/plugins'
 
@@ -28,3 +30,12 @@ const server = Bun.serve({
 })
 
 logger.info(`Listening on ${server.url}`)
+
+async function gracefulShutdown() {
+  logger.info('Gracefully shutting down...')
+  await server.stop()
+  process.exit(0)
+}
+
+process.on('SIGINT', gracefulShutdown)
+process.on('SIGTERM', gracefulShutdown)
