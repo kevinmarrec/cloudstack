@@ -4,6 +4,8 @@ const schema = v.object({
   url: v.string(),
 })
 
-export const credentials = v.parse(schema, {
+const config = v.parse(schema, {
   url: import.meta.env.DATABASE_URL,
 })
+
+export const url = config.url
