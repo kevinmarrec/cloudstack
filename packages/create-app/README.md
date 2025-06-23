@@ -11,7 +11,6 @@ CLI that scaffolds an opinionated [Bun](https://bun.sh) & [Vue](https://vuejs.or
 - [Vue](https://vuejs.org) as frontend framework
 
 - Uses all other [Cloudstack](https://github.com/kevinmarrec/cloudstack) packages
-
   - Check their respective documentation for more details
 
 ## Usage

@@ -7,7 +7,6 @@ Opinionated [ESLint](https://eslint.org) config.
 ## Opinions
 
 - Extends [@antfu/eslint-config](https://github.com/antfu/eslint-config) with [formatters](https://github.com/antfu/eslint-config?tab=readme-ov-file#formatters) & [UnoCSS](https://github.com/antfu/eslint-config?tab=readme-ov-file#unocss) support (`uno.config.ts` detection)
-
   - with quite minor rule overrides:
     - [import/consistent-type-specifier-style](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/consistent-type-specifier-style.md) is disabled
     - [import/no-duplicates](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-duplicates.md) is overridden to prefer inline type imports

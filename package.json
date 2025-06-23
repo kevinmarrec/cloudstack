@@ -22,7 +22,7 @@
     "check:unused": "knip -n",
     "lint": "bun run check:eslint && bun run check:stylelint",
     "lint:inspect": "bunx @eslint/config-inspector",
-    "playground": "bun --cwd packages/create-app/template dev",
+    "playground": "docker-compose up",
     "postinstall": "bun scripts/postinstall.ts",
     "prepublish": "bun scripts/prepublish.ts",
     "release": "bumpp",

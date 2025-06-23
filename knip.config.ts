@@ -1,6 +1,7 @@
 import { useConfig } from '@kevinmarrec/cloudstack-knip-config'
 
 export default useConfig({
+  ignoreBinaries: ['docker-compose'],
   workspaces: {
     'packages/create-app/template': {
       entry: ['*.config.ts'],

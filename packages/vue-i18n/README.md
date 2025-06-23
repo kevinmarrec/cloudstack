@@ -7,33 +7,26 @@ Opinionated [Internationalization (i18n)](https://developer.mozilla.org/en-US/do
 ## Opinions
 
 - Lazy loading of locales
-
   - Supports JSON
   - Supports YAML (with optional requirement: [vite-plugin-yaml](https://github.com/Modyfi/vite-plugin-yaml))
 
 - Fallbacking
-
   - Configure which locale to use when your preferred language lacks a translation
   - If the fallback locale also lacks the translation, the key will be returned as is
 
 - Message Format features
-
   - Standard & nested keys
-
     - `t('foo')` resolves `foo`
     - `t('foo.bar')` resolves `foo` ➡️ `bar`
     - `t('foo.bar.baz')` resolves `foo` ➡️ `bar` ➡️ `baz`
 
   - Named interpolation
-
     - `Hello {name}` + `t('key', { name: 'John' })` = `Hello John`
 
   - List interpolation
-
     - `Hello {0} {1}` + `t('key', ['John', 'Doe'])` = `Hello John Doe`
 
   - Pluralization
-
     - `car | cars` + `t('key', 0)` = `cars`
     - `car | cars` + `t('key', 1)` = `car`
     - `car | cars` + `t('key', 2)` = `cars`

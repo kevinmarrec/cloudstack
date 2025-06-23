@@ -7,7 +7,6 @@ Opinionated [Vite](https://vite.dev) [plugin](https://vite.dev/guide/using-plugi
 ## Opinions
 
 - Built-in integrations (through [Vite](https://vite.dev) [plugins](https://vite.dev/guide/using-plugins)):
-
   - [Vue](https://vuejs.org)
   - [Vue Router](https://router.vuejs.org)
   - [Vue DevTools](https://devtools.vuejs.org)

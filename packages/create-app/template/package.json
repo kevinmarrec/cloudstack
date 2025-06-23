@@ -16,7 +16,7 @@
     "check:stylelint": "stylelint '**/*.{css,scss,vue}' --ignorePath .gitignore",
     "check:types": "vue-tsc --noEmit",
     "check:unused": "knip -n",
-    "dev": "bun scripts/dev.ts",
+    "dev": "docker-compose up",
     "lint": "bun run check:eslint && bun run check:stylelint",
     "lint:inspect": "bunx @eslint/config-inspector"
   },
@@ -26,7 +26,6 @@
     "@kevinmarrec/cloudstack-stylelint-config": "workspace:*",
     "@kevinmarrec/cloudstack-taze-config": "workspace:*",
     "@kevinmarrec/cloudstack-tsconfig": "workspace:*",
-    "concurrently": "^9.1.2",
     "eslint": "^9.29.0",
     "knip": "^5.61.2",
     "stylelint": "^16.21.0",
