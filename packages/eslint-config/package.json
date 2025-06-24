@@ -30,7 +30,7 @@
     "build": "tsdown"
   },
   "peerDependencies": {
-    "eslint": ">=9.0.0"
+    "eslint": ">=9.20.0"
   },
   "dependencies": {
     "@antfu/eslint-config": "^4.16.1",

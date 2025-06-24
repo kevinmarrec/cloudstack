@@ -30,7 +30,7 @@
     "build": "tsdown"
   },
   "peerDependencies": {
-    "stylelint": ">=16.0.0"
+    "stylelint": ">=16.18.0"
   },
   "dependencies": {
     "stylelint-config-html": "^1.1.0",
