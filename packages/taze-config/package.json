@@ -30,6 +30,6 @@
     "build": "tsdown"
   },
   "peerDependencies": {
-    "taze": ">=18.0.0"
+    "taze": ">=19.0.0"
   }
 }

@@ -30,6 +30,6 @@
     "build": "tsdown"
   },
   "peerDependencies": {
-    "knip": ">=5.0.0"
+    "knip": ">=5.50.0"
   }
 }
