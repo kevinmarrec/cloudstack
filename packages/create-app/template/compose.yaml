@@ -15,11 +15,25 @@ services:
       - 5432:5432
     volumes:
       - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d app"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
+
+  init_db:
+    <<: *common
+    depends_on:
+      postgres:
+        condition: service_healthy
+    image: oven/bun:1-alpine
+    entrypoint: [bun, --cwd, backend, db:migrate]
 
   backend:
     <<: *common
     depends_on:
-      - postgres
+      init_db:
+        condition: service_completed_successfully
     image: oven/bun:1-alpine
     entrypoint: [bun, --cwd, backend, dev]
     ports:

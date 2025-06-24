@@ -10,6 +10,13 @@ services:
     extends:
       file: *compose-file
       service: postgres
+
+  init_db:
+    extends:
+      file: *compose-file
+      service: init_db
+    <<: *overrides
+
   backend:
     extends:
       file: *compose-file
