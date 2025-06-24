@@ -96,6 +96,10 @@ describe('plugin', () => {
       build: ssgBuildSpy,
     }))
 
+    const exitSpy = vi.spyOn(process, 'exit').mockImplementation(() => {
+      throw new Error('exit')
+    })
+
     const getBuilder = (mode: string) => ({
       build: defaultBuildSpy,
       config: { mode },
@@ -108,7 +112,10 @@ describe('plugin', () => {
 
     defaultBuildSpy.mockClear()
 
-    await resolvedConfig.builder?.buildApp?.(getBuilder('static'))
+    await resolvedConfig.builder?.buildApp?.(getBuilder('static')).catch(() => {
+      expect(exitSpy).toHaveBeenCalledWith(0)
+    })
+
     expect(defaultBuildSpy).not.toHaveBeenCalled()
     expect(ssgBuildSpy).toHaveBeenCalled()
   })
