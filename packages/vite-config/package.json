@@ -34,7 +34,7 @@
     "build": "tsdown"
   },
   "peerDependencies": {
-    "vite": ">=6.0.0"
+    "vite": ">=7.0.0"
   },
   "dependencies": {
     "@kevinmarrec/cloudstack-vite-plugin": "workspace:*"

@@ -34,11 +34,11 @@ git checkout -b my-new-branch-or-feature
 
 3. Add new tests when adding new features or fixing bugs (not always necessary, but it's a good practice): you can reuse existing tests or create new ones in the `test` folder of the package(s) you're working on. Cloudstack uses [Vitest](https://vitest.dev) as the test runner.
 
-4. Test locally your changes by running the playground in your local environment
+4. Run `bun run build` to build the packages: the playground will use the built packages.
 
-5. Run `bun run build` to build the packages: the playground will use the built packages
+5. Test locally your changes by running the playground in your local environment using `bun run playground` (requires [Docker Compose](https://docs.docker.com/compose/)).
 
-6. Run `bun run playground` (requires [Docker Compose](https://docs.docker.com/compose/)) and check your changes in the browser
+6. Check your changes in the browser.
 
 7. Run the checks: `bun run check` and the tests: `bun run test`.
 

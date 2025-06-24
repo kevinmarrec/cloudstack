@@ -1,5 +1,7 @@
 /// <reference types="vite-ssg" />
 
+import process from 'node:process'
+
 import { defineConfig, mergeConfig, type Plugin } from 'vite'
 
 import type { CloudstackPluginContext } from '../../context'
@@ -23,7 +25,8 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
           async buildApp(builder) {
             if (builder.config.mode === 'static') {
               const { build } = await import('vite-ssg/node')
-              return build(builder.config.ssgOptions)
+              await build(builder.config.ssgOptions)
+              process.exit(0)
             }
 
             await builder.build(builder.environments.client)
