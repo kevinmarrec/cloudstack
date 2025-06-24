@@ -48,7 +48,7 @@
     "@unhead/addons": "^2.0.11",
     "@unocss/vite": "^66.2.3",
     "@vite-pwa/assets-generator": "^1.0.0",
-    "@vitejs/plugin-vue": "^5.2.4",
+    "@vitejs/plugin-vue": "^6.0.0",
     "beasties": "^0.3.4",
     "defu": "^6.1.4",
     "local-pkg": "^1.1.1",
