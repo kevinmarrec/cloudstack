@@ -8,13 +8,14 @@ services:
   postgres:
     image: postgres:17-alpine
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: app
     ports:
       - 5432:5432
     volumes:
       - postgres:/var/lib/postgresql/data
+
   backend:
     <<: *common
     depends_on:
@@ -23,6 +24,7 @@ services:
     entrypoint: [bun, --cwd, backend, dev]
     ports:
       - 3000:3000
+
   frontend:
     <<: *common
     depends_on:
