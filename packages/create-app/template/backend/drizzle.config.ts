@@ -3,7 +3,7 @@ import zlib from 'node:zlib'
 
 import { defineConfig } from 'drizzle-kit'
 
-import { url } from './src/config/database'
+import { casing, url } from './src/config/database'
 
 const transformMap = {
   'deflate': zlib.createDeflate,
@@ -27,6 +27,7 @@ export default defineConfig({
   schema: './src/database/schema.ts',
   out: './src/database/migrations',
   dialect: 'postgresql',
+  casing,
   dbCredentials: {
     url,
   },

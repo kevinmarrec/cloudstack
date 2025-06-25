@@ -27,7 +27,7 @@ services:
       postgres:
         condition: service_healthy
     image: oven/bun:1-alpine
-    entrypoint: [bun, --cwd, backend, db:migrate]
+    command: [bun, --cwd, backend, db:migrate]
 
   backend:
     <<: *common
@@ -35,7 +35,7 @@ services:
       init_db:
         condition: service_completed_successfully
     image: oven/bun:1-alpine
-    entrypoint: [bun, --cwd, backend, dev]
+    command: [bun, --cwd, backend, dev]
     ports:
       - 3000:3000
 
@@ -44,7 +44,7 @@ services:
     depends_on:
       - backend
     image: imbios/bun-node:22-alpine
-    entrypoint: [bun, --cwd, frontend, dev, --host, 0.0.0.0]
+    command: [bun, --cwd, frontend, dev, --host, 0.0.0.0]
     ports:
       - 5173:5173
 
