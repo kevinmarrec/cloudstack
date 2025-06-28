@@ -1,5 +1,8 @@
 import { useConfig } from '@kevinmarrec/cloudstack-knip-config'
 
+// @ts-expect-error - Required to make Knip happy
+import.meta.env.DATABASE_URL = 'postgresql://user:password@host:5432/database'
+
 export default useConfig({
   ignoreBinaries: ['docker-compose'],
   workspaces: {

@@ -2,7 +2,10 @@ import type { Casing } from 'drizzle-orm'
 import * as v from 'valibot'
 
 const schema = v.object({
-  url: v.string(),
+  url: v.pipe(
+    v.string(),
+    v.nonEmpty(),
+  ),
 })
 
 const config = v.parse(schema, {
