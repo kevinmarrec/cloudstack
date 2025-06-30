@@ -10,7 +10,7 @@
     "db:studio": "bun --bun run drizzle-kit studio"
   },
   "dependencies": {
-    "@orpc/server": "^1.5.2",
+    "@orpc/server": "^1.6.0",
     "drizzle-orm": "^0.44.2",
     "pino": "^9.7.0",
     "valibot": "^1.1.0"

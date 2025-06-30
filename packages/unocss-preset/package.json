@@ -30,11 +30,11 @@
     "build": "tsdown"
   },
   "dependencies": {
-    "@unocss/core": "^66.3.1",
-    "@unocss/preset-icons": "^66.3.1",
-    "@unocss/preset-web-fonts": "^66.3.1",
-    "@unocss/preset-wind4": "^66.3.1",
-    "@unocss/transformer-directives": "^66.3.1",
-    "@unocss/transformer-variant-group": "^66.3.1"
+    "@unocss/core": "^66.3.2",
+    "@unocss/preset-icons": "^66.3.2",
+    "@unocss/preset-web-fonts": "^66.3.2",
+    "@unocss/preset-wind4": "^66.3.2",
+    "@unocss/transformer-directives": "^66.3.2",
+    "@unocss/transformer-variant-group": "^66.3.2"
   }
 }
