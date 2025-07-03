@@ -5,35 +5,8 @@ x-common: &common
   user: 1000:1000
 
 services:
-  postgres:
-    image: postgres:17-alpine
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: app
-    ports:
-      - 5432:5432
-    volumes:
-      - postgres:/var/lib/postgresql/data
-    healthcheck:
-      test: [CMD-SHELL, pg_isready -U user -d app]
-      interval: 2s
-      timeout: 2s
-      retries: 10
-
-  init_db:
-    <<: *common
-    depends_on:
-      postgres:
-        condition: service_healthy
-    image: oven/bun:1-alpine
-    command: [bun, --cwd, backend, db:migrate]
-
   backend:
     <<: *common
-    depends_on:
-      init_db:
-        condition: service_completed_successfully
     image: oven/bun:1-alpine
     command: [bun, --cwd, backend, dev]
     ports:
@@ -47,6 +20,3 @@ services:
     command: [bun, --cwd, frontend, dev, --host, 0.0.0.0]
     ports:
       - 5173:5173
-
-volumes:
-  postgres:
