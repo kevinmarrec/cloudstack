@@ -36,13 +36,11 @@ git checkout -b my-new-branch-or-feature
 
 4. Run `bun run build` to build the packages: the playground will use the built packages.
 
-5. Test locally your changes by running the playground in your local environment using `bun run playground` (requires [Docker Compose](https://docs.docker.com/compose/)).
+5. Run `bun run playground` and check your changes in the browser.
 
-6. Check your changes in the browser.
+6. Run the checks: `bun run check` and the tests: `bun run test`.
 
-7. Run the checks: `bun run check` and the tests: `bun run test`.
-
-8. Commit and push your changes to your fork using conventional commits. Then, create a pull request to the `main` branch of the Cloudstack repository:
+7. Commit and push your changes to your fork using conventional commits. Then, create a pull request to the `main` branch of the Cloudstack repository:
 
 ```shell
 git add .
