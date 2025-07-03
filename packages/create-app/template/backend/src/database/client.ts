@@ -1,9 +1,8 @@
-import { casing, url } from '@backend/config/database'
-import { drizzle } from 'drizzle-orm/bun-sql'
+import { drizzle } from 'drizzle-orm/bun-sqlite'
 
 import * as schema from './schema'
 
-export const client = drizzle(url, {
+export const client = drizzle('./db.sqlite', {
   schema,
-  casing,
+  logger: true,
 })

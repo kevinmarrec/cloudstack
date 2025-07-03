@@ -16,6 +16,7 @@
     "valibot": "^1.1.0"
   },
   "devDependencies": {
+    "@libsql/client": "^0.15.9",
     "@types/bun": "^1.2.18",
     "drizzle-kit": "^0.31.1",
     "pg": "^8.16.2",
