@@ -2,7 +2,7 @@
   "name": "app",
   "type": "module",
   "private": true,
-  "packageManager": "bun@1.2.17",
+  "packageManager": "bun@1.2.18",
   "engines": {
     "node": "lts/*"
   },
@@ -26,12 +26,12 @@
     "@kevinmarrec/cloudstack-stylelint-config": "workspace:*",
     "@kevinmarrec/cloudstack-taze-config": "workspace:*",
     "@kevinmarrec/cloudstack-tsconfig": "workspace:*",
-    "concurrently": "^9.1.2",
-    "eslint": "^9.30.0",
+    "concurrently": "^9.2.0",
+    "eslint": "^9.30.1",
     "knip": "^5.61.3",
-    "stylelint": "^16.21.0",
+    "stylelint": "^16.21.1",
     "taze": "^19.1.0",
     "typescript": "~5.8.3",
-    "vue-tsc": "^2.2.10"
+    "vue-tsc": "^3.0.1"
   }
 }
