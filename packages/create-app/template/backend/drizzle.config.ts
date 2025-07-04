@@ -10,7 +10,7 @@ const transformMap = {
 }
 
 // https://github.com/oven-sh/bun/issues/1723
-globalThis.CompressionStream = class CompressionStream {
+globalThis.CompressionStream ??= class CompressionStream {
   readable: ReadableStream
   writable: WritableStream
 
