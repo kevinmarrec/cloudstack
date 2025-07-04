@@ -1,7 +1,5 @@
 import { client } from '@backend/database/client'
-import { users } from '@backend/database/schema'
 import { pub } from '@backend/lib/orpc'
-import { eq } from 'drizzle-orm'
 import * as v from 'valibot'
 
 export const welcome = pub
