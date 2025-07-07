@@ -33,6 +33,10 @@ const server = Bun.serve({
 
     return new Response('Not found', { status: 404 })
   },
+  error(error) {
+    logger.error(error)
+    return new Response('Internal Server Error', { status: 500 })
+  },
 })
 
 logger.info(`Listening on ${server.url}`)
