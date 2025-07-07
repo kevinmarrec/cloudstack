@@ -1,4 +1,5 @@
 import { Readable, Writable } from 'node:stream'
+import type { ReadableStream, WritableStream } from 'node:stream/web'
 import zlib from 'node:zlib'
 
 import { defineConfig } from 'drizzle-kit'
@@ -19,7 +20,7 @@ globalThis.CompressionStream ??= class CompressionStream {
     this.readable = Readable.toWeb(handle)
     this.writable = Writable.toWeb(handle)
   }
-}
+} as unknown as typeof CompressionStream
 
 export default defineConfig({
   schema: './src/database/schema.ts',
