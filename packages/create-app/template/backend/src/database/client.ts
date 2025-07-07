@@ -1,9 +1,17 @@
 import { logger } from '@backend/logger'
+import { Database } from 'bun:sqlite'
 import { drizzle } from 'drizzle-orm/bun-sqlite'
 
 import * as schema from './schema'
 
-export const client = drizzle('./db.sqlite', {
+const db = new Database('./cloudstack.db')
+
+db.exec('PRAGMA journal_mode = WAL')
+db.exec('PRAGMA journal_size_limit = 6144000')
+db.exec('PRAGMA synchronous = NORMAL')
+db.exec('PRAGMA foreign_keys = ON')
+
+export const client = drizzle(db, {
   schema,
   logger: {
     logQuery: (query, params) => {
@@ -11,3 +19,5 @@ export const client = drizzle('./db.sqlite', {
     },
   },
 })
+
+export type DatabaseClient = typeof client

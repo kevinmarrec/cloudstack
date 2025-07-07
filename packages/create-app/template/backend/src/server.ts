@@ -5,6 +5,7 @@ import { RPCHandler } from '@orpc/server/fetch'
 import { CORSPlugin } from '@orpc/server/plugins'
 
 import { cors, hostname, port } from './config/server'
+import { client } from './database/client'
 import { logger } from './logger'
 import { router } from './router'
 
@@ -24,6 +25,7 @@ const server = Bun.serve({
     const { matched, response } = await rpcHandler.handle(request, {
       prefix: '/rpc',
       context: {
+        db: client,
         logger,
       },
     })
