@@ -1,8 +1,13 @@
 import { useConfig } from '@kevinmarrec/cloudstack-knip-config'
 
+import.meta.env.DATABASE_URL = 'foo.db'
+
 export default useConfig({
   workspaces: {
     backend: {
+      drizzle: {
+        config: ['src/config/drizzle.ts'],
+      },
       ignoreDependencies: ['pino-pretty'],
     },
     frontend: {
