@@ -3,8 +3,10 @@
 .env.prod*
 .idea
 .temp
+*.db
 *.local
 *.log
+*.sqlite
 .vite*
 coverage
 dev-dist
