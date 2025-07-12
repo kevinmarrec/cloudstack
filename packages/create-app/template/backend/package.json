@@ -7,7 +7,7 @@
     "build": "bun build src/server.ts --compile --minify --sourcemap --outfile dist/server"
   },
   "dependencies": {
-    "@orpc/server": "^1.6.6",
+    "@orpc/server": "^1.6.8",
     "pino": "^9.7.0",
     "valibot": "^1.1.0"
   },
