@@ -1,5 +1,7 @@
 interface ImportMetaEnv {
-  readonly NODE_ENV: 'development' | 'production' | 'test'
+  readonly DATABASE_URL: string
+  readonly LOG_LEVEL: string
+  readonly NODE_ENV: string
 }
 
 interface ImportMeta {

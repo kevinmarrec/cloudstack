@@ -1,5 +1,6 @@
 import { useConfig } from '@kevinmarrec/cloudstack-knip-config'
 
+// @ts-expect-error - Override readonly
 import.meta.env.DATABASE_URL = 'foo.db'
 
 export default useConfig({
