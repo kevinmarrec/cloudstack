@@ -1,10 +1,12 @@
+*.db
+*.local
+*.log
+*.sqlite
 .cache
 .DS_Store
 .env.prod*
 .idea
 .temp
-*.local
-*.log
 coverage
 dev-dist
 dist
