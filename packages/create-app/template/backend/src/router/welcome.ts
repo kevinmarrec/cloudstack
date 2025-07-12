@@ -7,5 +7,5 @@ export const welcome = pub
   .output(v.string())
   .handler(async ({ input, context: { db } }) => {
     const count = await db.$count(users)
-    return `Hello ${input} (${count} users online)!`
+    return `Hello ${input} (${count})`
   })
