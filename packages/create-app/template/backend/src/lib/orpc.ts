@@ -1,9 +1,9 @@
-import type { DatabaseClient } from '@backend/database/client'
+import type { Database } from '@backend/database'
 import type { Logger } from '@backend/logger'
 import { os } from '@orpc/server'
 
 interface Context {
-  db: DatabaseClient
+  db: Database
   logger: Logger
 }
 
