@@ -9,3 +9,5 @@ export const logger = pino({
     ? { target: 'pino-pretty' }
     : undefined,
 })
+
+export type Logger = typeof logger

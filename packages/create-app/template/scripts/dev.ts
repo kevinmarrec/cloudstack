@@ -1,8 +1,8 @@
 import concurrently, { type ConcurrentlyCommandInput } from 'concurrently'
 
 const commandInputs: ConcurrentlyCommandInput[] = [
-  { command: `bun --cwd backend dev`, name: 'backend', prefixColor: 'blue' },
-  { command: `bun --cwd frontend dev`, name: 'frontend', prefixColor: 'green' },
+  { name: 'backend', command: `bun --cwd backend dev`, prefixColor: 'blue' },
+  { name: 'frontend', command: `bun --cwd frontend dev`, prefixColor: 'green' },
 ]
 
 concurrently(commandInputs)

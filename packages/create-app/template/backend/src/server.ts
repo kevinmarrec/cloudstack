@@ -1,14 +1,21 @@
 import process from 'node:process'
 
+import { onError } from '@orpc/server'
 import { RPCHandler } from '@orpc/server/fetch'
 import { CORSPlugin } from '@orpc/server/plugins'
 
 import { cors, hostname, port } from './config/server'
+import { db } from './database'
 import { logger } from './logger'
 import { router } from './router'
 
 const rpcHandler = new RPCHandler(router, {
   plugins: [new CORSPlugin(cors)],
+  interceptors: [
+    onError((error) => {
+      logger.error(error)
+    }),
+  ],
 })
 
 const server = Bun.serve({
@@ -18,6 +25,7 @@ const server = Bun.serve({
     const { matched, response } = await rpcHandler.handle(request, {
       prefix: '/rpc',
       context: {
+        db,
         logger,
       },
     })
@@ -26,6 +34,10 @@ const server = Bun.serve({
       return response
 
     return new Response('Not found', { status: 404 })
+  },
+  error(error) {
+    logger.error(error)
+    return new Response('Internal Server Error', { status: 500 })
   },
 })
 
