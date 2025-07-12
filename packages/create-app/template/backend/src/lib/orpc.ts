@@ -7,9 +7,4 @@ interface Context {
   logger: Logger
 }
 
-export const pub = os
-  .$context<Context>()
-  .use(async ({ context, next, path }) => {
-    context.logger.info(path.join('.'))
-    return next()
-  })
+export const pub = os.$context<Context>()
