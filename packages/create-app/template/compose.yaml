@@ -10,7 +10,7 @@ services:
     image: oven/bun:1-alpine
     command: [bun, --cwd, backend, dev]
     ports:
-      - 3000:3000
+      - 4000:4000
 
   frontend:
     <<: *common

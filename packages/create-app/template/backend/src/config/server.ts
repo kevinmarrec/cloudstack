@@ -24,7 +24,7 @@ const schema = v.object({
     v.number(),
     v.minValue(3000),
     v.maxValue(65535),
-  ), '3000'),
+  ), '4000'),
 })
 
 const config = v.parse(schema, {
