@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useHead, useI18n } from '@frontend/composables'
-import { useWelcome } from '@frontend/queries'
+import { useSignUp } from '@frontend/queries'
 
 const { t } = useI18n()
 
@@ -8,7 +8,7 @@ useHead({
   title: () => t('title'),
 })
 
-const { data: message } = useWelcome('world')
+const { mutate: signUp, isPending, isError, error } = useSignUp()
 </script>
 
 <template>
@@ -17,9 +17,12 @@ const { data: message } = useWelcome('world')
       <h1 class="text-4xl font-bold">
         {{ t('body.message') }}
       </h1>
-      <h2 class="text-2xl text-gray-500">
-        {{ message }}
-      </h2>
+      <button :disabled="isPending" @click="signUp">
+        {{ isPending ? 'Signing up...' : 'Sign Up' }}
+      </button>
+      <p v-if="isError" class="text-red-500">
+        {{ error }}
+      </p>
     </div>
   </div>
 </template>
