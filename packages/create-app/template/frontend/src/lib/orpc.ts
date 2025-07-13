@@ -5,6 +5,11 @@ import { createTanstackQueryUtils } from '@orpc/tanstack-query'
 
 const link = new RPCLink({
   url: import.meta.env.VITE_API_URL,
+  fetch: (request, init) =>
+    globalThis.fetch(request, {
+      ...init,
+      credentials: 'include',
+    }),
 })
 
 const client: RouterClient<Router> = createORPCClient(link)
