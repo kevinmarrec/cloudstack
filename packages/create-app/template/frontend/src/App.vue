@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { useHead, useI18n } from '@frontend/composables'
-import { useSignUp } from '@frontend/queries'
+import { useAuth, useHead, useI18n } from '@frontend/composables'
 
 const { t } = useI18n()
 
@@ -8,7 +7,7 @@ useHead({
   title: () => t('title'),
 })
 
-const { mutate: signUp, isPending, isError, error } = useSignUp()
+const { session, signUp, signIn, signOut } = useAuth()
 </script>
 
 <template>
@@ -17,12 +16,16 @@ const { mutate: signUp, isPending, isError, error } = useSignUp()
       <h1 class="text-4xl font-bold">
         {{ t('body.message') }}
       </h1>
-      <button :disabled="isPending" @click="signUp">
-        {{ isPending ? 'Signing up...' : 'Sign Up' }}
+      <pre>{{ session }}</pre>
+      <button @click="() => signUp({ email: 'test45@test.com', password: 'password1234', name: 'test' })">
+        Sign Up
       </button>
-      <p v-if="isError" class="text-red-500">
-        {{ error }}
-      </p>
+      <button @click="() => signIn({ email: 'test45@test.com', password: 'password1234' })">
+        Sign In
+      </button>
+      <button @click="() => signOut()">
+        Sign Out
+      </button>
     </div>
   </div>
 </template>

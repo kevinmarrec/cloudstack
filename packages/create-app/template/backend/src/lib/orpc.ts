@@ -6,6 +6,7 @@ import type { ResponseHeadersPluginContext } from '@orpc/server/plugins'
 interface Context extends ResponseHeadersPluginContext {
   db: Database
   logger: Logger
+  req: Request
 }
 
 export const pub = os.$context<Context>()

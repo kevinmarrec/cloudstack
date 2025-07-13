@@ -52,6 +52,7 @@ const server = Bun.serve({
       context: {
         db,
         logger,
+        req: request,
       },
     })
 
