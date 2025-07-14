@@ -8,6 +8,10 @@ export const auth = betterAuth({
     provider: 'sqlite',
     usePlural: true,
   }),
+  session: {
+    // expiresIn: 5,
+    updateAge: 10,
+  },
   emailAndPassword: {
     enabled: true,
   },

@@ -6,7 +6,6 @@ import { CORSPlugin, ResponseHeadersPlugin } from '@orpc/server/plugins'
 
 import { cors, hostname, port } from './config/server'
 import { db } from './database'
-import { auth } from './lib/auth'
 import { logger } from './logger'
 import { router } from './router'
 
@@ -26,27 +25,6 @@ const server = Bun.serve({
   hostname,
   port,
   async fetch(request) {
-    const session = await auth.api.getSession({
-      headers: request.headers,
-    })
-
-    logger.info(session)
-
-    if (session) {
-      await auth.api.revokeOtherSessions({
-        headers: request.headers,
-      })
-
-      logger.info(`session: ${session.user.email}`)
-
-      const sessions = await auth.api.listSessions({
-        headers: request.headers,
-
-      })
-
-      logger.info(sessions)
-    }
-
     const { matched, response } = await rpcHandler.handle(request, {
       prefix: '/rpc',
       context: {
