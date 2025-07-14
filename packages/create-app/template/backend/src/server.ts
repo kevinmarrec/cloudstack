@@ -6,6 +6,7 @@ import { CORSPlugin, ResponseHeadersPlugin } from '@orpc/server/plugins'
 
 import { cors, hostname, port } from './config/server'
 import { db } from './database'
+import { auth } from './lib/auth'
 import { logger } from './logger'
 import { router } from './router'
 
@@ -28,6 +29,7 @@ const server = Bun.serve({
     const { matched, response } = await rpcHandler.handle(request, {
       prefix: '/rpc',
       context: {
+        $auth: auth,
         db,
         logger,
         req: request,
