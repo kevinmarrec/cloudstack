@@ -4,7 +4,9 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
 export function useAuth() {
   const qc = useQueryClient()
 
-  const { data: session } = useQuery(orpc.auth.getSession.queryOptions())
+  const { data: session } = useQuery(orpc.auth.getSession.queryOptions({
+    refetchOnMount: false,
+  }))
 
   const { mutateAsync: signUp } = useMutation(orpc.auth.signUp.mutationOptions({
     onSuccess: () => qc.invalidateQueries({ queryKey: orpc.auth.getSession.queryKey() }),

@@ -2,7 +2,7 @@ import { auth } from '@backend/lib/auth'
 import { pub } from '@backend/lib/orpc'
 import * as v from 'valibot'
 
-export const getSession = pub.handler(async ({ context: { req, resHeaders, logger } }) => {
+export const getSession = pub.handler(async ({ context: { req } }) => {
   const session = await auth.api.getSession({
     headers: req.headers,
     // returnHeaders: true,
@@ -25,37 +25,25 @@ export const signUp = pub
   }))
   .handler(async ({ input, context: { resHeaders } }) => {
     const { headers } = await auth.api.signUpEmail({
-      body: {
-        email: input.email,
-        password: input.password,
-        name: input.name,
-      },
+      body: input,
       returnHeaders: true,
     })
 
-    for (const [key, value] of headers.entries()) {
-      resHeaders?.append(key, value)
-    }
+    headers.forEach((value, key) => resHeaders?.append(key, value))
   })
 
 export const signIn = pub.input(v.object({
   email: v.pipe(v.string(), v.email()),
   password: v.string(),
+  rememberMe: v.optional(v.boolean(), true),
 }))
-  .handler(async ({ input, context: { resHeaders, logger } }) => {
+  .handler(async ({ input, context: { resHeaders } }) => {
     const { headers } = await auth.api.signInEmail({
-      body: {
-        email: input.email,
-        password: input.password,
-      },
+      body: input,
       returnHeaders: true,
     })
 
-    logger.info(headers.count)
-
-    for (const [key, value] of headers.entries()) {
-      resHeaders?.append(key, value)
-    }
+    headers.forEach((value, key) => resHeaders?.append(key, value))
   })
 
 export const signOut = pub.handler(async ({ context: { req, resHeaders } }) => {
