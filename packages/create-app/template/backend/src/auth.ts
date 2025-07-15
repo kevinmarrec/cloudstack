@@ -1,7 +1,7 @@
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 
-import { db } from '../database'
+import { db } from './database'
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -16,3 +16,5 @@ export const auth = betterAuth({
     enabled: true,
   },
 })
+
+export type Auth = typeof auth

@@ -1,26 +1,34 @@
 import process from 'node:process'
 
-import { onError } from '@orpc/server'
+import { onError, ORPCError } from '@orpc/server'
 import { RPCHandler } from '@orpc/server/fetch'
 import { CORSPlugin, ResponseHeadersPlugin } from '@orpc/server/plugins'
 
+import { auth } from './auth'
 import { cors, hostname, port } from './config/server'
 import { db } from './database'
-import { auth } from './lib/auth'
 import { logger } from './logger'
 import { router } from './router'
 
-const rpcHandler = new RPCHandler(router, {
+// RPC
+
+export const rpcHandler = new RPCHandler(router, {
   plugins: [
     new CORSPlugin(cors),
     new ResponseHeadersPlugin(),
   ],
   interceptors: [
     onError((error) => {
+      if (error instanceof ORPCError) {
+        return
+      }
+
       logger.error(error)
     }),
   ],
 })
+
+// Server
 
 const server = Bun.serve({
   hostname,
@@ -29,10 +37,10 @@ const server = Bun.serve({
     const { matched, response } = await rpcHandler.handle(request, {
       prefix: '/rpc',
       context: {
-        $auth: auth,
+        auth,
         db,
         logger,
-        req: request,
+        request,
       },
     })
 
@@ -48,6 +56,8 @@ const server = Bun.serve({
 })
 
 logger.info(`Listening on ${server.url}`)
+
+// Graceful Shutdown
 
 async function gracefulShutdown() {
   logger.info('Gracefully shutting down...')

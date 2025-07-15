@@ -1,19 +1,8 @@
-import { pub } from '@backend/lib/orpc'
+import { authed, pub } from '@backend/orpc'
 import * as v from 'valibot'
 
-export const getSession = pub.handler(async ({ context: { req, $auth } }) => {
-  const session = await $auth.api.getSession({
-    headers: req.headers,
-    // returnHeaders: true,
-  })
-
-  // const sessionx: typeof auth.$Infer['Session'] | null = session
-
-  // for (const cookie of headers.getSetCookie()) {
-  //   resHeaders?.append('Set-Cookie', cookie)
-  // }
-
-  return session
+export const getSession = authed.handler(async ({ context }) => {
+  return context.user
 })
 
 export const signUp = pub
@@ -22,8 +11,8 @@ export const signUp = pub
     email: v.pipe(v.string(), v.email()),
     password: v.string(),
   }))
-  .handler(async ({ input, context: { resHeaders, $auth } }) => {
-    const { headers } = await $auth.api.signUpEmail({
+  .handler(async ({ input, context: { resHeaders, auth } }) => {
+    const { headers } = await auth.api.signUpEmail({
       body: input,
       returnHeaders: true,
     })
@@ -36,8 +25,8 @@ export const signIn = pub.input(v.object({
   password: v.string(),
   rememberMe: v.optional(v.boolean(), true),
 }))
-  .handler(async ({ input, context: { resHeaders, $auth } }) => {
-    const { headers } = await $auth.api.signInEmail({
+  .handler(async ({ input, context: { request, resHeaders, auth } }) => {
+    const { headers } = await auth.api.signInEmail({
       body: input,
       returnHeaders: true,
     })
@@ -45,13 +34,11 @@ export const signIn = pub.input(v.object({
     headers.forEach((value, key) => resHeaders?.append(key, value))
   })
 
-export const signOut = pub.handler(async ({ context: { req, resHeaders, $auth } }) => {
-  const { headers } = await $auth.api.signOut({
-    headers: req.headers,
+export const signOut = pub.handler(async ({ context: { auth, request, resHeaders } }) => {
+  const { headers } = await auth.api.signOut({
+    headers: request.headers,
     returnHeaders: true,
   })
 
-  for (const [key, value] of headers.entries()) {
-    resHeaders?.append(key, value)
-  }
+  headers.forEach((value, key) => resHeaders?.append(key, value))
 })
