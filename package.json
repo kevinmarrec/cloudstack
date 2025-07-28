@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.15",
   "private": true,
-  "packageManager": "bun@1.2.18",
+  "packageManager": "bun@1.2.19",
   "engines": {
     "node": "lts/*"
   },
@@ -41,17 +41,17 @@
     "@vue/test-utils": "^2.4.6",
     "ansis": "^4.1.0",
     "bumpp": "^10.2.0",
-    "eslint": "^9.31.0",
+    "eslint": "^9.32.0",
     "happy-dom": "^18.0.1",
-    "knip": "^5.61.3",
+    "knip": "^5.62.0",
     "pathe": "^2.0.3",
-    "stylelint": "^16.21.1",
+    "stylelint": "^16.22.0",
     "taze": "^19.1.0",
     "tinyexec": "^1.0.1",
     "tinyglobby": "^0.2.14",
-    "tsdown": "^0.12.9",
+    "tsdown": "^0.13.0",
     "typescript": "~5.8.3",
     "vitest": "^3.2.4",
-    "vue-tsc": "^3.0.1"
+    "vue-tsc": "^3.0.4"
   }
 }
