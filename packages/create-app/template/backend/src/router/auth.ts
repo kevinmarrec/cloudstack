@@ -10,6 +10,7 @@ export const signUp = pub
     name: v.string(),
     email: v.pipe(v.string(), v.email()),
     password: v.string(),
+    rememberMe: v.optional(v.boolean(), true),
   }))
   .handler(async ({ input, context: { resHeaders, auth } }) => {
     const { headers } = await auth.api.signUpEmail({
