@@ -25,7 +25,7 @@ export const signIn = pub.input(v.object({
   password: v.string(),
   rememberMe: v.optional(v.boolean(), true),
 }))
-  .handler(async ({ input, context: { request, resHeaders, auth } }) => {
+  .handler(async ({ input, context: { resHeaders, auth } }) => {
     const { headers } = await auth.api.signInEmail({
       body: input,
       returnHeaders: true,
