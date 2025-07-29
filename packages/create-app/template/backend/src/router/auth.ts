@@ -1,4 +1,5 @@
 import { authed, pub } from '@backend/orpc'
+import { copyHeaders } from '@backend/utils/headers'
 import * as v from 'valibot'
 
 export const getSession = authed.handler(async ({ context }) => {
@@ -18,7 +19,7 @@ export const signUp = pub
       returnHeaders: true,
     })
 
-    headers.forEach((value, key) => resHeaders?.append(key, value))
+    copyHeaders(headers, resHeaders)
   })
 
 export const signIn = pub.input(v.object({
@@ -32,7 +33,7 @@ export const signIn = pub.input(v.object({
       returnHeaders: true,
     })
 
-    headers.forEach((value, key) => resHeaders?.append(key, value))
+    copyHeaders(headers, resHeaders)
   })
 
 export const signOut = pub.handler(async ({ context: { auth, request, resHeaders } }) => {
@@ -41,5 +42,5 @@ export const signOut = pub.handler(async ({ context: { auth, request, resHeaders
     returnHeaders: true,
   })
 
-  headers.forEach((value, key) => resHeaders?.append(key, value))
+  copyHeaders(headers, resHeaders)
 })
