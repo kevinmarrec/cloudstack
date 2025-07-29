@@ -1,4 +1,4 @@
-function copyHeaders(source: Headers, destination: Headers) {
+function copyHeaders(source: Headers, destination?: Headers) {
   for (const [key, value] of source.entries()) {
     destination?.append(key, value)
   }

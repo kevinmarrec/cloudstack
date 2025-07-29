@@ -1,11 +1,12 @@
 import { os } from '@orpc/server'
+import type { ResponseHeadersPluginContext } from '@orpc/server/plugins'
 
 import type { Auth } from './auth'
 import type { Database } from './database'
 import type { Logger } from './logger'
 import { requiredAuthMiddleware } from './middlewares/auth'
 
-export interface Context {
+interface Context extends ResponseHeadersPluginContext {
   auth: Auth
   db: Database
   logger: Logger
