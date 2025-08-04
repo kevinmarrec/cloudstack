@@ -14,12 +14,14 @@ export const signUp = pub
     rememberMe: v.optional(v.boolean(), true),
   }))
   .handler(async ({ input, context: { resHeaders, auth } }) => {
-    const { headers } = await auth.api.signUpEmail({
+    const { headers, response } = await auth.api.signUpEmail({
       body: input,
       returnHeaders: true,
     })
 
     copyHeaders(headers, resHeaders)
+
+    return response
   })
 
 export const signIn = pub.input(v.object({
@@ -28,19 +30,23 @@ export const signIn = pub.input(v.object({
   rememberMe: v.optional(v.boolean(), true),
 }))
   .handler(async ({ input, context: { resHeaders, auth } }) => {
-    const { headers } = await auth.api.signInEmail({
+    const { headers, response } = await auth.api.signInEmail({
       body: input,
       returnHeaders: true,
     })
 
     copyHeaders(headers, resHeaders)
+
+    return response
   })
 
-export const signOut = pub.handler(async ({ context: { auth, request, resHeaders } }) => {
-  const { headers } = await auth.api.signOut({
+export const signOut = authed.handler(async ({ context: { auth, request, resHeaders } }) => {
+  const { headers, response } = await auth.api.signOut({
     headers: request.headers,
     returnHeaders: true,
   })
 
   copyHeaders(headers, resHeaders)
+
+  return response
 })
