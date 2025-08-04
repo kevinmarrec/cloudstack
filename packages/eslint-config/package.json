@@ -33,8 +33,8 @@
     "eslint": ">=9.20.0"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^5.0.0",
-    "@unocss/eslint-plugin": "^66.3.3",
+    "@antfu/eslint-config": "^5.1.0",
+    "@unocss/eslint-plugin": "^66.4.1",
     "defu": "^6.1.4",
     "eslint-plugin-format": "^1.0.1",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
