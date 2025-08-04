@@ -29,9 +29,9 @@
     "concurrently": "^9.2.0",
     "eslint": "^9.32.0",
     "knip": "^5.62.0",
-    "stylelint": "^16.22.0",
+    "stylelint": "^16.23.0",
     "taze": "^19.1.0",
-    "typescript": "~5.8.3",
-    "vue-tsc": "^3.0.4"
+    "typescript": "~5.9.2",
+    "vue-tsc": "^3.0.5"
   }
 }
