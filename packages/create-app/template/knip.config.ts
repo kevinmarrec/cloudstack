@@ -13,7 +13,10 @@ export default useConfig({
       ignoreDependencies: ['pino-pretty'],
     },
     frontend: {
-      entry: ['src/main.ts'],
+      entry: [
+        'src/main.ts',
+        'src/pages/**/*.vue',
+      ],
     },
   },
 })

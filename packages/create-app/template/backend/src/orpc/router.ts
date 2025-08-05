@@ -1,4 +1,4 @@
-import * as auth from './auth'
+import * as auth from './procedures/auth'
 
 export type { RouterClient } from '@orpc/server'
 

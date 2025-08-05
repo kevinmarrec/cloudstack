@@ -1,16 +1,16 @@
-import type { Auth } from '@backend/auth'
 import { copyHeaders } from '@backend/utils/headers'
 import { os } from '@orpc/server'
-import type { ResponseHeadersPluginContext } from '@orpc/server/plugins'
+
+import type { Context } from '../context'
 
 export const requiredAuthMiddleware = os
-  .$context<{ auth: Auth, request: Request } & ResponseHeadersPluginContext>()
+  .$context<Pick<Context, 'auth' | 'reqHeaders' | 'resHeaders'>>()
   .errors({
     UNAUTHORIZED: { status: 401 },
   })
   .middleware(async ({ context, errors, next }) => {
     const response = await context.auth.api.getSession({
-      headers: context.request.headers,
+      headers: context.reqHeaders ?? new Headers(),
       asResponse: true,
     })
 

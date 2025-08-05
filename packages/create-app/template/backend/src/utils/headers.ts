@@ -1,7 +1,7 @@
 function copyHeaders(source: Headers, destination?: Headers) {
-  for (const [key, value] of source.entries()) {
+  source.forEach((value, key) => {
     destination?.append(key, value)
-  }
+  })
 }
 
 export { copyHeaders }
