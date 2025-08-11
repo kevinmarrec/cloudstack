@@ -10,14 +10,14 @@
     "db:studio": "bun --bun run drizzle-kit studio --config src/config/drizzle.ts"
   },
   "dependencies": {
-    "@orpc/server": "^1.7.9",
+    "@orpc/server": "^1.8.0",
     "drizzle-orm": "^0.44.4",
-    "pino": "^9.7.0",
+    "pino": "^9.8.0",
     "valibot": "^1.1.0"
   },
   "devDependencies": {
     "@libsql/client": "^0.15.10",
-    "@types/bun": "^1.2.19",
+    "@types/bun": "^1.2.20",
     "drizzle-kit": "^0.31.4",
     "pino-pretty": "^13.1.1"
   }
