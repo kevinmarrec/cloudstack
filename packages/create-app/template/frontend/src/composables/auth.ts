@@ -18,7 +18,7 @@ export function useAuth() {
 
   const { mutateAsync: signOut } = useMutation(orpc.auth.signOut.mutationOptions({
     onSuccess: () => {
-      qc.setQueryData(orpc.auth.getSession.queryKey(), null)
+      qc.setQueryData<null>(orpc.auth.getSession.queryKey(), null)
     },
   }))
 

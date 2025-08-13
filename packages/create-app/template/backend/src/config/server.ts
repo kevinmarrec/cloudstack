@@ -17,7 +17,7 @@ const schema = v.object({
       v.string(),
       v.minLength(1),
     ),
-    'localhost',
+    '0.0.0.0',
   ),
   port: v.optional(v.pipe(
     v.string(),
