@@ -5,7 +5,7 @@ export function useAuth() {
   const qc = useQueryClient()
 
   const { data: session } = useQuery(orpc.auth.getSession.queryOptions({
-    refetchOnMount: false,
+    retry: false,
   }))
 
   const { mutateAsync: signUp } = useMutation(orpc.auth.signUp.mutationOptions({
