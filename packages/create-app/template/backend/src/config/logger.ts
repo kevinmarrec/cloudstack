@@ -10,13 +10,10 @@ const schema = v.object({
     v.literal('fatal'),
     v.literal('silent'),
   ]), 'info'),
-  pretty: v.optional(v.boolean(), false),
 })
 
 const config = v.parse(schema, {
   level: import.meta.env.LOG_LEVEL,
-  pretty: import.meta.env.NODE_ENV === 'development',
 })
 
 export const level = config.level
-export const pretty = config.pretty
