@@ -16,8 +16,8 @@
   "scripts": {
     "build": "bun scripts/build.ts",
     "check": "bun run check:unused && bun run check:eslint && bun run check:stylelint && bun run check:types",
-    "check:eslint": "eslint .",
-    "check:stylelint": "stylelint '**/*.{css,scss,vue}' --ignorePath .gitignore",
+    "check:eslint": "eslint . --cache",
+    "check:stylelint": "stylelint '**/*.{css,scss,vue}' --ignorePath .gitignore --cache",
     "check:types": "vue-tsc --noEmit",
     "check:unused": "knip -n",
     "lint": "bun run check:eslint && bun run check:stylelint",
