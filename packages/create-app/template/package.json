@@ -2,7 +2,7 @@
   "name": "app",
   "type": "module",
   "private": true,
-  "packageManager": "bun@1.2.20",
+  "packageManager": "bun@1.2.21",
   "engines": {
     "node": "lts/*"
   },
@@ -12,8 +12,8 @@
   ],
   "scripts": {
     "check": "bun run check:unused && bun run check:eslint && bun run check:stylelint && bun run check:types",
-    "check:eslint": "eslint .",
-    "check:stylelint": "stylelint '**/*.{css,scss,vue}' --ignorePath .gitignore",
+    "check:eslint": "eslint . --cache",
+    "check:stylelint": "stylelint '**/*.{css,scss,vue}' --ignorePath .gitignore --cache",
     "check:types": "vue-tsc --noEmit",
     "check:unused": "knip -n",
     "dev": "bun scripts/dev.ts",
@@ -26,12 +26,12 @@
     "@kevinmarrec/cloudstack-stylelint-config": "workspace:*",
     "@kevinmarrec/cloudstack-taze-config": "workspace:*",
     "@kevinmarrec/cloudstack-tsconfig": "workspace:*",
-    "concurrently": "^9.2.0",
-    "eslint": "^9.33.0",
-    "knip": "^5.62.0",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.34.0",
+    "knip": "^5.63.0",
     "stylelint": "^16.23.1",
-    "taze": "^19.1.0",
+    "taze": "^19.3.0",
     "typescript": "~5.9.2",
-    "vue-tsc": "^3.0.5"
+    "vue-tsc": "^3.0.6"
   }
 }
