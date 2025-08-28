@@ -126,12 +126,6 @@ describe('plugin', () => {
     expect(resolvedConfig.build.modulePreload).toEqual({ polyfill: false })
   })
 
-  it('should optimize dependencies', async () => {
-    const resolvedConfig = await resolveConfig({ plugins: [CloudstackVitePlugin()] }, 'serve')
-
-    expect(resolvedConfig.optimizeDeps.include).toMatchSnapshot()
-  })
-
   it('should inject dark mode script in index.html', async () => {
     const server = await createServer({ plugins: [CloudstackVitePlugin()] })
     const html = await server.transformIndexHtml('index.html', '<html><head></head><body></body></html>')

@@ -8,7 +8,6 @@ import type { CloudstackPluginContext } from '../../context'
 import { integrationFactory } from '../_factory'
 import pwa from '../pwa'
 import visualizer from '../visualizer'
-import vueRouter from '../vue-router'
 
 export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
   name: 'cloudstack:config',
@@ -33,15 +32,6 @@ export default integrationFactory((ctx: CloudstackPluginContext): Plugin => ({
           },
         },
         optimizeDeps: {
-          include: [
-            '@kevinmarrec/cloudstack-vue-i18n',
-            '@kevinmarrec/cloudstack-vue-pwa',
-            'vite-ssg',
-            'vite-ssg/single-page',
-            'vue',
-            ...vueRouter.enabled(ctx) ? ['vue-router', 'unplugin-vue-router/runtime'] : [],
-            ...pwa.enabled(ctx) ? ['workbox-window'] : [],
-          ],
           exclude: [
             'virtual:pwa-register',
           ],
