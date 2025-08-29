@@ -10,6 +10,25 @@
   </a>
 </p>
 
+## Important Notice
+
+**August 2025**
+
+I decided to finally move things out of this monorepo as standalone repos and change my mind about fews things :
+
+- ESLint config : [@kevinmarrec/eslint-config](https://github.com/kevinmarrec/eslint-config)
+- Stylelint config : [@kevinmarrec/stylelint-config](https://github.com/kevinmarrec/stylelint-config)
+- TypeScript config : [@kevinmarrec/tsconfig](https://github.com/kevinmarrec/tsconfig)
+- UnoCSS config (includes preset) : [@kevinmarrec/unocss-config](https://github.com/kevinmarrec/unocss-config)
+- Knip config : Package was overkill
+- Taze config : Package was overkill
+
+- CLI (create-app) : [@kevinmarrec/create-app](https://github.com/kevinmarrec/create-app)
+- Vite config & plugin : Considering not using a package but directly configure everything in my app template (in `create-app`)
+- Vue (@kevinmarrec/cloudstack-vue) : Package was overkill
+- Vue i18n : [@kevinmarrec/vue-i18n](https://github.com/kevinmarrec/vue-i18n)
+- Vue PWA Plugin : Package was overkill
+
 ## Packages
 
 [![Name](https://img.shields.io/badge/%40kevinmarrec%2Fcreate--cloudstack--app-0?label=npm&color=3b82f6)](https://www.npmjs.com/package/@kevinmarrec/create-cloudstack-app)
